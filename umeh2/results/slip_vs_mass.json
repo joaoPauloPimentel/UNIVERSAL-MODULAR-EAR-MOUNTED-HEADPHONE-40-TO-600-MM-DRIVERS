@@ -1,0 +1,58 @@
+[
+ {
+  "driver_g": 0,
+  "total_g": 145.64407664112807,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.08520833333333333,
+  "3 g severe": 0.420625,
+  "static_ok": true
+ },
+ {
+  "driver_g": 10,
+  "total_g": 155.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.083125,
+  "3 g severe": 0.44208333333333333,
+  "static_ok": true
+ },
+ {
+  "driver_g": 20,
+  "total_g": 165.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.08479166666666667,
+  "3 g severe": 0.46979166666666666,
+  "static_ok": true
+ },
+ {
+  "driver_g": 26,
+  "total_g": 171.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.08541666666666667,
+  "3 g severe": 0.48125,
+  "static_ok": true
+ },
+ {
+  "driver_g": 40,
+  "total_g": 185.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.091875,
+  "3 g severe": 0.5145833333333333,
+  "static_ok": true
+ },
+ {
+  "driver_g": 60,
+  "total_g": 205.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.10979166666666666,
+  "3 g severe": 0.5560416666666667,
+  "static_ok": true
+ },
+ {
+  "driver_g": 80,
+  "total_g": 225.6440766411281,
+  "1 g normal": 0.0,
+  "2 g dynamic": 0.130625,
+  "3 g severe": 0.5966666666666667,
+  "static_ok": true
+ }
+]

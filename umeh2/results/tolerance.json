@@ -1,0 +1,620 @@
+{
+ "40": {
+  "UMI foam compression (anti-rattle strip)": {
+   "nom": 0.5599999999999996,
+   "wc": [
+    0.17726136392623726,
+    0.942738636073762
+   ],
+   "rss": [
+    0.35212383494012556,
+    0.7678761650598737
+   ],
+   "mc_p0135": 0.35331879009153183,
+   "mc_p99865": 0.766615860562512,
+   "mc_min": 0.2630662653429261,
+   "mc_max": 0.8859780779446691,
+   "limiting": "foam sheet thickness (die-cut)",
+   "share": {
+    "foam sheet thickness (die-cut)": 0.5924211744286955,
+    "groove height (ring, Z) / sqrt2": 0.2267862308359848,
+    "groove radial clearance (XY) / sqrt2": 0.06508533410471502,
+    "lug thickness (baffle, Z) / sqrt2": 0.11570726063060453
+   },
+   "crit": {
+    "min": 0.16000000000000003,
+    "max": 0.96,
+    "unit": "mm",
+    "note": "10-60 % strain: always touching, below densification (75 %)"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "UMI radial clearance (diametral)": {
+   "nom": 0.4000000000000057,
+   "wc": [
+    -0.05400000000000568,
+    0.8540000000000171
+   ],
+   "rss": [
+    0.13786263143153926,
+    0.6621373685684722
+   ],
+   "mc_p0135": 0.13646856828749493,
+   "mc_p99865": 0.6586456374533155,
+   "mc_min": 0.023287001676622343,
+   "mc_max": 0.7588796262382758,
+   "limiting": "shrink difference between prints",
+   "share": {
+    "bore diameter (ring, XY)": 0.3274346585947959,
+    "spigot diameter (baffle, XY)": 0.3274346585947959,
+    "shrink difference between prints": 0.345130682810408
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 assembles; <0.8 keeps lug engagement and no wobble"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "lug radial overlap with lip": {
+   "nom": 2.299999999999997,
+   "wc": [
+    1.9499999999999886,
+    2.6500000000000057
+   ],
+   "rss": [
+    2.073615371546559,
+    2.5263846284534353
+   ],
+   "mc_p0135": 2.075282289112246,
+   "mc_p99865": 2.5232035527994303,
+   "mc_min": 1.9644496339717816,
+   "mc_max": 2.6292116369900653,
+   "limiting": "radial float (half clearance, worst side)",
+   "share": {
+    "lug outer radius": 0.10975609756097315,
+    "lip inner radius (bore)": 0.10975609756097315,
+    "radial float (half clearance, worst side)": 0.7804878048780536
+   },
+   "crit": {
+    "min": 1.2,
+    "max": null,
+    "unit": "mm",
+    "note": ">= 1.2 mm bearing overlap on the 45 deg lip"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "driver rim in pocket (diametral)": {
+   "nom": 0.4399999999999977,
+   "wc": [
+    -0.00999999999999801,
+    0.8899999999999935
+   ],
+   "rss": [
+    0.10458980337502927,
+    0.7754101966249662
+   ],
+   "mc_p0135": 0.10737197397016426,
+   "mc_p99865": 0.7737280968036726,
+   "mc_min": -0.07730031204037857,
+   "mc_max": 0.905055691563355,
+   "limiting": "driver rim OD",
+   "share": {
+    "pocket diameter (baffle, XY)": 0.19999999999999998,
+    "driver rim OD": 0.7999999999999999
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 fits; <0.8 keeps the driver concentric (aperture overlap)"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "driver gasket squeeze": {
+   "nom": 0.2999999999999996,
+   "wc": [
+    -0.1500000000000007,
+    0.7499999999999997
+   ],
+   "rss": [
+    0.07087121525220758,
+    0.5291287847477917
+   ],
+   "mc_p0135": 0.06740869339512826,
+   "mc_p99865": 0.5295781314275108,
+   "mc_min": -0.10274798758341064,
+   "mc_max": 0.633619254858071,
+   "limiting": "driver gasket thickness",
+   "share": {
+    "baffle seat-to-rim-face height (Z)": 0.19047619047619047,
+    "driver rim thickness": 0.19047619047619047,
+    "driver gasket thickness": 0.42857142857142844,
+    "cup clamp step depth (Z)": 0.19047619047619047
+   },
+   "crit": {
+    "min": 0.05,
+    "max": 0.6,
+    "unit": "mm",
+    "note": "sealed and clamped; <60 % compression"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "pinna clearance to module (p95 ear)": {
+   "nom": 4.4,
+   "wc": [
+    1.6999999999999993,
+    7.1000000000000005
+   ],
+   "rss": [
+    2.348171547131681,
+    6.45182845286832
+   ],
+   "mc_p0135": 2.3495029437620354,
+   "mc_p99865": 6.455823788882751,
+   "mc_min": 1.3398380620325252,
+   "mc_max": 7.296253801976494,
+   "limiting": "p95 pinna protrusion",
+   "share": {
+    "standoff (ring head face)": 0.009501187648456057,
+    "module head face above ring face": 0.0023752969121140144,
+    "p95 pinna protrusion": 0.9501187648456055,
+    "pad + tissue compression under preload": 0.03800475059382423
+   },
+   "crit": {
+    "min": 1.0,
+    "max": null,
+    "unit": "mm",
+    "note": "no pinna contact; 1 mm min so hair/earrings do not touch"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "felt hole on the eye boss (interference)": {
+   "nom": 0.5,
+   "wc": [
+    0.14999999999999947,
+    0.8500000000000005
+   ],
+   "rss": [
+    0.25,
+    0.75
+   ],
+   "mc_p0135": 0.24924139256456573,
+   "mc_p99865": 0.7526090514394854,
+   "mc_min": 0.1645900773092812,
+   "mc_max": 0.8969662617671821,
+   "limiting": "felt hole (die-cut)",
+   "share": {
+    "eye boss OD (XY)": 0.36,
+    "felt hole (die-cut)": 0.6400000000000001
+   },
+   "crit": {
+    "min": 0.0,
+    "max": null,
+    "unit": "mm",
+    "note": "felt stays compressed on the boss: no air by-pass around it"
+   },
+   "ok": true,
+   "ok_wc": true
+  }
+ },
+ "50": {
+  "UMI foam compression (anti-rattle strip)": {
+   "nom": 0.5599999999999996,
+   "wc": [
+    0.17726136392623726,
+    0.942738636073762
+   ],
+   "rss": [
+    0.35212383494012556,
+    0.7678761650598737
+   ],
+   "mc_p0135": 0.35331879009153183,
+   "mc_p99865": 0.766615860562512,
+   "mc_min": 0.2630662653429261,
+   "mc_max": 0.8859780779446691,
+   "limiting": "foam sheet thickness (die-cut)",
+   "share": {
+    "foam sheet thickness (die-cut)": 0.5924211744286955,
+    "groove height (ring, Z) / sqrt2": 0.2267862308359848,
+    "groove radial clearance (XY) / sqrt2": 0.06508533410471502,
+    "lug thickness (baffle, Z) / sqrt2": 0.11570726063060453
+   },
+   "crit": {
+    "min": 0.16000000000000003,
+    "max": 0.96,
+    "unit": "mm",
+    "note": "10-60 % strain: always touching, below densification (75 %)"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "UMI radial clearance (diametral)": {
+   "nom": 0.4000000000000057,
+   "wc": [
+    -0.05400000000000568,
+    0.8540000000000171
+   ],
+   "rss": [
+    0.13786263143153926,
+    0.6621373685684722
+   ],
+   "mc_p0135": 0.13646856828749493,
+   "mc_p99865": 0.6586456374533155,
+   "mc_min": 0.023287001676622343,
+   "mc_max": 0.7588796262382758,
+   "limiting": "shrink difference between prints",
+   "share": {
+    "bore diameter (ring, XY)": 0.3274346585947959,
+    "spigot diameter (baffle, XY)": 0.3274346585947959,
+    "shrink difference between prints": 0.345130682810408
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 assembles; <0.8 keeps lug engagement and no wobble"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "lug radial overlap with lip": {
+   "nom": 2.299999999999997,
+   "wc": [
+    1.9499999999999886,
+    2.6500000000000057
+   ],
+   "rss": [
+    2.073615371546559,
+    2.5263846284534353
+   ],
+   "mc_p0135": 2.075282289112246,
+   "mc_p99865": 2.5232035527994303,
+   "mc_min": 1.9644496339717816,
+   "mc_max": 2.6292116369900653,
+   "limiting": "radial float (half clearance, worst side)",
+   "share": {
+    "lug outer radius": 0.10975609756097315,
+    "lip inner radius (bore)": 0.10975609756097315,
+    "radial float (half clearance, worst side)": 0.7804878048780536
+   },
+   "crit": {
+    "min": 1.2,
+    "max": null,
+    "unit": "mm",
+    "note": ">= 1.2 mm bearing overlap on the 45 deg lip"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "driver rim in pocket (diametral)": {
+   "nom": 0.4399999999999977,
+   "wc": [
+    -0.00999999999999801,
+    0.8899999999999935
+   ],
+   "rss": [
+    0.10458980337502927,
+    0.7754101966249662
+   ],
+   "mc_p0135": 0.10737197397016426,
+   "mc_p99865": 0.7737280968036726,
+   "mc_min": -0.07730031204037857,
+   "mc_max": 0.905055691563355,
+   "limiting": "driver rim OD",
+   "share": {
+    "pocket diameter (baffle, XY)": 0.19999999999999998,
+    "driver rim OD": 0.7999999999999999
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 fits; <0.8 keeps the driver concentric (aperture overlap)"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "driver gasket squeeze": {
+   "nom": 0.30000000000000027,
+   "wc": [
+    -0.15000000000000002,
+    0.7500000000000003
+   ],
+   "rss": [
+    0.07087121525220824,
+    0.5291287847477923
+   ],
+   "mc_p0135": 0.06740869339512914,
+   "mc_p99865": 0.5295781314275114,
+   "mc_min": -0.10274798758340997,
+   "mc_max": 0.6336192548580719,
+   "limiting": "driver gasket thickness",
+   "share": {
+    "baffle seat-to-rim-face height (Z)": 0.19047619047619047,
+    "driver rim thickness": 0.19047619047619047,
+    "driver gasket thickness": 0.42857142857142844,
+    "cup clamp step depth (Z)": 0.19047619047619047
+   },
+   "crit": {
+    "min": 0.05,
+    "max": 0.6,
+    "unit": "mm",
+    "note": "sealed and clamped; <60 % compression"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "pinna clearance to module (p95 ear)": {
+   "nom": 4.4,
+   "wc": [
+    1.6999999999999993,
+    7.1000000000000005
+   ],
+   "rss": [
+    2.348171547131681,
+    6.45182845286832
+   ],
+   "mc_p0135": 2.3495029437620354,
+   "mc_p99865": 6.455823788882751,
+   "mc_min": 1.3398380620325252,
+   "mc_max": 7.296253801976494,
+   "limiting": "p95 pinna protrusion",
+   "share": {
+    "standoff (ring head face)": 0.009501187648456057,
+    "module head face above ring face": 0.0023752969121140144,
+    "p95 pinna protrusion": 0.9501187648456055,
+    "pad + tissue compression under preload": 0.03800475059382423
+   },
+   "crit": {
+    "min": 1.0,
+    "max": null,
+    "unit": "mm",
+    "note": "no pinna contact; 1 mm min so hair/earrings do not touch"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "felt hole on the eye boss (interference)": {
+   "nom": 0.5,
+   "wc": [
+    0.14999999999999947,
+    0.8500000000000005
+   ],
+   "rss": [
+    0.25,
+    0.75
+   ],
+   "mc_p0135": 0.24924139256456573,
+   "mc_p99865": 0.7526090514394854,
+   "mc_min": 0.1645900773092812,
+   "mc_max": 0.8969662617671821,
+   "limiting": "felt hole (die-cut)",
+   "share": {
+    "eye boss OD (XY)": 0.36,
+    "felt hole (die-cut)": 0.6400000000000001
+   },
+   "crit": {
+    "min": 0.0,
+    "max": null,
+    "unit": "mm",
+    "note": "felt stays compressed on the boss: no air by-pass around it"
+   },
+   "ok": true,
+   "ok_wc": true
+  }
+ },
+ "60": {
+  "UMI foam compression (anti-rattle strip)": {
+   "nom": 0.5599999999999996,
+   "wc": [
+    0.17726136392623726,
+    0.942738636073762
+   ],
+   "rss": [
+    0.35212383494012556,
+    0.7678761650598737
+   ],
+   "mc_p0135": 0.35331879009153183,
+   "mc_p99865": 0.766615860562512,
+   "mc_min": 0.2630662653429261,
+   "mc_max": 0.8859780779446691,
+   "limiting": "foam sheet thickness (die-cut)",
+   "share": {
+    "foam sheet thickness (die-cut)": 0.5924211744286955,
+    "groove height (ring, Z) / sqrt2": 0.2267862308359848,
+    "groove radial clearance (XY) / sqrt2": 0.06508533410471502,
+    "lug thickness (baffle, Z) / sqrt2": 0.11570726063060453
+   },
+   "crit": {
+    "min": 0.16000000000000003,
+    "max": 0.96,
+    "unit": "mm",
+    "note": "10-60 % strain: always touching, below densification (75 %)"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "UMI radial clearance (diametral)": {
+   "nom": 0.4000000000000057,
+   "wc": [
+    -0.05400000000000568,
+    0.8540000000000171
+   ],
+   "rss": [
+    0.13786263143153926,
+    0.6621373685684722
+   ],
+   "mc_p0135": 0.13646856828749493,
+   "mc_p99865": 0.6586456374533155,
+   "mc_min": 0.023287001676622343,
+   "mc_max": 0.7588796262382758,
+   "limiting": "shrink difference between prints",
+   "share": {
+    "bore diameter (ring, XY)": 0.3274346585947959,
+    "spigot diameter (baffle, XY)": 0.3274346585947959,
+    "shrink difference between prints": 0.345130682810408
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 assembles; <0.8 keeps lug engagement and no wobble"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "lug radial overlap with lip": {
+   "nom": 2.299999999999997,
+   "wc": [
+    1.9499999999999886,
+    2.6500000000000057
+   ],
+   "rss": [
+    2.073615371546559,
+    2.5263846284534353
+   ],
+   "mc_p0135": 2.075282289112246,
+   "mc_p99865": 2.5232035527994303,
+   "mc_min": 1.9644496339717816,
+   "mc_max": 2.6292116369900653,
+   "limiting": "radial float (half clearance, worst side)",
+   "share": {
+    "lug outer radius": 0.10975609756097315,
+    "lip inner radius (bore)": 0.10975609756097315,
+    "radial float (half clearance, worst side)": 0.7804878048780536
+   },
+   "crit": {
+    "min": 1.2,
+    "max": null,
+    "unit": "mm",
+    "note": ">= 1.2 mm bearing overlap on the 45 deg lip"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "driver rim in pocket (diametral)": {
+   "nom": 0.4399999999999977,
+   "wc": [
+    -0.00999999999999801,
+    0.8899999999999935
+   ],
+   "rss": [
+    0.10458980337502927,
+    0.7754101966249662
+   ],
+   "mc_p0135": 0.10737197397016426,
+   "mc_p99865": 0.7737280968036726,
+   "mc_min": -0.07730031204037857,
+   "mc_max": 0.905055691563355,
+   "limiting": "driver rim OD",
+   "share": {
+    "pocket diameter (baffle, XY)": 0.19999999999999998,
+    "driver rim OD": 0.7999999999999999
+   },
+   "crit": {
+    "min": 0.0,
+    "max": 0.8,
+    "unit": "mm",
+    "note": ">0 fits; <0.8 keeps the driver concentric (aperture overlap)"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "driver gasket squeeze": {
+   "nom": 0.30000000000000027,
+   "wc": [
+    -0.15000000000000002,
+    0.7500000000000003
+   ],
+   "rss": [
+    0.07087121525220824,
+    0.5291287847477923
+   ],
+   "mc_p0135": 0.06740869339512914,
+   "mc_p99865": 0.5295781314275114,
+   "mc_min": -0.10274798758340997,
+   "mc_max": 0.6336192548580719,
+   "limiting": "driver gasket thickness",
+   "share": {
+    "baffle seat-to-rim-face height (Z)": 0.19047619047619047,
+    "driver rim thickness": 0.19047619047619047,
+    "driver gasket thickness": 0.42857142857142844,
+    "cup clamp step depth (Z)": 0.19047619047619047
+   },
+   "crit": {
+    "min": 0.05,
+    "max": 0.6,
+    "unit": "mm",
+    "note": "sealed and clamped; <60 % compression"
+   },
+   "ok": true,
+   "ok_wc": false
+  },
+  "pinna clearance to module (p95 ear)": {
+   "nom": 4.4,
+   "wc": [
+    1.6999999999999993,
+    7.1000000000000005
+   ],
+   "rss": [
+    2.348171547131681,
+    6.45182845286832
+   ],
+   "mc_p0135": 2.3495029437620354,
+   "mc_p99865": 6.455823788882751,
+   "mc_min": 1.3398380620325252,
+   "mc_max": 7.296253801976494,
+   "limiting": "p95 pinna protrusion",
+   "share": {
+    "standoff (ring head face)": 0.009501187648456057,
+    "module head face above ring face": 0.0023752969121140144,
+    "p95 pinna protrusion": 0.9501187648456055,
+    "pad + tissue compression under preload": 0.03800475059382423
+   },
+   "crit": {
+    "min": 1.0,
+    "max": null,
+    "unit": "mm",
+    "note": "no pinna contact; 1 mm min so hair/earrings do not touch"
+   },
+   "ok": true,
+   "ok_wc": true
+  },
+  "felt hole on the eye boss (interference)": {
+   "nom": 0.5,
+   "wc": [
+    0.14999999999999947,
+    0.8500000000000005
+   ],
+   "rss": [
+    0.25,
+    0.75
+   ],
+   "mc_p0135": 0.24924139256456573,
+   "mc_p99865": 0.7526090514394854,
+   "mc_min": 0.1645900773092812,
+   "mc_max": 0.8969662617671821,
+   "limiting": "felt hole (die-cut)",
+   "share": {
+    "eye boss OD (XY)": 0.36,
+    "felt hole (die-cut)": 0.6400000000000001
+   },
+   "crit": {
+    "min": 0.0,
+    "max": null,
+    "unit": "mm",
+    "note": "felt stays compressed on the boss: no air by-pass around it"
+   },
+   "ok": true,
+   "ok_wc": true
+  }
+ }
+}

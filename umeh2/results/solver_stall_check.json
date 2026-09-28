@@ -1,0 +1,295 @@
+{
+ "design": "calc/final_layout_grid45.json",
+ "cases": [
+  {
+   "case": {
+    "D": 40,
+    "g_dir": [
+     0.3827,
+     -0.9239,
+     0.0
+    ],
+    "axis": "pitch (nod)",
+    "sign": -1,
+    "phase": "alpha",
+    "cable_dir": [
+     -0.3314,
+     -0.5,
+     0.8001
+    ]
+   },
+   "mass": 0.15700144106238736,
+   "runs": [
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 1.0,
+     "ok": false,
+     "reason": "no converged equilibrium (minimiser stalled at a bounded position; numerical, counted as a release)",
+     "first_failure": {
+      "kind": "stopped at a bounded position",
+      "disp_mm": 0.17473451220064332,
+      "rot_deg": 0.11347470039525086
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 5,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.14593019066777616,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353407456846516,
+      "M mastoid": 0.9798355773060285,
+      "P post-sup": 1.6885842821476584,
+      "S root F": 0.21759741655847634,
+      "S root B": 0.1980263443332866,
+      "S scalp": 0.43202349588190947
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 8,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.14593019031668797,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353407417676138,
+      "M mastoid": 0.9798355785141338,
+      "P post-sup": 1.6885842823082653,
+      "S root F": 0.21759736650452466,
+      "S root B": 0.19802637930279748,
+      "S scalp": 0.4320234969657424
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 16,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.14593019009102873,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353407392498718,
+      "M mastoid": 0.9798355792904991,
+      "P post-sup": 1.6885842824095196,
+      "S root F": 0.21759733434892298,
+      "S root B": 0.19802640176164768,
+      "S scalp": 0.4320234976633515
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 32,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.14593050776050992,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353409642755194,
+      "M mastoid": 0.9798358676396548,
+      "P post-sup": 1.6885838216556592,
+      "S root F": 0.21759845858302196,
+      "S root B": 0.19802162665842993,
+      "S scalp": 0.43202356046967794
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 0.9999,
+     "ok": true,
+     "tilt": 0.14593377657070752,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353636001947636,
+      "M mastoid": 0.9798249610933312,
+      "P post-sup": 1.6886076792733555,
+      "S root F": 0.21756620023889556,
+      "S root B": 0.1979962296156038,
+      "S scalp": 0.4320283759744695
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 1.0001,
+     "ok": true,
+     "tilt": 0.1459266049073832,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.135317892757996,
+      "M mastoid": 0.9798461930135965,
+      "P post-sup": 1.688560884981936,
+      "S root F": 0.21762865315253457,
+      "S root B": 0.19805644511725437,
+      "S scalp": 0.43201861534644487
+     }
+    },
+    {
+     "max_cuts": 3,
+     "n_steps": 4,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.14593019060596749,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.1353407449912152,
+      "M mastoid": 0.9798355775190953,
+      "P post-sup": 1.6885842821759836,
+      "S root F": 0.21759740770659744,
+      "S root B": 0.19802635052269466,
+      "S scalp": 0.4320234960743622
+     }
+    }
+   ]
+  },
+  {
+   "case": {
+    "D": 45,
+    "g_dir": [
+     0.1464,
+     -0.9239,
+     0.3536
+    ],
+    "axis": "pitch (nod)",
+    "sign": 0.0,
+    "phase": "omega",
+    "cable_dir": [
+     0.6124,
+     -0.5,
+     -0.6124
+    ]
+   },
+   "mass": 0.1631591250381639,
+   "runs": [
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 1.0,
+     "ok": false,
+     "reason": "no converged equilibrium (minimiser stalled at a bounded position; numerical, counted as a release)",
+     "first_failure": {
+      "kind": "stopped at a bounded position",
+      "disp_mm": 0.1779932074096017,
+      "rot_deg": 0.067079243340624
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 5,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.02426207928622925,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131060238715812,
+      "M mastoid": 1.9656195806906385,
+      "P post-sup": 1.0059735160149619,
+      "S root F": 0.2180675900433905,
+      "S root B": 0.24463980961227896,
+      "S scalp": 0.31435279722553483
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 8,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.024258708359539492,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131165500705903,
+      "M mastoid": 1.9656173672180655,
+      "P post-sup": 1.0059758715400127,
+      "S root F": 0.21811389052594124,
+      "S root B": 0.24459973029181356,
+      "S scalp": 0.314343819884654
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 16,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.024255961184199197,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131251442250544,
+      "M mastoid": 1.9656155484331308,
+      "P post-sup": 1.0059778055495268,
+      "S root F": 0.2181518320231672,
+      "S root B": 0.24456709143747796,
+      "S scalp": 0.3143364993809451
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 32,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.024254467158655077,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131297500020022,
+      "M mastoid": 1.9656145690991975,
+      "P post-sup": 1.005978833899986,
+      "S root F": 0.2181718673139441,
+      "S root B": 0.24454979446307293,
+      "S scalp": 0.31433255289229045
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 0.9999,
+     "ok": true,
+     "tilt": 0.024270981947664687,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131065763435718,
+      "M mastoid": 1.9655212291007005,
+      "P post-sup": 1.0060783167939111,
+      "S root F": 0.21801562149133188,
+      "S root B": 0.24462984025452725,
+      "S scalp": 0.31437513964656505
+     }
+    },
+    {
+     "max_cuts": 0,
+     "n_steps": 4,
+     "load_scale": 1.0001,
+     "ok": true,
+     "tilt": 0.024256596579418886,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.213094252897806,
+      "M mastoid": 1.9657202780297127,
+      "P post-sup": 1.0058661224428238,
+      "S root F": 0.21806748394332306,
+      "S root B": 0.24469393842735288,
+      "S scalp": 0.3143398138349507
+     }
+    },
+    {
+     "max_cuts": 3,
+     "n_steps": 4,
+     "load_scale": 1.0,
+     "ok": true,
+     "tilt": 0.02426369726852103,
+     "seated": true,
+     "Fn": {
+      "T temporal": 1.2131016549426783,
+      "M mastoid": 1.9656204953012475,
+      "P post-sup": 1.0059726503018327,
+      "S root F": 0.2180517071235228,
+      "S root B": 0.24465494374115943,
+      "S scalp": 0.3143567757420339
+     }
+    }
+   ]
+  }
+ ]
+}

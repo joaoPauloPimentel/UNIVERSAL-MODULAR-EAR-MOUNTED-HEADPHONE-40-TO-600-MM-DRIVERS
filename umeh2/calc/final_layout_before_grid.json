@@ -1,0 +1,81 @@
+{
+ "_note": "Output of the layout optimisation (umeh2/layout.py random search + ranking, see report section 'Iteration'); values rounded to 0.5 deg / 0.5 mm / 0.1 N after the search and re-verified by run_all.py.",
+ "temporal_a": 20.0,
+ "temporal_r": 57.5,
+ "mastoid_a": 229.0,
+ "mastoid_r": 58.0,
+ "post_a": 164.0,
+ "post_r": 59.0,
+ "link_x": -19.5,
+ "link_y": 6.0,
+ "link_preload": 4.2,
+ "pad_scale": 1.3,
+ "per_size": {
+  "40": {
+   "link_x": -12.0,
+   "link_y": 12.0
+  },
+  "45": {
+   "link_x": -16.0,
+   "link_y": 11.0
+  },
+  "50": {
+   "link_x": -18.0,
+   "link_y": 12.0
+  },
+  "55": {
+   "link_x": -20.0,
+   "link_y": 11.0
+  },
+  "60": {
+   "link_x": -19.0,
+   "link_y": 12.0
+  }
+ },
+ "_per_size_note": "link eye on each cup, from calc/tune_eye.py (common cradle and link; module-specific eye)",
+ "wire_d": 2.0,
+ "link_coils": 8,
+ "_note_before_grid": "The Final before iteration change 19: eyes tuned on the quasi-uniform 1 g sample of that tune (_tune_set_1g) at the layout preload, link wire of that run. Kept to document change 19; run_all.py section 3d solves it on the 1 g grid (results/grid_1g_before_grid.json).",
+ "_tune_set_1g": {
+  "cat": "1 g normal",
+  "n_dir": 1,
+  "n_cable": 3,
+  "n_grav": 12,
+  "cases": 850,
+  "gravity": 17,
+  "dynamic": 1,
+  "head_motion": 10,
+  "cable": 5
+ },
+ "name": "Final",
+ "link_mode": "cup",
+ "rely_helix": false,
+ "saddle_scalp": true,
+ "saddle_arch": true,
+ "arch_R": 22.0,
+ "arch_phi": 35.0,
+ "serrated": true,
+ "arm_screw": "M3",
+ "arm_torque": 0.1,
+ "arm_screw_pitch": 11.0,
+ "anchor_torque": 0.1,
+ "cup_wall": 1.2,
+ "leg_t": 6.5,
+ "foot_t": 4.5,
+ "bar_t": 5.5,
+ "pad_face": "silicone",
+ "pad_face_t": 0.8,
+ "saddle_liner_t": 2.0,
+ "arm_washer": [
+  100.0,
+  200000.0
+ ],
+ "clip_interf": 0.05,
+ "umi_mode": "foam",
+ "foam_t": 1.6,
+ "foam_eps": 0.35,
+ "lug_ramp_c": 1.0,
+ "lug_ramp_L": 3.5,
+ "driver_pocket_clr": 0.22,
+ "_pinned_note": "the configs.FINAL_FIXED values of that design pinned here (they were the same then), so a later change of configs.py does not change this historical design"
+}

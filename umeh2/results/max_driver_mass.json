@@ -1,0 +1,312 @@
+{
+ "40": {
+  "static": {
+   "nominal_g": 15.0,
+   "governs": "static",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 150.0,
+   "capped": true,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 6,
+   "seconds": 0.3287186622619629
+  },
+  "normal": {
+   "nominal_g": 15.0,
+   "governs": "normal",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.155143022537231
+  },
+  "dynamic (released <= 0%)": {
+   "nominal_g": 15.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.384710311889648
+  },
+  "dynamic (released <= 10%)": {
+   "nominal_g": 15.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.613702774047852
+  },
+  "maximum": {
+   "nominal_g": 15.0,
+   "governs": "structure (5 g envelope)",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 125.478515625,
+   "capped": false,
+   "min_driver_g": 0.0,
+   "interval_checked": false,
+   "n_eval": 16,
+   "seconds": 2163.8141951560974
+  }
+ },
+ "45": {
+  "static": {
+   "nominal_g": 19.0,
+   "governs": "static",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 150.0,
+   "capped": true,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 6,
+   "seconds": 0.36960911750793457
+  },
+  "normal": {
+   "nominal_g": 19.0,
+   "governs": "normal",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.244743347167969
+  },
+  "dynamic (released <= 0%)": {
+   "nominal_g": 19.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.082151651382446
+  },
+  "dynamic (released <= 10%)": {
+   "nominal_g": 19.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.215317726135254
+  },
+  "maximum": {
+   "nominal_g": 19.0,
+   "governs": "structure (5 g envelope)",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 122.87890625,
+   "capped": false,
+   "min_driver_g": 0.0,
+   "interval_checked": false,
+   "n_eval": 16,
+   "seconds": 2182.406990289688
+  }
+ },
+ "50": {
+  "static": {
+   "nominal_g": 26.0,
+   "governs": "static",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 150.0,
+   "capped": true,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 6,
+   "seconds": 0.38672327995300293
+  },
+  "normal": {
+   "nominal_g": 26.0,
+   "governs": "normal",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.264802694320679
+  },
+  "dynamic (released <= 0%)": {
+   "nominal_g": 26.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.763463497161865
+  },
+  "dynamic (released <= 10%)": {
+   "nominal_g": 26.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.408344030380249
+  },
+  "maximum": {
+   "nominal_g": 26.0,
+   "governs": "structure (5 g envelope)",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 84.609375,
+   "capped": false,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 15,
+   "seconds": 2023.7461309432983
+  }
+ },
+ "55": {
+  "static": {
+   "nominal_g": 33.0,
+   "governs": "static",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 150.0,
+   "capped": true,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 6,
+   "seconds": 0.3195066452026367
+  },
+  "normal": {
+   "nominal_g": 33.0,
+   "governs": "normal",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.514733076095581
+  },
+  "dynamic (released <= 0%)": {
+   "nominal_g": 33.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.166980981826782
+  },
+  "dynamic (released <= 10%)": {
+   "nominal_g": 33.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 8.985958337783813
+  },
+  "maximum": {
+   "nominal_g": 33.0,
+   "governs": "structure (5 g envelope)",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 81.90234375,
+   "capped": false,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 15,
+   "seconds": 2008.4276928901672
+  }
+ },
+ "60": {
+  "static": {
+   "nominal_g": 40.0,
+   "governs": "static",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 150.0,
+   "capped": true,
+   "min_driver_g": 0.0,
+   "interval_checked": true,
+   "n_eval": 6,
+   "seconds": 0.3396739959716797
+  },
+  "normal": {
+   "nominal_g": 40.0,
+   "governs": "normal",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.243890523910522
+  },
+  "dynamic (released <= 0%)": {
+   "nominal_g": 40.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.094257354736328
+  },
+  "dynamic (released <= 10%)": {
+   "nominal_g": 40.0,
+   "governs": "dynamic",
+   "hi_g": 150.0,
+   "holds_at_nominal": false,
+   "min_driver_g": null,
+   "max_driver_g": null,
+   "capped": false,
+   "interval_checked": null,
+   "n_eval": 2,
+   "seconds": 9.06564712524414
+  },
+  "maximum": {
+   "nominal_g": 40.0,
+   "governs": "structure (5 g envelope)",
+   "hi_g": 150.0,
+   "holds_at_nominal": true,
+   "max_driver_g": 109.1796875,
+   "capped": false,
+   "min_driver_g": 0.0,
+   "interval_checked": false,
+   "n_eval": 14,
+   "seconds": 1825.43821144104
+  }
+ }
+}

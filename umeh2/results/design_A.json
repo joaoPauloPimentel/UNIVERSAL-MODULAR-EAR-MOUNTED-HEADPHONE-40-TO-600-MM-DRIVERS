@@ -1,0 +1,210 @@
+{
+ "mass": 0.194,
+ "com": [
+  0.00039867292979185574,
+  -4.80259930825647e-06,
+  0.039
+ ],
+ "support": {
+  "static": {
+   "ok": false
+  },
+  "static_mu_demand": null,
+  "static_B": {
+   "ok": false,
+   "reason": "released: gross slip (no bounded equilibrium inside the friction cones)"
+  },
+  "1 g normal": {
+   "n": 350,
+   "released": 338,
+   "unseated": 12,
+   "slip_fraction": 0.9657142857142857,
+   "pad_slip_fraction": 0.5833333333333334,
+   "worst_tilt_deg": 4.861348704586519,
+   "worst_disp_mm": 0.27869783454963615,
+   "worst_util": 1.0000002551856868,
+   "worst_p_peak": 16915.994481704034,
+   "p_peak": {
+    "T temporal": 8784.879220848718,
+    "M mastoid": 13331.925658674301,
+    "S root": 16915.994481704034,
+    "S helix": 7465.536357941134
+   },
+   "F_contact_max": {
+    "T temporal": 1.4261828040566689,
+    "M mastoid": 3.027052501527718,
+    "S root": 1.2936744188053235,
+    "S helix": 0.4604002119897738
+   },
+   "worst_tilt_case": {
+    "tag": {
+     "g_dir": [
+      -0.3254653016686904,
+      -0.9318181818181819,
+      0.16058397629516488
+     ],
+     "dyn_dir": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "g_eff": [
+      -3.1917243006092626,
+      -9.138014772727272,
+      1.5747908511349786
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.28894464693359606,
+      -0.44999999999999984,
+      -0.8449917106152105
+     ]
+    },
+    "contacts": [
+     [
+      "T temporal",
+      0.7564643811267594,
+      0.3328442794007948
+     ],
+     [
+      "M mastoid",
+      2.5430736594025194,
+      0.6179632778036039
+     ],
+     [
+      "S root",
+      0.9892837773594351,
+      0.43528496142462275
+     ],
+     [
+      "S helix",
+      0.44793218147646807,
+      0.10641952827353238
+     ]
+    ]
+   },
+   "arm_stress": {
+    "saddle": {},
+    "temporal": {},
+    "mastoid": {}
+   },
+   "joint": {},
+   "released_by": {
+    "no head rotation": 35,
+    "yaw (turn) alpha": 70,
+    "pitch (nod) alpha": 70,
+    "roll (tilt) alpha": 58,
+    "yaw (turn) omega": 35,
+    "pitch (nod) omega": 35,
+    "roll (tilt) omega": 35
+   },
+   "released_by_gravity": {
+    "gravity upright": 49,
+    "gravity tilted": 289
+   }
+  },
+  "2 g dynamic": {
+   "n": 10000,
+   "released": 9783,
+   "unseated": 217,
+   "slip_fraction": 0.9783,
+   "pad_slip_fraction": 0.6728110599078341,
+   "worst_tilt_deg": 4.983678995490631,
+   "worst_disp_mm": 2.9251758763137308,
+   "worst_util": 1.0000040507840013,
+   "worst_p_peak": 49609.20489800687,
+   "p_peak": {
+    "T temporal": 21243.182022219837,
+    "M mastoid": 18923.021454881822,
+    "S root": 49609.20489800687,
+    "S helix": 19039.50223066472
+   },
+   "F_contact_max": {
+    "T temporal": 3.2791898327159346,
+    "M mastoid": 4.627587383671425,
+    "S root": 3.793933452792306,
+    "S helix": 1.1483524689322717
+   },
+   "worst_tilt_case": {
+    "tag": {
+     "g_dir": [
+      0.3665891184282284,
+      -0.9242424242424242,
+      0.106716256870737
+     ],
+     "dyn_dir": [
+      0.8017441990476704,
+      0.5749999999999998,
+      -0.16303753952206695
+     ],
+     "g_eff": [
+      11.457435927825022,
+      -3.4248982196969706,
+      -0.5523231065126648
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -1.0,
+      0.0
+     ]
+    },
+    "contacts": [
+     [
+      "T temporal",
+      0.2901003080807926,
+      0.1276441473584326
+     ],
+     [
+      "M mastoid",
+      1.9940925223467527,
+      0.2513902672256077
+     ],
+     [
+      "S root",
+      1.493642123585821,
+      0.6572025865505293
+     ],
+     [
+      "S helix",
+      0.4696256009756343,
+      0.13843909466315396
+     ]
+    ]
+   },
+   "arm_stress": {
+    "saddle": {},
+    "temporal": {},
+    "mastoid": {}
+   },
+   "joint": {},
+   "released_by": {
+    "no head rotation": 979,
+    "yaw (turn) alpha": 1986,
+    "pitch (nod) alpha": 1980,
+    "roll (tilt) alpha": 1896,
+    "yaw (turn) omega": 989,
+    "pitch (nod) omega": 973,
+    "roll (tilt) omega": 980
+   },
+   "released_by_gravity": {
+    "gravity upright": 1954,
+    "gravity tilted": 7829
+   }
+  }
+ },
+ "criteria": {
+  "static seated (all pads loaded)": false,
+  "static skin pressure <= 4 kPa": false,
+  "static auricle-root pressure <= 4 kPa (donning A)": false,
+  "static friction: pads hold with design mu": false,
+  "1 g: no gross slip": false,
+  "1 g: stays seated": false,
+  "1 g: tilt <= 2 deg": false,
+  "2 g: no gross slip": false
+ }
+}

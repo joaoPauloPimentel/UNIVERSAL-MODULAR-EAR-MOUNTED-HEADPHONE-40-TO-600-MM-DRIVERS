@@ -1,0 +1,64 @@
+[   14.3s] D=40: mass 156.2 g (preload 4.2 N), COM [-4.54 -0.07 29.62] mm, eye r_max 17.2 mm
+[   28.1s] D=45: mass 162.3 g (preload 4.2 N), COM [-4.480e+00 -3.000e-02  3.035e+01] mm, eye r_max 19.7 mm
+[   41.4s] D=50: mass 172.5 g (preload 4.2 N), COM [-4.260e+00 -2.000e-02  3.129e+01] mm, eye r_max 22.2 mm
+[   41.4s] D=55: mass 181.3 g (preload 4.2 N), COM [-4.080e+00 -2.000e-02  3.215e+01] mm, eye r_max 24.7 mm
+[   41.4s] D=60: mass 189.9 g (preload 4.2 N), COM [-3.900e+00 -2.000e-02  3.298e+01] mm, eye r_max 27.2 mm
+[   41.4s] preload 4.2 N: wire 2.5 mm, 3 coils
+[   41.4s] preload 4.6 N: wire 2.5 mm, 3 coils
+[   41.4s] preload 5 N: wire 2.5 mm, 4 coils
+[   41.4s] preload 5.4 N: wire 2.5 mm, 4 coils
+[   41.4s] preload 5.8 N: wire 2.5 mm, 5 coils
+[   41.5s] stage 1 at preload 4.2 N (static + 1 g) on the coarse grid: 336 candidates
+[   48.8s] stage 1, 4.2 N: 25/336
+[   55.6s] stage 1, 4.2 N: 50/336
+[   62.0s] stage 1, 4.2 N: 75/336
+[   68.3s] stage 1, 4.2 N: 100/336
+[   74.6s] stage 1, 4.2 N: 125/336
+[   81.2s] stage 1, 4.2 N: 150/336
+[   87.5s] stage 1, 4.2 N: 175/336
+[   94.8s] stage 1, 4.2 N: 200/336
+[  101.2s] stage 1, 4.2 N: 225/336
+[  107.1s] stage 1, 4.2 N: 250/336
+[  113.6s] stage 1, 4.2 N: 275/336
+[  119.9s] stage 1, 4.2 N: 300/336
+[  126.2s] stage 1, 4.2 N: 325/336
+[  128.8s] stage 1, 4.2 N: 336/336
+[  128.8s] preload 4.2 N: candidates passing normal use per module {40: 0, 45: 0, 50: 0, 55: 0, 60: 0}
+[  128.8s] stage 1 at preload 4.6 N (static + 1 g) on the coarse grid: 336 candidates
+[  135.7s] stage 1, 4.6 N: 25/336
+[  142.1s] stage 1, 4.6 N: 50/336
+[  148.3s] stage 1, 4.6 N: 75/336
+[  154.6s] stage 1, 4.6 N: 100/336
+[  223.1s] stage 1, 4.6 N: 125/336
+[  223.1s] stage 1, 4.6 N: 150/336
+[  223.1s] stage 1, 4.6 N: 175/336
+[  223.1s] stage 1, 4.6 N: 200/336
+[  223.1s] stage 1, 4.6 N: 225/336
+[  223.1s] stage 1, 4.6 N: 250/336
+[  223.1s] stage 1, 4.6 N: 275/336
+[  223.1s] stage 1, 4.6 N: 300/336
+[  228.0s] stage 1, 4.6 N: 325/336
+[  230.3s] stage 1, 4.6 N: 336/336
+[  230.3s] preload 4.6 N: candidates passing normal use per module {40: 0, 45: 0, 50: 0, 55: 0, 60: 0}
+[  230.3s] stage 1 at preload 5 N (static + 1 g) on the coarse grid: 336 candidates
+[  312.2s] stage 1, 5 N: 25/336
+[  312.2s] stage 1, 5 N: 50/336
+[  399.0s] stage 1, 5 N: 75/336
+[  399.0s] stage 1, 5 N: 100/336
+[  472.7s] stage 1, 5 N: 125/336
+[  472.7s] stage 1, 5 N: 150/336
+[  472.7s] stage 1, 5 N: 175/336
+[  550.9s] stage 1, 5 N: 200/336
+[  550.9s] stage 1, 5 N: 225/336
+[  550.9s] stage 1, 5 N: 250/336
+[  598.5s] stage 1, 5 N: 275/336
+[  598.5s] stage 1, 5 N: 300/336
+[  598.5s] stage 1, 5 N: 325/336
+[  598.5s] stage 1, 5 N: 336/336
+[  598.5s] preload 5 N: candidates passing normal use per module {40: 2, 45: 3, 50: 3, 55: 2, 60: 2}
+[  961.6s] stage 2 (2 g): 12/12
+[ 1372.3s] refine 2.0 mm: 25/33
+[ 1443.9s] refine 2.0 mm: 33/33
+[ 1976.4s] refine 1.0 mm: 25/37
+[ 2277.2s] refine 1.0 mm: 37/37
+[ 3023.5s] stage 4, 5 N, D=40: eye (-15.0, 7.0) dense 166410 cases: released 0, tripod lost 0, tilt over 0, min seat 0.034 N; refinement 3279 cases, fails 0, min seat 0.031 N -> PASS
