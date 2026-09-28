@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+umeh2/calc/_cache/
+umeh2/stl/
+umeh2/results_smoke/
