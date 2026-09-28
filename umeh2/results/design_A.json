@@ -15,33 +15,33 @@
    "reason": "released: gross slip (no bounded equilibrium inside the friction cones)"
   },
   "1 g normal": {
-   "n": 350,
-   "released": 338,
-   "unseated": 12,
-   "slip_fraction": 0.9657142857142857,
-   "pad_slip_fraction": 0.5833333333333334,
-   "worst_tilt_deg": 4.861348704586519,
-   "worst_disp_mm": 0.27869783454963615,
-   "worst_util": 1.0000002551856868,
-   "worst_p_peak": 16915.994481704034,
+   "n": 5610,
+   "released": 5341,
+   "unseated": 269,
+   "slip_fraction": 0.9520499108734403,
+   "pad_slip_fraction": 0.724907063197026,
+   "worst_tilt_deg": 4.9815673082222025,
+   "worst_disp_mm": 2.5460780398896112,
+   "worst_util": 1.000004128952598,
+   "worst_p_peak": 33110.00587817127,
    "p_peak": {
-    "T temporal": 8784.879220848718,
-    "M mastoid": 13331.925658674301,
-    "S root": 16915.994481704034,
-    "S helix": 7465.536357941134
+    "T temporal": 12642.710943283797,
+    "M mastoid": 14903.51815667243,
+    "S root": 33110.00587817127,
+    "S helix": 19495.808613008332
    },
    "F_contact_max": {
-    "T temporal": 1.4261828040566689,
-    "M mastoid": 3.027052501527718,
-    "S root": 1.2936744188053235,
-    "S helix": 0.4604002119897738
+    "T temporal": 1.9506991944527106,
+    "M mastoid": 3.6446258255034154,
+    "S root": 2.4839984325462767,
+    "S helix": 1.1758241691733646
    },
    "worst_tilt_case": {
     "tag": {
      "g_dir": [
-      -0.3254653016686904,
-      -0.9318181818181819,
-      0.16058397629516488
+      -0.14644660940672613,
+      -0.9238795325112867,
+      -0.3535533905932738
      ],
      "dyn_dir": [
       0.0,
@@ -49,39 +49,39 @@
       0.0
      ],
      "g_eff": [
-      -3.1917243006092626,
-      -9.138014772727272,
-      1.5747908511349786
+      -1.4361506421384707,
+      -9.06016321750181,
+      -3.4671743578615284
      ],
      "axis": "roll (tilt)",
-     "sign": 1,
-     "phase": "alpha",
+     "sign": 0.0,
+     "phase": "omega",
      "cable_dir": [
-      -0.28894464693359606,
-      -0.44999999999999984,
-      -0.8449917106152105
+      0.696364240320019,
+      -0.17364817766693041,
+      0.6963642403200189
      ]
     },
     "contacts": [
      [
       "T temporal",
-      0.7564643811267594,
-      0.3328442794007948
+      0.3595968393480754,
+      0.1582225272116084
      ],
      [
       "M mastoid",
-      2.5430736594025194,
-      0.6179632778036039
+      1.9664286833591191,
+      0.4056333705174134
      ],
      [
       "S root",
-      0.9892837773594351,
-      0.43528496142462275
+      1.2050272023245558,
+      0.5302121892207613
      ],
      [
       "S helix",
-      0.44793218147646807,
-      0.10641952827353238
+      0.484260408881623,
+      0.11587039206227022
      ]
     ]
    },
@@ -92,17 +92,17 @@
    },
    "joint": {},
    "released_by": {
-    "no head rotation": 35,
-    "yaw (turn) alpha": 70,
-    "pitch (nod) alpha": 70,
-    "roll (tilt) alpha": 58,
-    "yaw (turn) omega": 35,
-    "pitch (nod) omega": 35,
-    "roll (tilt) omega": 35
+    "no head rotation": 540,
+    "yaw (turn) alpha": 1088,
+    "pitch (nod) alpha": 1076,
+    "roll (tilt) alpha": 1029,
+    "yaw (turn) omega": 541,
+    "pitch (nod) omega": 534,
+    "roll (tilt) omega": 533
    },
    "released_by_gravity": {
-    "gravity upright": 49,
-    "gravity tilted": 289
+    "gravity upright": 160,
+    "gravity tilted": 5181
    }
   },
   "2 g dynamic": {

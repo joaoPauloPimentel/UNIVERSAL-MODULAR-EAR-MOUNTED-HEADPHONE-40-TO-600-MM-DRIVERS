@@ -198,16 +198,16 @@
  "tug_limits": {
   "40": {
    "named": {
-    "down": 9.296875,
-    "down-out 45": 1.69921875,
-    "down-in 45": 2.63671875,
-    "down-fwd 45": 3.642578125,
-    "down-back 45": 1.865234375,
-    "out (10 deg below horizontal)": 1.025390625,
-    "fwd (10 deg below)": 1.552734375,
-    "back (10 deg below)": 1.396484375
+    "down": 9.560546875,
+    "down-out 45": 2.177734375,
+    "down-in 45": 2.83203125,
+    "down-fwd 45": 3.974609375,
+    "down-back 45": 2.158203125,
+    "out (10 deg below horizontal)": 1.337890625,
+    "fwd (10 deg below)": 1.7578125,
+    "back (10 deg below)": 1.62109375
    },
-   "sphere_min": 1.162109375,
+   "sphere_min": 1.357421875,
    "sphere_min_dir": [
     -0.8034231415196303,
     -0.25,
@@ -217,16 +217,16 @@
   },
   "50": {
    "named": {
-    "down": 8.90625,
-    "down-out 45": 1.826171875,
-    "down-in 45": 2.9296875,
-    "down-fwd 45": 3.623046875,
-    "down-back 45": 1.943359375,
-    "out (10 deg below horizontal)": 1.123046875,
-    "fwd (10 deg below)": 1.54296875,
-    "back (10 deg below)": 1.455078125
+    "down": 9.521484375,
+    "down-out 45": 2.36328125,
+    "down-in 45": 3.22265625,
+    "down-fwd 45": 4.12109375,
+    "down-back 45": 2.3046875,
+    "out (10 deg below horizontal)": 1.474609375,
+    "fwd (10 deg below)": 1.845703125,
+    "back (10 deg below)": 1.73828125
    },
-   "sphere_min": 1.2109375,
+   "sphere_min": 1.455078125,
    "sphere_min_dir": [
     -0.8034231415196303,
     -0.25,
@@ -236,16 +236,16 @@
   },
   "60": {
    "named": {
-    "down": 9.150390625,
-    "down-out 45": 1.982421875,
-    "down-in 45": 2.958984375,
-    "down-fwd 45": 3.798828125,
-    "down-back 45": 2.041015625,
-    "out (10 deg below horizontal)": 1.23046875,
-    "fwd (10 deg below)": 1.62109375,
-    "back (10 deg below)": 1.533203125
+    "down": 9.619140625,
+    "down-out 45": 2.587890625,
+    "down-in 45": 3.2421875,
+    "down-fwd 45": 4.365234375,
+    "down-back 45": 2.48046875,
+    "out (10 deg below horizontal)": 1.62109375,
+    "fwd (10 deg below)": 2.021484375,
+    "back (10 deg below)": 1.875
    },
-   "sphere_min": 1.279296875,
+   "sphere_min": 1.572265625,
    "sphere_min_dir": [
     -0.8034231415196303,
     -0.25,

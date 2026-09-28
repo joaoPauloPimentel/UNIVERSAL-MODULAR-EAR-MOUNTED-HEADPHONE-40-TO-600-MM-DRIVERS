@@ -1,0 +1,7739 @@
+{
+ "grid": {
+  "tilt": [
+   22.5,
+   45.0
+  ],
+  "az_step": 22.5,
+  "cable_polar": [
+   80.0
+  ],
+  "cable_az_step": 22.5
+ },
+ "design": {
+  "link_preload": 4.2,
+  "wire_d": 2.0,
+  "link_coils": 8,
+  "per_size": {
+   "40": {
+    "link_x": -12.0,
+    "link_y": 12.0
+   },
+   "45": {
+    "link_x": -16.0,
+    "link_y": 11.0
+   },
+   "50": {
+    "link_x": -18.0,
+    "link_y": 12.0
+   },
+   "55": {
+    "link_x": -20.0,
+    "link_y": 11.0
+   },
+   "60": {
+    "link_x": -19.0,
+    "link_y": 12.0
+   }
+  },
+  "tune_set_1g": {
+   "cat": "1 g normal",
+   "n_dir": 1,
+   "n_cable": 3,
+   "n_grav": 12,
+   "cases": 850,
+   "gravity": 17,
+   "dynamic": 1,
+   "head_motion": 10,
+   "cable": 5
+  }
+ },
+ "mass": {
+  "40": 0.15543520725999688,
+  "45": 0.1616009756121494,
+  "50": 0.1716440766411281,
+  "55": 0.1803274382461773,
+  "60": 0.18909785191806192
+ },
+ "sizes": {
+  "40": {
+   "n": 5610,
+   "released": 15,
+   "released_numerical": 0,
+   "unseated": 0,
+   "tilt_over": 51,
+   "worst_tilt": [
+    4.657005119957453,
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "min_seat": [
+    0.0011523623727690419,
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "crit_seat": [
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.0011523623727690419,
+     "tilt": 0.14585020202816773
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.008235908781352316,
+     "tilt": 0.1485375767472692
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.0235800942992819,
+     "tilt": 0.16173430767616293
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.0,
+      -0.173648,
+      -0.984808
+     ],
+     "seat": 0.033925866278136374,
+     "tilt": 0.08872266645849561
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      -0.909844
+     ],
+     "seat": 0.03827778698572876,
+     "tilt": 0.08383368360601991
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      -0.909844
+     ],
+     "seat": 0.04305429255500426,
+     "tilt": 0.07747833493704262
+    },
+    {
+     "g_dir": [
+      0.146447,
+      -0.92388,
+      0.353553
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.0,
+      -0.173648,
+      -0.984808
+     ],
+     "seat": 0.04361488860666918,
+     "tilt": 0.10591036541404274
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.92388,
+      0.382683
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.0,
+      -0.173648,
+      -0.984808
+     ],
+     "seat": 0.04572810996405874,
+     "tilt": 0.09774203670928382
+    }
+   ],
+   "crit_tilt": [
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.8832584823862577,
+     "tilt": 4.657005119957453
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.07693381002168861,
+     "tilt": 4.518407295965053
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.5766248570855591,
+     "tilt": 4.414615070774737
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.23571956766046578,
+     "tilt": 4.312714308000673
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.6702316353888452,
+     "tilt": 4.223016480502409
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.6184027277686656,
+     "tilt": 4.003316535323823
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.6202267170561953,
+     "tilt": 3.997144507214295
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.19895087249289503,
+     "tilt": 3.884808556875692
+    }
+   ],
+   "ok": false,
+   "n_fails": 66,
+   "fails_summary": {
+    "n": 66,
+    "tilt_min": 44.99998226987832,
+    "tilt_max": 44.99998226987832,
+    "side_out": 66,
+    "cable_out": 66,
+    "both_out": 66,
+    "released": 15,
+    "numerical": 0,
+    "per_tilt": {
+     "45.00": 66
+    },
+    "per_head_motion": {
+     "roll (tilt) +1 alpha": 28,
+     "roll (tilt) +0 omega": 13,
+     "yaw (turn) +1 alpha": 5,
+     "pitch (nod) -1 alpha": 5,
+     "yaw (turn) +0 omega": 6,
+     "pitch (nod) +0 omega": 5,
+     "no head rotation": 2,
+     "yaw (turn) -1 alpha": 1,
+     "pitch (nod) +1 alpha": 1
+    }
+   },
+   "fails": [
+    {
+     "g_dir": [
+      0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.39 deg",
+     "tilt": 3.387690191015546,
+     "seat": 1.1077694386902923
+    },
+    {
+     "g_dir": [
+      0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.49 deg",
+     "tilt": 2.487167151672072,
+     "seat": 0.8764115788677529
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.66 deg",
+     "tilt": 4.657005119957453,
+     "seat": 0.8832584823862577
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.02 deg",
+     "tilt": 2.018236454372183,
+     "seat": 0.7398507814505002
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.44 deg",
+     "tilt": 2.438844950590537,
+     "seat": 0.5961415241915122
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.13 deg",
+     "tilt": 2.1347720151482976,
+     "seat": 0.25753531159580834
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.45 deg",
+     "tilt": 2.4524512830640526,
+     "seat": 0.39243691904002587
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.28 deg",
+     "tilt": 3.283786757892311,
+     "seat": 0.8988647312613783
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.4 mm, 8.0 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.9 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.80 deg",
+     "tilt": 3.800461267156353,
+     "seat": 0.7673198045072444
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.68 deg",
+     "tilt": 2.68489700606556,
+     "seat": 0.3921280077614516
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.50 deg",
+     "tilt": 2.4995224905957993,
+     "seat": 0.4675122695575147
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.00 deg",
+     "tilt": 3.0027661019514627,
+     "seat": 0.40367433049229895
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.31 deg",
+     "tilt": 4.312714308000673,
+     "seat": 0.23571956766046578
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.37 deg",
+     "tilt": 3.367507352446266,
+     "seat": 0.35720265036482113
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": null,
+     "sign": 0.0,
+     "phase": null,
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.68 deg",
+     "tilt": 2.6775316126746156,
+     "seat": 0.33033713138559695
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.68 deg",
+     "tilt": 2.682241336948596,
+     "seat": 0.10975831579647632
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.21 deg",
+     "tilt": 2.21384412128719,
+     "seat": 0.1279309888529015
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.26 deg",
+     "tilt": 2.2550136796234144,
+     "seat": 0.628299973265364
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.12 deg",
+     "tilt": 2.1221724402174735,
+     "seat": 0.4728050378009079
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.11 deg",
+     "tilt": 2.1063668587183004,
+     "seat": 0.33446074160275885
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.20 deg",
+     "tilt": 3.2034228221435157,
+     "seat": 0.20416251756825057
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.15 deg",
+     "tilt": 2.1505472019520364,
+     "seat": 0.3173993801496572
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 4.22 deg",
+     "tilt": 4.223016480502409,
+     "seat": 0.6702316353888452
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.3 mm, 7.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.7 mm, 8.8 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.3 mm, 7.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 4.41 deg",
+     "tilt": 4.414615070774737,
+     "seat": 0.5766248570855591
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.30 deg",
+     "tilt": 2.295408228765747,
+     "seat": 0.3380035935492327
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.43 deg",
+     "tilt": 3.431779637285324,
+     "seat": 0.21666179204245326
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.36 deg",
+     "tilt": 2.3590120004826503,
+     "seat": 0.32752210767899825
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.10 deg",
+     "tilt": 2.103331527744386,
+     "seat": 0.41377923173673914
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.28 deg",
+     "tilt": 3.2779467663447255,
+     "seat": 0.2807076052160845
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.18 deg",
+     "tilt": 2.1836153919087598,
+     "seat": 0.39584723541675515
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.86 deg",
+     "tilt": 3.8567213637375377,
+     "seat": 0.19103929379213194
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.88 deg",
+     "tilt": 3.884808556875692,
+     "seat": 0.19895087249289503
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": null,
+     "sign": 0.0,
+     "phase": null,
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.18 deg",
+     "tilt": 2.18126555699379,
+     "seat": 0.32934608536642274
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.60 deg",
+     "tilt": 2.597198475716203,
+     "seat": 0.050982038891057735
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.04 deg",
+     "tilt": 2.0387394891421318,
+     "seat": 0.07546774730959846
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.69 deg",
+     "tilt": 2.6928815649700333,
+     "seat": 0.21703430459334425
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 4.00 deg",
+     "tilt": 3.997144507214295,
+     "seat": 0.6202267170561953
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.1 mm, 7.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.5 mm, 8.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.1 mm, 6.9 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.64 deg",
+     "tilt": 3.641164705523902,
+     "seat": 0.6142083118455853
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.92 deg",
+     "tilt": 2.920989614721335,
+     "seat": 0.216260761087367
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.11 deg",
+     "tilt": 2.10876712437812,
+     "seat": 0.28226500991352166
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.76 deg",
+     "tilt": 2.764440238918679,
+     "seat": 0.2808449639173781
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.54 deg",
+     "tilt": 3.5404087317151474,
+     "seat": 0.16770762012174914
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.52 deg",
+     "tilt": 4.518407295965053,
+     "seat": 0.07693381002168861
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.33 deg",
+     "tilt": 3.33196853004814,
+     "seat": 0.20574082396782825
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.37 deg",
+     "tilt": 2.370034836788258,
+     "seat": 0.7813289606577554
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.5 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.9 mm, 6.4 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.02 deg",
+     "tilt": 2.0213791137210215,
+     "seat": 0.3326201154782018
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.93 deg",
+     "tilt": 2.9302685112017284,
+     "seat": 0.2452654247312007
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.19 deg",
+     "tilt": 2.1882583183251128,
+     "seat": 0.3025014098374609
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.07 deg",
+     "tilt": 3.0660573734973204,
+     "seat": 0.7229351883178384
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.00 deg",
+     "tilt": 4.003316535323823,
+     "seat": 0.6184027277686656
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.71 deg",
+     "tilt": 2.7092823536309267,
+     "seat": 0.7650182150057719
+    }
+   ]
+  },
+  "45": {
+   "n": 5610,
+   "released": 9,
+   "released_numerical": 0,
+   "unseated": 7,
+   "tilt_over": 20,
+   "worst_tilt": [
+    4.972581132347057,
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ]
+    }
+   ],
+   "min_seat": [
+    -0.08966810505735846,
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ]
+    }
+   ],
+   "crit_seat": [
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.08966810505735846,
+     "tilt": 1.643770842403085
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.06442104887049196,
+     "tilt": 1.1033904449467347
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.03214793609324086,
+     "tilt": 0.7141627499525055
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.02817669981793683,
+     "tilt": 1.7408511942526512
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.010436577053195284,
+     "tilt": 0.29658882582292634
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.008676377836105878,
+     "tilt": 1.2881850872710268
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.007820459278210456,
+     "tilt": 0.8126620562908563
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.014317937794416175,
+     "tilt": 0.26308106727338215
+    }
+   ],
+   "crit_tilt": [
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.2981181491791214,
+     "tilt": 4.972581132347057
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.721202031791312,
+     "tilt": 4.653705222491573
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.3915906741941413,
+     "tilt": 4.103951826672213
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.8125956410176499,
+     "tilt": 3.6932714359838488
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.44638533653811874,
+     "tilt": 3.6790677400836
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.07089950709576101,
+     "tilt": 3.4344654726022594
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.8908888568521014,
+     "tilt": 3.2818620247906996
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.5666446235452761,
+     "tilt": 3.0465204054299937
+    }
+   ],
+   "ok": false,
+   "n_fails": 36,
+   "fails_summary": {
+    "n": 36,
+    "tilt_min": 44.99998226987832,
+    "tilt_max": 44.99998226987832,
+    "side_out": 36,
+    "cable_out": 36,
+    "both_out": 36,
+    "released": 9,
+    "numerical": 0,
+    "per_tilt": {
+     "45.00": 36
+    },
+    "per_head_motion": {
+     "roll (tilt) +1 alpha": 22,
+     "roll (tilt) +0 omega": 7,
+     "yaw (turn) +1 alpha": 7
+    }
+   },
+   "fails": [
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.28 deg",
+     "tilt": 3.2818620247906996,
+     "seat": 0.8908888568521014
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.65 deg",
+     "tilt": 4.653705222491573,
+     "seat": 0.721202031791312
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.69 deg",
+     "tilt": 3.6932714359838488,
+     "seat": 0.8125956410176499
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.01 deg",
+     "tilt": 2.007995255767483,
+     "seat": 0.8582143339011249
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.5 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.47 deg",
+     "tilt": 2.467487839291595,
+     "seat": 0.7588168447251709
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.74 deg",
+     "tilt": 2.744374433123586,
+     "seat": 0.23626073888908158
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.7408511942526512,
+     "seat": -0.02817669981793683
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.2881850872710268,
+     "seat": -0.008676377836105878
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.97 deg",
+     "tilt": 2.966275668805217,
+     "seat": 0.6483326302729753
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.2 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.2 mm, 7.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.05 deg",
+     "tilt": 3.0465204054299937,
+     "seat": 0.5666446235452761
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.40 deg",
+     "tilt": 2.403615114125608,
+     "seat": 0.16757389670253778
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.43 deg",
+     "tilt": 3.4344654726022594,
+     "seat": 0.07089950709576101
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.36 deg",
+     "tilt": 2.358531926777396,
+     "seat": 0.1755752902281267
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.8126620562908563,
+     "seat": -0.007820459278210456
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.643770842403085,
+     "seat": -0.08966810505735846
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.1033904449467347,
+     "seat": -0.06442104887049196
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.63 deg",
+     "tilt": 2.6341640510955835,
+     "seat": 0.6055353282634149
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.7 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.7 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.4 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.33 deg",
+     "tilt": 2.325728351702376,
+     "seat": 0.5879321302590229
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.03 deg",
+     "tilt": 2.0258841333875313,
+     "seat": 0.14809610980764135
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.88 deg",
+     "tilt": 2.8842056283904434,
+     "seat": 0.061092304114759244
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.14 deg",
+     "tilt": 2.1433835917991053,
+     "seat": 0.11997568379159271
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.7141627499525055,
+     "seat": -0.03214793609324086
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.29658882582292634,
+     "seat": -0.010436577053195284
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.10 deg",
+     "tilt": 4.103951826672213,
+     "seat": 0.3915906741941413
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.97 deg",
+     "tilt": 4.972581132347057,
+     "seat": 0.2981181491791214
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.68 deg",
+     "tilt": 3.6790677400836,
+     "seat": 0.44638533653811874
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.52 deg",
+     "tilt": 2.52160948541255,
+     "seat": 0.6094332349318237
+    }
+   ]
+  },
+  "50": {
+   "n": 5610,
+   "released": 12,
+   "released_numerical": 0,
+   "unseated": 28,
+   "tilt_over": 31,
+   "worst_tilt": [
+    4.715298538286695,
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "min_seat": [
+    -0.1,
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ]
+    }
+   ],
+   "crit_seat": [
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 2.290146368047961
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 1.8325543001319318
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 1.344546316171419
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 2.245015010224161
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 1.7003153095995642
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.3350683845435549
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.40268289874753277
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 1.248792726271124
+    }
+   ],
+   "crit_tilt": [
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.6828507687836768,
+     "tilt": 4.715298538286695
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.30698569919147944,
+     "tilt": 4.589090131926296
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.7667178296604239,
+     "tilt": 4.234191379903506
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.4747344497717939,
+     "tilt": 4.147212647286202
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.4209653073883648,
+     "tilt": 4.114373737102514
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.06743950329750616,
+     "tilt": 4.076686780302886
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.4242197497600516,
+     "tilt": 3.8047560815089465
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.6007736228461673,
+     "tilt": 3.607341204380638
+    }
+   ],
+   "ok": false,
+   "n_fails": 65,
+   "fails_summary": {
+    "n": 65,
+    "tilt_min": 44.99998226987832,
+    "tilt_max": 44.99998226987832,
+    "side_out": 65,
+    "cable_out": 65,
+    "both_out": 65,
+    "released": 12,
+    "numerical": 0,
+    "per_tilt": {
+     "45.00": 65
+    },
+    "per_head_motion": {
+     "roll (tilt) +1 alpha": 26,
+     "roll (tilt) +0 omega": 10,
+     "yaw (turn) +1 alpha": 13,
+     "pitch (nod) -1 alpha": 2,
+     "roll (tilt) -1 alpha": 11,
+     "yaw (turn) +0 omega": 2,
+     "pitch (nod) +0 omega": 1
+    }
+   },
+   "fails": [
+    {
+     "g_dir": [
+      0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.82 deg",
+     "tilt": 2.8225350777048113,
+     "seat": 1.022142619136647
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.23 deg",
+     "tilt": 4.234191379903506,
+     "seat": 0.7667178296604239
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.72 deg",
+     "tilt": 4.715298538286695,
+     "seat": 0.6828507687836768
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.13 deg",
+     "tilt": 3.127218374626561,
+     "seat": 0.7324341556493907
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.9 mm, 6.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.3 mm, 7.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.61 deg",
+     "tilt": 3.607341204380638,
+     "seat": 0.6007736228461673
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.28 deg",
+     "tilt": 2.2774169065091026,
+     "seat": 0.231936778414797
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.39 deg",
+     "tilt": 3.3936778655944884,
+     "seat": 0.10490861303997218
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.46 deg",
+     "tilt": 2.463450182448076,
+     "seat": 0.2167981875294094
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.4125540366798315,
+     "seat": -0.08735647873948188
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.29 deg",
+     "tilt": 2.290146368047961,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.8325543001319318,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2681571889459906,
+     "seat": -0.03886174142135414
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.24 deg",
+     "tilt": 2.2392348468071646,
+     "seat": 0.0484693396266066
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 4.15 deg",
+     "tilt": 4.147212647286202,
+     "seat": 0.4747344497717939
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.2 mm, 7.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.5 mm, 8.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.2 mm, 7.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 4.11 deg",
+     "tilt": 4.114373737102514,
+     "seat": 0.4209653073883648
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.22858552479823524,
+     "seat": -0.005189126108960412
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.23743728527347674,
+     "seat": -0.004496987403039013
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.42 deg",
+     "tilt": 2.4175879987841715,
+     "seat": 0.0706628287460428
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "pitch (nod)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.24 deg",
+     "tilt": 2.244492505565058,
+     "seat": 0.14667801703377212
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.16 deg",
+     "tilt": 3.1604932868608806,
+     "seat": 0.003962389537720795
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 4.08 deg",
+     "tilt": 4.076686780302886,
+     "seat": -0.06743950329750616
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.02 deg",
+     "tilt": 3.019395271565802,
+     "seat": 0.03600479353283437
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2715953912616981,
+     "seat": -0.02587636093891632
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.344546316171419,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.25 deg",
+     "tilt": 2.245015010224161,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.7003153095995642,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2871187209699601,
+     "seat": -0.049900156466207136
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.01 deg",
+     "tilt": 2.006945037443878,
+     "seat": -0.005869713192595938
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.80 deg",
+     "tilt": 3.8047560815089465,
+     "seat": 0.4242197497600516
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.8 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.3 mm, 7.6 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.9 mm, 6.4 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.33 deg",
+     "tilt": 3.3269641753363453,
+     "seat": 0.44356923871602194
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.27058267730594576,
+     "seat": -0.04733136662697953
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.32449156864183276,
+     "seat": -0.09628923199468924
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3350683845435549,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.29270665239191834,
+     "seat": -0.06800425154934614
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.21889279083111196,
+     "seat": -0.004759560911843874
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.15 deg",
+     "tilt": 2.151439048621252,
+     "seat": 0.007579808982312294
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.69 deg",
+     "tilt": 2.68654787327372,
+     "seat": 0.003684593489274496
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 3.52 deg",
+     "tilt": 3.516949606780725,
+     "seat": -0.08334350062504631
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost, tilt 2.74 deg",
+     "tilt": 2.7413133441614903,
+     "seat": -0.013369431635608206
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.40268289874753277,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.248792726271124,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.6469445613729525,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.16 deg",
+     "tilt": 2.161382462210112,
+     "seat": 0.5785601340928528
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 5.9 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.59 deg",
+     "tilt": 4.589090131926296,
+     "seat": 0.30698569919147944
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.28351466699241135,
+     "seat": -0.018097822763569582
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3364766899496905,
+     "seat": -0.06514256992918382
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.34034293385907544,
+     "seat": -0.06730128417038897
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.30070375581303577,
+     "seat": -0.03280943072477421
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.31 deg",
+     "tilt": 2.308041361262387,
+     "seat": 0.01892379286955223
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3351691397127935,
+     "seat": -0.037181437823715996
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.57 deg",
+     "tilt": 2.566691556250452,
+     "seat": 0.5590147733314095
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 3.38 deg",
+     "tilt": 3.3761021919111456,
+     "seat": 0.4769267836802207
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.17 deg",
+     "tilt": 2.174139796918268,
+     "seat": 0.6115288933619374
+    }
+   ]
+  },
+  "55": {
+   "n": 5610,
+   "released": 8,
+   "released_numerical": 0,
+   "unseated": 57,
+   "tilt_over": 14,
+   "worst_tilt": [
+    4.891337142541561,
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "min_seat": [
+    -0.1,
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "crit_seat": [
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.566751595439016
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 1.3299433084880505
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.8839162051322534
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.30925044191814677
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 0.3801130466123771
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.39466926512031497
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": -0.1,
+     "tilt": 0.34962076058612196
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "seat": -0.1,
+     "tilt": 0.2507780268114798
+    }
+   ],
+   "crit_tilt": [
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.43214381708563976,
+     "tilt": 4.891337142541561
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.20858025138445682,
+     "tilt": 4.414724889797303
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.6936084580151743,
+     "tilt": 4.104911893514569
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.28098579615240593,
+     "tilt": 3.6608270401065885
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.7761797358278237,
+     "tilt": 3.2377251586118647
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.35273380322961756,
+     "tilt": 3.173840779670466
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.530739729891297,
+     "tilt": 2.8150001198107235
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.8569810023716683,
+     "tilt": 2.8026247676731777
+    }
+   ],
+   "ok": false,
+   "n_fails": 77,
+   "fails_summary": {
+    "n": 77,
+    "tilt_min": 44.99998226987832,
+    "tilt_max": 44.99998226987832,
+    "side_out": 77,
+    "cable_out": 70,
+    "both_out": 70,
+    "released": 8,
+    "numerical": 0,
+    "per_tilt": {
+     "45.00": 77
+    },
+    "per_head_motion": {
+     "roll (tilt) +1 alpha": 20,
+     "yaw (turn) +1 alpha": 11,
+     "roll (tilt) -1 alpha": 32,
+     "roll (tilt) +0 omega": 6,
+     "pitch (nod) -1 alpha": 4,
+     "yaw (turn) +0 omega": 4
+    }
+   },
+   "fails": [
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.80 deg",
+     "tilt": 2.8026247676731777,
+     "seat": 0.8569810023716683
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.10 deg",
+     "tilt": 4.104911893514569,
+     "seat": 0.6936084580151743
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.24 deg",
+     "tilt": 3.2377251586118647,
+     "seat": 0.7761797358278237
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.6556488119526617,
+     "seat": -0.05262402727976096
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3030105565719917,
+     "seat": -0.04397132492456119
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.89 deg",
+     "tilt": 4.891337142541561,
+     "seat": 0.43214381708563976
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.2 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.24 deg",
+     "tilt": 2.237330300166353,
+     "seat": 0.6722337999590562
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.566751595439016,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.3299433084880505,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.8839162051322534,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.82 deg",
+     "tilt": 2.8150001198107235,
+     "seat": 0.530739729891297
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.7 mm, 5.9 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.1 mm, 6.8 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.7 mm, 5.7 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.77 deg",
+     "tilt": 2.774034326028801,
+     "seat": 0.4712073038933551
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.21038245511727055,
+     "seat": -0.055505410179252875
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.30925044191814677,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3801130466123771,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.39466926512031497,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.34962076058612196,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2507780268114798,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.14751462320638414,
+     "seat": -0.023612041905081205
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.47 deg",
+     "tilt": 2.4719624715356887,
+     "seat": -0.027638735417524457
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.48860276059097607,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.2529734731504756,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.7415912412904295,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.004966859975468,
+     "seat": -0.07429973065505673
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.555939348064952,
+     "seat": -0.059561838812284794
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.44 deg",
+     "tilt": 2.4441582126682095,
+     "seat": 0.4734791819579278
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.4 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.2 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.5 mm, 5.0 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.03 deg",
+     "tilt": 2.0272554976332553,
+     "seat": 0.48020868685141826
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -1.0,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.19030031593282729,
+     "seat": -0.08962703036426731
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2009623380621358,
+     "seat": -0.0641322631392632
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3381762467982742,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4638159924415067,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5407211374024626,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5572714075781409,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5084845053237074,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.40584236675916313,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.27110850373097634,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      -0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.14930513836708934,
+     "seat": -0.03835437753580613
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.159065050139288,
+     "seat": -0.05713301388205458
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.772819916495904,
+     "seat": -0.04351408030948594
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.3627894671983543,
+     "seat": -0.00543613726236318
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.18 deg",
+     "tilt": 2.181362225585204,
+     "seat": -0.09458939443606534
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.7419861353339539,
+     "seat": -0.07765019018577972
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3932344672730115,
+     "seat": -0.020789685479788905
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4333923473833549,
+     "seat": -0.09123044311025193
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4306681899330593,
+     "seat": -0.041357440237464065
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.29690787567421706,
+     "seat": -0.03178750504715476
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2940923530999364,
+     "seat": -0.037120904817356956
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.66 deg",
+     "tilt": 3.6608270401065885,
+     "seat": 0.28098579615240593
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.41 deg",
+     "tilt": 4.414724889797303,
+     "seat": 0.20858025138445682
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.17 deg",
+     "tilt": 3.173840779670466,
+     "seat": 0.35273380322961756
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -1.0,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.20544748025747106,
+     "seat": -0.06728749957718501
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2130231824585489,
+     "seat": -0.04002828104600753
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3400827217813382,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.46790465580386315,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5471649941743607,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5573644435572024,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.503878232600312,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.40014122723093204,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2647191372739748,
+     "seat": -0.09811934190431071
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      -0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.15817310272476934,
+     "seat": -0.008718741336789376
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.36767368810719947,
+     "seat": -0.013809207831644812
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2725738454781003,
+     "seat": -0.011469446220468221
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.299240610929401,
+     "seat": -0.04773287735436889
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.8405613281054582,
+     "seat": -0.025970706496587045
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.33441786255373607,
+     "seat": -0.06923691480399131
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3948640792190141,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4036254686440287,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3563768090418491,
+     "seat": -0.08704314931200319
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2829722822765089,
+     "seat": -0.02469362291627561
+    }
+   ]
+  },
+  "60": {
+   "n": 5610,
+   "released": 10,
+   "released_numerical": 0,
+   "unseated": 61,
+   "tilt_over": 19,
+   "worst_tilt": [
+    4.982569611950002,
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ]
+    }
+   ],
+   "min_seat": [
+    -0.1,
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ]
+    }
+   ],
+   "crit_seat": [
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.9167162136738687
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 1.7131843003122673
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 1.2678700090063517
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.31053176874027716
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": -0.1,
+     "tilt": 0.38193858489312116
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": -0.1,
+     "tilt": 0.3966762399810161
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": -0.1,
+     "tilt": 0.35185754903221084
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "seat": -0.1,
+     "tilt": 0.25316971444934394
+    }
+   ],
+   "crit_tilt": [
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "seat": 0.6868560620014206,
+     "tilt": 4.982569611950002
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.23818586438052178,
+     "tilt": 4.606299043469108
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.7632586977397582,
+     "tilt": 4.1899051014325215
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.3169903422072352,
+     "tilt": 4.091883953244334
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.4790408463087411,
+     "tilt": 3.882954789401831
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.42814229135343673,
+     "tilt": 3.8251959118229855
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "seat": 0.8487083156666427,
+     "tilt": 3.6994711446730966
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "seat": 0.41725616954101097,
+     "tilt": 3.502359956531956
+    }
+   ],
+   "ok": false,
+   "n_fails": 87,
+   "fails_summary": {
+    "n": 87,
+    "tilt_min": 44.99998226987832,
+    "tilt_max": 44.99998226987832,
+    "side_out": 87,
+    "cable_out": 80,
+    "both_out": 80,
+    "released": 10,
+    "numerical": 0,
+    "per_tilt": {
+     "45.00": 87
+    },
+    "per_head_motion": {
+     "roll (tilt) +1 alpha": 23,
+     "yaw (turn) +1 alpha": 13,
+     "roll (tilt) +0 omega": 9,
+     "roll (tilt) -1 alpha": 33,
+     "pitch (nod) -1 alpha": 6,
+     "yaw (turn) +0 omega": 3
+    }
+   },
+   "fails": [
+    {
+     "g_dir": [
+      0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.09 deg",
+     "tilt": 2.0886927227803556,
+     "seat": 0.9215866048670479
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 3.70 deg",
+     "tilt": 3.6994711446730966,
+     "seat": 0.8487083156666427
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 4.98 deg",
+     "tilt": 4.982569611950002,
+     "seat": 0.6868560620014206
+    },
+    {
+     "g_dir": [
+      0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.19 deg",
+     "tilt": 4.1899051014325215,
+     "seat": 0.7632586977397582
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.9581862765077661,
+     "seat": -0.058435410612516614
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5913108422697291,
+     "seat": -0.048346414737572285
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 2.82 deg",
+     "tilt": 2.8206098116184486,
+     "seat": 0.76496205870503
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.7 mm, 5.8 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.1 mm, 7.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.28 deg",
+     "tilt": 3.2830239885572636,
+     "seat": 0.6362451439894136
+    },
+    {
+     "g_dir": [
+      0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.36 deg",
+     "tilt": 2.3551187109595295,
+     "seat": 0.14664104518945686
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.9167162136738687,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.7131843003122673,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.2678700090063517,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3075468115103654,
+     "seat": -0.030547944735110966
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.88 deg",
+     "tilt": 3.882954789401831,
+     "seat": 0.4790408463087411
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.1 mm, 6.9 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.4 mm, 7.8 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.0 mm, 6.7 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.83 deg",
+     "tilt": 3.8251959118229855,
+     "seat": 0.42814229135343673
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.20754910709543453,
+     "seat": -0.06311938157114665
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.31053176874027716,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.38193858489312116,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3966762399810161,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.35185754903221084,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.25316971444934394,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.14652239019995478,
+     "seat": -0.03235867306957124
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.21 deg",
+     "tilt": 2.21120959873191,
+     "seat": 0.01924720245590414
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 3.06 deg",
+     "tilt": 3.0571017131508764,
+     "seat": -0.05176306518149392
+    },
+    {
+     "g_dir": [
+      0.0,
+      -0.707107,
+      0.707107
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 2.29 deg",
+     "tilt": 2.288218133340822,
+     "seat": 0.008414294882870654
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.8454037457785044,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.6577573389363292,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.1376844582296706,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.38506811201711794,
+     "seat": -0.006902722349677162
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.7555073703797107,
+     "seat": -0.005240374898948158
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.3786515193628157,
+     "seat": -0.08281579891636898
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.92471567672505,
+     "seat": -0.06824946345615351
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.262489340998499,
+     "seat": -0.003215944765619899
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.50 deg",
+     "tilt": 3.502359956531956,
+     "seat": 0.41725616954101097
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.9 mm, 6.4 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (2.2 mm, 7.1 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.8 mm, 6.0 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tilt 3.03 deg",
+     "tilt": 3.0281616873702406,
+     "seat": 0.43860667389291286
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -1.0,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.20246569254281202,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.20693920846796354,
+     "seat": -0.0813672393434763
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3524531313740856,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4787580866924814,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5565329707918897,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5733692802187917,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5229758177183176,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4206779226960562,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2862799400876694,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      -0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.15811595594033734,
+     "seat": -0.05682473896100652
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.4996816654884866,
+     "seat": -0.06205348931192342
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.1095983555462672,
+     "seat": -0.04708741763282751
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.8122361239302682,
+     "seat": -0.01444796121082953
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost, tilt 2.63 deg",
+     "tilt": 2.634954671178856,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.270598,
+      -0.707107,
+      0.653281
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost, tilt 2.20 deg",
+     "tilt": 2.198498937929831,
+     "seat": -0.08563506275721974
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.40539265499681204,
+     "seat": -0.054052371167462684
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.6600429269087217,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4420233453844266,
+     "seat": -0.07365343093741167
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.48389277586510887,
+     "seat": -0.03398297788345686
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "pitch (nod)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.29821788209210104,
+     "seat": -0.030868662840502478
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.61 deg",
+     "tilt": 4.606299043469108,
+     "seat": 0.23818586438052178
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "released",
+     "reason": "displacement beyond the small-displacement model (1.6 mm, 5.3 deg): gross slip / knocked off",
+     "numerical": false
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tilt 4.09 deg",
+     "tilt": 4.091883953244334,
+     "seat": 0.3169903422072352
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -1.0,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.21645141318892613,
+     "seat": -0.08726739745581677
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.22186694482998234,
+     "seat": -0.0588477894896432
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.35814120763035856,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.48652918898623776,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.565543419297524,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5759242251336315,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.5226236021023244,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.4191874743877885,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.984808,
+      -0.173648,
+      0.0
+     ],
+     "why": "tripod lost",
+     "tilt": 0.28281551883712286,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      -0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.16833833527368494,
+     "seat": -0.02757289373638032
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "yaw (turn)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.6695414404596509,
+     "seat": -0.018600942542396803
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 1.7214950613715856,
+     "seat": -0.05659444517231052
+    },
+    {
+     "g_dir": [
+      -0.5,
+      -0.707107,
+      0.5
+     ],
+     "axis": "roll (tilt)",
+     "sign": 0.0,
+     "phase": "omega",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 1.2739399774658544,
+     "seat": -0.03536268203115811
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": 1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tilt 2.73 deg",
+     "tilt": 2.733686281703292,
+     "seat": 0.5070381510315725
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.2534025292647772,
+     "seat": -0.0012045100433635963
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.34066219032362655,
+     "seat": -0.08233858637605
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      0.0,
+      -0.173648,
+      0.984808
+     ],
+     "why": "tripod lost",
+     "tilt": 0.40705330804451606,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.37687,
+      -0.173648,
+      0.909844
+     ],
+     "why": "tripod lost",
+     "tilt": 0.41612612981980657,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.696364,
+      -0.173648,
+      0.696364
+     ],
+     "why": "tripod lost",
+     "tilt": 0.3630331925825913,
+     "seat": -0.1
+    },
+    {
+     "g_dir": [
+      -0.653281,
+      -0.707107,
+      0.270598
+     ],
+     "axis": "roll (tilt)",
+     "sign": -1,
+     "phase": "alpha",
+     "cable_dir": [
+      -0.909844,
+      -0.173648,
+      0.37687
+     ],
+     "why": "tripod lost",
+     "tilt": 0.28958631160858656,
+     "seat": -0.03819094596416989
+    }
+   ]
+  }
+ }
+}

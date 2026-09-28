@@ -1,0 +1,37 @@
+[    0.0s] Final layout {'temporal_a': 20.0, 'temporal_r': 57.5, 'mastoid_a': 229.0, 'mastoid_r': 58.0, 'post_a': 164.0, 'post_r': 59.0, 'link_x': -19.5, 'link_y': 6.0, 'link_preload': 5.0, 'pad_scale': 1.3}
+[    0.3s] link wire Final 2.5 mm, 4 coils
+[   49.9s] mass properties done: 40 mm 156.5 g, 45 mm 162.6 g, 50 mm 172.8 g, 55 mm 181.6 g, 60 mm 190.2 g
+[ 2574.2s] dense 1 g check: 40 mm 166410 cases, released 0, tripod lost 0, tilt over 0, worst tilt 0.41 deg, min seat 0.034 N; refinement 3279 cases, fails 0, worst tilt 0.41 deg, min seat 0.031 N, 45 mm 166410 cases, released 0, tripod lost 0, tilt over 0, worst tilt 0.37 deg, min seat 0.116 N; refinement 3873 cases, fails 0, worst tilt 0.37 deg, min seat 0.115 N, 50 mm 166410 cases, released 0, tripod lost 0, tilt over 0, worst tilt 0.39 deg, min seat 0.063 N; refinement 2790 cases, fails 0, worst tilt 0.39 deg, min seat 0.060 N, 55 mm 166410 cases, released 0, tripod lost 0, tilt over 0, worst tilt 0.40 deg, min seat 0.051 N; refinement 3366 cases, fails 0, worst tilt 0.40 deg, min seat 0.048 N, 60 mm 166410 cases, released 0, tripod lost 0, tilt over 0, worst tilt 0.41 deg, min seat 0.039 N; refinement 3438 cases, fails 0, worst tilt 0.41 deg, min seat 0.038 N
+[ 5729.1s] Final D=40: mass 156.5 g, criteria {'static seated (all pads loaded)': True, 'static skin pressure <= 4 kPa': np.True_, 'static auricle-root pressure <= 4 kPa (donning A)': True, 'static friction: pads hold with design mu': np.True_, '1 g: no gross slip': True, '1 g: stays seated': True, '1 g: tilt <= 2 deg': True, '2 g: no gross slip': False, 'link wire on this module (SF yield and fatigue >= 1.5, preload ratio <= 2)': True}
+[ 5729.1s] Final D=45: mass 162.6 g, criteria {'static seated (all pads loaded)': True, 'static skin pressure <= 4 kPa': np.True_, 'static auricle-root pressure <= 4 kPa (donning A)': True, 'static friction: pads hold with design mu': np.True_, '1 g: no gross slip': True, '1 g: stays seated': True, '1 g: tilt <= 2 deg': True, '2 g: no gross slip': False, 'link wire on this module (SF yield and fatigue >= 1.5, preload ratio <= 2)': True}
+[ 5729.1s] Final D=50: mass 172.8 g, criteria {'static seated (all pads loaded)': True, 'static skin pressure <= 4 kPa': np.True_, 'static auricle-root pressure <= 4 kPa (donning A)': True, 'static friction: pads hold with design mu': np.True_, '1 g: no gross slip': True, '1 g: stays seated': True, '1 g: tilt <= 2 deg': True, '2 g: no gross slip': False, 'link wire on this module (SF yield and fatigue >= 1.5, preload ratio <= 2)': True}
+[ 5729.1s] Final D=55: mass 181.6 g, criteria {'static seated (all pads loaded)': True, 'static skin pressure <= 4 kPa': np.True_, 'static auricle-root pressure <= 4 kPa (donning A)': True, 'static friction: pads hold with design mu': np.True_, '1 g: no gross slip': True, '1 g: stays seated': True, '1 g: tilt <= 2 deg': True, '2 g: no gross slip': False, 'link wire on this module (SF yield and fatigue >= 1.5, preload ratio <= 2)': True}
+[ 5729.1s] Final D=60: mass 190.2 g, criteria {'static seated (all pads loaded)': True, 'static skin pressure <= 4 kPa': np.True_, 'static auricle-root pressure <= 4 kPa (donning A)': True, 'static friction: pads hold with design mu': np.True_, '1 g: no gross slip': True, '1 g: stays seated': True, '1 g: tilt <= 2 deg': True, '2 g: no gross slip': False, 'link wire on this module (SF yield and fatigue >= 1.5, preload ratio <= 2)': True}
+[ 5879.1s] eye check: 40 mm prim 0.141 slip2 0.0475, 45 mm prim 0.215 slip2 0.040625, 50 mm prim 0.183 slip2 0.039375, 55 mm prim 0.140 slip2 0.0425, 60 mm prim 0.098 slip2 0.045
+[ 5879.1s] Design B {'static seated (all pads loaded)': False, 'static skin pressure <= 4 kPa': False, 'static auricle-root pressure <= 4 kPa (donning A)': False, 'static friction: pads hold with design mu': False, '1 g: no gross slip': False, '1 g: stays seated': False, '1 g: tilt <= 2 deg': False, '2 g: no gross slip': False}
+[ 5879.1s] Design A {'static seated (all pads loaded)': False, 'static skin pressure <= 4 kPa': False, 'static auricle-root pressure <= 4 kPa (donning A)': False, 'static friction: pads hold with design mu': False, '1 g: no gross slip': False, '1 g: stays seated': False, '1 g: tilt <= 2 deg': False, '2 g: no gross slip': False}
+[ 5977.9s] 1 g worst-case grid, Final before change 19: 40 mm released 15, tripod lost 0, tilt over 51, worst tilt 4.66 deg, 45 mm released 9, tripod lost 7, tilt over 20, worst tilt 4.97 deg, 50 mm released 12, tripod lost 28, tilt over 31, worst tilt 4.72 deg, 55 mm released 8, tripod lost 57, tilt over 14, worst tilt 4.89 deg, 60 mm released 10, tripod lost 61, tilt over 19, worst tilt 4.98 deg
+[ 5978.2s] joints done
+[ 5991.5s] cable tug limits D=40: min 1.36 N
+[ 6003.3s] cable tug limits D=50: min 1.46 N
+[ 6015.4s] cable tug limits D=60: min 1.57 N
+[ 6015.5s] cable done
+[ 6048.8s] weight option W1 arm screws M3 -> M2.5 (insert pitch 11 -> 7 mm) at 0.10 N·m: -9.91 g
+[ 6058.7s] weight option W1b anchor screws M3 -> M2.5 at 0.10 N·m: -1.43 g
+[ 6068.6s] weight option W3 cup wall 1.6 -> 1.2 mm: -1.62 g
+[ 6079.1s] weight option W4a feet 5 -> 4.5 mm: -0.86 g
+[ 6101.0s] weight option W4b legs 5 -> 4.5 mm: -0.30 g
+[ 6122.2s] weight option W4c legs 5 -> 6.5 mm: +0.90 g
+[ 6143.2s] weight option W4e legs 5 -> 5.5 mm: +0.30 g
+[ 6165.7s] weight option W4d legs/feet 5/5 -> 4/4 mm: -2.35 g
+[ 6176.7s] weight option W5 arm-screw insert pitch 11 -> 10 mm at 0.10 N·m: -1.49 g
+[ 6215.0s] pitch/torque scan done
+[ 6218.3s] weight table done
+[ 6231.5s] root levers: Final (liner 2.5 mm): 3.61 kPa; no liner (Final otherwise): 4.63 kPa; liner 2 mm: 3.96 kPa; liner 3 mm: 3.28 kPa; no liner, arms rigid: 3.54 kPa; liner 2.5 mm, arms rigid: 2.68 kPa
+[ 6231.7s] tolerance done
+[ 6231.8s] acoustics done
+[ 6231.8s] contact stresses done
+[ 9816.1s] max driver mass D=40: static 0.0-150.0 g (6 evals), normal 0.0-27.7 g (15 evals), dynamic (released <= 0%) fails at nominal (2 evals), dynamic (released <= 10%) 0.0-27.7 g (15 evals), maximum 0.0-126.0 g (16 evals)
+[ 9973.2s] max driver mass D=45: static 0.0-150.0 g (6 evals), normal 0.0-34.4 g (15 evals), dynamic (released <= 0%) fails at nominal (2 evals), dynamic (released <= 10%) 0.0-34.4 g (15 evals), maximum 0.0-122.9 g (16 evals)
+[ 9973.2s] max driver mass D=50: static 0.0-150.0 g (6 evals), normal 0.0-31.8 g (14 evals), dynamic (released <= 0%) fails at nominal (2 evals), dynamic (released <= 10%) 0.0-31.8 g (14 evals), maximum 0.0-84.6 g (15 evals)
+[ 9973.2s] max driver mass D=55: static 0.0-150.0 g (6 evals), normal 0.0-41.2 g (14 evals), dynamic (released <= 0%) fails at nominal (2 evals), dynamic (released <= 10%) 0.0-41.2 g (14 evals), maximum 0.0-54.9 g (15 evals)

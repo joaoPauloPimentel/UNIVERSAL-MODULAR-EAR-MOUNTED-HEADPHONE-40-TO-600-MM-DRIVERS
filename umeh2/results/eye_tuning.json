@@ -1,0 +1,254 @@
+{
+ "40": {
+  "best": {
+   "D": 40,
+   "x": -15.0,
+   "y": 7.0,
+   "prim": 0.14068033744870026,
+   "margins": {
+    "static pads": 0.2819421510027076,
+    "static p": 0.33358042457035897,
+    "static root p": 0.2601403109803697,
+    "static friction": 0.15423167386776027,
+    "1g slip-free": 1.0,
+    "1g tilt": 0.7944339277410122,
+    "1g seating margin": 0.14068033744870026
+   },
+   "slip2": 0.0475,
+   "padslip1": 0.6625668449197861,
+   "score": 2.214396914988807,
+   "score1": 0.30939691498880717,
+   "tilt": 0.4111321445179757,
+   "seat_N": 0.042204101234610075,
+   "_from": "results/eye_check.json (tune objective at the chosen eye, Final inputs)"
+  },
+  "n_pass": 2,
+  "n_eval": null,
+  "dense_verified": null
+ },
+ "45": {
+  "best": {
+   "D": 45,
+   "x": -18.0,
+   "y": 7.0,
+   "prim": 0.2149037441796009,
+   "margins": {
+    "static pads": 0.3002009137817754,
+    "static p": 0.2537008775365662,
+    "static root p": 0.23185789602408413,
+    "static friction": 0.2149037441796009,
+    "1g slip-free": 1.0,
+    "1g tilt": 0.8139320123931928,
+    "1g seating margin": 0.4099749340916367
+   },
+   "slip2": 0.040625,
+   "padslip1": 0.6347593582887701,
+   "score": 2.316274065035216,
+   "score1": 0.39752406503521587,
+   "tilt": 0.3721359752136144,
+   "seat_N": 0.12299248022749101,
+   "_from": "results/eye_check.json (tune objective at the chosen eye, Final inputs)"
+  },
+  "n_pass": 3,
+  "n_eval": null,
+  "dense_verified": null
+ },
+ "50": {
+  "best": {
+   "D": 50,
+   "x": -19.0,
+   "y": 7.0,
+   "prim": 0.18335540903977154,
+   "margins": {
+    "static pads": 0.3385629009174976,
+    "static p": 0.22358675166593112,
+    "static root p": 0.18335540903977154,
+    "static friction": 0.20110936828208703,
+    "1g slip-free": 1.0,
+    "1g tilt": 0.8051232142324213,
+    "1g seating margin": 0.23200490106106364
+   },
+   "slip2": 0.039375,
+   "padslip1": 0.6413547237076649,
+   "score": 2.283928047185939,
+   "score1": 0.3626780471859391,
+   "tilt": 0.38975357153515744,
+   "seat_N": 0.06960147031831909,
+   "_from": "results/eye_check.json (tune objective at the chosen eye, Final inputs)"
+  },
+  "n_pass": 3,
+  "n_eval": null,
+  "dense_verified": null
+ },
+ "55": {
+  "best": {
+   "D": 55,
+   "x": -18.0,
+   "y": 7.0,
+   "prim": 0.14005064310522386,
+   "margins": {
+    "static pads": 0.37610879629949007,
+    "static p": 0.23534899428143274,
+    "static root p": 0.14005064310522386,
+    "static friction": 0.1516874278870347,
+    "1g slip-free": 1.0,
+    "1g tilt": 0.8029589677080451,
+    "1g seating margin": 0.1807438568702365
+   },
+   "slip2": 0.0425,
+   "padslip1": 0.645632798573975,
+   "score": 2.2322342438182363,
+   "score1": 0.31723424381823634,
+   "tilt": 0.39408206458390993,
+   "seat_N": 0.05422315706107095,
+   "_from": "results/eye_check.json (tune objective at the chosen eye, Final inputs)"
+  },
+  "n_pass": 2,
+  "n_eval": null,
+  "dense_verified": null
+ },
+ "60": {
+  "best": {
+   "D": 60,
+   "x": -18.0,
+   "y": 7.0,
+   "prim": 0.09782496937738727,
+   "margins": {
+    "static pads": 0.4109856256932922,
+    "static p": 0.2254029490520827,
+    "static root p": 0.09782496937738727,
+    "static friction": 0.12574716564648192,
+    "1g slip-free": 1.0,
+    "1g tilt": 0.7974220950993731,
+    "1g seating margin": 0.17528117970362606
+   },
+   "slip2": 0.045,
+   "padslip1": 0.6502673796791444,
+   "score": 2.182691279537815,
+   "score1": 0.2726912795378151,
+   "tilt": 0.40515580980125376,
+   "seat_N": 0.05258435391108782,
+   "_from": "results/eye_check.json (tune objective at the chosen eye, Final inputs)"
+  },
+  "n_pass": 2,
+  "n_eval": null,
+  "dense_verified": null
+ },
+ "_record": "The tune's own output (results/eye_tuning.json) was lost with the machine that ran it. Chosen eyes and preload: calc/final_layout.json; preload levels and stage-1 pass counts: results/eye_tuning_partial.log; per-module values: the tune objective re-scored at the chosen eye with the Final's inputs (results/eye_check.json); verification: run_all.py dense 1 g check + refinement (results/dense_1g.json).",
+ "_inputs": {
+  "wire_d": 2.5,
+  "link_coils": 4,
+  "leg_t": 5.5,
+  "link_preload": 5.0,
+  "saddle_liner_t": 2.5,
+  "bar_t": 5.5,
+  "sets": {
+   "1 g": {
+    "cat": "1 g normal",
+    "n_dir": 1,
+    "n_cable": 0,
+    "n_grav": 0,
+    "cases": 5610,
+    "gravity": 33,
+    "dynamic": 1,
+    "head_motion": 10,
+    "cable": 17
+   },
+   "2 g": {
+    "cat": "2 g dynamic",
+    "n_dir": 10,
+    "n_cable": 2,
+    "n_grav": 3,
+    "cases": 1600,
+    "gravity": 4,
+    "dynamic": 10,
+    "head_motion": 10,
+    "cable": 4
+   }
+  },
+  "grid_mm": [
+   4.0,
+   2.0,
+   1.0
+  ],
+  "k_2g": 10,
+  "preload_layout": 4.2,
+  "preload_step": 0.4,
+  "preload_levels": [
+   {
+    "P": 4.2,
+    "wire": {
+     "d_mm": 2.5,
+     "n_coil": 3
+    },
+    "n_pass": {
+     "40": 0,
+     "45": 0,
+     "50": 0,
+     "55": 0,
+     "60": 0
+    },
+    "n_eval": null
+   },
+   {
+    "P": 4.6,
+    "wire": {
+     "d_mm": 2.5,
+     "n_coil": 3
+    },
+    "n_pass": {
+     "40": 0,
+     "45": 0,
+     "50": 0,
+     "55": 0,
+     "60": 0
+    },
+    "n_eval": null
+   },
+   {
+    "P": 5.0,
+    "wire": {
+     "d_mm": 2.5,
+     "n_coil": 4
+    },
+    "n_pass": {
+     "40": 2,
+     "45": 3,
+     "50": 3,
+     "55": 2,
+     "60": 2
+    },
+    "n_eval": null
+   }
+  ],
+  "all_modules_pass": true,
+  "max_verify": 4,
+  "grid_1g": {
+   "tilt": [
+    22.5,
+    45.0
+   ],
+   "az_step": 22.5,
+   "cable_polar": [
+    80.0
+   ],
+   "cable_az_step": 22.5
+  },
+  "dense_1g": {
+   "tilt": [
+    11.25,
+    22.5,
+    33.75,
+    45.0
+   ],
+   "az_step": 11.25,
+   "cable_polar": [
+    20.0,
+    40.0,
+    60.0,
+    80.0
+   ],
+   "cable_az_step": 11.25
+  }
+ }
+}
