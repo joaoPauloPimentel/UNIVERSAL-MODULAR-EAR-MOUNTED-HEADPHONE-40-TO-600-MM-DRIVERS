@@ -1,58 +1,58 @@
 [
  {
   "driver_g": 0,
-  "total_g": 145.64407664112807,
+  "total_g": 146.76354723597086,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.08520833333333333,
-  "3 g severe": 0.420625,
+  "2 g dynamic": 0.028125,
+  "3 g severe": 0.33791666666666664,
   "static_ok": true
  },
  {
   "driver_g": 10,
-  "total_g": 155.6440766411281,
+  "total_g": 156.76354723597083,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.083125,
-  "3 g severe": 0.44208333333333333,
+  "2 g dynamic": 0.029583333333333333,
+  "3 g severe": 0.365625,
   "static_ok": true
  },
  {
   "driver_g": 20,
-  "total_g": 165.6440766411281,
+  "total_g": 166.76354723597083,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.08479166666666667,
-  "3 g severe": 0.46979166666666666,
+  "2 g dynamic": 0.03229166666666667,
+  "3 g severe": 0.39729166666666665,
   "static_ok": true
  },
  {
   "driver_g": 26,
-  "total_g": 171.6440766411281,
+  "total_g": 172.76354723597083,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.08541666666666667,
-  "3 g severe": 0.48125,
+  "2 g dynamic": 0.034166666666666665,
+  "3 g severe": 0.4164583333333333,
   "static_ok": true
  },
  {
   "driver_g": 40,
-  "total_g": 185.6440766411281,
+  "total_g": 186.76354723597086,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.091875,
-  "3 g severe": 0.5145833333333333,
+  "2 g dynamic": 0.041875,
+  "3 g severe": 0.45479166666666665,
   "static_ok": true
  },
  {
   "driver_g": 60,
-  "total_g": 205.6440766411281,
+  "total_g": 206.76354723597083,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.10979166666666666,
-  "3 g severe": 0.5560416666666667,
+  "2 g dynamic": 0.05583333333333333,
+  "3 g severe": 0.5083333333333333,
   "static_ok": true
  },
  {
   "driver_g": 80,
-  "total_g": 225.6440766411281,
+  "total_g": 226.76354723597086,
   "1 g normal": 0.0,
-  "2 g dynamic": 0.130625,
-  "3 g severe": 0.5966666666666667,
+  "2 g dynamic": 0.08125,
+  "3 g severe": 0.5577083333333334,
   "static_ok": true
  }
 ]

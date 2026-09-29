@@ -834,6 +834,11 @@ MASS_CONDS = (("static", 0.0), ("normal", 0.0), ("dynamic", 0.0), ("dynamic", 0.
 
 
 def mass_job(D):
+    # per-size checkpoint, so a stopped run keeps the sizes already done (run_all --resume)
+    return D, ckpt(f"max_driver_mass_{D}", lambda: _mass_job(D))
+
+
+def _mass_job(D):
     mp = MP_F[D]
     rowm = {}
     for cond, allow in MASS_CONDS:
@@ -842,7 +847,7 @@ def mass_job(D):
                                  **(dict(tol=40.0, n_acc=4) if SMOKE else {}))
         key = cond if cond != "dynamic" else f"dynamic (released <= {allow:.0%})"
         rowm[key] = dict(res, seconds=time.time() - t0)
-    return D, rowm
+    return rowm
 
 
 sizes_mm = (50,) if SMOKE else ((50, 60) if QUICK else tuple(dz.SIZES))
