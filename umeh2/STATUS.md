@@ -1,4 +1,4 @@
-# UMEH-2: paused (2026-09-28 08:49 UTC)
+# UMEH-2: paused (2026-09-29 04:50 UTC)
 
 UMEH-2 cradle sources (40–60 mm drivers): OpenSCAD model (`cad/`), calculation pipeline (`calc/`), results (`results/`).
 
@@ -13,13 +13,15 @@ Design in `calc/final_layout.json`: link preload 5.0 N; link eye (x, y) mm per m
 - `eye_tuning.json` written by `calc/eye_record.py` as a RECORD: the tune's own output was lost with the machine
   that ran it (surviving log: `results/eye_tuning_partial.log`).
 
-## Interrupted (paused on request)
-- run_all.py stopped during max_driver_mass (40–55 mm finished in `results/run_all_interrupted.log`, 60 mm running).
-  `results/max_driver_mass.json` is still the OLD one (2026-09-27).
-- Not run yet: shakedown, sweeps, figures, build_stl, bom, make_report.
+## Done since (2026-09-29 01:43–04:46 UTC)
+- run_all.py finished (`run_all.py --resume`; max_driver_mass now has per-size checkpoints): `results/max_driver_mass.json` is new.
+- shakedown.py finished: `results/shakedown.json`.
+
+## Interrupted (3 h limit)
+- sweeps.py was stopped right after it started. Not run yet: sweeps, figures, build_stl, bom, eye_record, make_report.
 
 ## Resume
 Checkpoints of the expensive runs are in `/mnt/project-files/umeh2_snapshot2/_cache/` (copy into `umeh2/calc/_cache/`).
-    cd umeh2/calc && python3 run_all.py --resume && python3 shakedown.py && python3 sweeps.py && python3 figures.py \
+    cd umeh2/calc && python3 sweeps.py && python3 figures.py \
       && python3 build_stl.py && python3 bom.py && python3 eye_record.py && python3 make_report.py
 (needs numpy, scipy, matplotlib, OpenSCAD; STL files are generated, not committed).
