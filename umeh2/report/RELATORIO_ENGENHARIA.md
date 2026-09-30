@@ -1532,3 +1532,221 @@ Driver 60 mm:
 
 Toda cadeia atende a janela de ±3σ em todos os tamanhos verificados (40 mm, 50 mm, 60 mm). No pior caso, folga radial da UMI (diametral) sai da janela em até 0.0540 mm; aro do driver no alojamento (diametral) sai da janela em até 0.0900 mm; compressão da junta do driver sai da janela em até 0.200 mm: cada um exige todos os termos no seu limite de 3σ ao mesmo tempo, o que o critério estatístico aceita; o raro par de peças que cair ali é encontrado na montagem (verificação de ajuste).
 
+## 18. Varreduras de parâmetros estruturais e do suporte (50 mm)
+
+Espessura dos braços (estrutura) — barra, perna e pé escalados juntos:
+
+| escala | barra/perna/pé mm | 5 g FS vM | em | 5 g FS entre camadas | manuseio FS vM | em | manuseio FS entre camadas | k_braço mastoide N/m | 5 g início λ mín. |
+|---|---|---|---|---|---|---|---|---|---|
+| 0.600 | 3.30/3.30/2.70 | 0.831 | mastoide: barra na borda da fixação (fim do rasgo) | 1.41 | 0.656 | sela: barra na borda da fixação (fim do rasgo) | 0.769 | 15721 | 0.0312 |
+| 0.800 | 4.40/4.40/3.60 | 1.23 | temporal: barra na borda da fixação (fim do rasgo) | 3.36 | 1.13 | sela: barra na borda da fixação (fim do rasgo) | 1.28 | 42103 | 0.0312 |
+| 0.900 | 4.95/4.95/4.05 | 1.55 | temporal: barra na borda da fixação (fim do rasgo) | 3.25 | 1.41 | sela: barra na borda da fixação (fim do rasgo) | 1.57 | 63737 | 0.0312 |
+| 1.00 | 5.50/5.50/4.50 | 1.91 | temporal: barra na borda da fixação (fim do rasgo) | 3.92 | 1.72 | sela: barra na borda da fixação (fim do rasgo) | 1.89 | 92963 | 0.0312 |
+| 1.20 | 6.60/6.60/5.40 | 2.58 | mastoide: barra na borda da fixação (fim do rasgo) | 5.42 | 2.40 | sela: barra na borda da fixação (fim do rasgo) | 2.58 | 181578 | 0.0312 |
+| 1.40 | 7.70/7.70/6.30 | 3.29 | mastoide: barra na borda da fixação (fim do rasgo) | 6.83 | 3.13 | sela: barra na borda da fixação (fim do rasgo) | 3.22 | 325600 | 0.0625 |
+
+
+Tamanho e torque dos parafusos dos braços (junta serrilhada sob o envelope de 5 g e a carga de manuseio):
+
+| parafuso | T N·m | FS mín. | governa | F_i N | F_i envelhecida N | D_parafuso N | FS engate | FS arrancamento | FS giro | FS rasgo | massa do par g |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| M2 | 0.0600 | 0.491 | sela (manuseio 10 N) | 107 | 61.6 | 105 | 0.588 | 0.491 | 5.83 | 487 | 0.940 |
+| M2 | 0.100 | 0.352 | sela (manuseio 10 N) | 179 | 71.8 | 105 | 0.686 | 0.352 | 3.50 | 487 | 0.940 |
+| M2 | 0.150 | 0.261 | sela (manuseio 10 N) | 268 | 71.8 | 105 | 0.686 | 0.261 | 2.33 | 487 | 0.940 |
+| M2 | 0.250 | 0.171 | sela (manuseio 10 N) | 446 | 73.2 | 105 | 0.699 | 0.171 | 1.40 | 487 | 0.940 |
+| M2 | 0.400 | 0.113 | sela (manuseio 10 N) | 714 | 117 | 105 | 1.12 | 0.113 | 0.875 | 487 | 0.940 |
+| M2.5 | 0.0600 | 0.519 | sela (manuseio 10 N) | 85.7 | 54.4 | 105 | 0.519 | 0.845 | 10.0 | 608 | 1.50 |
+| M2.5 | 0.100 | 0.623 | sela (manuseio 10 N) | 143 | 79.3 | 105 | 0.757 | 0.623 | 6.00 | 608 | 1.50 |
+| M2.5 | 0.150 | 0.469 | sela (manuseio 10 N) | 214 | 79.3 | 105 | 0.757 | 0.469 | 4.00 | 608 | 1.50 |
+| M2.5 | 0.250 | 0.314 | sela (manuseio 10 N) | 357 | 79.3 | 105 | 0.757 | 0.314 | 2.40 | 608 | 1.50 |
+| M2.5 | 0.400 | 0.210 | sela (manuseio 10 N) | 571 | 93.7 | 105 | 0.895 | 0.210 | 1.50 | 608 | 1.50 |
+| M3 | 0.0600 | 0.480 | sela (manuseio 10 N) | 71.4 | 49.7 | 103 | 0.480 | 1.35 | 16.7 | 736 | 2.56 |
+| M3 | 0.100 | 0.800 | sela (manuseio 10 N) | 119 | 82.8 | 103 | 0.800 | 1.02 | 10.0 | 736 | 2.56 |
+| M3 | 0.150 | 0.778 | sela (manuseio 10 N) | 179 | 86.9 | 103 | 0.840 | 0.778 | 6.67 | 736 | 2.56 |
+| M3 | 0.250 | 0.529 | sela (manuseio 10 N) | 298 | 86.9 | 103 | 0.840 | 0.529 | 4.00 | 736 | 2.56 |
+| M3 | 0.400 | 0.357 | sela (manuseio 10 N) | 476 | 86.9 | 103 | 0.840 | 0.357 | 2.50 | 736 | 2.56 |
+| M4 | 0.0600 | 0.438 | sela (manuseio 10 N) | 53.6 | 39.3 | 89.7 | 0.438 | 2.73 | 30.0 | 1087 | 5.00 |
+| M4 | 0.100 | 0.731 | sela (manuseio 10 N) | 89.3 | 65.5 | 89.7 | 0.731 | 2.10 | 18.0 | 1087 | 5.00 |
+| M4 | 0.150 | 1.02 | sela (manuseio 10 N) | 134 | 91.8 | 89.7 | 1.02 | 1.62 | 12.0 | 1087 | 5.00 |
+| M4 | 0.250 | 1.02 | sela (manuseio 10 N) | 223 | 91.8 | 89.7 | 1.02 | 1.12 | 7.20 | 1087 | 5.00 |
+| M4 | 0.400 | 0.763 | sela (manuseio 10 N) | 357 | 91.8 | 89.7 | 1.02 | 0.763 | 4.50 | 1087 | 5.00 |
+
+
+| almofada (TPU) h mm | p estático mastoide kPa | inclinação estática graus | demanda de μ estática | 1 g % | 1 g inclinação | 2 g % |
+|---|---|---|---|---|---|---|
+| 3.00 | 2.33 | 0.0888 | 0.802 | 0 | 0.380 | 3.05 |
+| 4.50 | 2.33 | 0.0898 | 0.801 | 0 | 0.385 | 3.05 |
+| 6.00 | 2.33 | 0.0909 | 0.799 | 0 | 0.390 | 3.05 |
+| 8.00 | 2.33 | 0.0924 | 0.795 | 0 | 0.396 | 3.05 |
+| 10.0 | 2.33 | 0.0939 | 0.791 | 0 | 0.402 | 3.05 |
+
+
+| escala do raio das almofadas (espaçamento dos apoios) | estático | 1 g % | 1 g inclinação | 2 g % |
+|---|---|---|---|---|
+| 0.900 | sim | 0 | 1.15 | 4.05 |
+| 0.950 | sim | 0 | 0.466 | 3.45 |
+| 1.00 | sim | 0 | 0.390 | 3.05 |
+| 1.05 | sim | 0 | 0.344 | 2.73 |
+| 1.10 | sim | 0 | 0.309 | 2.43 |
+
+
+| Δ ângulo temporal | Δ ângulo póstero-sup. | estático | 1 g % | 1 g inclinação | 2 g % |
+|---|---|---|---|---|---|
+| -15.0 | 0 | sim | 0 | 1.80 | 2.77 |
+| -10.0 | 10.0 | sim | 0 | 3.86 | 5.92 |
+| 0 | -15.0 | sim | 0 | 0.393 | 0.825 |
+| 0 | 0 | sim | 0 | 0.390 | 3.05 |
+| 0 | 15.0 | sim | 0.0713 | 4.93 | 8.12 |
+| 10.0 | -10.0 | sim | 0 | 0.323 | 1.77 |
+| 15.0 | 0 | sim | 0 | 0.357 | 3.90 |
+
+
+| arco ('gancho') R mm | meio ângulo ° | p na raiz kPa (estático) | 1 g % | 2 g % |
+|---|---|---|---|---|
+| 16.0 | 25.0 | 3.44 | 0 | 3.77 |
+| 16.0 | 35.0 | 3.23 | 0 | 3.05 |
+| 16.0 | 45.0 | 2.90 | 0 | 2.85 |
+| 22.0 | 25.0 | 3.48 | 0 | 3.70 |
+| 22.0 | 35.0 | 3.27 | 0 | 3.05 |
+| 22.0 | 45.0 | 2.94 | 0 | 2.88 |
+| 30.0 | 25.0 | 3.52 | 0 | 3.80 |
+| 30.0 | 35.0 | 3.31 | 0 | 3.12 |
+| 30.0 | 45.0 | 2.98 | 0 | 2.88 |
+
+
+Espessura do revestimento da sela (módulo de 60 mm, com o seu próprio olhal):
+
+| revestimento mm | p na raiz kPa (estático) | demanda de μ estática | 1 g % | 1 g inclinação graus | 2 g % |
+|---|---|---|---|---|---|
+| 0 | 4.63 | 0.800 | 0 | 0.405 | 3.80 |
+| 1.00 | 4.51 | 0.809 | 0 | 0.405 | 3.40 |
+| 1.50 | 4.27 | 0.826 | 0 | 0.405 | 3.43 |
+| 2.00 | 3.96 | 0.849 | 0 | 0.405 | 3.43 |
+| 2.50 | 3.61 | 0.874 | 0 | 0.405 | 3.52 |
+| 3.00 | 3.28 | 0.899 | 0 | 0.405 | 3.60 |
+
+
+| material do revestimento (60 mm) | p na raiz kPa (estático) | demanda de μ estática | 1 g % | 2 g % |
+|---|---|---|---|---|
+| módulo do gel x0.5 | 2.96 | 0.922 | 0 | 3.92 |
+| módulo do gel x2 (ou confinamento mais rígido) | 4.06 | 0.842 | 0 | 3.43 |
+| nominal | 3.61 | 0.874 | 0 | 3.52 |
+
+
+Razão de rigidez de contato tangencial/normal k_t/k_n [A] (ela decide quanto peso as almofadas levam por atrito):
+
+| k_t/k_n (60 mm) | p na raiz kPa (estático) | demanda de μ estática | 1 g % | 1 g inclinação graus | 2 g % |
+|---|---|---|---|---|---|
+| 0.330 | 4.59 | 0.787 | 0 | 0.405 | 3.75 |
+| 0.500 | 3.61 | 0.874 | 0 | 0.405 | 3.52 |
+| 0.670 | 3.05 | 0.936 | 0 | 0.405 | 3.48 |
+
+
+![varreduras](fig/structure_support_sweeps.png)
+![ângulos](fig/support_angle_arch.png)
+
+## 19. Resumo do pior caso e componentes limitantes
+
+Ordenado pela utilização (demanda / permitido; 1 = no limite). A retenção em 2 g não é uma utilização: é a fração solta do conjunto de 2 g de combinações de carga (§8):
+
+| verificação | onde | valor | requisito | utilização |
+|---|---|---|---|---|
+| pressão na raiz da orelha em uso, após a acomodação por movimento da cabeça (60 mm) | zonas do arco | 21.4 | ≤ 4.00 kPa sustentado; NÃO atendido (§6) | 5.35 |
+| pressão na raiz da orelha em uso, após a acomodação por movimento da cabeça (55 mm) | zonas do arco | 20.5 | ≤ 4.00 kPa sustentado; NÃO atendido (§6) | 5.12 |
+| pressão na raiz da orelha em uso, após a acomodação por movimento da cabeça (50 mm) | zonas do arco | 19.4 | ≤ 4.00 kPa sustentado; NÃO atendido (§6) | 4.86 |
+| pressão na raiz se pendurado na orelha antes de prender (colocação B, 60 mm) | zonas do arco | 18.6 | ≤ 4.00 kPa sustentado (logo após colocar); não atendido → prender primeiro (colocação A) é a instrução | 4.65 |
+| pressão na raiz da orelha em uso, após a acomodação por movimento da cabeça (45 mm) | zonas do arco | 18.4 | ≤ 4.00 kPa sustentado; NÃO atendido (§6) | 4.59 |
+| pressão na raiz da orelha em uso, após a acomodação por movimento da cabeça (40 mm) | zonas do arco | 18.0 | ≤ 4.00 kPa sustentado; NÃO atendido (§6) | 4.50 |
+| seção do braço, envelope de início em 5 g, 40 °C | 55 mm, mastoide: barra na borda da fixação (fim do rasgo) (vM) | 1.40 | FS ≥ γM 1.60 | 1.14 |
+| seção do braço, fadiga 1e7 ciclos (envelope de 2 g mantido, de zero ao pico) | 60 mm, mastoide: barra na borda da fixação (fim do rasgo) | 1.71 | FS ≥ γM 1.60 | 0.938 |
+| seção do braço, manuseio 10 N, 40 °C | 40 mm, sela: barra na borda da fixação (fim do rasgo) (vM) | 1.72 | FS ≥ γM 1.60 | 0.931 |
+| pressão na raiz da orelha, colocação A (60 mm) | zonas do arco | 3.61 | ≤ 4.00 kPa sustentado (logo após colocar; em uso veja as linhas de acomodação) | 0.902 |
+| engate da junta do braço (50 mm) | sela, manuseio 10 N | 1.14 | FS ≥ 1 com pré-carga envelhecida | 0.874 |
+| engate da junta do braço (60 mm) | sela, manuseio 10 N | 1.14 | FS ≥ 1 com pré-carga envelhecida | 0.874 |
+| demanda de atrito estático (60 mm) | almofada póstero-superior | 0.874 | μ_exig/μ_projeto ≤ 1 | 0.874 |
+| arrancamento do inserto da junta do braço (50 mm) | sela, manuseio 10 N | 1.15 | FS ≥ 1 sobre o valor de projeto (γ = 2 incluído) | 0.869 |
+| arrancamento do inserto da junta do braço (60 mm) | sela, manuseio 10 N | 1.15 | FS ≥ 1 sobre o valor de projeto (γ = 2 incluído) | 0.869 |
+| arrancamento do inserto da âncora do cabo | clipe + plugue em série (superior) | 1.16 | FS ≥ 1 (γ = 2 incluído) | 0.864 |
+| pressão na raiz da orelha, colocação A (55 mm) | zonas do arco | 3.44 | ≤ 4.00 kPa sustentado (logo após colocar; em uso veja as linhas de acomodação) | 0.860 |
+| demanda de atrito estático (55 mm) | almofada póstero-superior | 0.848 | μ_exig/μ_projeto ≤ 1 | 0.848 |
+| demanda de atrito estático (40 mm) | almofada póstero-superior | 0.846 | μ_exig/μ_projeto ≤ 1 | 0.846 |
+| pressão na raiz da orelha, colocação A (50 mm) | zonas do arco | 3.27 | ≤ 4.00 kPa sustentado (logo após colocar; em uso veja as linhas de acomodação) | 0.817 |
+| demanda de atrito estático (50 mm) | almofada póstero-superior | 0.799 | μ_exig/μ_projeto ≤ 1 | 0.799 |
+| demanda de atrito estático (45 mm) | almofada póstero-superior | 0.785 | μ_exig/μ_projeto ≤ 1 | 0.785 |
+| pressão estática na pele (50 mm) | almofada máx. | 3.11 | ≤ 4.00 kPa | 0.776 |
+| pressão estática na pele (60 mm) | almofada máx. | 3.10 | ≤ 4.00 kPa | 0.775 |
+| pressão na raiz da orelha, colocação A (45 mm) | zonas do arco | 3.07 | ≤ 4.00 kPa sustentado (logo após colocar; em uso veja as linhas de acomodação) | 0.768 |
+| pressão estática na pele (55 mm) | almofada máx. | 3.06 | ≤ 4.00 kPa | 0.765 |
+| pressão estática na pele (45 mm) | almofada máx. | 2.99 | ≤ 4.00 kPa | 0.746 |
+| pressão na raiz da orelha, colocação A (40 mm) | zonas do arco | 2.96 | ≤ 4.00 kPa sustentado (logo após colocar; em uso veja as linhas de acomodação) | 0.740 |
+| pressão estática na pele (40 mm) | almofada máx. | 2.67 | ≤ 4.00 kPa | 0.666 |
+| seção do braço, 1 g sustentado | 60 mm, mastoide: barra na borda da fixação (fim do rasgo) (vM) | 4.12 | FS ≥ γM 1.60 | 0.388 |
+| retenção, conjunto de 2 g (60 mm) | atrito nas almofadas + arco | 2.52 % das combinações soltas | 0 % (estrito) — não atendido | – |
+| cadeia de tolerância com menor margem (60 mm) | compressão da junta do driver | MC inferior 0.0674 vs mín. 0.0500 | espessura da junta do driver | – |
+
+
+## 20. Orientação de impressão (por peça) e por quê
+
+| peça | material | orientação | motivo (anisotropia / suportes / precisão) |
+|---|---|---|---|
+| anel | PETG | face da cabeça para baixo | fundo da ranhura = superfície plana de topo, a parte de baixo do lábio é um cone de 45° (autossustentado); ranhuras da serrilha das abas na face da mesa; a tensão de contato das linguetas é compressão na camada; as abas terminam num arredondado completo em volta do inserto externo (parede ≥ 3.2 mm) |
+| braços (4) | PETG | de lado (perfil na mesa) | toda a tensão de flexão corre ao longo do braço no plano da camada; só o cisalhamento transversal/de torção atravessa camadas (coluna entre camadas, §12); o perfil dos dentes da serrilha fica no plano de impressão (preciso) |
+| defletor | PETG | face da cabeça para baixo | linguetas na mesa (face de apoio plana); o fundo do alojamento do driver é uma superfície de topo; chanfro da abertura de 45° |
+| concha | PETG | fundo externo para baixo | grade/respiros e o furo do inserto do ressalto do olhal na mesa; o ressalto do olhal sobe dentro da concha como uma coluna simples; ressaltos dos parafusos em altura total; parede de 1.2 mm = 3 perímetros de linhas de 0.42 mm com camadas de 0.2 mm |
+| feltro traseiro | feltro + borda de PSA | cortado em faca (não impresso) | empurrado sobre o ressalto do olhal, colado no lado de dentro do fundo da concha |
+| âncora do cabo | PETG | de lado (face tangencial na mesa; o STL é exportado assim) | flexão do pino do clipe na camada (§14: menor FS 5.01 impresso de lado, 4.59 se impresso em pé) |
+| almofadas (3) | TPU 95A giroide 15 % | base plana para baixo | a cúpula não precisa de suporte; alojamento da porca cativa na base |
+| faces das almofadas (2) | silicone Shore 10–30A | moldadas (não impressas) | camada de 0.8 mm pincelada ou moldada nas cúpulas temporal e mastoide; STLs de referência do molde em stl/common/cast_reference |
+| tampa da sela | TPU 95A | plana, face da pele para baixo | barra arqueada no plano da mesa (sem balanço); luva aberta em cima (sem ponte); furo do pino horizontal; face de apoio rebaixada para o revestimento |
+| revestimento da sela | silicone Shore 00-30 | moldado na tampa (não impresso) | STL de referência do molde em stl/common/cast_reference; aplicar primer no TPU (o silicone não adere a ele sem primer) ou criar travamento mecânico; trocado junto com a tampa |
+| junta do driver, clipe, almofada de vedação | TPU 95A | plano | anéis finos |
+| tiras de espuma da UMI | espuma de PU, PSA | cortadas em faca | STL de gabarito |
+
+
+## 21. Onde FEA, simulação acústica ou testes são necessários
+
+Nenhuma FEA ou BEM foi rodada para este relatório; nada aqui é apresentado como simulado.
+* **Raiz da aba do anel e raiz da lingueta** (concentração de tensão 3-D onde a aba se une ao anel; linguetas sob impacto de queda): a teoria de vigas dá valores nominais → FEA de sólidos com propriedades ortotrópicas de peça impressa, e um teste de queda (1.5 m sobre piso duro [A]).
+* **Barra do braço na borda da fixação** (governa a carga de manuseio): uma placa entalhada sob flexão e torção combinadas; um modelo de EF com a geometria da serrilha e do rasgo substituiria o fator de furo Kt = 2.
+* **Ressaltos dos insertos a quente**: a estimativa de tensão tangencial supõe um flanco de recartilhado de 30° → FEA ou, melhor, testes de arrancamento em corpos de prova impressos (§22). O inserto do olhal da ligação fica numa coluna que sobe do fundo da concha e é carregado lateralmente pela ligação: EF do ressalto ou um teste de puxão lateral.
+* **Flexibilidade dos braços** (define quanto peso a raiz da orelha carrega, §6, §12): vigas de Timoshenko ao longo da linha média do braço; os cantos (pé–perna, perna–barra) são mais rígidos do que a teoria de vigas supõe, então o modelo erra para braços mais macios → EF de um braço, ou um teste de carga–deflexão de um braço impresso na sua almofada.
+* **Tampa da sela na raiz da orelha** e as almofadas na pele: a pressão de contato em tecido mole curvo e em camadas não é hertziana → modelo de contato por EF ou medição com filme de pressão. O módulo de compressão do revestimento vem da fórmula de camada colada e do módulo da ficha técnica: um teste de carga–deflexão da tampa revestida sobre um simulador de pele o calibra (as linhas de módulo do gel do §18 mostram o que um fator de 2 faz).
+* **Acústica acima de ~3 kHz** (pavilhão, modos da concha, grade, feltro como camada porosa): BEM/FEM ou medição num simulador de cabeça e tronco; o modelo concentrado não é afirmado ali.
+* **Retenção sob movimento real da cabeça**: cinemática da cabeça gravada por IMU reproduzida numa cabeça artificial, ou testes de uso.
+* **Migração do peso para a raiz da orelha em uso** (acomodação do §6): o atrito do modelo é elástico–Coulomb sem fluência da pele nem
+  re-aderência; a pressão na raiz em uso que ele prevê é a primeira grandeza a medir (filme de pressão na raiz após uso com movimento da cabeça).
+
+## 22. Limitações e as medições que substituem as suposições
+
+| suposição | por que importa | medir |
+|---|---|---|
+| massa/geometria/T-S do driver | massa, CG, acústica | balança, paquímetro, varredura de impedância + Vas por massa adicionada |
+| módulos e espessuras dos tecidos | rigidez de contato → divisão de carga | não é preciso exatamente: a varredura do §9 mostra a sensibilidade; testes de conforto |
+| atrito μ (TPU e silicone na pele) | retenção | teste de plano inclinado de uma almofada na pele do antebraço (seca/suada) |
+| módulo efetivo da almofada de TPU | rigidez de contato, pressão | carga–deflexão de uma almofada impressa |
+| resistência/fluência do PETG | perda de pré-carga da junta | teste de retenção de torque numa aba impressa por 1 semana a 40 °C |
+| rigidez e carga plana da arruela ondulada | pré-carga envelhecida da junta | ficha técnica da arruela; verificação de carga–deflexão |
+| torque de aperto → pré-carga (fator de porca 0.20–0.35) | arrancamento do inserto na maior pré-carga, engate da serrilha na menor | teste de torque–tração do parafuso M3 num corpo de prova impresso com inserto |
+| rigidez do braço impresso (E, G a 40 °C) | divisão de carga entre as almofadas e a raiz da orelha | carga–deflexão de um braço impresso na sua almofada |
+| resistência ao descolamento do PSA em PETG impresso | colagem do feltro traseiro | descolamento a 90° da fita escolhida num corpo de prova impresso |
+| arrancamento do inserto a quente | juntas dos braços e da âncora | arrancamento de insertos colocados em corpos de prova impressos |
+| acelerações angulares da cabeça | retenção em 2 g/3 g | IMU de celular numa faixa de cabeça durante caminhada/corrida |
+| atrito da pele sob carga cíclica (elástico–Coulomb, sem fluência nem re-aderência) | quão rápido e quão longe o peso migra para a raiz da orelha em uso (acomodação do §6) | filme de pressão na raiz da orelha após 30 min de uso caminhando, acenando com a cabeça e olhando para baixo |
+| raio do arco da raiz da orelha | encaixe da sela | foto com escala; o R do arco é um parâmetro do CAD |
+| módulo de compressão do revestimento da sela (módulo a 100 % da ficha técnica, confinamento de Gent–Lindley) | pressão na raiz da orelha vs atrito na mastoide | carga–deflexão da tampa revestida; filme de pressão na raiz em testes de uso |
+| k_t/k_n = 0.5 para os contatos na pele | quanto peso as almofadas levam por atrito | varredura do §18; carga–deflexão ao cisalhamento de uma almofada no antebraço |
+| CFD25 da espuma | sensação da trava de giro, folga | ficha técnica da espuma; comprimir uma tira com um peso conhecido |
+| resposta acima de ~3 kHz: ressonância da minicavidade frontal (abertura), ressonância do driver na junta, modos da concha | equilíbrio de agudos | resposta em frequência num simulador de orelha / simulador de cabeça e tronco |
+| modo livre do braço da sela (Rayleigh, sem contato com a pele) | possível zumbido na faixa de graves | varredura senoidal de 20–500 Hz em nível máximo numa cabeça artificial; acelerômetro ou escuta no braço da sela |
+
+
+O modelo de contato é elástico-linear com rotações pequenas (válido até ~5°); quando um caso solta, ele é classificado, não acompanhado. A captura pelo pavilhão que segura o suporte depois do escorregamento não é modelada.
+
+## 23. Arquivos
+
+* `cad/umeh2.scad` + `cad/generated_params.scad` (padrão 50 mm) + `cad/params_<D>.scad` — CAD paramétrico e os parâmetros gerados.
+* `stl/common/` — peças do suporte (iguais para todos os drivers); `stl/common/cast_reference/` — geometria das faces de silicone; `stl/module_<D>mm/` — peças do módulo por tamanho de driver (conchas com lado: posição do olhal).
+* `calc/umeh2/*.py` — os modelos (materials, design, massprops, support, layout, linkspring, structure, cable, dynamics, acoustics, tolerance, extras, analysis).
+* `calc/legs_liner.py`, `calc/tune_eye.py`, `calc/run_all.py`, `calc/shakedown.py`, `calc/sweeps.py`, `calc/figures.py`, `calc/build_stl.py`, `calc/bom.py`, `calc/make_report.py`.
+* `results/*.json` — todos os números calculados; `report/fig/*.png`.
+* `BOM.csv`, `docs/bom_table.md`.
