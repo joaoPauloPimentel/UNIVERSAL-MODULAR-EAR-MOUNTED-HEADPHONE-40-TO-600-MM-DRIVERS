@@ -536,3 +536,158 @@ Nenhuma alavanca da tabela atende a meta em uso; a menor é 'área de apoio na r
 
 Projeto B, mesmo caso: **nenhum equilíbrio estático** (o suporte tomba para fora da orelha).
 
+## 7. Layout dos apoios, linha da pré-carga e o olhal da ligação por módulo
+
+Momento de tombamento por g: M₁ = m g z̄. Para que a pré-carga P (agindo ao longo de −z no olhal) e o peso deixem todas as almofadas carregadas,
+a resultante de P e do binário do peso precisa ficar dentro do polígono das almofadas com margem: y_olhal ≈ y_centroide + M₁/P. Sob um fator
+dinâmico n a resultante se move (n−1)M₁/P, então um P maior dá robustez, limitado pela pressão na pele. A borda do anel não
+alcança esse ponto; a ponta da concha alcança. O layout do suporte (ângulos/raios e tamanho das almofadas) é comum a todos os módulos (busca máx–mín,
+`umeh2/layout.py`: amostragem aleatória dos seus limites, depois uma busca por padrões nas coordenadas). Essa busca rodou durante as iterações com o modelo e a amostra de carga da época; `calc/final_layout.json` guarda o seu resultado arredondado a 0.5°/0.5 mm (a sua pré-carga, 4.20 N, é o primeiro nível de pré-carga do ajuste do olhal), ela não faz parte da cadeia que se roda de novo, e todo resultado deste relatório reverifica o layout com o modelo atual. O olhal faz parte do módulo e foi ajustado para cada tamanho de driver por `calc/tune_eye.py` com o modelo atual, junto com a pré-carga da ligação (um valor para todos os módulos: a ligação é comum). A pré-carga percorre níveis a partir dos 4.20 N do layout em passos de 0.400 N, cada um com o fio da ligação dimensionado para ele; toma-se o menor nível em que todo módulo tem candidatos na grade de olhais de 4 mm da etapa 1 que atendem todos os critérios de uso normal do ajuste (estático + a grade de 1 g) e um olhal das etapas 1–3 (ponto da grade ou do refinamento) que também passa na verificação densa e no seu refinamento [regra de projeto: a menor pré-carga mantém as pressões nas almofadas e a tensão no fio mais baixas], e as etapas seguintes rodam nesse nível: uma grade de 4 mm sobre a ponta da concha
+(estático + a grade de 1 g de 33 direções da gravidade × 10 casos de movimento da cabeça × 17 direções do cabo = 5610 casos de carga por candidato, §8), o conjunto de 2 g para os melhores candidatos que atendem o uso normal (no máximo 10: 2 no módulo de 40 mm, 3 no de 45 mm, 3 no de 50 mm, 2 no de 55 mm, 2 no de 60 mm), depois refinamento de 2 e 1 mm em volta do melhor; por fim (etapa 4) a verificação densa de 1 g e o seu refinamento local (§8) nos melhores candidatos em ordem de nota até que um passe (no máximo 4 por módulo) — esse candidato é o olhal do módulo;
+nota = a menor margem normalizada de uso normal, depois a fração solta em 2 g (peso 2) e a fração de micro-escorregamento das almofadas em 1 g (0.5).
+Um candidato para no seu primeiro caso de 1 g que falha (ele não pode mais passar). As posições dos olhais ficam, portanto, numa grade de 1 mm (sem arredondamento adicional; tolerância de impressão XY ±0.15 mm). A coluna de 2 g é
+o subconjunto reduzido do ajuste (10 direções dinâmicas × 4 gravidade × 10 movimento da cabeça × 4 cabo = 1600 casos de carga); o §8 dá o conjunto completo de 2 g do Final.
+
+Níveis de pré-carga do ajuste (etapa 1, toda a grade de olhais de 4 mm de cada módulo; o fio da ligação de cada nível dimensionado em todos os módulos no olhal de referência do layout, trazido para dentro do limite de olhal do módulo quando fica fora; candidatos que atendem todos os critérios de uso normal / avaliados):
+
+| P N | fio da ligação | 40 mm | 45 mm | 50 mm | 55 mm | 60 mm |  |
+|---|---|---|---|---|---|---|---|
+| 4.20 | Ø2.50 mm, 3 espiras | 0/– | 0/– | 0/– | 0/– | 0/– |  |
+| 4.60 | Ø2.50 mm, 3 espiras | 0/– | 0/– | 0/– | 0/– | 0/– |  |
+| 5.00 | Ø2.50 mm, 4 espiras | 2/– | 3/– | 3/– | 2/– | 2/– | **escolhido** |
+
+
+Restrições de layout [A] (`layout.geometric_ok`, `layout.BOUNDS`): almofadas, sela e clipe do cabo a pelo menos 30° um do outro no anel (largura das abas, acesso aos parafusos); centros das almofadas dentro dos limites da busca. Verificado no Final: a borda interna de cada almofada (raio do centro − a/2) livra o meio comprimento p95 do pavilhão 36 mm + 2 mm = 38.0 mm do eixo do canal — temporal 40.6, mastoide 38.5, póstero-superior 42.1 mm.
+
+**Registro do ajuste do olhal.** A saída própria do ajuste (results/eye_tuning.json) se perdeu com a máquina que o rodou. Olhais escolhidos e pré-carga: calc/final_layout.json; níveis de pré-carga e contagens de aprovação da etapa 1: results/eye_tuning_partial.log; valores por módulo: o objetivo do ajuste recalculado no olhal escolhido com as entradas do Final (results/eye_check.json); verificação: verificação densa de 1 g + refinamento do run_all.py (results/dense_1g.json). O ajuste rodou com fio Ø2.50 mm / 4 espiras, pernas 5.50 mm, revestimento 2.50 mm; as tabelas por candidato do ajuste (candidatos avaliados, cinco melhores, verificações da etapa 4 dos outros módulos) não estão disponíveis. A tabela abaixo é o objetivo do ajuste em cada olhal escolhido com as entradas do próprio Final; a verificação densa do §8 é a prova de aprovação/reprovação.
+
+| D | olhal x mm | olhal y mm | margem mín. de uso normal | 2 g soltas (subconjunto) | micro-escorregamento das almofadas em 1 g | margem de atrito estático | margem de inclinação | margem de assento |
+|---|---|---|---|---|---|---|---|---|
+| 40 | -15.0 | 7.00 | 0.141 | 0.0475 | 0.663 | 0.154 | 0.794 | 0.141 |
+| 45 | -18.0 | 7.00 | 0.215 | 0.0406 | 0.635 | 0.215 | 0.814 | 0.410 |
+| 50 | -19.0 | 7.00 | 0.183 | 0.0394 | 0.641 | 0.201 | 0.805 | 0.232 |
+| 55 | -18.0 | 7.00 | 0.140 | 0.0425 | 0.646 | 0.152 | 0.803 | 0.181 |
+| 60 | -18.0 | 7.00 | 0.0978 | 0.0450 | 0.650 | 0.126 | 0.797 | 0.175 |
+
+
+## 8. Casos de carga, combinação vetorial e busca da pior orientação
+
+| caso | gravidade a até ° da vertical | aceleração dinâmica (g, qualquer direção) | α da cabeça rad/s² [A] | ω da cabeça rad/s [A] | puxão do cabo N [A] |
+|---|---|---|---|---|---|
+| 1 g normal | 45.0 | 0 | 50.0 | 3.00 | 0.500 |
+| 2 g dinâmico | 30.0 | 1.00 | 100 | 6.00 | 1.00 |
+| 3 g severo | 30.0 | 2.00 | 200 | 10.0 | 2.00 |
+| 5 g acidental | qualquer (resultante) | 5.00 | 1000 | 20.0 | 20.0 |
+
+
+Gravidade efetiva g_ef = g + a (soma vetorial, cada direção de a numa esfera de Fibonacci); o movimento angular da cabeça em torno dos
+eixos de guinada/arfagem/rolagem por pivôs antropométricos [A] acrescenta as cargas de d'Alembert F = −m[α×ρ + ω×(ω×ρ)] e M = −I_G α − ω×(I_G ω).
+Para movimento oscilatório da cabeça o pico de aceleração angular e o pico de velocidade angular estão em quadratura, então são aplicados
+como duas fases separadas (pico de α com ω = 0, pico de ω com α = 0); a carga inercial ao quadrado é convexa na fase, então as duas fases
+extremas limitam todas as intermediárias. Peso do cabo (0.35 m × 22 g/m [A]) ao longo de g_ef mais um puxão do cabo no clipe em qualquer
+direção a até 80° da vertical para baixo [A]. **Toda** combinação de um conjunto (direção da gravidade × direção dinâmica × eixo/sinal/fase × direção do cabo)
+é resolvida; a pior orientação é buscada, não suposta. Como as direções são escolhidas depende do uso da categoria:
+
+* **1 g (critérios de aprovação/reprovação): uma grade determinística** que contém as bordas dos dois cones (`support.GRID_1G`): vertical + inclinação da cabeça
+  22.5, 45° × a cada 22.5° de azimute; cabo para baixo + a 80° da
+  vertical × a cada 22.5°. A sua resolução é verificada em todo módulo por uma **verificação densa** (`support.DENSE_1G`, aninhada: inclinação da cabeça
+  11.25, 22.5, 33.75, 45° × a cada 11.25°, cabo 20, 40, 60, 80° × a cada 11.25°) e um **refinamento
+  local** da verificação densa (`analysis.refine_1g_chunk`): em volta de cada combinação densa que falha e de cada uma das 8 de menor margem de assento e das 8
+  de maior inclinação, a sua célula da grade densa (± meio passo denso na inclinação da cabeça, azimute da gravidade, ângulo e azimute do cabo) é
+  explorada numa grade de 5 pontos por coordenada com o mesmo movimento da cabeça; a mudança dos piores valores densos para os refinados
+  mede o que uma busca ainda mais fina poderia acrescentar. Ambos fazem parte dos critérios de uso normal do Final (tabelas abaixo).
+* **2 g, 3 g, 5 g (relatados como frações soltas): uma amostra quase uniforme (Fibonacci)** das direções da gravidade, dinâmica e do cabo;
+  uma fração solta é uma propriedade dessa amostra, não um pior caso. Onde uma varredura ou tabela de massa dá "1 g %", é a fração solta
+  da grade de 1 g (5610 combinações por avaliação).
+
+Verificação densa do Final (`results/dense_1g.json`; azimute 0° = para a frente, 90° = para fora, longe da cabeça: gravidade no azimute 90° significa a cabeça inclinada para este lado, esta orelha para baixo, então o lado pende para fora; margem de assento = terceira maior força de contato na pele − 0.1 N):
+
+| D | combinações | soltas | tripé perdido | inclinação > 2° | pior inclinação ° | caso da pior inclinação | menor margem de assento N | o seu caso |
+|---|---|---|---|---|---|---|---|---|
+| 40 | 166410 | 0 | 0 | 0 | 0.411 | inclinação 45.0° no azimute 90.0°, rolagem +alfa, cabo 80° a 90.0° | 0.0337 | inclinação 45.0° no azimute 56.3°, rolagem −alfa, cabo 80° a 281.2° |
+| 45 | 166410 | 0 | 0 | 0 | 0.373 | inclinação 45.0° no azimute 180.0°, rolagem +alfa, cabo 80° a 101.2° | 0.116 | inclinação 45.0° no azimute 33.7°, rolagem −alfa, cabo 80° a 281.2° |
+| 50 | 166410 | 0 | 0 | 0 | 0.391 | inclinação 45.0° no azimute 180.0°, rolagem +alfa, cabo 80° a 101.2° | 0.0631 | inclinação 45.0° no azimute 123.7°, rolagem −alfa, cabo 80° a 112.5° |
+| 55 | 166410 | 0 | 0 | 0 | 0.395 | inclinação 45.0° no azimute 180.0°, rolagem +alfa, cabo 80° a 101.2° | 0.0513 | inclinação 33.7° no azimute 45.0°, rolagem −alfa, cabo 80° a 281.2° |
+| 60 | 166410 | 0 | 0 | 0 | 0.406 | inclinação 45.0° no azimute 180.0°, rolagem +alfa, cabo 80° a 101.2° | 0.0387 | inclinação 33.7° no azimute 56.3°, rolagem −alfa, cabo 80° a 281.2° |
+
+
+Refinamento local em volta das combinações críticas da verificação densa (`results/dense_1g.json` "refine"; pior valor denso → refinado):
+
+| D | sementes | combinações | falhando | pior inclinação ° | menor margem de assento N |
+|---|---|---|---|---|---|
+| 40 | 16 | 3279 | 0 | 0.411 → 0.415 | 0.0337 → 0.0308 |
+| 45 | 16 | 3873 | 0 | 0.373 → 0.374 | 0.116 → 0.115 |
+| 50 | 16 | 2790 | 0 | 0.391 → 0.391 | 0.0631 → 0.0604 |
+| 55 | 16 | 3366 | 0 | 0.395 → 0.396 | 0.0513 → 0.0476 |
+| 60 | 16 | 3438 | 0 | 0.406 → 0.407 | 0.0387 → 0.0379 |
+
+
+Histórico (§4 mudança 21): os olhais ajustados na grade de 1 g a cada 45.0° (gravidade) / 45.0° (cabo) — pré-carga 5 N, fio Ø2.5 mm / 4 espiras, olhais 40 mm (-15, 7), 45 mm (-18, 6), 50 mm (-19, 5), 55 mm (-19, 6), 60 mm (-19, 6) — na verificação densa da época (a cada 22.5° / 22.5°) e no seu refinamento local (`results/dense_1g_grid45.json`; soltas / tripé perdido / inclinadas demais):
+
+| D | falhas densas | margem de assento densa N | refinamento falhando | margem de assento refinada N |  |
+|---|---|---|---|---|---|
+| 40 | 0 / 0 / 0 | 0.0451 | 0 de 3159 | 0.0417 | passa |
+| 45 | 0 / 0 / 0 | 0.0676 | 0 de 3114 | 0.0574 | passa |
+| 50 | 0 / 0 / 0 | 0.0422 | 0 de 3858 | 0.0335 | passa |
+| 55 | 0 / 0 / 0 | 0.0338 | 0 de 3243 | 0.0246 | passa |
+| 60 | 0 / 1 / 0 | -0.000789 | 46 de 3102 | -0.0121 | **falha** |
+
+
+A mudança 21 reduziu à metade os passos de azimute da grade e da verificação densa e rodou de novo o ajuste com a verificação da etapa 4 (§7): com a grade a cada 45.0° (gravidade) / 45.0° (cabo) os olhais ajustados falharam a 60 mm (verificação densa: 0 soltas, 1 tripé perdido, 0 inclinadas demais, menor margem de assento -0.000789 N; refinamento: 46 de 3102 falhando, menor -0.0121 N); a pior combinação não é um ponto daquela grade (§8), olhais movidos Δy 0–2.00 mm, Δx 0–1.00 mm.
+
+O Final antes da mudança de iteração 19 na grade de 1 g (§4; `results/grid_1g_before_grid.json`): olhais ajustados numa amostra quase uniforme de 1 g (17 gravidade × 10 movimento da cabeça × 5 direções do cabo = 850 combinações) na pré-carga do layout de 4.20 N, fio da ligação Ø2.00 mm:
+
+| D | combinações | soltas | tripé perdido | inclinação > 2° | pior inclinação ° | caso da pior inclinação | menor margem de assento N | o seu caso |
+|---|---|---|---|---|---|---|---|---|
+| 40 | 5610 | 15 | 0 | 51 | 4.66 | inclinação 45.0° no azimute 45.0°, rolagem +alfa, cabo 80° a 67.5° | 0.00115 | inclinação 45.0° no azimute 112.5°, rolagem −alfa, cabo 80° a 112.5° |
+| 45 | 5610 | 9 | 7 | 20 | 4.97 | inclinação 45.0° no azimute 135.0°, rolagem +alfa, cabo 80° a 90.0° | -0.0897 | inclinação 45.0° no azimute 112.5°, guinada +alfa, cabo 80° a 90.0° |
+| 50 | 5610 | 12 | 28 | 31 | 4.72 | inclinação 45.0° no azimute 45.0°, rolagem +alfa, cabo 80° a 112.5° | -0.100 | inclinação 45.0° no azimute 90.0°, guinada +alfa, cabo 80° a 90.0° |
+| 55 | 5610 | 8 | 57 | 14 | 4.89 | inclinação 45.0° no azimute 67.5°, rolagem +alfa, cabo 80° a 67.5° | -0.100 | inclinação 45.0° no azimute 90.0°, guinada +alfa, cabo 80° a 67.5° |
+| 60 | 5610 | 10 | 61 | 19 | 4.98 | inclinação 45.0° no azimute 45.0°, rolagem +alfa, cabo 80° a 90.0° | -0.100 | inclinação 45.0° no azimute 90.0°, guinada +alfa, cabo 80° a 67.5° |
+
+
+As 331 combinações que falham: cabeça inclinada 45.0–45.0° da vertical; 331 de 331 com este lado pendendo para fora (cabeça inclinada para ele, esta orelha para baixo) e 317 de 331 com o cabo puxando para fora (317 ambos). Na sua própria amostra o primeiro ajuste tinha aprovado esses olhais (menor margem de uso normal 0.0760–0.166 entre os módulos, `results/eye_tuning_before_grid.json`). Com a grade (mudança 19; o fio da ligação redimensionado para cada nível de pré-carga, §11) o ajuste passou de 4.20 N para 5.00 N, com os olhais mais baixos (Δy -7.00–-5.00 mm) (§7).
+
+| D | caso | combinações | soltas | % | micro-escorregamento das almofadas % das mantidas | tripé perdido | pior inclinação graus* | pior deslocamento mm* | p pico kPa* |
+|---|---|---|---|---|---|---|---|---|---|
+| 40 | 1 g normal | 5610 | 0 | 0 | 66.3 | 0 | 0.411 | 1.25 | 48.0 |
+| 40 | 2 g dinâmico | 10000 | 194 | 1.94 | 74.2 | 986 | 4.99 | 2.99 | 88.6 |
+| 40 | 3 g severo | 10000 | 3535 | 35.4 | 80.8 | 1890 | 4.99 | 2.99 | 137 |
+| 40 | 5 g acidental | 6000 | 5807 | 96.8 | 79.8 | 4646 | 5.00 | 3.00 | 199 |
+| 45 | 1 g normal | 5610 | 0 | 0 | 63.5 | 0 | 0.372 | 1.32 | 51.5 |
+| 45 | 2 g dinâmico | 10000 | 126 | 1.26 | 73.4 | 847 | 4.96 | 2.35 | 91.7 |
+| 45 | 3 g severo | 10000 | 3336 | 33.4 | 80.6 | 1951 | 4.98 | 3.00 | 137 |
+| 45 | 5 g acidental | 6000 | 5800 | 96.7 | 79.5 | 4564 | 5.00 | 3.00 | 198 |
+| 50 | 1 g normal | 5610 | 0 | 0 | 64.1 | 0 | 0.390 | 1.41 | 55.2 |
+| 50 | 2 g dinâmico | 10000 | 142 | 1.42 | 73.8 | 880 | 4.98 | 2.51 | 97.2 |
+| 50 | 3 g severo | 10000 | 3495 | 34.9 | 80.3 | 1926 | 4.98 | 3.00 | 135 |
+| 50 | 5 g acidental | 6000 | 5802 | 96.7 | 81.8 | 4456 | 4.99 | 3.00 | 196 |
+| 55 | 1 g normal | 5610 | 0 | 0 | 64.6 | 0 | 0.394 | 1.44 | 56.3 |
+| 55 | 2 g dinâmico | 10000 | 208 | 2.08 | 74.0 | 978 | 4.98 | 2.84 | 102 |
+| 55 | 3 g severo | 10000 | 3789 | 37.9 | 80.3 | 1822 | 4.99 | 2.99 | 137 |
+| 55 | 5 g acidental | 6000 | 5801 | 96.7 | 82.4 | 4406 | 5.00 | 3.00 | 196 |
+| 60 | 1 g normal | 5610 | 0 | 0 | 65.0 | 0 | 0.405 | 1.49 | 58.4 |
+| 60 | 2 g dinâmico | 10000 | 252 | 2.52 | 74.2 | 1020 | 4.96 | 2.77 | 105 |
+| 60 | 3 g severo | 10000 | 3972 | 39.7 | 80.1 | 1767 | 4.96 | 2.99 | 139 |
+| 60 | 5 g acidental | 6000 | 5799 | 96.7 | 83.6 | 4331 | 5.00 | 3.00 | 196 |
+
+
+*sobre as combinações que ficaram em equilíbrio. Inclinação = rotação em torno de x e y (muda a geometria driver–orelha). Micro-escorregamento das almofadas = uma almofada na pele desliza localmente enquanto o suporte como um todo fica em equilíbrio; cada combinação aqui parte do estado logo após colocar, então os micro-escorregamentos não se somam nesta tabela — repetidos, eles se somam (§6, o estado sustentado em uso).
+
+O que causa as solturas — combinações soltas por caso de movimento da cabeça, somando os cinco tamanhos (parte das solturas da categoria). 'alfa' = pico de aceleração angular, 'ômega' = pico de velocidade angular; 'gravidade inclinada' = cabeça inclinada dentro do cone da categoria (não dividido para 5 g: a sua aceleração resultante tem qualquer direção):
+
+| movimento da cabeça | 1 g normal | 2 g dinâmico | 3 g severo | 5 g acidental |
+|---|---|---|---|---|
+| sem rotação da cabeça | 0 (– %) | 0 (0 %) | 710 (3.92 %) | 2977 (10.3 %) |
+| arfagem (aceno) alfa | 0 (– %) | 2 (0.217 %) | 2649 (14.6 %) | 5946 (20.5 %) |
+| arfagem (aceno) ômega | 0 (– %) | 0 (0 %) | 689 (3.80 %) | 2947 (10.2 %) |
+| rolagem (inclinação) alfa | 0 (– %) | 873 (94.7 %) | 5998 (33.1 %) | 5144 (17.7 %) |
+| rolagem (inclinação) ômega | 0 (– %) | 1 (0.108 %) | 2180 (12.0 %) | 2995 (10.3 %) |
+| guinada (giro) alfa | 0 (– %) | 46 (4.99 %) | 4497 (24.8 %) | 6000 (20.7 %) |
+| guinada (giro) ômega | 0 (– %) | 0 (0 %) | 1404 (7.75 %) | 3000 (10.3 %) |
+| das quais: gravidade vertical | 0 (– %) | 191 (20.7 %) | 3681 (20.3 %) | – |
+| das quais: gravidade inclinada | 0 (– %) | 731 (79.3 %) | 14446 (79.7 %) | – |
+
+
+Pior orientação de 1 g encontrada (50 mm): direção da gravidade (-0.707, -0.707, 8.66e-17), rolagem da cabeça +alfa, puxão do cabo ao longo de (6.03e-17, -0.174, 0.985).
+
