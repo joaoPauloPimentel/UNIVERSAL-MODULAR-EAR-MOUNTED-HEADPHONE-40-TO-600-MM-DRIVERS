@@ -1016,24 +1016,24 @@ Temperatura: a 55 °C (carro, sol) a resistência é ×0.700 [LIT] contra ×0.85
 
 | interface | caso | F N | p médio kPa | p pico kPa | limite kPa | pico/limite | FS curto prazo | FS sustentado |
 |---|---|---|---|---|---|---|---|---|
-| pad T temporal na pele | estático (sustentado) | 1.19 | 2.30 | 4.60 | 4.00 | 1.15 | – | – |
-| pad T temporal na pele | 2 g máx. (transitório) | 3.77 | 7.28 | 14.6 | 8.00 | 1.82 | – | – |
-| pad T temporal na pele | 5 g máx. (acidental) | 21.3 | 41.1 | 82.2 | 150 | 0.548 | – | – |
-| pad M mastoide na pele | estático (sustentado) | 1.76 | 2.33 | 4.65 | 4.00 | 1.16 | – | – |
-| pad M mastoide na pele | 2 g máx. (transitório) | 5.50 | 7.27 | 14.5 | 8.00 | 1.82 | – | – |
-| pad M mastoide na pele | 5 g máx. (acidental) | 24.0 | 31.7 | 63.5 | 150 | 0.423 | – | – |
-| pad P póstero-sup. na pele | estático (sustentado) | 1.61 | 3.11 | 6.21 | 4.00 | 1.55 | – | – |
-| pad P póstero-sup. na pele | 2 g máx. (transitório) | 4.06 | 7.85 | 15.7 | 8.00 | 1.96 | – | – |
-| pad P póstero-sup. na pele | 5 g máx. (acidental) | 15.2 | 29.4 | 58.7 | 150 | 0.392 | – | – |
+| almofada T temporal na pele | estático (sustentado) | 1.19 | 2.30 | 4.60 | 4.00 | 1.15 | – | – |
+| almofada T temporal na pele | 2 g máx. (transitório) | 3.77 | 7.28 | 14.6 | 8.00 | 1.82 | – | – |
+| almofada T temporal na pele | 5 g máx. (acidental) | 21.3 | 41.1 | 82.2 | 150 | 0.548 | – | – |
+| almofada M mastoide na pele | estático (sustentado) | 1.76 | 2.33 | 4.65 | 4.00 | 1.16 | – | – |
+| almofada M mastoide na pele | 2 g máx. (transitório) | 5.50 | 7.27 | 14.5 | 8.00 | 1.82 | – | – |
+| almofada M mastoide na pele | 5 g máx. (acidental) | 24.0 | 31.7 | 63.5 | 150 | 0.423 | – | – |
+| almofada P póstero-sup. na pele | estático (sustentado) | 1.61 | 3.11 | 6.21 | 4.00 | 1.55 | – | – |
+| almofada P póstero-sup. na pele | 2 g máx. (transitório) | 4.06 | 7.85 | 15.7 | 8.00 | 1.96 | – | – |
+| almofada P póstero-sup. na pele | 5 g máx. (acidental) | 15.2 | 29.4 | 58.7 | 150 | 0.392 | – | – |
 | zona da sela S raiz F na raiz da orelha | estático (sustentado) | 0.229 | 3.27 | 6.53 | 4.00 | 1.63 | – | – |
 | zona da sela S raiz F na raiz da orelha | 2 g máx. (transitório) | 3.49 | 49.8 | 99.6 | 8.00 | 12.5 | – | – |
 | zona da sela S raiz F na raiz da orelha | 5 g máx. (acidental) | 7.40 | 106 | 211 | 150 | 1.41 | – | – |
 | zona da sela S raiz B na raiz da orelha | estático (sustentado) | 0.202 | 2.88 | 5.76 | 4.00 | 1.44 | – | – |
 | zona da sela S raiz B na raiz da orelha | 2 g máx. (transitório) | 2.61 | 37.3 | 74.5 | 8.00 | 9.32 | – | – |
 | zona da sela S raiz B na raiz da orelha | 5 g máx. (acidental) | 5.55 | 79.3 | 159 | 150 | 1.06 | – | – |
-| pad S couro cabeludo na pele | estático (sustentado) | 0.378 | 1.69 | 3.38 | 4.00 | 0.845 | – | – |
-| pad S couro cabeludo na pele | 2 g máx. (transitório) | 0.897 | 4.01 | 8.01 | 8.00 | 1.00 | – | – |
-| pad S couro cabeludo na pele | 5 g máx. (acidental) | 3.86 | 17.2 | 34.5 | 150 | 0.230 | – | – |
+| almofada S couro cabeludo na pele | estático (sustentado) | 0.378 | 1.69 | 3.38 | 4.00 | 0.845 | – | – |
+| almofada S couro cabeludo na pele | 2 g máx. (transitório) | 0.897 | 4.01 | 8.01 | 8.00 | 1.00 | – | – |
+| almofada S couro cabeludo na pele | 5 g máx. (acidental) | 3.86 | 17.2 | 34.5 | 150 | 0.230 | – | – |
 | cabeça do parafuso do braço (M3) no braço de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
 | cabeça do parafuso da âncora (M3) na âncora de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
 | flancos da serrilha (braço temporal, 10 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 2525 | – | – | 18.5 | 9.26 |
@@ -1046,24 +1046,24 @@ Temperatura: a 55 °C (carro, sol) a resistência é ×0.700 [LIT] contra ×0.85
 
 | interface | caso | F N | p médio kPa | p pico kPa | limite kPa | pico/limite | FS curto prazo | FS sustentado |
 |---|---|---|---|---|---|---|---|---|
-| pad T temporal na pele | estático (sustentado) | 1.31 | 2.52 | 5.05 | 4.00 | 1.26 | – | – |
-| pad T temporal na pele | 2 g máx. (transitório) | 4.27 | 8.25 | 16.5 | 8.00 | 2.06 | – | – |
-| pad T temporal na pele | 5 g máx. (acidental) | 22.7 | 43.9 | 87.7 | 150 | 0.585 | – | – |
-| pad M mastoide na pele | estático (sustentado) | 1.96 | 2.59 | 5.17 | 4.00 | 1.29 | – | – |
-| pad M mastoide na pele | 2 g máx. (transitório) | 6.03 | 7.97 | 15.9 | 8.00 | 1.99 | – | – |
-| pad M mastoide na pele | 5 g máx. (acidental) | 24.8 | 32.8 | 65.6 | 150 | 0.438 | – | – |
-| pad P póstero-sup. na pele | estático (sustentado) | 1.60 | 3.10 | 6.20 | 4.00 | 1.55 | – | – |
-| pad P póstero-sup. na pele | 2 g máx. (transitório) | 4.42 | 8.54 | 17.1 | 8.00 | 2.13 | – | – |
-| pad P póstero-sup. na pele | 5 g máx. (acidental) | 17.1 | 32.9 | 65.9 | 150 | 0.439 | – | – |
+| almofada T temporal na pele | estático (sustentado) | 1.31 | 2.52 | 5.05 | 4.00 | 1.26 | – | – |
+| almofada T temporal na pele | 2 g máx. (transitório) | 4.27 | 8.25 | 16.5 | 8.00 | 2.06 | – | – |
+| almofada T temporal na pele | 5 g máx. (acidental) | 22.7 | 43.9 | 87.7 | 150 | 0.585 | – | – |
+| almofada M mastoide na pele | estático (sustentado) | 1.96 | 2.59 | 5.17 | 4.00 | 1.29 | – | – |
+| almofada M mastoide na pele | 2 g máx. (transitório) | 6.03 | 7.97 | 15.9 | 8.00 | 1.99 | – | – |
+| almofada M mastoide na pele | 5 g máx. (acidental) | 24.8 | 32.8 | 65.6 | 150 | 0.438 | – | – |
+| almofada P póstero-sup. na pele | estático (sustentado) | 1.60 | 3.10 | 6.20 | 4.00 | 1.55 | – | – |
+| almofada P póstero-sup. na pele | 2 g máx. (transitório) | 4.42 | 8.54 | 17.1 | 8.00 | 2.13 | – | – |
+| almofada P póstero-sup. na pele | 5 g máx. (acidental) | 17.1 | 32.9 | 65.9 | 150 | 0.439 | – | – |
 | zona da sela S raiz F na raiz da orelha | estático (sustentado) | 0.253 | 3.61 | 7.22 | 4.00 | 1.80 | – | – |
 | zona da sela S raiz F na raiz da orelha | 2 g máx. (transitório) | 3.80 | 54.3 | 109 | 8.00 | 13.6 | – | – |
 | zona da sela S raiz F na raiz da orelha | 5 g máx. (acidental) | 7.46 | 107 | 213 | 150 | 1.42 | – | – |
 | zona da sela S raiz B na raiz da orelha | estático (sustentado) | 0.223 | 3.19 | 6.38 | 4.00 | 1.59 | – | – |
 | zona da sela S raiz B na raiz da orelha | 2 g máx. (transitório) | 2.73 | 38.9 | 77.9 | 8.00 | 9.74 | – | – |
 | zona da sela S raiz B na raiz da orelha | 5 g máx. (acidental) | 5.60 | 80.0 | 160 | 150 | 1.07 | – | – |
-| pad S couro cabeludo na pele | estático (sustentado) | 0.391 | 1.75 | 3.49 | 4.00 | 0.873 | – | – |
-| pad S couro cabeludo na pele | 2 g máx. (transitório) | 0.984 | 4.39 | 8.79 | 8.00 | 1.10 | – | – |
-| pad S couro cabeludo na pele | 5 g máx. (acidental) | 4.31 | 19.3 | 38.5 | 150 | 0.257 | – | – |
+| almofada S couro cabeludo na pele | estático (sustentado) | 0.391 | 1.75 | 3.49 | 4.00 | 0.873 | – | – |
+| almofada S couro cabeludo na pele | 2 g máx. (transitório) | 0.984 | 4.39 | 8.79 | 8.00 | 1.10 | – | – |
+| almofada S couro cabeludo na pele | 5 g máx. (acidental) | 4.31 | 19.3 | 38.5 | 150 | 0.257 | – | – |
 | cabeça do parafuso do braço (M3) no braço de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
 | cabeça do parafuso da âncora (M3) na âncora de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
 | flancos da serrilha (braço temporal, 10 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 2525 | – | – | 18.5 | 9.26 |
