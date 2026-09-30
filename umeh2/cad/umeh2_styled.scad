@@ -63,8 +63,18 @@ module cup_cap() {
         translate([0, 0, cap_t - 0.25]) linear_extrude(1) difference() { outline(W - 2.4); outline(W - 2.8); }
     }
 }
+// front foam: reticulated (open-cell) PU foam disc on the module's head face, between the pinna and the driver.
+// Acoustically near-transparent; covers the aperture and keeps dust and hair off the diaphragm. Bonded by a PSA
+// ring outside the aperture chamfer. Thickness from the pinna-clearance chain (calc/umeh2/tolerance.py, chain 6):
+// nominal 4.4 mm, Monte-Carlo -3 sigma 2.35 mm; 2 mm of foam leaves 2.4 mm nominal and 0.35 mm at -3 sigma, so the
+// p95 ear does not reach it (below the 1 mm hair/earring rule at the low end: stated in docs/design_finish.md).
+front_foam_t = 2.0;
+module front_foam() { cylinder(r = spig_d / 2 - 0.5, h = front_foam_t, $fn = 128); }   // head side at z = 0
+
 if (part == "cup_cap") cup_cap();
+if (part == "front_foam") front_foam();
 Z_CUPTOP = standoff + z_mod0 + baffle_h + cup_h;    // cup outer end in the skin frame (umeh2.scad placement)
 if (part == "placed_cup_cap") translate([0, 0, Z_CUPTOP]) cup_cap();
+if (part == "placed_front_foam") translate([0, 0, standoff + z_mod0 - front_foam_t]) front_foam();
 // print orientation: top face on the bed, skirt up
 if (part == "print") mirror([0, 0, 1]) translate([0, 0, -cap_t]) cup_cap();
