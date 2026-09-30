@@ -1,9 +1,9 @@
 import numpy as np, struct, zipfile, os
 OUT="/root/asm/out"; DST="/root/asm/final"; os.makedirs(DST, exist_ok=True)
-COL={"ring":"#4682B4","gasket_umi":"#708090","arm_saddle":"#FFA500","arm_temporal":"#FFA500","arm_mastoid":"#FFA500","arm_post":"#FFA500",
+COL={"ring":"#4682B4","gasket_umi":"#32CD32","arm_saddle":"#FFA500","arm_temporal":"#FFA500","arm_mastoid":"#FFA500","arm_post":"#FFA500",
  "saddle_cap":"#696969","pad_temporal":"#696969","pad_mastoid":"#696969","pad_post":"#696969","cable_anchor":"#696969","cable_clip":"#505050",
  "saddle_liner":"#B22222","pad_face_temporal":"#B22222","pad_face_mastoid":"#B22222","baffle":"#F5DEB3","gasket_driver":"#303030",
- "driver":"#111111","cup":"#B0C4DE"}
+ "driver_visual":"#2F2F2F","felt":"#F0E68C","cup":"#B0C4DE"}
 def read(p):
     b=open(p,"rb").read()
     if b[:5]==b"solid" and b"facet" in b[:400]:

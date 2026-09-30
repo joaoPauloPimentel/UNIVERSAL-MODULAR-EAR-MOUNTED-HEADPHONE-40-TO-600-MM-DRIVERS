@@ -2,7 +2,7 @@ import os, subprocess, struct, sys
 from concurrent.futures import ThreadPoolExecutor
 CAD="/root/umeh2_work/cad"; OUT="/root/asm/out"; os.makedirs(OUT, exist_ok=True)
 PARTS=["ring","gasket_umi","arm_saddle","arm_temporal","arm_mastoid","arm_post","saddle_cap","saddle_liner",
- "pad_temporal","pad_mastoid","pad_post","pad_face_temporal","pad_face_mastoid","baffle","gasket_driver","driver","cup","cable_anchor","cable_clip"]
+ "pad_temporal","pad_mastoid","pad_post","pad_face_temporal","pad_face_mastoid","baffle","gasket_driver","driver_visual","felt","cup","cable_anchor","cable_clip"]
 base=open(f"{CAD}/umeh2.scad").read()
 jobs=[]
 for D in (40,45,50,55,60):

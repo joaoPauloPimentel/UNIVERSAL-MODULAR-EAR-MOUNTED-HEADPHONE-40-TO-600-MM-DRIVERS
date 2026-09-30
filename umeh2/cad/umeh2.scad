@@ -384,10 +384,31 @@ module placed(p) {
     if (p == "cable_anchor") rotate([0, 0, mx(cable_a)]) translate([0, 0, standoff]) cable_anchor();
     if (p == "cable_clip")   rotate([0, 0, mx(cable_a)]) translate([bar_r1 + cable_od / 2 + 3, 0, standoff - clip_post_L + 5]) cable_clip();
     if (p == "seal_pad")     seal_pad();
+    if (p == "driver_visual") translate([0, 0, Z_MOD + seat_z + driver_gasket_t - gasket_driver_squeeze]) driver_visual();
+    if (p == "felt")         translate([0, 0, Z_CUPTOP - cup_end_t]) mirror([0, 0, 1]) felt_disc();
 }
 module driver_dummy() {       // mass-equivalent solid for COM/inertia (density scaled to the driver mass in calc)
     ring(driver_mount_d / 2, aperture_d / 2 - 0.5, driver_rim_t);
     cylinder(r = driver_rear_d / 2, h = driver_depth);
+}
+
+module driver_visual() {       // display model of a generic dynamic driver (not used for mass properties)
+    color("DimGray") ring(driver_mount_d / 2, aperture_d / 2 - 0.5, driver_rim_t);                          // front rim
+    color("Gainsboro") translate([0, 0, driver_rim_t * 0.5])                                                  // cone diaphragm
+        difference() { cylinder(r1 = aperture_d / 2 - 0.5, r2 = driver_rear_d * 0.18, h = driver_depth * 0.28);
+                       translate([0, 0, -0.01]) cylinder(r1 = aperture_d / 2 - 1.1, r2 = driver_rear_d * 0.18 - 0.6, h = driver_depth * 0.28 - 0.5); }
+    color("Silver") translate([0, 0, driver_rim_t * 0.5]) scale([1, 1, 0.45]) sphere(r = driver_rear_d * 0.18, $fn = 48);   // dust cap
+    color("DimGray") translate([0, 0, driver_rim_t])                                                          // basket
+        difference() { cylinder(r1 = driver_mount_d / 2 - 1, r2 = driver_rear_d / 2, h = driver_depth * 0.55);
+                       translate([0, 0, -0.01]) cylinder(r1 = driver_mount_d / 2 - 2, r2 = driver_rear_d / 2 - 1, h = driver_depth * 0.55 + 0.02);
+                       for (a = [0:60:300]) rotate([0, 0, a + 30]) translate([0, -driver_mount_d / 6, -1]) cube([driver_mount_d, driver_mount_d / 3, driver_depth]); }
+    color("Black") translate([0, 0, driver_rim_t + driver_depth * 0.55]) cylinder(r = driver_rear_d / 2 * 0.85, h = driver_depth * 0.45 - driver_rim_t);  // magnet
+}
+module felt_disc() {          // rear felt, die-cut: OD 2 cup_ri, hole over the link-eye boss (see note under cup())
+    difference() {
+        cylinder(r = cup_ri, h = felt_t);
+        if (link_mode == "cup") translate([EYE_X, link_y, -1]) cylinder(d = felt_hole_d, h = felt_t + 2, $fn = 32);
+    }
 }
 
 PARTS = ["ring", "gasket_umi", "arm_saddle", "arm_temporal", "arm_mastoid", "arm_post", "saddle_cap", "pad_temporal",
@@ -400,7 +421,10 @@ if (part == "assembly") {
     color("DimGray") { placed("pad_temporal"); placed("pad_mastoid"); placed("pad_post"); placed("saddle_cap"); placed("cable_anchor"); }
     color("Firebrick") { placed("pad_face_temporal"); placed("pad_face_mastoid"); placed("saddle_liner"); }
     color("Wheat") placed("baffle");
-    color("Black") placed("driver");
+    placed("driver_visual");
+    color("Khaki") placed("felt");
+    color("LimeGreen") placed("gasket_umi");
+    color("DarkSlateGray") { placed("gasket_driver"); placed("cable_clip"); }
     color("LightSteelBlue") placed("cup");
     %translate([0, 0, -0.5]) cylinder(r = 90, h = 0.5);
 }
@@ -426,5 +450,6 @@ if (part == "cup")           cup();
 if (part == "cable_anchor")  rotate([90, 0, 0]) translate([0, tab_w / 2, 0]) cable_anchor();
 if (part == "cable_clip")    cable_clip();
 if (part == "seal_pad")      seal_pad();
+if (part == "felt")          felt_disc();
 // assembled-position exports (mass properties)
-for (p = concat(PARTS, ["driver", "seal_pad"])) if (part == str("placed_", p)) placed(p);
+for (p = concat(PARTS, ["driver", "seal_pad", "driver_visual", "felt"])) if (part == str("placed_", p)) placed(p);
