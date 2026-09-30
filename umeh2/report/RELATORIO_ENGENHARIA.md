@@ -691,3 +691,188 @@ O que causa as solturas — combinações soltas por caso de movimento da cabeç
 
 Pior orientação de 1 g encontrada (50 mm): direção da gravidade (-0.707, -0.707, 8.66e-17), rolagem da cabeça +alfa, puxão do cabo ao longo de (6.03e-17, -0.174, 0.985).
 
+## 9. Atrito, força normal mínima, sensibilidade
+
+Demanda de atrito estático (colocação A, almofadas da pele tornadas antiderrapantes, raiz e couro cabeludo no μ de projeto): μ_exigido / μ_projeto por almofada; > 1 significa que a almofada escorrega lentamente em repouso com o coeficiente de projeto:
+
+| D | T temporal | M mastoide | P póstero-sup. |
+|---|---|---|---|
+| 40 | 0.576 | 0.566 | 0.846 |
+| 45 | 0.643 | 0.561 | 0.785 |
+| 50 | 0.692 | 0.560 | 0.799 |
+| 55 | 0.684 | 0.554 | 0.848 |
+| 60 | 0.699 | 0.548 | 0.874 |
+
+
+| caso de atrito (50 mm) | 1 g: % soltas | 1 g inclinação graus | 2 g: % soltas | demanda de μ estático |
+|---|---|---|---|---|
+| projeto: nominal/1.25 | 0 | 0.390 | 3.05 | 0.799 |
+| cabelo em todo lugar | 0 | 0.395 | 6.60 | 1.55 |
+| alto | 0 | 0.385 | 2.57 | 0.445 |
+| baixo | 0 | 0.391 | 3.92 | 1.07 |
+| sem face (cúpulas de TPU), 50 mm | 0 | 0.392 | 3.08 | 0.883 |
+| sem face (cúpulas de TPU), 60 mm | 0 | 0.407 | 3.75 | 0.891 |
+| nominal | 0 | 0.388 | 2.73 | 0.634 |
+| silicone em todo lugar, nominal | 0 | 0.388 | 2.88 | 0.526 |
+| pele suada, todos os contatos | 0 | 0.392 | 3.62 | 1.07 |
+| suada, baixo | 1.03 | 0.397 | 11.6 | 1.98 |
+
+
+Varredura da pré-carga — a força normal mínima é o menor P com zero solturas em 1 g (μ de projeto, depois a coluna de μ baixo):
+
+| P N | 1 g % (μ projeto) | 1 g % (μ baixo) | 2 g % (μ projeto) | demanda de μ estático | p mastoide kPa |
+|---|---|---|---|---|---|
+| 2.00 | 7.01 | 11.8 | 25.9 | 5.27 | 1.57 |
+| 2.50 | 3.05 | 6.35 | 19.0 | 2.76 | 1.71 |
+| 3.00 | 0.624 | 2.78 | 13.4 | 1.86 | 1.84 |
+| 3.50 | 0.107 | 0.642 | 9.50 | 1.40 | 1.96 |
+| 4.00 | 0 | 0.160 | 6.60 | 1.12 | 2.08 |
+| 4.50 | 0 | 0 | 4.50 | 0.934 | 2.21 |
+| 5.00 | 0 | 0 | 3.05 | 0.799 | 2.33 |
+| 5.50 | 0 | 0 | 2.12 | 0.697 | 2.45 |
+| 6.00 | 0 | 0 | 1.55 | 0.617 | 2.57 |
+
+
+| caso de tecido / hélice | 1 g % | 1 g inclinação graus | 2 g % |
+|---|---|---|---|
+| contato com a hélice também presente (k=400 N/m) | 0 | 0.390 | 2.73 |
+| nominal | 0 | 0.390 | 3.05 |
+| tecido macio x0.5 | 0 | 0.698 | 4.23 |
+| tecido rígido x2 | 0 | 0.231 | 2.77 |
+
+
+## 10. Massa máxima do driver
+
+Faixa de massa do driver em que uma condição vale (o resto do lado mantém as propriedades de massa do CAD;
+o driver mantém o seu centroide do CAD, com a inércia escalada pela massa).
+estático: o lado fica no lugar em repouso com o mu de projeto (equilíbrio estático, sem escorregamento grosseiro)
+normal:   assentado em repouso (todas as almofadas >= F_min) + pressão na pele e na raiz da orelha <= 4 kPa logo após colocar + demanda de
+atrito estático <= mu de projeto E o conjunto de 1 g: sem escorregamento grosseiro, assentado, inclinação <= 2 graus
+dinâmico: 'normal' E o conjunto de 2 g com fração solta <= permitido (permitido = 0: estrito); a varredura de 2 g
+para assim que o número de solturas passa de permitido x n_casos
+máximo:   'estático' E, no conjunto acidental de 5 g (n_acc direções), a estrutura sobrevive às cargas do envelope
+(casos mantidos + forças de contato no início do escorregamento grosseiro para os casos que soltam):
+structural_ok(). Escorregamento/soltura permitidos.
+A condição NÃO é monótona na massa: o olhal da ligação de cada módulo é ajustado para o seu driver nominal, então um
+driver mais leve também tira a resultante da carga da linha ajustada. Por isso a busca é ancorada na
+massa nominal do driver m0 (design.DRIVERS): a condição é avaliada primeiro em m0; depois bisseção (até tol) em
+[m0, hi_g] para a maior massa aprovada e em [lo_g, m0] para a menor (pulada quando hi_g / lo_g passam).
+Supõe-se que as massas aprovadas formem um intervalo em volta de m0; isso é verificado nos quartis do intervalo
+('interval_checked'). Se o próprio m0 falha, o resultado diz isso, e a faixa aprovada abaixo de m0 (se lo_g
+passa) é achada por bisseção em [lo_g, m0]. 'máximo': o limite estático é achado primeiro (barato) e a
+estrutura é verificada ali; só se ela falhar ali a verificação estrutural é feita por bisseção.
+Retorna dict(nominal_g, holds_at_nominal, max_driver_g, min_driver_g, capped (max = hi_g), governs,
+interval_checked, n_eval).
+
+| D | driver nominal g [A] | estático: driver aprovado g | normal: driver aprovado g | dinâmico (soltas <= 0%): driver aprovado g | dinâmico (soltas <= 10%): driver aprovado g | máximo: driver aprovado g |
+|---|---|---|---|---|---|---|
+| 40 | 15.0 | 0.0–150.0+ | 0.0–27.7 | falha no nominal de 15 g; falha também com 0 g | 0.0–27.7 | 0.0–126.0 (um ponto intermediário falha!) |
+| 45 | 19.0 | 0.0–150.0+ | 0.0–34.4 | falha no nominal de 19 g; falha também com 0 g | 0.0–34.4 | 0.0–122.9 (um ponto intermediário falha!) |
+| 50 | 26.0 | 0.0–150.0+ | 0.0–31.8 | falha no nominal de 26 g; falha também com 0 g | 0.0–31.8 | 0.0–84.6 (um ponto intermediário falha!) |
+| 55 | 33.0 | 0.0–150.0+ | 0.0–41.2 | falha no nominal de 33 g; falha também com 0 g | 0.0–41.2 | 0.0–54.9 |
+| 60 | 40.0 | 0.0–150.0+ | 0.0–45.2 | falha no nominal de 40 g; falha também com 0 g | 0.0–45.2 | 0.0–109.2 (um ponto intermediário falha!) |
+
+
+Cada célula é a faixa de massas de driver para a qual a condição vale, achada a partir do driver nominal para fora. '+' = o limite superior da busca (150 g) foi alcançado, então a condição não limita a massa do driver ali. 'falha no nominal' = a condição não é atendida com o driver para o qual o módulo foi projetado; a faixa depois disso, se houver, é onde ela valeria. Verificação que governa a condição máxima de projeto: 40 mm: estrutura (envelope de 5 g); 45 mm: estrutura (envelope de 5 g); 50 mm: estrutura (envelope de 5 g); 55 mm: estrutura (envelope de 5 g); 60 mm: estrutura (envelope de 5 g).
+
+Estas faixas usam os critérios de uso normal logo após colocar. A pressão na raiz da orelha em uso (acomodação do §6) impõe um limite ao lado inteiro: a 60 mm ela só é atendida até 60.3 g por lado (massa e inércia escaladas, CG mantido), enquanto o lado de 60 mm sem o driver já pesa 150 g — nenhuma massa de driver a atende.
+
+| driver g (50 mm) | total g | fixação estática | 1 g % soltas | 2 g % | 3 g % |
+|---|---|---|---|---|---|
+| 0 | 147 | PASSA | 0 | 2.81 | 33.8 |
+| 10.0 | 157 | PASSA | 0 | 2.96 | 36.6 |
+| 20.0 | 167 | PASSA | 0 | 3.23 | 39.7 |
+| 26.0 | 173 | PASSA | 0 | 3.42 | 41.6 |
+| 40.0 | 187 | PASSA | 0 | 4.19 | 45.5 |
+| 60.0 | 207 | PASSA | 0 | 5.58 | 50.8 |
+| 80.0 | 227 | PASSA | 0 | 8.12 | 55.8 |
+
+
+![escorregamento contra massa](fig/slip_vs_mass.png)
+![massa máxima do driver](fig/max_driver_mass.png)
+
+## 11. Mola de ligação occipital — fio deduzido, não escolhido
+
+
+Mola de ligação occipital — o diâmetro do fio é DEDUZIDO, não escolhido.
+
+Geometria: um fio plano no plano transversal da cabeça (X lateral, Y frente-trás), simétrico em relação à linha média.
+  * Final, olhal na ponta da concha (support.link_path): do olhal o fio corre para trás pela face da concha até
+    hook_y, para dentro ao longo do lado do módulo até a cabeça (side_x), depois em volta do occipital como um arco circular cujo
+    ápice fica `apex` atrás da linha dos olhais (SAGITTA + 15 mm [A]).
+  * Projeto B, olhal na almofada mastoide: um arco circular pelos dois olhais; meia distância entre olhais w = meia largura da cabeça +
+    altura do olhal sobre a pele, o occipital uma flecha s = SAGITTA [A] atrás da linha dos olhais, R = (w^2 + s^2) / (2 s).
+
+As forças nas pontas +-P agem ao longo da corda (de olhal a olhal). O momento num ponto do
+fio é  M = P * x  com x a distância à corda, então por Castigliano
+    delta_par = (P / EI) * integral( x^2 ds )      (flexão; a parcela axial e de cisalhamento é limitada abaixo das tabelas)
+    k_par = P / delta_par ,  k_lado = 2 k_par  (cada olhal se move delta_par/2)
+Momento fletor máximo  M_max = P * x_max  no ápice (x_max: distância do ápice à corda).
+A espira de torção do ápice (n voltas, diâmetro médio Dc) fica onde M = P x_max, então ela acrescenta
+    delta_espira = P x_max^2 L_espira / (E I),  L_espira = pi Dc n
+e k_par = EI / (int x^2 ds + x_max^2 L_espira). A espira baixa a rigidez (a pré-carga
+fica quase constante entre tamanhos de cabeça) sem aumentar a tensão, a não ser
+pelo fator de curvatura da espira Ki = (4C^2 - C - 1)/(4C(C - 1)), C = Dc/d.
+Tensão de flexão      sigma = 32 M / (pi d^3)
+Tensão no olhal (laço da ponta), fórmula de gancho de Shigley com braço de momento = raio médio do olhal r1:
+    sigma_olhal = P [ K_A * 32 r1 / (pi d^3) + 4 / (pi d^2) ],
+    K_A = (4 C1^2 - C1 - 1) / (4 C1 (C1 - 1)),  C1 = 2 r1 / d
+Resistência: fio de aço para molas ASTM A228, Sut = 2211 / d^0.145 MPa [STD]; escoamento
+em flexão ~0.75 Sut [STD]; resistência à fadiga em flexão alternada 0.3 Sut [A].
+
+
+**B** (P = 1.20 N): escolhido Ø1.50 mm, 3 espiras no ápice (Ø médio 12 mm).
+
+| grandeza | valor |
+|---|---|
+| rigidez por lado k (N/m) | 57.4 |
+| faixa de pré-carga (cabeça p5–p95) N | 0.856 – 1.54 |
+| razão pré-carga máx/mín | 1.81 |
+| força para colocar N | 2.69 |
+| Sut MPa (d) | 2085 |
+| σ em uso / σ ao colocar MPa | 437 / 762 |
+| tensão no olhal (ao colocar) MPa, K_A | 31.5, 1.23 |
+| raio interno do olhal mm (≥ 1.5 d = raio mínimo de dobra) | 2.25 |
+| FS escoamento (≥ 1.5) | 2.05 |
+| FS fadiga Goodman, 10 000 ciclos de colocação (≥ 1.5) | 2.97 |
+| meia abertura livre mm (conformar o fio para isso) | 66.1 |
+| comprimento do fio m | 0.269 |
+| massa g | 5.31 |
+
+
+**Final** (P = 5.00 N): escolhido Ø2.50 mm, 4 espiras no ápice (Ø médio 12 mm).
+
+| grandeza | valor |
+|---|---|
+| rigidez por lado k (N/m) | 164 |
+| faixa de pré-carga (cabeça p5–p95) N | 4.02 – 5.98 |
+| razão pré-carga máx/mín | 1.49 |
+| força para colocar N | 9.26 |
+| Sut MPa (d) | 1936 |
+| σ em uso / σ ao colocar MPa | 570 / 882 |
+| tensão no olhal (ao colocar) MPa, K_A | 39.0, 1.23 |
+| raio interno do olhal mm (≥ 1.5 d = raio mínimo de dobra) | 3.75 |
+| FS escoamento (≥ 1.5) | 1.65 |
+| FS fadiga Goodman, 10 000 ciclos de colocação (≥ 1.5) | 2.35 |
+| meia abertura livre mm (conformar o fio para isso) | 101 |
+| comprimento do fio m | 0.443 |
+| massa g | 22.9 |
+
+
+Só flexão: tomando as forças axial e de cisalhamento como P ao longo de todo o arco de 0.443 m (um limite superior), a flexibilidade delas é 0.0138 % da flexibilidade de flexão do fio do Final (fator de cisalhamento 1.11, ν = 0.29) [C].
+
+A ligação comum é conformada no módulo de 50 mm; nos outros módulos a ponta da concha fica Δz mais funda ou mais rasa, então P(D) = P_ref + k_lado Δz (tabela no §3). O menor FS de escoamento entre os cinco módulos é 1.59 (60 mm) contra o exigido de 1.5: 6.05 % de folga. A própria pré-carga vem do ajuste do olhal (§7); diâmetros comerciais 1, 1.2, 1.4, 1.5, 1.6, 1.8, 2 mm [DS] e 2.25, 2.5 mm [A: supõe-se em estoque, confirmar com o fornecedor] são considerados.
+
+O mesmo fio em todos os módulos: o olhal de cada módulo define o seu próprio caminho pela face da concha (e o seu próprio P(D)), então o fio é verificado em cada um (link_design com o caminho daquele módulo):
+
+| D | olhal x mm | olhal y mm | P(D) N | k_lado N/m | pré-carga máx/mín | FS escoamento (≥ 1.5) | FS fadiga (≥ 1.5) | todos |
+|---|---|---|---|---|---|---|---|---|
+| 40 | -15.0 | 7.00 | 4.67 | 152 | 1.48 | 1.71 | 2.44 | PASSA |
+| 45 | -18.0 | 7.00 | 4.84 | 161 | 1.50 | 1.68 | 2.39 | PASSA |
+| 50 | -19.0 | 7.00 | 5.00 | 164 | 1.49 | 1.65 | 2.35 | PASSA |
+| 55 | -18.0 | 7.00 | 5.16 | 161 | 1.46 | 1.62 | 2.30 | PASSA |
+| 60 | -18.0 | 7.00 | 5.33 | 161 | 1.44 | 1.59 | 2.26 | PASSA |
+
+
+![ligação](fig/link_wire.png)
+
