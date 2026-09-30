@@ -1345,3 +1345,190 @@ Anéis de silicone macios colocam a ressonância do driver na montagem em 1.86�
 
 ![isolamento](fig/driver_isolation.png)
 
+## 16. Acústica
+
+
+Modelo acústico do módulo UMEH-2 — circuito ELETRO-MECÂNICO-ACÚSTICO CONCENTRADO
+mais radiação em forma fechada. NENHUM FEM/BEM acústico foi rodado.
+
+Validade: elementos concentrados exigem que toda dimensão de cavidade seja < lambda/4
+(concha ~ 60 mm -> ~1.4 kHz estrito, ~3 kHz utilizável); as fórmulas de radiação de
+pistão/borda valem até ~8 kHz [A]; acima disso o pavilhão e a cabeça (HRTF)
+dominam e nada aqui é afirmado. Tudo acima de 3 kHz é marcado como
+"indicativo".
+
+Driver (por tamanho): os valores de Thiele/Small são SUPOSIÇÕES REPRESENTATIVAS [A]
+(sem dados do fabricante). Substitua-os por valores medidos
+(varredura de impedância, método da massa adicionada, veja o relatório) e rode de novo.
+
+Circuito (analogia de impedância, SI):
+  elétrico     Ze  = Re + j w Le
+  mecânico     Zm  = Rms + j w Mms + 1/(j w Cms)
+  acústico     Z_F (carga frontal) e Z_B (carga traseira) vistas pelo diafragma,
+               refletidas como Sd^2 (Z_F + Z_B)
+  velocidade do diafragma   u = Bl e / [ Ze (Zm + Sd^2 (Z_F + Z_B)) + Bl^2 ]
+  velocidade de volume      U = Sd u
+Carga frontal, ABERTA (fora da orelha): impedância de radiação de um pistão com defletor
+  Z_rad = rho c / S [ 1 - J1(2ka)/(ka) + j H1(2ka)/(ka) ]            (exata, Bessel/Struve)
+  em série com o tubo da abertura (massa do furo do defletor incl. correções de extremidade)
+Carga frontal, VEDADA (opção com almofada de vedação): compliância da cavidade C_f = V_f/(rho c^2)
+  em paralelo com o vazamento (fresta: massa + resistência viscosa).
+Carga traseira: compliância do volume da concha C_b = V_b/(rho c^2) em paralelo com o
+  caminho de saída (furos da grade / respiros: massa com correções de extremidade, resistência
+  viscosa) em série com a resistência do feltro R_felt = sigma t / A.
+Pressão na orelha (frente aberta): campo próximo do pistão no eixo
+  p_F = rho c u [exp(-jkz) - exp(-jk sqrt(z^2 + a^2))]  x 2 (superfície rígida da cabeça/pavilhão)
+  z = plano de saída da abertura até a entrada do canal auditivo (ear_distance: afastamento do CAD
+  e face do módulo, projeção média do pavilhão menos a profundidade da concha [A/LIT])
+menos a onda traseira (monopolo de velocidade de volume U_out na grade)
+contornando a borda do módulo (caminho L_r) com um fator de difração de borda
+D = 1/sqrt(1 + (k r_edge)^2) por borda [estimativa].
+
+
+| D | Vb cm³ [CAD] | Vas cm³ | α = Vas/Vb | Qts | Qtc (fechada) | Fs Hz | Fc Hz (fechada) | furos da grade | concha (1,1) Hz | concha axial Hz | fresta λ/2 Hz |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 40 | 8.16 | 536 | 65.7 | 0.400 | 3.27 | 120 | 980 | 52.0 | 5762 | 11385 | 5967 |
+| 45 | 10.5 | 916 | 87.5 | 0.400 | 3.76 | 104 | 977 | 70.0 | 5148 | 10682 | 5967 |
+| 50 | 13.0 | 1551 | 120 | 0.400 | 4.39 | 90.0 | 988 | 86.0 | 4652 | 10179 | 5967 |
+| 55 | 16.8 | 2456 | 146 | 0.400 | 4.86 | 79.4 | 964 | 114 | 4182 | 9614 | 5967 |
+| 60 | 21.4 | 3859 | 180 | 0.400 | 5.38 | 70.0 | 942 | 142 | 3791 | 9108 | 5967 |
+
+
+**Consequência:** uma traseira fechada eleva a ressonância para Fc = 942–988 Hz com Qtc = 3.27–5.38 — inutilizável. Daí a traseira aberta amortecida por feltro (padrão) ou uma traseira com muitos respiros.
+
+Abertura do defletor: ressonância de Helmholtz da minicavidade entre diafragma e abertura + tubo da abertura f = c/2π·√(S/(V·L_ef)), L_ef = t + (0.5 + 1)·0.85a: a correção de extremidade externa é a massa de radiação do pistão com defletor, a interna é reduzida pelo chanfro e pelo diafragma próximo [A] (a mesma massa da abertura do modelo de resposta):
+
+| D | abertura 0.60 D | abertura 0.75 D | abertura 0.88 D (escolhida) | abertura 1.00 D |
+|---|---|---|---|---|
+| 40 | 8.93 kHz | 10.1 kHz | 11.1 kHz | 11.9 kHz |
+| 45 | 8.48 kHz | 9.60 kHz | 10.5 kHz | 11.2 kHz |
+| 50 | 8.10 kHz | 9.15 kHz | 9.98 kHz | 10.7 kHz |
+| 55 | 7.76 kHz | 8.76 kHz | 9.55 kHz | 10.2 kHz |
+| 60 | 7.46 kHz | 8.42 kHz | 9.17 kHz | 9.82 kHz |
+
+
+Abertura = 0.88 D [A] (não D): ela livra o diafragma móvel e metade da suspensão e se sobrepõe ao lábio da armação frontal do driver para que a junta do aro vede; o chanfro de 45° × 1.5 mm remove o degrau vivo. A ressonância da minicavidade frontal fica então em 9.17–11.1 kHz — dentro da faixa de áudio e acima da faixa em que o modelo concentrado é afirmado, então o seu nível e amortecimento ficam para a medição (§21, §22); alargar a abertura para D só a eleva até a última coluna.
+
+Helmholtz do respiro (porta traseira), concha de 50 mm, correções de extremidade 0.85 r (com flange, dentro) + 0.61 r (sem flange, fora) [STD]:
+
+| n respiros | Ø mm | f_b Hz | L_ef mm |
+|---|---|---|---|
+| 1 | 1.50 | 365 | 3.10 |
+| 1 | 2.00 | 461 | 3.46 |
+| 1 | 3.00 | 628 | 4.19 |
+| 1 | 4.00 | 773 | 4.92 |
+| 2 | 1.50 | 517 | 3.10 |
+| 2 | 2.00 | 652 | 3.46 |
+| 2 | 3.00 | 888 | 4.19 |
+| 2 | 4.00 | 1093 | 4.92 |
+| 3 | 1.50 | 633 | 3.10 |
+| 3 | 2.00 | 798 | 3.46 |
+| 3 | 3.00 | 1088 | 4.19 |
+| 3 | 4.00 | 1339 | 4.92 |
+| 4 | 1.50 | 731 | 3.10 |
+| 4 | 2.00 | 922 | 3.46 |
+| 4 | 3.00 | 1256 | 4.19 |
+| 4 | 4.00 | 1546 | 4.92 |
+| 6 | 1.50 | 895 | 3.10 |
+| 6 | 2.00 | 1129 | 3.46 |
+| 6 | 3.00 | 1539 | 4.19 |
+| 6 | 4.00 | 1893 | 4.92 |
+
+
+Frente vedada (opção com almofada de vedação): V_f = 87.0 cm³ [C: da pele à face do anel dentro do diâmetro interno da vedação mais o rebaixo do módulo no furo, menos 10 cm³ de pavilhão A]; vazamento = fresta entre almofada e pele (R = 12μL/(h³b), M = 1.2ρL/(hb)).
+
+Material × altura da almofada de vedação na pressão que a pré-carga pode ceder (0.5 kPa [A]): a conformidade δ = pH/E contra uma irregularidade da cabeça de 1 mm [A] deixa uma fresta h = max(0.02 mm, a − δ); perda de graves em relação a uma vedação perfeita:
+
+| material | E kPa | H mm | δ mm | fresta mm | perda 50 Hz dB | perda 100 Hz dB |
+|---|---|---|---|---|---|---|
+| TPU gyroid 10% | 520 | 10.0 | 0.00962 | 0.990 | 22.0 | 16.7 |
+| TPU gyroid 10% | 520 | 20.0 | 0.0192 | 0.981 | 21.9 | 16.6 |
+| TPU gyroid 10% | 520 | 29.0 | 0.0279 | 0.972 | 21.8 | 16.5 |
+| TPU gyroid 15% | 1170 | 10.0 | 0.00427 | 0.996 | 22.1 | 16.7 |
+| TPU gyroid 15% | 1170 | 20.0 | 0.00855 | 0.991 | 22.1 | 16.7 |
+| TPU gyroid 15% | 1170 | 29.0 | 0.0124 | 0.988 | 22.0 | 16.6 |
+| TPU gyroid 25% | 3250 | 10.0 | 0.00154 | 0.998 | 22.1 | 16.7 |
+| TPU gyroid 25% | 3250 | 20.0 | 0.00308 | 0.997 | 22.1 | 16.7 |
+| TPU gyroid 25% | 3250 | 29.0 | 0.00446 | 0.996 | 22.1 | 16.7 |
+| espuma de PU 30 kg/m3 | 28.1 | 10.0 | 0.178 | 0.822 | 19.7 | 15.0 |
+| espuma de PU 30 kg/m3 | 28.1 | 20.0 | 0.356 | 0.644 | 16.1 | 12.7 |
+| espuma de PU 30 kg/m3 | 28.1 | 29.0 | 0.516 | 0.484 | 11.2 | 9.65 |
+| espuma de PU 50 kg/m3 | 78.1 | 10.0 | 0.0640 | 0.936 | 21.4 | 16.2 |
+| espuma de PU 50 kg/m3 | 78.1 | 20.0 | 0.128 | 0.872 | 20.5 | 15.5 |
+| espuma de PU 50 kg/m3 | 78.1 | 29.0 | 0.186 | 0.814 | 19.6 | 14.9 |
+| espuma de PU 80 kg/m3 | 200 | 10.0 | 0.0250 | 0.975 | 21.9 | 16.5 |
+| espuma de PU 80 kg/m3 | 200 | 20.0 | 0.0500 | 0.950 | 21.5 | 16.3 |
+| espuma de PU 80 kg/m3 | 200 | 29.0 | 0.0725 | 0.928 | 21.3 | 16.1 |
+
+
+Fechar a irregularidade de 1 mm até a fresta de 0.02 mm com o material mais macio (espuma de PU 30 kg/m3, a almofada mais alta de 29 mm) exige p = (a − h_mín)·E/H = 0.950 kPa, 1.90 × os 0.5 kPa que a pré-carga pode ceder — por isso o Final é aberto (a almofada de vedação continua uma opção para usuários que aceitam a pressão).
+![vedação](fig/seal_sweep.png)
+
+Amortecimento: disco de feltro (resistividade ao fluxo σ, espessura t) no fundo da concha, R = σ t / A; ele fica no antinó de pressão do modo axial da concha e em série com a grade, acrescentando resistência atrás do diafragma (Q menor em Fs) e absorvendo os modos da concha acima.
+
+![varreduras acústicas](fig/acoustic_sweeps.png)
+![impedância](fig/impedance.png)
+![abertura](fig/aperture_helmholtz.png)
+
+Aberta vs semiaberta vs fechada (50 mm, 23 mm da abertura até a entrada do canal auditivo: afastamento 29 + rebaixo do módulo 2 − (projeção média do pavilhão 20 − profundidade da concha 12) mm [CAD, A/LIT]; SPL a 100 Hz com o mesmo sinal: aberta 95.3 dB, com respiros 93.0 dB, fechada 65.2 dB): a aberta (grade + feltro) mantém Fs baixa e a resposta suave, mas, sendo aberta fora da orelha, perde graves por cancelamento frente/trás; com respiros é um meio-termo; fechada é inutilizável com estes volumes de concha. Distância da abertura à orelha de 13 → 33 mm custa 6.16 dB a 100 Hz e 5.59 dB a 1 kHz (termo de campo próximo e^{−jkz} − e^{−jk√(z²+a²)}) — mantenha o módulo perto; o afastamento é definido pelo pavilhão p95.
+
+## 17. Acúmulo de tolerâncias
+
+
+Acúmulo de tolerâncias: pior caso, RSS e Monte Carlo (100 000 amostras, cada
+tolerância uma distribuição normal com +-tol = 3 sigma [A]).
+
+Tolerâncias FDM [A, impressora típica bem ajustada com bico de 0.4 mm, PETG]:
+  detalhe em XY +-0.15 mm, Z (quantizado pela camada) +-0.1 mm; diâmetros de furos
+  impressos entram nas cadeias com a tolerância XY (um furo sistematicamente menor
+  é um item de calibração da impressora: impressão de teste);
+  contração linear: as duas peças são do mesmo material, então só a DIFERENÇA
+  entre duas impressões importa para um ajuste, +-0.2 % [A].
+Peças de TPU: +-0.15 mm de espessura.
+Driver: diâmetro externo e espessura do aro como em design.DRIVERS (tol_d, tol_depth) [A].
+Aceitação: os valores de Monte Carlo de 0.135 % / 99.865 % (+-3 sigma) têm de ficar
+na janela [mín., máx.]; o pior caso (todos os termos no seu limite ao mesmo tempo) é
+informado como referência.
+
+
+Driver 40 mm:
+
+| cadeia | nominal mm | pior caso | RSS | MC ±3σ | mín. | máx. | componente limitante | MC ok | PC ok |
+|---|---|---|---|---|---|---|---|---|---|
+| compressão da espuma da UMI (tira anti-ruído) | 0.560 | 0.177 … 0.943 | 0.352 … 0.768 | 0.353 … 0.767 | 0.160 | 0.960 | espessura da folha de espuma (corte em faca) | PASSA | PASS |
+| folga radial da UMI (diametral) | 0.400 | -0.0540 … 0.854 | 0.138 … 0.662 | 0.136 … 0.659 | 0 | 0.800 | diferença de contração entre impressões | PASSA | **FALHA** |
+| sobreposição radial da lingueta com o lábio | 2.30 | 1.95 … 2.65 | 2.07 … 2.53 | 2.08 … 2.52 | 1.20 | – | flutuação radial (meia folga, pior lado) | PASSA | PASS |
+| aro do driver no alojamento (diametral) | 0.440 | -0.01 … 0.890 | 0.105 … 0.775 | 0.107 … 0.774 | 0 | 0.800 | diâmetro externo do aro do driver | PASSA | **FALHA** |
+| compressão da junta do driver | 0.300 | -0.150 … 0.750 | 0.0709 … 0.529 | 0.0674 … 0.530 | 0.0500 | 0.600 | espessura da junta do driver | PASSA | **FALHA** |
+| folga do pavilhão ao módulo (orelha p95) | 4.40 | 1.70 … 7.10 | 2.35 … 6.45 | 2.35 … 6.46 | 1.00 | – | projeção do pavilhão p95 | PASSA | PASS |
+| furo do feltro no ressalto do olhal (interferência) | 0.500 | 0.150 … 0.850 | 0.250 … 0.750 | 0.249 … 0.753 | 0 | – | furo do feltro (corte em faca) | PASSA | PASS |
+
+
+Driver 50 mm:
+
+| cadeia | nominal mm | pior caso | RSS | MC ±3σ | mín. | máx. | componente limitante | MC ok | PC ok |
+|---|---|---|---|---|---|---|---|---|---|
+| compressão da espuma da UMI (tira anti-ruído) | 0.560 | 0.177 … 0.943 | 0.352 … 0.768 | 0.353 … 0.767 | 0.160 | 0.960 | espessura da folha de espuma (corte em faca) | PASSA | PASS |
+| folga radial da UMI (diametral) | 0.400 | -0.0540 … 0.854 | 0.138 … 0.662 | 0.136 … 0.659 | 0 | 0.800 | diferença de contração entre impressões | PASSA | **FALHA** |
+| sobreposição radial da lingueta com o lábio | 2.30 | 1.95 … 2.65 | 2.07 … 2.53 | 2.08 … 2.52 | 1.20 | – | flutuação radial (meia folga, pior lado) | PASSA | PASS |
+| aro do driver no alojamento (diametral) | 0.440 | -0.01 … 0.890 | 0.105 … 0.775 | 0.107 … 0.774 | 0 | 0.800 | diâmetro externo do aro do driver | PASSA | **FALHA** |
+| compressão da junta do driver | 0.300 | -0.150 … 0.750 | 0.0709 … 0.529 | 0.0674 … 0.530 | 0.0500 | 0.600 | espessura da junta do driver | PASSA | **FALHA** |
+| folga do pavilhão ao módulo (orelha p95) | 4.40 | 1.70 … 7.10 | 2.35 … 6.45 | 2.35 … 6.46 | 1.00 | – | projeção do pavilhão p95 | PASSA | PASS |
+| furo do feltro no ressalto do olhal (interferência) | 0.500 | 0.150 … 0.850 | 0.250 … 0.750 | 0.249 … 0.753 | 0 | – | furo do feltro (corte em faca) | PASSA | PASS |
+
+
+Driver 60 mm:
+
+| cadeia | nominal mm | pior caso | RSS | MC ±3σ | mín. | máx. | componente limitante | MC ok | PC ok |
+|---|---|---|---|---|---|---|---|---|---|
+| compressão da espuma da UMI (tira anti-ruído) | 0.560 | 0.177 … 0.943 | 0.352 … 0.768 | 0.353 … 0.767 | 0.160 | 0.960 | espessura da folha de espuma (corte em faca) | PASSA | PASS |
+| folga radial da UMI (diametral) | 0.400 | -0.0540 … 0.854 | 0.138 … 0.662 | 0.136 … 0.659 | 0 | 0.800 | diferença de contração entre impressões | PASSA | **FALHA** |
+| sobreposição radial da lingueta com o lábio | 2.30 | 1.95 … 2.65 | 2.07 … 2.53 | 2.08 … 2.52 | 1.20 | – | flutuação radial (meia folga, pior lado) | PASSA | PASS |
+| aro do driver no alojamento (diametral) | 0.440 | -0.01 … 0.890 | 0.105 … 0.775 | 0.107 … 0.774 | 0 | 0.800 | diâmetro externo do aro do driver | PASSA | **FALHA** |
+| compressão da junta do driver | 0.300 | -0.150 … 0.750 | 0.0709 … 0.529 | 0.0674 … 0.530 | 0.0500 | 0.600 | espessura da junta do driver | PASSA | **FALHA** |
+| folga do pavilhão ao módulo (orelha p95) | 4.40 | 1.70 … 7.10 | 2.35 … 6.45 | 2.35 … 6.46 | 1.00 | – | projeção do pavilhão p95 | PASSA | PASS |
+| furo do feltro no ressalto do olhal (interferência) | 0.500 | 0.150 … 0.850 | 0.250 … 0.750 | 0.249 … 0.753 | 0 | – | furo do feltro (corte em faca) | PASSA | PASS |
+
+
+Toda cadeia atende a janela de ±3σ em todos os tamanhos verificados (40 mm, 50 mm, 60 mm). No pior caso, folga radial da UMI (diametral) sai da janela em até 0.0540 mm; aro do driver no alojamento (diametral) sai da janela em até 0.0900 mm; compressão da junta do driver sai da janela em até 0.200 mm: cada um exige todos os termos no seu limite de 3σ ao mesmo tempo, o que o critério estatístico aceita; o raro par de peças que cair ali é encontrado na montagem (verificação de ajuste).
+
