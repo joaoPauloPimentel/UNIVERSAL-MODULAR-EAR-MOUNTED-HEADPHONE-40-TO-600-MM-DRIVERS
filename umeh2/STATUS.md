@@ -1,4 +1,4 @@
-# UMEH-2: paused (2026-09-29 04:50 UTC)
+# UMEH-2: paused (2026-09-30 04:40 UTC)
 
 UMEH-2 cradle sources (40–60 mm drivers): OpenSCAD model (`cad/`), calculation pipeline (`calc/`), results (`results/`).
 
@@ -17,11 +17,14 @@ Design in `calc/final_layout.json`: link preload 5.0 N; link eye (x, y) mm per m
 - run_all.py finished (`run_all.py --resume`; max_driver_mass now has per-size checkpoints): `results/max_driver_mass.json` is new.
 - shakedown.py finished: `results/shakedown.json`.
 
-## Interrupted (3 h limit)
-- sweeps.py was stopped right after it started. Not run yet: sweeps, figures, build_stl, bom, eye_record, make_report.
+## Done 2026-09-30
+- sweeps.py finished (`results/sweeps.json`; each job now checkpointed in calc/_cache/sweep_*.pkl).
+
+## Paused on request after the sweeps
+- Not run yet: figures, build_stl, bom, eye_record, make_report (~20 min).
 
 ## Resume
 Checkpoints of the expensive runs are in `/mnt/project-files/umeh2_snapshot2/_cache/` (copy into `umeh2/calc/_cache/`).
-    cd umeh2/calc && python3 sweeps.py && python3 figures.py \
+    cd umeh2/calc && python3 figures.py \
       && python3 build_stl.py && python3 bom.py && python3 eye_record.py && python3 make_report.py
 (needs numpy, scipy, matplotlib, OpenSCAD; STL files are generated, not committed).
