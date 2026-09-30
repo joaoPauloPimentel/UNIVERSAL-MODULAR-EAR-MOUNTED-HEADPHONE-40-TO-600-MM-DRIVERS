@@ -181,9 +181,30 @@ for r_ in (0.33, 0.5, 0.67):
 
 log(len(JOBS), "sweep jobs")
 import concurrent.futures as cfu, multiprocessing as mpr  # noqa: E402
+import hashlib, glob as _glob, pickle  # noqa: E402
+_SRC = hashlib.sha1()
+for _fp in sorted(_glob.glob(os.path.join(os.path.dirname(an.__file__), "*.py"))) + [os.path.abspath(__file__)]:
+    _SRC.update(open(_fp, "rb").read())
+
+
+def cjob(args):
+    """job() with a per-job checkpoint in calc/_cache (keyed by the job and the calculation source), so a stopped
+    sweep keeps the jobs already done."""
+    h = _SRC.copy(); h.update(json.dumps(js(args), sort_keys=True, default=str).encode())
+    p = os.path.join(an.CACHE, f"sweep_{h.hexdigest()[:16]}.pkl")
+    if os.path.exists(p):
+        with open(p, "rb") as fh:
+            return pickle.load(fh)
+    out = job(args)
+    with open(p + ".tmp", "wb") as fh:
+        pickle.dump(out, fh)
+    os.replace(p + ".tmp", p)
+    return out
+
+
 done = 0
 with cfu.ProcessPoolExecutor(4, mp_context=mpr.get_context("fork")) as pool:
-    for sec, key, out, dt in pool.map(job, sorted(JOBS, key=lambda j: j[2] != "struct")):
+    for sec, key, out, dt in pool.map(cjob, sorted(JOBS, key=lambda j: j[2] != "struct")):
         R.setdefault(sec, []).append(dict(key=key, **out))
         done += 1
         if done % 10 == 0 or sec == "arm_thickness":

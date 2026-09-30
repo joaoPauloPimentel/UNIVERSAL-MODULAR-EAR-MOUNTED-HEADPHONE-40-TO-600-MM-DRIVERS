@@ -880,7 +880,10 @@ if SK and SK.get("sizes"):
       "that carry it by normal force: the saddle's root zones, until the contact forces repeat from one cycle to the next (the pads "
       "may go on slipping back and forth, but the load no longer moves)."
       + ("" if not SK.get("checks") else " Checks of the procedure at 60 mm: " + "; ".join(
-          f"{x['label']}: root {f(x['root_p_donned'] / 1e3)} → {f(x['root_p'] / 1e3)} kPa" for x in SK["checks"] if x.get("ok")) + ".")
+          f"{x['label']}: root {f(x['root_p_donned'] / 1e3)} → {f(x['root_p'] / 1e3)} kPa"
+          + (f" (a skin pad still slips in {min(x['n_slip'])}–{max(x['n_slip'])} of the {x['n_cases']} combinations per cycle, "
+             "so μ = 10 does not make the pads non-slipping in this set)" if max(x.get("n_slip") or [0]) > 0 and x["root_p"] > 1.05 * x["root_p_donned"] else "")
+          for x in SK["checks"] if x.get("ok")) + ".")
       + "\n")
     rows = []
     for D in SIZES:
