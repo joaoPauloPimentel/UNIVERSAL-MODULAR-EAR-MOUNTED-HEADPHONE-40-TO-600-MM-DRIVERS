@@ -876,3 +876,472 @@ O mesmo fio em todos os módulos: o olhal de cada módulo define o seu próprio 
 
 ![ligação](fig/link_wire.png)
 
+## 12. Análise estrutural dos braços do suporte
+
+
+Verificações estruturais dos braços do suporte, juntas, fixadores, insertos,
+trava de giro, olhal da ligação, encaixes por pressão/clique, fluência, temperatura e fadiga.
+
+NENHUMA FEA FOI RODADA. Tudo abaixo é teoria de vigas / juntas em forma fechada com
+fatores de concentração de tensão de Peterson. Onde a geometria não é de viga
+(raiz da aba do anel, raiz da lingueta, lábio de 45°, ressalto do inserto) o resultado é marcado
+como "FEA recomendada" no relatório.
+
+Modelo de viga de um braço
+--------------------------
+Linha média no plano (r, z) do próprio braço, no ângulo a:
+    almofada (r_tip, z=0)  ->  pé (z_f = pad_h + ft/2) para fora até a perna
+    perna (r_l = leg_r + leg_t/2) subindo até a barra (z_b = S - bar_t/2)
+    barra para dentro até a borda de fixação do parafuso externo (extremidade engastada)
+Esforços internos numa seção no ponto s, a partir da força F da almofada
+aplicada no ponto de contato p da almofada (pele):
+    F_int = F ,  M_int = (p - s) x F
+decompostos nos eixos da seção (axial a, no plano h, tangencial t):
+    sigma = N/A + K_t [ |M_t| 6/(b h^2) + |M_h| 6/(h b^2) ]     (canto, os dois planos de flexão somados)
+    tau   = T (3 + 1.8 h/b)/(b h^2)    (Roark, retângulo b >= h)  + 1.5 V/A
+Impressão: os braços ficam deitados de lado, camadas paralelas ao plano (r, z), então
+toda a tensão de flexão axial fica NA CAMADA (S_xy); os planos entre camadas (normal t)
+carregam o cisalhamento transversal V_t e o cisalhamento de torção -> verificados contra
+a resistência ao cisalhamento entre camadas.
+
+
+Tensões admissíveis a 40 °C: S_xy·kT = 38.2 MPa (na camada), cisalhamento entre camadas 11.9 MPa; sustentado (1 g) × 0.5. FS exigido ≥ γM = 1.6. Kt: raio de concordância 1.25, furo em flexão 2.0 [STD Peterson]. Carregamento combinado: σ = |N|/A + Kt(|M_t|/Z_t + |M_h|/Z_h), τ = τ_torção + 1.5 |V|/A, σ_vM = √(σ² + 3τ²); o cisalhamento entre camadas usa o cisalhamento que age nos planos das camadas (braços impressos de lado).
+
+Três definições de carga estrutural:
+* **1 g sustentado** — toda combinação de 1 g mantida, tensões admissíveis sustentadas.
+* **Envelope acidental de 5 g** — toda combinação de 5 g: quando fica em equilíbrio, as suas forças de contato; quando solta, as forças de contato
+  no **início do escorregamento grosseiro** (bisseção no fator de carga λ do incremento a partir do estado estático). Além do início o
+  suporte desliza e as cargas nos braços não podem crescer, então o envelope limita as cargas nos braços. λ_mín por tamanho está no §1.
+* **Manuseio 10 N** — 10 N numa almofada em qualquer uma de 302 direções (uma mão pegando uma almofada, uma gola, cabelo) [A]: a carga local que a
+  retenção não consegue limitar. Ela dimensionou a barra do braço.
+O limite de toda a carga numa almofada do caso de 5 g (m·5g + enganchamento de 20 N numa única almofada) é mostrado só como informação: ele não pode ocorrer
+porque o suporte solta antes.
+
+50 mm, 1 g normal (tensões admissíveis sustentadas), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mastoide | barra na borda da fixação (fim do rasgo) | 4.17 | 0.279 | 4.20 | 4.55 | 0.815 | 7.30 | -1.37 | 7.74 | 65.9 | 3.52 |
+| temporal | barra na borda da fixação (fim do rasgo) | 3.37 | 0.238 | 3.39 | 5.64 | 0.562 | 10.6 | -1.06 | 6.86 | 52.8 | 3.25 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 3.01 | 0.154 | 3.02 | 6.34 | 0.303 | 19.6 | -0.590 | 1.17 | 49.3 | 0.486 |
+| sela | raio de concordância inferior da perna | 0.263 | 0.807 | 1.42 | 13.5 | 0.797 | 7.46 | 0.504 | 103 | 13.3 | -9.55 |
+| sela | raio de concordância superior da perna | 0.148 | 0.807 | 1.41 | 13.6 | 0.797 | 7.46 | 0.504 | 103 | -0.710 | -24.7 |
+| sela | barra na borda da fixação (fim do rasgo) | 1.92 | 0.144 | 1.94 | 9.86 | 0.379 | 15.7 | 2.25 | -13.1 | -40.8 | -44.2 |
+
+
+50 mm, 5 g acidental (tensões admissíveis de curto prazo, envelope do início), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mastoide | barra na borda da fixação (fim do rasgo) | 23.8 | 2.21 | 24.1 | 1.58 | 4.36 | 2.73 | -7.48 | 71.5 | 366 | 32.6 |
+| temporal | barra na borda da fixação (fim do rasgo) | 20.8 | 3.26 | 21.6 | 1.77 | 3.20 | 3.72 | -1.78 | 106 | 304 | 50.4 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 11.7 | 2.39 | 12.4 | 3.08 | 1.88 | 6.32 | -0.170 | 78.1 | 168 | 32.6 |
+| sela | barra na borda da fixação (fim do rasgo) | 11.5 | 0.358 | 11.5 | 3.33 | 0.884 | 13.5 | 9.15 | -31.4 | -317 | -97.0 |
+| mastoide | raio de concordância superior da perna | 8.28 | 0.593 | 8.34 | 4.59 | 1.14 | 10.5 | 14.2 | -28.5 | 294 | 53.1 |
+| temporal | raio de concordância superior da perna | 7.92 | 0.705 | 8.02 | 4.77 | 0.868 | 13.7 | 20.7 | -44.3 | 261 | 78.9 |
+
+
+50 mm, manuseio 10 N (tensões admissíveis de curto prazo), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| sela | barra na borda da fixação (fim do rasgo) | 22.2 | 0.520 | 22.2 | 1.72 | 2.81 | 4.24 | 4.56 | -33.0 | -598 | 243 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 18.0 | 2.84 | 18.6 | 2.05 | 6.33 | 1.88 | -8.33 | -116 | 255 | -48.4 |
+| temporal | barra na borda da fixação (fim do rasgo) | 18.5 | 3.14 | 19.3 | 1.98 | 6.33 | 1.88 | -7.87 | 128 | 254 | 60.7 |
+| mastoide | barra na borda da fixação (fim do rasgo) | 18.3 | 3.00 | 19.1 | 2.01 | 6.32 | 1.88 | -7.94 | -122 | 255 | -55.5 |
+| sela | raio de concordância inferior da perna | 9.78 | 0.0521 | 9.78 | 3.91 | 4.58 | 2.60 | 9.94 | 4.45 | 580 | -127 |
+| sela | raio de concordância superior da perna | 10.1 | 0.305 | 10.1 | 3.79 | 4.58 | 2.60 | 9.66 | -34.9 | 595 | 140 |
+
+
+Informação: toda a carga de 5 g (28.5 N) numa almofada → menor FS 0.603 (sela: barra na borda da fixação (fim do rasgo) (vM)).
+
+60 mm, 1 g normal (tensões admissíveis sustentadas), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mastoide | barra na borda da fixação (fim do rasgo) | 4.60 | 0.340 | 4.64 | 4.12 | 0.897 | 6.64 | -1.40 | -9.57 | 72.3 | -4.36 |
+| temporal | barra na borda da fixação (fim do rasgo) | 3.71 | 0.295 | 3.74 | 5.11 | 0.612 | 9.72 | -1.13 | 8.94 | 57.6 | 4.24 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 3.07 | 0.267 | 3.11 | 6.15 | 0.313 | 19.0 | -0.570 | -6.17 | 48.7 | -2.57 |
+| sela | raio de concordância inferior da perna | 0.273 | 0.860 | 1.51 | 12.6 | 0.850 | 7.00 | 0.524 | 110 | 13.7 | -10.2 |
+| sela | raio de concordância superior da perna | 0.161 | 0.860 | 1.50 | 12.8 | 0.850 | 7.00 | 0.524 | 110 | -0.978 | -26.4 |
+| sela | barra na borda da fixação (fim do rasgo) | 2.04 | 0.142 | 2.06 | 9.31 | 0.405 | 14.7 | 2.40 | -12.9 | -44.6 | -43.7 |
+
+
+60 mm, 5 g acidental (tensões admissíveis de curto prazo, envelope do início), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| mastoide | barra na borda da fixação (fim do rasgo) | 26.2 | 2.35 | 26.5 | 1.44 | 4.02 | 2.96 | -8.19 | 75.0 | 404 | 34.2 |
+| temporal | barra na borda da fixação (fim do rasgo) | 24.7 | 2.02 | 24.9 | 1.53 | 2.42 | 4.91 | -5.07 | 52.1 | 388 | 24.7 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 14.0 | 2.63 | 14.8 | 2.59 | 2.06 | 5.78 | -0.784 | 85.3 | 204 | 35.6 |
+| sela | barra na borda da fixação (fim do rasgo) | 11.2 | 0.180 | 11.2 | 3.42 | 0.843 | 14.1 | 8.33 | -12.7 | -337 | -32.8 |
+| mastoide | raio de concordância superior da perna | 9.10 | 0.631 | 9.16 | 4.17 | 1.05 | 11.3 | 15.8 | -29.9 | 325 | 55.7 |
+| temporal | raio de concordância superior da perna | 8.91 | 0.435 | 8.94 | 4.28 | 0.657 | 18.1 | 20.5 | -21.7 | 323 | 38.7 |
+
+
+60 mm, manuseio 10 N (tensões admissíveis de curto prazo), 6 seções mais baixas:
+
+| braço | seção | σ MPa | τ MPa | σ_vM MPa | FS vM | τ entre camadas MPa | FS entre camadas | N N | T N·mm | M_t N·mm | M_h N·mm |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| sela | barra na borda da fixação (fim do rasgo) | 22.2 | 0.520 | 22.2 | 1.72 | 2.81 | 4.24 | 4.56 | -33.0 | -598 | 243 |
+| póstero-sup. | barra na borda da fixação (fim do rasgo) | 18.0 | 2.84 | 18.6 | 2.05 | 6.33 | 1.88 | -8.33 | -116 | 255 | -48.4 |
+| temporal | barra na borda da fixação (fim do rasgo) | 18.5 | 3.14 | 19.3 | 1.98 | 6.33 | 1.88 | -7.87 | 128 | 254 | 60.7 |
+| mastoide | barra na borda da fixação (fim do rasgo) | 18.3 | 3.00 | 19.1 | 2.01 | 6.32 | 1.88 | -7.94 | -122 | 255 | -55.5 |
+| sela | raio de concordância inferior da perna | 9.78 | 0.0521 | 9.78 | 3.91 | 4.58 | 2.60 | 9.94 | 4.45 | 580 | -127 |
+| sela | raio de concordância superior da perna | 10.1 | 0.305 | 10.1 | 3.79 | 4.58 | 2.60 | 9.66 | -34.9 | 595 | 140 |
+
+
+Informação: toda a carga de 5 g (29.3 N) numa almofada → menor FS 0.586 (sela: barra na borda da fixação (fim do rasgo) (vM)).
+
+Flexibilidade do braço em série com cada contato (Final 60 mm; o modelo de suporte a inclui, §6), no referencial do contato (n = normal ao contato, t1/t2 = tangentes), comparada com a flexibilidade do próprio contato:
+
+| contato | braço | braço n mm/N [C] | braço t1 mm/N | braço t2 mm/N | contato n mm/N [C] | contato t mm/N | maior razão braço/contato |
+|---|---|---|---|---|---|---|---|
+| T temporal | temporal | 0.0150 | 0.0366 | 0.0376 | 0.127 | 0.254 | 0.148 |
+| M mastoide | mastoide | 0.0113 | 0.0329 | 0.0324 | 0.0517 | 0.103 | 0.318 |
+| P póstero-sup. | póstero-sup. | 0.0110 | 0.0322 | 0.0365 | 0.126 | 0.252 | 0.145 |
+| S raiz F | sela | 0.162 | 0.133 | 0.572 | 0.414 | 0.827 | 0.691 |
+| S raiz B | sela | 0.162 | 0.133 | 0.572 | 0.414 | 0.827 | 0.691 |
+| S couro cabeludo | sela | 0.285 | 0.0237 | 0.161 | 0.268 | 0.537 | 1.06 |
+
+
+Onde fica a flexibilidade de cada braço em repouso (60 mm; parcela da energia complementar do braço sob as suas próprias forças de contato, `structure.arm_energy_split`): temporal — flexão da perna no plano 42.2 %, flexão do pé no plano 17.2 %; mastoide — flexão da perna no plano 74.0 %, flexão do pé no plano 10.1 %; póstero-sup. — flexão da perna no plano 58.5 %, flexão do pé no plano 19.6 %; sela — flexão do pé no plano 69.6 %, flexão da perna no plano 28.4 %. 
+Entre as almofadas de pele, o braço é mais flexível em relação ao seu contato na almofada mastoide (razão 0.318); onde a flexibilidade do braço é comparável à do contato, a almofada transfere peso para a raiz da orelha (braços rígidos contra flexíveis: tabela de alavancas do §6). Por isso a espessura das pernas e o revestimento da sela foram escolhidos juntos (§6, 'Pernas dos braços e revestimento da sela').
+
+Temperatura: a 55 °C (carro, sol) a resistência é ×0.700 [LIT] contra ×0.850 a 40 °C: todo FS de curto prazo acima escala por 0.824. Fadiga: caminhada/corrida 1e7 ciclos [A]; considera-se que cada seção do braço cicla de zero até a sua maior tensão de von Mises nas combinações de 2 g mantidas (conservador: a parte estável de 1 g não é separada, Kt mantido como fator de entalhe), Goodman na curva S-N normalizada (`structure.fatigue_strength`, razão de fadiga [A]) a 1e7 ciclos, 40 °C: menor FS 1.71 a 60 mm, mastoide barra na borda da fixação (fim do rasgo) (σ_máx 8.67 MPa, S_f 9.16 MPa). A ruptura por fluência dos braços está coberta pelas tensões admissíveis sustentadas (×0.5) nas tabelas de 1 g; a fluência da pré-carga importa nas juntas parafusadas (§13).
+
+### 12.1 Tensões de contato em todas as interfaces
+
+50 mm:
+
+| interface | caso | F N | p médio kPa | p pico kPa | limite kPa | pico/limite | FS curto prazo | FS sustentado |
+|---|---|---|---|---|---|---|---|---|
+| pad T temporal na pele | estático (sustentado) | 1.19 | 2.30 | 4.60 | 4.00 | 1.15 | – | – |
+| pad T temporal na pele | 2 g máx. (transitório) | 3.77 | 7.28 | 14.6 | 8.00 | 1.82 | – | – |
+| pad T temporal na pele | 5 g máx. (acidental) | 21.3 | 41.1 | 82.2 | 150 | 0.548 | – | – |
+| pad M mastoide na pele | estático (sustentado) | 1.76 | 2.33 | 4.65 | 4.00 | 1.16 | – | – |
+| pad M mastoide na pele | 2 g máx. (transitório) | 5.50 | 7.27 | 14.5 | 8.00 | 1.82 | – | – |
+| pad M mastoide na pele | 5 g máx. (acidental) | 24.0 | 31.7 | 63.5 | 150 | 0.423 | – | – |
+| pad P póstero-sup. na pele | estático (sustentado) | 1.61 | 3.11 | 6.21 | 4.00 | 1.55 | – | – |
+| pad P póstero-sup. na pele | 2 g máx. (transitório) | 4.06 | 7.85 | 15.7 | 8.00 | 1.96 | – | – |
+| pad P póstero-sup. na pele | 5 g máx. (acidental) | 15.2 | 29.4 | 58.7 | 150 | 0.392 | – | – |
+| zona da sela S raiz F na raiz da orelha | estático (sustentado) | 0.229 | 3.27 | 6.53 | 4.00 | 1.63 | – | – |
+| zona da sela S raiz F na raiz da orelha | 2 g máx. (transitório) | 3.49 | 49.8 | 99.6 | 8.00 | 12.5 | – | – |
+| zona da sela S raiz F na raiz da orelha | 5 g máx. (acidental) | 7.40 | 106 | 211 | 150 | 1.41 | – | – |
+| zona da sela S raiz B na raiz da orelha | estático (sustentado) | 0.202 | 2.88 | 5.76 | 4.00 | 1.44 | – | – |
+| zona da sela S raiz B na raiz da orelha | 2 g máx. (transitório) | 2.61 | 37.3 | 74.5 | 8.00 | 9.32 | – | – |
+| zona da sela S raiz B na raiz da orelha | 5 g máx. (acidental) | 5.55 | 79.3 | 159 | 150 | 1.06 | – | – |
+| pad S couro cabeludo na pele | estático (sustentado) | 0.378 | 1.69 | 3.38 | 4.00 | 0.845 | – | – |
+| pad S couro cabeludo na pele | 2 g máx. (transitório) | 0.897 | 4.01 | 8.01 | 8.00 | 1.00 | – | – |
+| pad S couro cabeludo na pele | 5 g máx. (acidental) | 3.86 | 17.2 | 34.5 | 150 | 0.230 | – | – |
+| cabeça do parafuso do braço (M3) no braço de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
+| cabeça do parafuso da âncora (M3) na âncora de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
+| flancos da serrilha (braço temporal, 10 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 2525 | – | – | 18.5 | 9.26 |
+| flancos da serrilha (braço da sela, 16 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 1578 | – | – | 29.6 | 14.8 |
+| fio da ligação na bucha de latão do olhal (linha de Hertz) | pré-carga ao colocar | 9.50 | – | 220512 | – | – | 1.89 | – |
+| inserto do olhal no ressalto de PETG (lateral) | pré-carga ao colocar | 9.50 | – | 4157 | – | – | – | 5.62 |
+
+
+60 mm:
+
+| interface | caso | F N | p médio kPa | p pico kPa | limite kPa | pico/limite | FS curto prazo | FS sustentado |
+|---|---|---|---|---|---|---|---|---|
+| pad T temporal na pele | estático (sustentado) | 1.31 | 2.52 | 5.05 | 4.00 | 1.26 | – | – |
+| pad T temporal na pele | 2 g máx. (transitório) | 4.27 | 8.25 | 16.5 | 8.00 | 2.06 | – | – |
+| pad T temporal na pele | 5 g máx. (acidental) | 22.7 | 43.9 | 87.7 | 150 | 0.585 | – | – |
+| pad M mastoide na pele | estático (sustentado) | 1.96 | 2.59 | 5.17 | 4.00 | 1.29 | – | – |
+| pad M mastoide na pele | 2 g máx. (transitório) | 6.03 | 7.97 | 15.9 | 8.00 | 1.99 | – | – |
+| pad M mastoide na pele | 5 g máx. (acidental) | 24.8 | 32.8 | 65.6 | 150 | 0.438 | – | – |
+| pad P póstero-sup. na pele | estático (sustentado) | 1.60 | 3.10 | 6.20 | 4.00 | 1.55 | – | – |
+| pad P póstero-sup. na pele | 2 g máx. (transitório) | 4.42 | 8.54 | 17.1 | 8.00 | 2.13 | – | – |
+| pad P póstero-sup. na pele | 5 g máx. (acidental) | 17.1 | 32.9 | 65.9 | 150 | 0.439 | – | – |
+| zona da sela S raiz F na raiz da orelha | estático (sustentado) | 0.253 | 3.61 | 7.22 | 4.00 | 1.80 | – | – |
+| zona da sela S raiz F na raiz da orelha | 2 g máx. (transitório) | 3.80 | 54.3 | 109 | 8.00 | 13.6 | – | – |
+| zona da sela S raiz F na raiz da orelha | 5 g máx. (acidental) | 7.46 | 107 | 213 | 150 | 1.42 | – | – |
+| zona da sela S raiz B na raiz da orelha | estático (sustentado) | 0.223 | 3.19 | 6.38 | 4.00 | 1.59 | – | – |
+| zona da sela S raiz B na raiz da orelha | 2 g máx. (transitório) | 2.73 | 38.9 | 77.9 | 8.00 | 9.74 | – | – |
+| zona da sela S raiz B na raiz da orelha | 5 g máx. (acidental) | 5.60 | 80.0 | 160 | 150 | 1.07 | – | – |
+| pad S couro cabeludo na pele | estático (sustentado) | 0.391 | 1.75 | 3.49 | 4.00 | 0.873 | – | – |
+| pad S couro cabeludo na pele | 2 g máx. (transitório) | 0.984 | 4.39 | 8.79 | 8.00 | 1.10 | – | – |
+| pad S couro cabeludo na pele | 5 g máx. (acidental) | 4.31 | 19.3 | 38.5 | 150 | 0.257 | – | – |
+| cabeça do parafuso do braço (M3) no braço de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
+| cabeça do parafuso da âncora (M3) na âncora de PETG | maior pré-carga (K 0.20) | 167 | – | 11354 | – | – | 4.12 | 2.06 |
+| flancos da serrilha (braço temporal, 10 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 2525 | – | – | 18.5 | 9.26 |
+| flancos da serrilha (braço da sela, 16 mm) | maior pré-carga (2 parafusos, K 0.20) | 333 | – | 1578 | – | – | 29.6 | 14.8 |
+| fio da ligação na bucha de latão do olhal (linha de Hertz) | pré-carga ao colocar | 9.50 | – | 220512 | – | – | 1.89 | – |
+| inserto do olhal no ressalto de PETG (lateral) | pré-carga ao colocar | 9.50 | – | 4157 | – | – | – | 5.62 |
+
+
+Almofadas na pele: pico de camada fina de Winkler = 2 × média (paraboloide sobre um leito de molas) [C]; cabeças de parafuso e flancos da serrilha: esmagamento no PETG (S_bear) [DS]; fio da ligação na bucha de latão: contato em linha de Hertz [STD]; inserto do olhal: esmagamento lateral no ressalto com o momento da altura da bucha [C].
+
+## 13. Juntas, fixadores, insertos, encaixes, trava de giro
+
+Junta braço–aba com serrilha (projeto Final): n parafusos na linha média do braço com passo p, largura do braço w.
+    Esforços na seção da borda de fixação (structure.section_stress, eixo da barra a = radial): F_r = N (radial),
+    F_t = V_t (tangencial), F_pull = arrancamento normal à face da junta (V_h > 0), M_tilt = M_t (em torno do
+    eixo tangencial), T_twist = T (em torno do eixo radial = a linha dos parafusos), M_inplane = M_h (em torno da
+    normal da junta).
+    Pré-carga pelo torque de aperto, F_i = T / (K d), com a dispersão do fator de porca K_lo..K_hi
+    (materials.NUT_FACTOR_K_RANGE): F_i,max = T/(K_lo d) para o inserto, F_i,min = T/(K_hi d) para o engate.
+    Pré-carga retida (envelhecida): retained_preload(F_i,min) (fluência do PETG, arruela ondulada).
+    Demanda externa no parafuso mais carregado (regra da alavanca, limites conservadores no fator de carga Phi: o
+    parafuso leva toda ela no arrancamento (Phi = 1), a fixação perde toda ela no engate (Phi = 0)):
+        cunha      F_sep  = |F_r| tan(flanco - phi), phi = atan(mu)     (carga radial nos flancos dos dentes), dividida por n
+        alavanca   |M_t| / p                                          (binário dos dois parafusos em torno do centro da junta)
+        torção     2 |T| / (n w)                                      (o braço gira na sua borda, alavanca w/2)
+        puxão      F_pull / n
+        D_screw = F_sep / n + |M_t| / p + 2 |T| / (n w) + F_pull / n
+        SF_engage  = F_i,eff(min) / D_screw          (as cargas externas podem crescer SF vezes antes que os dentes se levantem)
+        SF_pullout = (arrancamento / gamma_insert) / (F_i,max + D_screw)
+    Tangencial: as ranhuras correm tangencialmente, então F_t e o momento no plano vão para as hastes dos parafusos
+    apoiadas nos lados do rasgo ao longo da espessura da barra t_bear: por parafuso |F_t| / n + |M_h| / p.
+    Cisalhamento na raiz do dente: tau = F_r / (n_teeth * w * p) (dentes no braço, cisalhamento na camada porque o braço é
+    impresso de lado: o perfil do dente fica no plano de impressão).
+
+50 mm — mínimo sobre todas as combinações de carga de cada categoria (faixa de F_i, D_parafuso e o FS de arrancamento na pré-carga nominal mostrados para a combinação com o menor FS de engate):
+
+| caso | braço | faixa de F_i N (K 0.35–0.20) | F_i após fluência (a partir da menor) N | D_parafuso N | FS engate (≥1) | FS arrancamento do inserto na maior F_i (≥1) | FS arrancamento na F_i nominal | FS esmagamento no rasgo (≥1) | FS giro | FS cisalhamento do dente | junta lisa: FS escorregamento |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 g normal | sela | 95.2–167 | 82.8 | 5.31 | 15.6 | 1.60 | 2.21 | 74.6 | 10.0 | 1036 | 0.649 |
+| 1 g normal | temporal | 95.2–167 | 82.8 | 5.98 | 13.8 | 1.59 | 2.20 | 525 | 10.0 | 1499 | 3.51 |
+| 1 g normal | mastoide | 95.2–167 | 82.8 | 7.69 | 10.8 | 1.58 | 2.17 | 376 | 10.0 | 1747 | 2.19 |
+| 1 g normal | póstero-sup. | 95.2–167 | 82.8 | 5.20 | 15.9 | 1.60 | 2.21 | 1078 | 10.0 | 3290 | 5.39 |
+| 2 g dinâmico | sela | 95.2–167 | 82.8 | 18.7 | 4.44 | 1.48 | 2.00 | 43.3 | 10.0 | 649 | 0.312 |
+| 2 g dinâmico | temporal | 95.2–167 | 82.8 | 10.3 | 8.06 | 1.55 | 2.13 | 284 | 10.0 | 1503 | 1.43 |
+| 2 g dinâmico | mastoide | 95.2–167 | 82.8 | 13.7 | 6.04 | 1.52 | 2.07 | 290 | 10.0 | 616 | 1.31 |
+| 2 g dinâmico | póstero-sup. | 95.2–167 | 82.8 | 6.42 | 12.9 | 1.59 | 2.19 | 855 | 10.0 | 2291 | 4.62 |
+| 3 g severo | sela | 95.2–167 | 82.8 | 28.6 | 2.89 | 1.41 | 1.86 | 33.5 | 10.0 | 342 | 0.116 |
+| 3 g severo | temporal | 95.2–167 | 82.8 | 17.0 | 4.87 | 1.50 | 2.02 | 198 | 10.0 | 750 | 0.814 |
+| 3 g severo | mastoide | 95.2–167 | 82.8 | 19.0 | 4.35 | 1.48 | 1.99 | 221 | 10.0 | 429 | 0.813 |
+| 3 g severo | póstero-sup. | 95.2–167 | 82.8 | 9.33 | 8.87 | 1.56 | 2.14 | 487 | 10.0 | 3427 | 2.52 |
+| 5 g acidental | sela | 95.2–167 | 82.8 | 34.9 | 2.37 | 1.36 | 1.79 | 34.5 | 10.0 | 255 | 0.0746 |
+| 5 g acidental | temporal | 95.2–167 | 82.8 | 38.9 | 2.13 | 1.34 | 1.74 | 77.8 | 10.0 | 821 | 0.217 |
+| 5 g acidental | mastoide | 95.2–167 | 82.8 | 43.0 | 1.92 | 1.31 | 1.70 | 66.2 | 10.0 | 195 | 0.102 |
+| 5 g acidental | póstero-sup. | 95.2–167 | 82.8 | 23.1 | 3.58 | 1.45 | 1.93 | 173 | 10.0 | 8584 | 0.756 |
+| manuseio 10 N | sela | 95.2–167 | 82.8 | 72.4 | 1.14 | 1.15 | 1.44 | 12.9 | 10.0 | 755 | 0 |
+| manuseio 10 N | temporal | 95.2–167 | 82.8 | 41.1 | 2.01 | 1.32 | 1.72 | 47.3 | 10.0 | 244 | 0.166 |
+| manuseio 10 N | mastoide | 95.2–167 | 82.8 | 41.0 | 2.02 | 1.32 | 1.72 | 48.7 | 10.0 | 229 | 0.167 |
+| manuseio 10 N | póstero-sup. | 95.2–167 | 82.8 | 40.7 | 2.04 | 1.33 | 1.72 | 51.6 | 10.0 | 223 | 0.179 |
+
+
+60 mm — mínimo sobre todas as combinações de carga de cada categoria (faixa de F_i, D_parafuso e o FS de arrancamento na pré-carga nominal mostrados para a combinação com o menor FS de engate):
+
+| caso | braço | faixa de F_i N (K 0.35–0.20) | F_i após fluência (a partir da menor) N | D_parafuso N | FS engate (≥1) | FS arrancamento do inserto na maior F_i (≥1) | FS arrancamento na F_i nominal | FS esmagamento no rasgo (≥1) | FS giro | FS cisalhamento do dente | junta lisa: FS escorregamento |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 g normal | sela | 95.2–167 | 82.8 | 5.70 | 14.5 | 1.60 | 2.20 | 69.9 | 10.0 | 973 | 0.640 |
+| 1 g normal | temporal | 95.2–167 | 82.8 | 6.66 | 12.4 | 1.59 | 2.19 | 474 | 10.0 | 1381 | 3.06 |
+| 1 g normal | mastoide | 95.2–167 | 82.8 | 8.48 | 9.76 | 1.57 | 2.16 | 343 | 10.0 | 1508 | 1.98 |
+| 1 g normal | póstero-sup. | 95.2–167 | 82.8 | 5.44 | 15.2 | 1.60 | 2.21 | 1044 | 10.0 | 3191 | 5.11 |
+| 2 g dinâmico | sela | 95.2–167 | 82.8 | 20.2 | 4.10 | 1.47 | 1.97 | 39.3 | 10.0 | 532 | 0.358 |
+| 2 g dinâmico | temporal | 95.2–167 | 82.8 | 11.8 | 6.99 | 1.54 | 2.10 | 261 | 10.0 | 1211 | 1.22 |
+| 2 g dinâmico | mastoide | 95.2–167 | 82.8 | 14.9 | 5.56 | 1.51 | 2.05 | 268 | 10.0 | 561 | 1.18 |
+| 2 g dinâmico | póstero-sup. | 95.2–167 | 82.8 | 7.03 | 11.8 | 1.58 | 2.18 | 791 | 10.0 | 2332 | 3.90 |
+| 3 g severo | sela | 95.2–167 | 82.8 | 32.2 | 2.57 | 1.38 | 1.82 | 33.9 | 10.0 | 323 | 0.0856 |
+| 3 g severo | temporal | 95.2–167 | 82.8 | 18.0 | 4.60 | 1.49 | 2.01 | 180 | 10.0 | 773 | 0.720 |
+| 3 g severo | mastoide | 95.2–167 | 82.8 | 20.3 | 4.08 | 1.47 | 1.97 | 200 | 10.0 | 401 | 0.731 |
+| 3 g severo | póstero-sup. | 95.2–167 | 82.8 | 10.4 | 7.96 | 1.55 | 2.12 | 454 | 10.0 | 1506 | 2.71 |
+| 5 g acidental | sela | 95.2–167 | 82.8 | 35.6 | 2.33 | 1.36 | 1.78 | 34.4 | 10.0 | 280 | 0.113 |
+| 5 g acidental | temporal | 95.2–167 | 82.8 | 43.3 | 1.91 | 1.31 | 1.69 | 81.4 | 10.0 | 256 | 0.110 |
+| 5 g acidental | mastoide | 95.2–167 | 82.8 | 47.1 | 1.76 | 1.29 | 1.66 | 61.6 | 10.0 | 178 | 0.0517 |
+| 5 g acidental | póstero-sup. | 95.2–167 | 82.8 | 27.3 | 3.03 | 1.42 | 1.88 | 159 | 10.0 | 1859 | 0.554 |
+| manuseio 10 N | sela | 95.2–167 | 82.8 | 72.4 | 1.14 | 1.15 | 1.44 | 12.9 | 10.0 | 755 | 0 |
+| manuseio 10 N | temporal | 95.2–167 | 82.8 | 41.1 | 2.01 | 1.32 | 1.72 | 47.3 | 10.0 | 244 | 0.166 |
+| manuseio 10 N | mastoide | 95.2–167 | 82.8 | 41.0 | 2.02 | 1.32 | 1.72 | 48.7 | 10.0 | 229 | 0.167 |
+| manuseio 10 N | póstero-sup. | 95.2–167 | 82.8 | 40.7 | 2.04 | 1.33 | 1.72 | 51.6 | 10.0 | 223 | 0.179 |
+
+
+Junta M3 do braço sob a carga de manuseio de 10 N (50 mm, todos os braços): menor FS de engate / arrancamento sobre o passo dos insertos (linhas) e o torque de aperto (colunas). Os dois precisam ser ≥ 1: mais torque ajuda o engate e prejudica o arrancamento, um passo maior ajuda os dois (menor razão de alavanca) e custa 1.49 g por mm por lado (§5, W5):
+
+| passo dos insertos mm | 0.08 N·m: engate / arrancamento | 0.10 N·m: engate / arrancamento | 0.12 N·m: engate / arrancamento | 0.15 N·m: engate / arrancamento |
+|---|---|---|---|---|
+| 7.10 | 0.673 / 1.19 | 0.842 / 1.04 | 0.884 / 0.922 | 0.884 / 0.789 |
+| 8.00 | 0.736 / 1.23 | 0.920 / 1.07 | 0.966 / 0.948 | 0.966 / 0.809 |
+| 9.00 | 0.802 / 1.27 | 1.00 / 1.10 | 1.05 / 0.973 | 1.05 / 0.827 |
+| 10.0 | 0.863 / 1.31 | 1.08 / 1.13 | 1.13 / 0.994 | 1.13 / 0.842 |
+| 11.0 | 0.921 / 1.34 | 1.15 / 1.15 | 1.21 / 1.01 | 1.21 / 0.854 |
+
+
+Escolhido: 11 mm a 0.10 N·m, menor FS 1.15; a melhor combinação mais estreita (10 mm a 0.10 N·m) mantém 1.08. A margem é desejada no engate, que depende da entrada menos certa (a fluência em 3 anos do PETG apertado).
+
+Carga de manuseio de 10 N numa almofada (302 direções), 50 mm — FS mínimos da junta por braço: sela: engate 1.14, arrancamento 1.15, rasgo 12.9; temporal: engate 2.01, arrancamento 1.32, rasgo 47.3; mastoide: engate 2.02, arrancamento 1.32, rasgo 48.7; póstero-sup.: engate 2.04, arrancamento 1.33, rasgo 51.6.
+
+'Junta lisa' = os mesmos esforços de seção numa fixação com rasgo só por atrito (Projeto A/B): onde o seu FS é < 1 ela escorrega — a razão da serrilha.
+
+Ressaltos dos insertos a quente (as paredes do projeto: a regra ou a parede mínima de 1.6 mm, a que for maior; as abas do anel têm 3.2 mm; e uma parede de 1.00 mm como o contraexemplo que a regra da parede exclui):
+
+| inserto | papel | parede mm | regra parede ≥ 0.5·OD | tangencial MPa | FS (entre camadas) |
+|---|---|---|---|---|---|
+| M3 | projeto | 2.30 | sim | 11.0 | 1.70 |
+| M2.5 | projeto | 2.00 | sim | 10.9 | 1.71 |
+| M2.5 | contraexemplo | 1.00 | NÃO | 17.0 | 1.10 |
+| M3 | contraexemplo | 1.00 | NÃO | 19.0 | 0.982 |
+
+
+Feltro traseiro: um disco cortado em faca empurrado sobre o ressalto do olhal da ligação (furo 0.5 mm menor que o diâmetro do ressalto, então nenhum ar contorna o feltro ali; cadeia no §17) e colado no lado de dentro do fundo da concha por uma borda de adesivo acrílico PSA fora da grade. Ele substitui o anel de retenção de PETG por interferência da iteração anterior, que falhou na sua própria verificação (FS tangencial sustentado 0.591–0.898 na tolerância superior de interferência) e colidiria com o ressalto do olhal, que agora fica dentro da concha para que o inserto tenha todo o seu comprimento em material sólido. Cargas que puxam o feltro: a sua inércia a 5 g mais uma amplitude de pressão na cavidade traseira de 89 Pa (130 dB SPL) [A] na sua área livre; capacidade: a borda descola a partir da sua borda interna em toda a volta a ≥ 3 N/cm [A]:
+
+| D | feltro g | furo Ø mm | carga N | capacidade ao descolamento N | FS |
+|---|---|---|---|---|---|
+| 40 | 0.378 | 7.50 | 0.0840 | 29.4 | 350 |
+| 45 | 0.478 | 7.50 | 0.109 | 33.4 | 306 |
+| 50 | 0.584 | 7.50 | 0.135 | 37.3 | 276 |
+| 55 | 0.721 | 7.50 | 0.170 | 41.9 | 247 |
+| 60 | 0.882 | 7.50 | 0.211 | 46.7 | 222 |
+
+
+Olhal da ligação na concha (módulo de 60 mm: a maior carga ao colocar dos cinco): P = 5.00 N na referência de 50 mm, 9.50 N ao colocar. O olhal do fio envolve uma bucha de latão (r_i = 3.75 mm ≥ 1.5 d): carga em linha q = P_don/r_i (tração do fio no pino, limite de corda; uma distribuição cossenoidal de apoio no pino dá 2/π = 0.64 disso) = 2534 N/m, meia largura de Hertz 7.31 µm, p0 221 MPa, τ_máx ≈ 0.3 p0 → FS 1.89 no escoamento ao cisalhamento do latão (Tresca, 0.5 × 250 MPa [LIT]); o inserto M2.5 apoia lateralmente no ressalto (estaca curta rígida num leito elástico, pico p = P/(d L)·(4 + 6e/L), e = 2 mm, meia altura da bucha) a 4.16 MPa (FS 5.62 sustentado).
+
+Trava de giro (UMI-2): os fundos das linguetas apoiam no fundo rígido da ranhura; tiras de espuma com PSA só no topo das linguetas mantêm o módulo sem folga fora da cabeça e definem o torque de montagem. Especificação deduzida da espuma: janela CFD25 de 42.5–49.8 kPa sobre todos os módulos (viável: sim); especificado 46.0 kPa (governam: 60 mm na extremidade inferior, 40 mm na superior).
+
+| D | módulo g | P N | F da espuma após assentamento N | torque de giro máx. N·m | torque de retenção na cabeça N·m | FS fundo (sustentado) | aceleração de desprendimento g | FS apoio do cone | FS cisalhamento na raiz da lingueta | FS flexão na raiz da lingueta | FS Hertz no pino |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 40 | 61.9 | 4.67 | 2.03 | 0.277 | 0.105 | 496 | 11.0 | 1527 | 425 | 394 | 243 |
+| 45 | 68.1 | 4.84 | 2.03 | 0.277 | 0.106 | 479 | 10.3 | 1389 | 386 | 359 | 232 |
+| 50 | 78.2 | 5.00 | 2.03 | 0.277 | 0.108 | 464 | 9.17 | 1209 | 353 | 345 | 222 |
+| 55 | 87.0 | 5.16 | 2.03 | 0.277 | 0.109 | 449 | 8.43 | 1087 | 318 | 310 | 210 |
+| 60 | 95.6 | 5.33 | 2.03 | 0.277 | 0.110 | 435 | 7.85 | 989 | 289 | 282 | 201 |
+
+
+A junta de TPU comprimida do Projeto B para comparação: compressão nominal 0.05 mm, faixa de Monte Carlo -0.178 … 0.275 mm — de zero (folga) a apertada demais: torque de travamento na extremidade superior 20.7 N·m.
+
+## 14. Cargas do cabo
+
+
+Cargas do cabo e o "fusível mecânico" do cabo.
+
+Caminho de carga: cabo -> clipe de TPU (aperto por interferência) no pino do clipe da
+âncora do cabo -> âncora (2 x M3 na aba do anel em cable_a) -> anel ->
+braços -> cabeça. Depois do clipe, o plugue de 2 pinos de 0.78 mm fica no soquete.
+
+Intenção de projeto: num enganchamento o cabo tem de soltar ANTES que algo quebre.
+  * o clipe escorrega em F_clip (atrito de interferência),
+  * depois o plugue sai em F_plug (retenção do conector, [A] 4–15 N).
+Então o suporte nunca vê mais que max(F_clip, F_plug), por mais forte que o cabo
+seja enganchado; esse valor, e não o enganchamento de 20 N, é a carga de projeto do cabo
+para a estrutura. F_clip é dimensionada abaixo de F_plug para que um puxão
+primeiro deslize o cabo no clipe (inofensivo) e o plugue seja o fusível final.
+
+Aperto do clipe (Lamé, ajuste por interferência de um anel de TPU num cabo redondo flexível):
+  p = delta_r / ( R [ (1/E_r) ((ro^2 + R^2)/(ro^2 - R^2) + nu_r) + (1 - nu_c)/E_c ] )
+  F_clip = mu * p * pi * D * L
+
+
+B: peso do cabo 0.0755 N; aperto do clipe 20.9 N (p de contato 0.437 MPa); plugue 8.00 N (superior 15.0 N); força que chega ao suporte antes de soltar 20.9 N (superior 20.9 N); aperto do clipe abaixo da retenção do plugue: NÃO.
+
+Final: peso do cabo 0.0755 N; aperto do clipe 5.22 N (p de contato 0.109 MPa); plugue 8.00 N (superior 15.0 N); força que chega ao suporte antes de soltar 8.00 N (superior 15.0 N); aperto do clipe abaixo da retenção do plugue: sim.
+
+Aperto do clipe ao longo da tolerância FDM do furo (interferência 0 / 0.05 / 0.35 mm): 0, 5.22, 36.5 N — o aperto não pode ser definido pela interferência dentro da tolerância de impressão, então o clipe é uma guia de passagem e o plugue é o fusível.
+
+Limites de puxão com o fone na cabeça — o puxão do cabo no clipe que o suporte aguenta antes do escorregamento grosseiro (modelo de suporte, bisseção):
+
+| direção do puxão | 40 mm N | 50 mm N | 60 mm N |
+|---|---|---|---|
+| para baixo | 9.56 | 9.52 | 9.62 |
+| baixo-fora 45 | 2.18 | 2.36 | 2.59 |
+| baixo-dentro 45 | 2.83 | 3.22 | 3.24 |
+| baixo-frente 45 | 3.97 | 4.12 | 4.37 |
+| baixo-trás 45 | 2.16 | 2.30 | 2.48 |
+| fora (10 graus abaixo da horizontal) | 1.34 | 1.47 | 1.62 |
+| frente (10 graus abaixo) | 1.76 | 1.85 | 2.02 |
+| trás (10 graus abaixo) | 1.62 | 1.74 | 1.88 |
+| mínimo sobre o hemisfério para baixo | 1.36 | 1.46 | 1.57 |
+
+
+Puxões quase horizontais (para fora, para a frente, para trás) de 1.34–2.02 N soltam o suporte, menos que os 8.00 N que chegam ao suporte antes que o plugue solte; direto para baixo são precisos 9.52–9.62 N. Por isso o cabo tem de ser passado descendo pelo pescoço — uma instrução ao usuário.
+![limites de puxão](fig/tug_limits.png)
+
+| D | ação no plugue com o fone na cabeça | F_z N | suporte preso | Fn mín. nas almofadas de pele N |
+|---|---|---|---|---|
+| 40 | inserir (empurrar em direção à cabeça) | -10.0 | Não | – |
+| 40 | remover a 15 N (puxar) | 15.0 | Não | – |
+| 40 | remover a 8 N nominal | 8.00 | Não | – |
+| 50 | inserir (empurrar em direção à cabeça) | -10.0 | Não | – |
+| 50 | remover a 15 N (puxar) | 15.0 | Não | – |
+| 50 | remover a 8 N nominal | 8.00 | Não | – |
+| 60 | inserir (empurrar em direção à cabeça) | -10.0 | Não | – |
+| 60 | remover a 15 N (puxar) | 15.0 | Não | – |
+| 60 | remover a 8 N nominal | 8.00 | Não | – |
+
+
+Ações no plugue que soltam o suporte na cabeça: inserir (empurrar em direção à cabeça) (40, 50, 60 mm); remover a 15 N (puxar) (40, 50, 60 mm); remover a 8 N nominal (40, 50, 60 mm) — conectar e desconectar o plugue com o fone fora da cabeça (instrução).
+
+Parafusos da âncora do cabo (alavanca em torno dos dois eixos, fator de junta 1; capacidade = arrancamento / γ_inserto):
+
+| caso de carga do cabo | parafuso | torque N·m | T_ext por parafuso N | F_i N | F_i envelhecida N | FS inicial | FS envelhecido | alavanca mm |
+|---|---|---|---|---|---|---|---|---|
+| plugue nominal (fusível) | M3 | 0.100 | 28.1 | 119 | 86.9 | 1.41 | 2.39 | 21.0 |
+| plugue superior (15 N) | M3 | 0.100 | 52.7 | 119 | 86.9 | 1.25 | 1.97 | 21.0 |
+| clipe + plugue em série (superior) | M3 | 0.100 | 71.0 | 119 | 86.9 | 1.16 | 1.74 | 21.0 |
+| enganchamento 20 N | M3 | 0.100 | 70.3 | 119 | 86.9 | 1.16 | 1.75 | 21.0 |
+
+
+Pino do clipe (balanço a partir do bloco da âncora): impresso de lado, a flexão fica na camada; em pé ele carregaria as camadas em tração:
+
+| caso de carga do cabo | F N | FS impresso de lado | FS se impresso em pé |
+|---|---|---|---|
+| plugue nominal (fusível) | 8.00 | 12.7 | 11.6 |
+| plugue superior (15 N) | 15.0 | 6.75 | 6.18 |
+| clipe + plugue em série (superior) | 20.2 | 5.01 | 4.59 |
+| enganchamento 20 N | 20.0 | 5.06 | 4.64 |
+
+
+## 15. Frequências naturais e isolamento de vibração
+
+
+Frequências naturais e isolamento de vibração. NENHUMA FEA modal foi rodada.
+
+1. Modos de corpo rígido do fone sobre os seus contatos (6 GDL):
+       K q = w^2 M q,   M = [[m I, -m [c]x], [m [c]x, I_O]]
+   K = rigidez tangente dos contatos ativos + ligação no equilíbrio estático
+   em pé (support.Model), resolvido com scipy.linalg.eigh.
+2. Primeiro modo de flexão do braço (balanço) por Rayleigh: f = (1/2pi) sqrt(k_tip / m_eff),
+   m_eff = almofada + (33/140) x massa do braço (balanço uniforme, equivalente de massa na ponta de Rayleigh, ARM_MASS_FACTOR).
+3. Isolamento do driver no módulo: o aro do driver fica numa junta de TPU; a
+   força de reação do driver (massa móvel x aceleração do diafragma) passa
+   para o módulo através dela. Transmissibilidade de isolamento de base de 1 GDL
+       T(f) = sqrt(1 + (2 zeta r)^2) / sqrt((1 - r^2)^2 + (2 zeta r)^2), r = f/f_n
+   (isolamento só acima de sqrt(2) f_n).
+4. Transmissibilidade cabeça–fone da excitação de caminhada/corrida
+   pelas molas de contato (mesma forma de 1 GDL por modo; sem amortecimento, o que
+   limita T por cima abaixo de sqrt(2) f_n), na faixa de movimento da cabeça F_HEAD [A].
+
+
+| D | modo 1 Hz | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| 40 | 34.3 (rotação em torno de x) | 43.4 (translação x) | 58.7 (rotação em torno de z) | 66.8 (translação z) | 87.4 (translação y) | 124 (rotação em torno de y) |
+| 45 | 33.4 (rotação em torno de x) | 42.3 (translação x) | 58.2 (rotação em torno de z) | 65.6 (translação z) | 87.0 (translação y) | 123 (rotação em torno de y) |
+| 50 | 32.1 (rotação em torno de x) | 40.8 (translação x) | 57.5 (rotação em torno de z) | 63.8 (translação z) | 86.3 (translação y) | 121 (rotação em torno de y) |
+| 55 | 31.1 (rotação em torno de x) | 39.6 (translação x) | 56.9 (rotação em torno de z) | 62.3 (translação z) | 85.8 (translação y) | 120 (rotação em torno de y) |
+| 60 | 30.1 (rotação em torno de x) | 38.4 (translação x) | 56.2 (rotação em torno de z) | 60.9 (translação z) | 85.1 (translação y) | 119 (rotação em torno de y) |
+
+
+| D | braço | k_z N/m | m_ef g | f1 Hz |
+|---|---|---|---|---|
+| todos | temporal | 69795 | 3.15 | 750 |
+| todos | mastoide | 92963 | 4.29 | 741 |
+| todos | póstero-sup. | 96403 | 3.48 | 838 |
+| todos | sela | 5764 | 8.82 | 129 |
+
+
+| D | k da junta do driver N/m | fator de forma | f_n Hz | isola acima de Hz |
+|---|---|---|---|---|
+| 40 | 6.41e+07 | 1.79 | 10405 | 14715 |
+| 45 | 7.25e+07 | 1.79 | 9834 | 13908 |
+| 50 | 8.1e+07 | 1.79 | 8882 | 12561 |
+| 55 | 8.94e+07 | 1.79 | 8285 | 11716 |
+| 60 | 9.78e+07 | 1.79 | 7872 | 11132 |
+
+
+Opções de montagem do driver a 50 mm (Gent E(Shore) [EMP] para os anéis de silicone, mesmo fator de forma):
+
+| montagem | E MPa | k N/m | f_n Hz | isola acima de Hz | T(100 Hz) | T(1 kHz) | T(5 kHz) | deflexão em 5 g µm |
+|---|---|---|---|---|---|---|---|---|
+| TPU 95A (Final) | 26.0 | 8.1e+07 | 8882 | 12561 | 1.00 | 1.01 | 1.45 | 0.0157 |
+| silicone 50A | 2.46 | 7.65e+06 | 2730 | 3861 | 1.00 | 1.15 | 0.472 | 0.167 |
+| silicone 40A | 1.69 | 5.26e+06 | 2264 | 3202 | 1.00 | 1.24 | 0.305 | 0.242 |
+| silicone 30A | 1.14 | 3.56e+06 | 1862 | 2633 | 1.00 | 1.39 | 0.205 | 0.358 |
+
+
+Anéis de silicone macios colocam a ressonância do driver na montagem em 1.86–2.73 kHz, dentro da faixa de áudio (eles amplificam ali e só isolam acima de √2 f_n); a junta de aro de TPU 95A a coloca em 8.88 kHz, acima da faixa em que o modelo concentrado é afirmado (§21: medir), e ela também veda o aro — ela é mantida. Na pele, o fone inteiro tem os seus modos de corpo rígido em 30.1–124 Hz, acima da faixa de movimento da cabeça (1–10 Hz [A]): o fone segue a cabeça de forma quase estática, amplificado no máximo por T = 1/(1 − r²) = 1.12 (limite sem amortecimento, modo mais baixo, 10 Hz). Primeiros modos do braço livre (Rayleigh, sem contato com a pele): braços das almofadas 741–838 Hz, braço da sela 129 Hz — dentro da faixa de graves; na cabeça os contatos da raiz e do couro cabeludo acrescentam rigidez e amortecimento, que este valor de braço livre deixa de fora, então uma verificação de zumbido na varredura senoidal está no plano de testes (§22).
+
+![isolamento](fig/driver_isolation.png)
+
