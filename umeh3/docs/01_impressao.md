@@ -30,6 +30,13 @@ saírem em bronze:
 Se preferir não trocar filamento, imprima tudo em grafite e pinte só o topo das letras com tinta acrílica bronze e um
 pincel quase seco.
 
+## Versão preto e roxo
+
+Mesmas peças e configurações: concha em PETG preto, anéis e logo em PETG roxo (a troca de filamento é a mesma), e a
+capinha da sela em suede roxo. TPU, almofada e tubos em preto.
+
+![Preto e roxo](img/07_preto_roxo_tampa.png)
+
 ## Conferências antes de montar
 
 - Tire o suporte de dentro do copo pela abertura do driver; o canal da faixa e o furo cego na tampa ficam abertos.
