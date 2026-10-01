@@ -129,13 +129,40 @@ module neck_channel() {
         translate(NECK[0]) cylinder(d = NECK_D + 0.25, h = NECK[1][2] - NECK[0][2] + 1, $fn = 20);
     }
 }
+// ---------------------------------------------------------------- brand (commercial finish)
+// Raised 0.4 mm wordmark on the flat back + a small side letter; printed in bronze by a filament change at the layer
+// where the letters start (the back is the top of the print). A 0.4 mm groove ring frames the back face.
+LOGO_TXT = "UMEH";
+LOGO_FONT = "DejaVu Sans:style=Bold";
+LOGO_H = 0.4;
+logo_in_shell = true;                        // false: the viewer draws the letters as their own (bronze) part
+module logo(letter, flip) {
+    module flat2d() {
+        translate([PC[0], PC[1] - 14.5]) text(LOGO_TXT, size = 5.0, font = LOGO_FONT, halign = "center", valign = "center", spacing = 1.22);
+        translate([PC[0], PC[1] + 13.5]) text(letter, size = 3.2, font = LOGO_FONT, halign = "center", valign = "center");
+    }
+    translate([0, 0, Z_F + CUP_H - 0.01]) linear_extrude(LOGO_H + 0.01)
+        if (flip) translate([PC[0], 0]) mirror([1, 0]) translate([-PC[0], 0]) flat2d(); else flat2d();
+}
+module bezel_groove() {
+    at_pc() translate([0, 0, CUP_H - 0.4]) difference() { cylinder(r = 22.6, h = 1, $fn = 160); translate([0, 0, -1]) cylinder(r = 21.8, h = 3, $fn = 160); }
+}
+// concave fillet where the cup meets the flange plate
+module cup_fillet() {
+    at_pc() rotate_extrude($fn = 160) translate([R_HUB - 0.01, PLATE_T - 0.01]) difference() { square([3, 3]); translate([3, 3]) circle(r = 3, $fn = 32); }
+}
 module shell() {
+    if (logo_in_shell) logo(side, side == "L");
+    shell_body();
+}
+module shell_body() {
     difference() {
         union() {
         difference() {
         union() {
             flange();
             at_pc() rotate_extrude($fn = 160) difference() { cup_outer2d(); }
+            cup_fillet();
             hook_boss_solid();
             lock_wall();
             socket_housing(false);
@@ -154,6 +181,7 @@ module shell() {
         neck_spine();
         }
         neck_channel();
+        bezel_groove();
     }
 }
 
@@ -292,6 +320,8 @@ module placed(p) {
     if (p == "paddle") paddle();
     if (p == "neckband") neckband();
     if (p == "fibre") fibre();
+    if (p == "logo") logo(side, side == "L");
+    if (p == "logo_L") logo("L", true);       // the left letters as the right side's mirror image (viewer)
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg",
          "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "saddle_carrier", "saddle_foam"];
