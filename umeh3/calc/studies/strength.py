@@ -4,7 +4,7 @@
 #  2. Hook wire (ASTM A228 1.6 mm): bending stress per mm of opening at the leg (donning), the opening that reaches
 #     the set limit, and the stress in use (worst treadmill case).
 #  3. Bayonet lugs (3, PETG): the driver inertia they hold, as a deceleration in g (what a drop may impose).
-#  4. Neckband eye clip (PETG): band pull 2 N + cable tug; snap-in slot holding force.
+#  4. Neckband channel in the back (PETG): band pull 2 N + cable tug on the trough, keyhole lips, wire-end pin.
 #  5. Flange plate 1.2 mm under the pad lip: bending from the pad force at the rim.
 # python3 studies/strength.py  -> results/strength.json + printed summary
 import sys, os, json, math
@@ -134,23 +134,23 @@ out["bayonet"] = dict(per_size=bay, limiting=f"{lim[0]} ({lim[2]})", per_lug_N=l
 dz = nb.design(V["neck"])
 F_eye_use = V["neck"] + dz["k_side"] * 0.015
 F_eye_tug = 3.0                    # [A] cable snag the band carries before the plug pulls out (2-pin retention 2-5 N)
-# clip: two jaws around the 5.6 mm sleeve, each a cantilever 3.2 mm high (above the band axis), 2 mm thick
-# (11 mm boss - 6 mm bore)/2 - 0.5), 9 mm long; printed standing up -> jaw bending is across layers (S_z)
-S_z = PETG["S_z"].v * kT40 / GAMMA_M_PRINT.v
-hj, tj, Lj = 3.2e-3, 2.0e-3, 9.0e-3
-F_jaw_open = S_z * Lj * tj ** 2 / (6 * hj)          # force at the jaw tip that reaches the interlayer strength
-# snap-in: slot 5.0 mm (NECK_D + 3.4) vs sleeve 5.6 mm: each jaw deflects 0.3 mm
-E_z = PETG["E_z"].v
-k_jaw = 3 * E_z * (Lj * tj ** 3 / 12) / hj ** 3
-# the silicone sleeve wall (2 mm, over the wire) squeezes in series with the jaw: it takes almost all of the 0.3 mm
+# band channel in the back (refinement 2026-10-01, replaces the snap-on eye clip): the band pull presses the sleeve
+# into the channel bottom (bearing on the trough over the embedded length); the keyhole lips (shell back, 1.2 mm) only
+# keep the sleeve in: 0.4 mm interference on a 1 mm silicone wall, taken almost entirely by the silicone.
 from umeh2.materials import SILICONE
-k_sl = SILICONE["E"].v * (Lj * 2.0e-3) / 2.0e-3          # contact strip 9 x 2 mm, wall 2 mm
-k_s = 1 / (1 / k_jaw + 1 / k_sl)
-F_snap = k_s * 0.3e-3
-s_snap = 6 * F_snap * hj / (Lj * tj ** 2)
-out["eye_clip"] = dict(F_use_N=F_eye_use, F_tug_N=F_eye_tug, jaw_tip_capacity_N=F_jaw_open,
-                       snap_force_per_jaw_N=F_snap, snap_stress_MPa=s_snap / 1e6, SF_snap=S_z / s_snap,
-                       note="band pull goes into the clip base in compression (sleeve pressed into the bore); jaws only hold the sleeve in the slot")
+L_ch = abs(geom.neck_path()[geom.neck_embedded()][0]) * 1e-3
+p_tr = max(F_eye_use, F_eye_tug) / (geom.NECK_SLEEVE * 1e-3 * L_ch)
+S_br = PETG["S_bear"].v * kT40 * stc.K_SUSTAINED / GAMMA_M_PRINT.v
+# lip: cantilever 1.2 mm thick, 1.5 mm high, along the channel; silicone squeeze 0.2 mm per side over a 1 mm wall
+k_sil = SILICONE["E"].v * (L_ch * 1.0e-3) / 1.0e-3
+F_lip = k_sil * 0.2e-3
+s_lip = 6 * F_lip * 1.5e-3 / (L_ch * (geom.WALL * 1e-3) ** 2)
+S_z = PETG["S_z"].v * kT40 / GAMMA_M_PRINT.v
+# pull-out along the channel is blocked by the bent wire end in its blind hole (pin bearing)
+p_pin = F_eye_tug / (geom.NECK_WIRE_D * 1e-3 * geom.NECK_PIN * 1e-3)
+out["band_channel"] = dict(F_use_N=F_eye_use, F_tug_N=F_eye_tug, trough_bearing_MPa=p_tr / 1e6, SF_trough=S_br / p_tr,
+                           lip_force_N=F_lip, lip_stress_MPa=s_lip / 1e6, SF_lip=S_z * stc.K_SUSTAINED / s_lip,
+                           pin_bearing_MPa=p_pin / 1e6, SF_pin=S_br / p_pin)
 
 # ---------------------------------------------------------------- 5. flange plate under the pad lip
 # worst pad force (treadmill) taken at the rim as a ring load on an annular plate fixed at the cup (outer edge free):
@@ -190,8 +190,8 @@ for k, x in wv["donning"].items():
     print(f"  open the leg {k}: {x['stress_per_mm_MPa']:.0f} MPa/mm at {x['at']}, {x['force_per_mm_N']:.2f} N/mm -> set at {x['opening_at_set_mm']:.1f} mm")
 print(f"bayonet: limiting {out['bayonet']['limiting']}, {out['bayonet']['per_lug_N']:.0f} N per lug; held deceleration "
       + ", ".join(f"D{D} {x['g_held']:.0f} g" for D, x in out["bayonet"]["per_size"].items()))
-e = out["eye_clip"]
-print(f"eye clip: use {e['F_use_N']:.2f} N, tug {e['F_tug_N']:.1f} N; jaw tip capacity {e['jaw_tip_capacity_N']:.1f} N; snap {e['snap_force_per_jaw_N']:.1f} N per jaw, "
-      f"{e['snap_stress_MPa']:.1f} MPa (SF {e['SF_snap']:.1f})")
+e = out["band_channel"]
+print(f"band channel: use {e['F_use_N']:.2f} N, tug {e['F_tug_N']:.1f} N; trough {e['trough_bearing_MPa']:.2f} MPa (SF {e['SF_trough']:.0f}); "
+      f"lips {e['lip_stress_MPa']:.2f} MPa (SF {e['SF_lip']:.0f}); wire-end pin {e['pin_bearing_MPa']:.2f} MPa (SF {e['SF_pin']:.1f})")
 f_ = out["flange"]
 print(f"flange plate: pad {f_['F_pad_N']:.1f} N, {f_['stress_MPa']:.2f} MPa, SF sustained {f_['SF']:.0f}")

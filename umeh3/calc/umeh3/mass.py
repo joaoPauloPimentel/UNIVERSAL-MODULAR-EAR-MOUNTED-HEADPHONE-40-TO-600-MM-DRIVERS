@@ -18,7 +18,6 @@ PRINT = {
     "front_ring": ("PETG", 3, 4, 0.30),
     "adapter":    ("TPU", 2, 99, 1.00),
     "bushing":    ("TPU", 2, 99, 1.00),
-    "stop_cap":   ("PETG", 3, 4, 0.30),
     "paddle":     ("TPU", 2, 3, 0.15),     # soft gyroid core
     "saddle_carrier": ("TPU", 2, 3, 0.30),
 }
@@ -28,7 +27,7 @@ SOCKET_M = Val(0.6, "DS", "g, 0.78 mm 2-pin female socket")
 PLUG_M = Val(1.5, "A", "g, cable plug seated in the socket (rides on the module)")
 LEADS_M = Val(0.6, "A", "g, internal leads + JST-SH pair (driver <-> socket)")
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg", "pad",
-         "front_foam", "socket", "fibre", "paddle", "saddle_carrier", "saddle_foam", "neckband", "neck_eye"]
+         "front_foam", "socket", "fibre", "paddle", "saddle_carrier", "saddle_foam", "neckband"]
 
 
 def export(part, out, D):
@@ -63,8 +62,6 @@ def _mass(p, V, area, D, wire_len):
         from .neckband import LINK_SHARE
         Lw = np.linalg.norm(np.diff(np.array(geom.neck_path()), axis=0), axis=1).sum() * 1e-3
         return 0.0 * V, None, "neckband (point mass added in loads)"
-    if p == "neck_eye":
-        return PETG["rho"].v * 0.6 * V, None, "PETG eye clip"
     if p == "pad":
         return geom.PAD["mass"] * 1e-3, None, "purchased pad [A]"
     if p == "front_foam":

@@ -1,10 +1,10 @@
 {
  "bushing": {
-  "static_Tz_Nmm": 8.55844206174939,
-  "static_Fz_N": 0.18149678376257825,
-  "run_Tz_Nmm": 66.95771098551725,
-  "run_Fz_N": 2.2254247062980816,
-  "run_Mbend_Nmm": 76.92782928018116,
+  "static_Tz_Nmm": 8.539068719630576,
+  "static_Fz_N": 0.18120862170835714,
+  "run_Tz_Nmm": 67.55920607438243,
+  "run_Fz_N": 2.1831709765915015,
+  "run_Mbend_Nmm": 76.40816544053335,
   "slip_T_nom_Nmm": 17.411765259102435,
   "slip_T_min_Nmm": 0.0,
   "slide_F_nom_N": 21.76470657387804,
@@ -54,17 +54,17 @@
   }
  },
  "lock": {
-  "F_pin_N": 5.579809248793104,
-  "p_hole_MPa": 0.9963945087130542,
-  "SF_hole": 14.662239577042136,
-  "crank_stress_MPa": 166.51016689786832,
-  "SF_crank": 9.30276076129235
+  "F_pin_N": 5.629933839531869,
+  "p_hole_MPa": 1.0053453284878338,
+  "SF_hole": 14.531698299105187,
+  "crank_stress_MPa": 168.00596247034318,
+  "SF_crank": 9.219936151058707
  },
  "wire": {
   "Sut_MPa": 2065.338995964973,
   "S_bend_MPa": 1549.0042469737296,
-  "use_worst_MPa": 191.30381705109795,
-  "SF_use": 8.097090120057484,
+  "use_worst_MPa": 190.01151910069072,
+  "SF_use": 8.1521596917126,
   "donning": {
    "outwards (+z)": {
     "stress_per_mm_MPa": 59.20058759672351,
@@ -112,14 +112,16 @@
   "limiting": "ring lug (shear)",
   "per_lug_N": 59.00416666666666
  },
- "eye_clip": {
-  "F_use_N": 3.5679054893875453,
+ "band_channel": {
+  "F_use_N": 3.577467260934302,
   "F_tug_N": 3.0,
-  "jaw_tip_capacity_N": 21.914062499999993,
-  "snap_force_per_jaw_N": 1.6101074995229312,
-  "snap_stress_MPa": 0.8587239997455635,
-  "SF_snap": 13.610310185185181,
-  "note": "band pull goes into the clip base in compression (sleeve pressed into the bore); jaws only hold the sleeve in the slot"
+  "trough_bearing_MPa": 0.026211396497218795,
+  "SF_trough": 557.3672887497678,
+  "lip_force_N": 4.094555505251956,
+  "lip_stress_MPa": 0.7500000000000001,
+  "SF_lip": 7.791666666666665,
+  "pin_bearing_MPa": 0.47619047619047616,
+  "SF_pin": 30.679687500000004
  },
  "flange": {
   "F_pad_N": 7.897571232043041,

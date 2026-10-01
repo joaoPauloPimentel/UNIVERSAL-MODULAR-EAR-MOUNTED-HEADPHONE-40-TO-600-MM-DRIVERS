@@ -20,7 +20,7 @@ NAPE_APEX = 0.075        # [A] m: the band runs around the nape, 75 mm behind th
 LINK_SHARE = 0.35        # [A] share of the half band's mass carried by one side (rest lies on the neck / hair)
 EYE_XY = [0.0, 0.0]      # mm: eye position on the back of the cup (on the pad axis: the band's pull loads the pad
                          # ring evenly; an eye on the shell rim tilts the module and lifts the opposite pad sector)
-EYE_Z_OUT = 3.4          # mm, the wire's line of action above the cup end (sleeve r 2.8 clears the cup)
+EYE_Z_OUT = -1.2         # mm, the wire's line of action relative to the cup end: in the back channel (geom.NECK_EYE_Z)
 
 
 def eye_point():

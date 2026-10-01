@@ -6,7 +6,9 @@
 //  front_ring   PETG, 3-lug bayonet (30 deg turn by hand): locks adapter + driver from the front.
 //  adapter(D)   TPU 95A, one per driver size: rim seat, aperture lip, conical spring flap (axial preload).
 //  bushing      TPU 95A friction bushing in the boss: the hook wire turns and slides in it to set the height.
-//  stop_cap     PETG collar on the wire above the boss (pull-out stop); the crank pin locks rotation (lock_wall()).
+//  (rotation)   the wire tail is bent into a crank whose pin drops into one of 9 holes in lock_wall().
+//  neckband     music wire in a silicone sleeve; its end snaps into a keyhole channel in the back of the cup
+//               (the wire end bent into a blind hole), so nothing stands on the back face.
 //  hook         music wire, PTFE liner, silicone sleeves (purchased, cut to length; wire bent on the jig).
 //  pad          purchased round 110 mm velour pad (visual), front_foam: 3 mm reticulated PU disc.
 //  Frame: x forward, y up, z away from the head; origin on the pad axis in the skin plane. Right side;
@@ -70,21 +72,26 @@ module lock_wall() {
     span = (LOCK[5] - 1) * LOCK[4] + 2 * LOCK[1] / LOCK[0] * 180 / PI;
     translate([HH[0], HH[1], Z_F + PLATE_T - 0.01]) difference() {
         rotate([0, 0, a_out - span / 2]) rotate_extrude(angle = span, $fn = 160)
-            translate([LOCK[0] - LOCK[1] / 2, 0]) square([LOCK[1], BOSS_L - PLATE_T]);
+            translate([LOCK[0] - LOCK[1] / 2, 0]) offset(r = 1.0) offset(delta = -1.0) translate([0, -2]) square([LOCK[1], BOSS_L - PLATE_T + 2]);
         for (k = [0 : LOCK[5] - 1]) rotate([0, 0, a_out + (k - (LOCK[5] - 1) / 2) * LOCK[4]])
             translate([LOCK[0], 0, BOSS_L - PLATE_T - LOCK[3]]) cylinder(d = LOCK[2], h = LOCK[3] + 1, $fn = 20);
     }
 }
 module hook_boss_solid() {
     hull() {
-        translate([HH[0], HH[1], Z_F]) cylinder(d = BUSH_OD + 2.4, h = BOSS_L, $fn = 48);
+        translate([HH[0], HH[1], Z_F]) cylinder(d = BUSH_OD + 2.4, h = BOSS_L - 0.8, $fn = 48);
+        translate([HH[0], HH[1], Z_F]) cylinder(d = BUSH_OD + 0.8, h = BOSS_L, $fn = 48);
         at_pc() rotate([0, 0, HOOK_ANG]) translate([R_HUB - 2.5, 0, 0]) cylinder(d = BUSH_OD + 2.4, h = BOSS_L - 3, $fn = 48);
     }
 }
 module socket_housing(cut = false) {
     // 2-pin 0.78 mm female socket, opening facing down-rear; the cable leaves low and backwards
     at_pc() rotate([0, 0, SOCKET_A]) translate([R_HUB - 1.0, 0, SOCK_Z]) rotate([0, 90, 0]) rotate([0, 0, 0])
-        if (!cut) hull() { translate([-(SOCKET[2] + 3.2) / 2, -(SOCKET[0] + 3.2) / 2, -3]) cube([SOCKET[2] + 3.2, SOCKET[0] + 3.2, SOCKET[1] + 3]); }
+        if (!cut) hull() for (i = [-1, 1], j = [-1, 1]) {
+            // rounded box (r 2) that grows out of the cup wall, outer end domed
+            translate([i * (SOCKET[2] + 3.2 - 4) / 2, j * (SOCKET[0] + 3.2 - 4) / 2, -3]) cylinder(r = 2, h = SOCKET[1] + 1.2, $fn = 24);
+            translate([i * (SOCKET[2] + 3.2 - 4) / 2, j * (SOCKET[0] + 3.2 - 4) / 2, SOCKET[1] - 1.8]) sphere(r = 2, $fn = 24);
+        }
         else {
             translate([-(SOCKET[2] + 0.3) / 2, -(SOCKET[0] + 0.3) / 2, -0.5]) cube([SOCKET[2] + 0.3, SOCKET[0] + 0.3, SOCKET[1] + 5]);
             translate([0, 0, -6]) cylinder(d = 3.0, h = 7, $fn = 24);             // lead hole into the chamber
@@ -106,8 +113,26 @@ module bayonet_cut() {
             translate([POCKET_R - 0.1, RING_T - LUG_H - 0.15]) square([LUG_DEPTH + 0.1, LUG_H + 0.15 + 0.01]);
     }
 }
+// band channel in the back: a trough (spine) inside the back carries the sleeve; keyhole profile (axis 1.2 mm under
+// the surface: 3.6 mm opening on the 4 mm sleeve, it snaps in); blind hole for the bent wire end
+module neck_spine() {
+    if (NECK != undef) intersection() {
+        union() { sweep_tube(NECK, NECK_SL + 0.3 + 2 * WALL, 1, NECK_EMB); translate(NECK[1] - [0, 0, NECK_PIN / 2]) sphere(d = 7, $fn = 32); }
+        at_pc() rotate_extrude($fn = 160) cup_outer2d();
+    }
+}
+module neck_channel() {
+    if (NECK != undef) {
+        sweep_tube(NECK, NECK_SL + 0.3, 1, NECK_EMB);
+        // let the sleeve leave the channel along its exit direction
+        hull() { translate(NECK[NECK_EMB]) sphere(d = NECK_SL + 0.3, $fn = 20); translate(NECK[NECK_EMB + 1]) sphere(d = NECK_SL + 0.3, $fn = 20); }
+        translate(NECK[0]) cylinder(d = NECK_D + 0.25, h = NECK[1][2] - NECK[0][2] + 1, $fn = 20);
+    }
+}
 module shell() {
     difference() {
+        union() {
+        difference() {
         union() {
             flange();
             at_pc() rotate_extrude($fn = 160) difference() { cup_outer2d(); }
@@ -125,6 +150,10 @@ module shell() {
         if (GROOVE) groove_cut();
         // pocket front chamfer
         at_pc() translate([0, 0, -0.01]) cylinder(r1 = POCKET_R + 0.5, r2 = POCKET_R, h = 0.5);
+    }
+        neck_spine();
+        }
+        neck_channel();
     }
 }
 
@@ -189,15 +218,7 @@ module paddle() {
     }
 }
 // neckband: music wire in a silicone sleeve (first part; the rest runs around the nape) + PETG eye clip on the cup
-module neckband() { if (NECK != undef) { sweep_tube(NECK, NECK_D + 4.0, 0, len(NECK) - 1); } }
-module neck_eye() {
-    // clip on the cup end gripping the band's silicone sleeve; the sleeve runs clear of the cup
-    if (NECK != undef) translate([NECK[0][0], NECK[0][1], NECK[0][2] - NECK_EYE_Z - 0.01]) difference() {
-        hull() { cylinder(d = 11, h = NECK_EYE_Z + 3.2, $fn = 40); translate([-9, 0, 0]) cylinder(d = 9, h = NECK_EYE_Z + 3.2, $fn = 40); }
-        translate([0, 0, NECK_EYE_Z]) rotate([0, -90, 0]) cylinder(d = NECK_D + 4.2, h = 30, $fn = 24, center = true);
-        translate([-20, -(NECK_D + 3.4) / 2, NECK_EYE_Z]) cube([40, NECK_D + 3.4, 10]);   // snap-in slot
-    }
-}
+module neckband() { if (NECK != undef) { sweep_tube(NECK, NECK_SL, 1, len(NECK) - 1); sweep_tube(NECK, NECK_D, 0, 1); } }
 // wide soft saddle on the arch (model A final): TPU carrier clipped on the wire + slow-rebound foam strip in a velour sock
 module saddle_sector(r0, r1) {
     translate([ARCH_C[0], ARCH_C[1], 0]) rotate([0, 0, ARCH_A[0]])
@@ -218,9 +239,6 @@ module saddle_carrier() {
 module bushing() {
     difference() { cylinder(d = BUSH_OD - 0.1, h = BUSH_L); translate([0, 0, -1]) cylinder(d = WIRE_D - 0.15, h = BUSH_L + 2, $fn = 24);
         translate([0, 0, BUSH_L - 1.0]) cylinder(d1 = WIRE_D - 0.15, d2 = WIRE_D + 0.8, h = 1.01, $fn = 24); }
-}
-module stop_cap() {
-    difference() { cylinder(d = 5.0, h = 4.0, $fn = 32); translate([0, 0, -1]) cylinder(d = WIRE_D - 0.1, h = 3.5, $fn = 24); }
 }
 
 // ---------------------------------------------------------------- purchased parts (visual / mass)
@@ -263,8 +281,6 @@ module placed(p) {
     if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) adapter(D);
     if (p == "driver") at_pc() translate([0, 0, ZL_ADP + 1.0 - 0.0]) driver_vis(D);
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
-    // stop collar on the wire just above the bushing boss (keeps the hook from being pulled towards the head)
-    if (p == "stop_cap") translate([HH[0], HH[1], Z_F + BOSS_L + 0.2]) stop_cap();
     if (p == "wire") hook_wire();
     if (p == "sleeve_arch" && SADDLE == undef) sleeve_arch();
     if (p == "saddle_carrier") saddle_carrier();
@@ -275,13 +291,12 @@ module placed(p) {
     if (p == "socket") socket_vis();
     if (p == "paddle") paddle();
     if (p == "neckband") neckband();
-    if (p == "neck_eye") neck_eye();
     if (p == "fibre") fibre();
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg",
-         "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "neck_eye", "saddle_carrier", "saddle_foam"];
+         "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "saddle_carrier", "saddle_foam"];
 COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "Silver", "#3A3D42", "#3A3D42",
-       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#A27449", "#1D1F22", "#2E3036"];
+       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#1D1F22", "#2E3036"];
 
 module sided() { if (side == "L") mirror([1, 0, 0]) children(); else children(); }
 
@@ -296,7 +311,6 @@ if (part == "print_shell") sided() translate([0, 0, -Z_F]) shell();
 if (part == "print_front_ring") sided() front_ring();
 if (part == "print_adapter") adapter(D);
 if (part == "print_bushing") bushing();
-if (part == "print_stop_cap") stop_cap();
 if (part == "print_bend_jig") bend_jig();
 
 // wire bending jig (PETG plate with the hook path as a groove; bend the wire around the pins by hand)

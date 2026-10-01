@@ -12,22 +12,23 @@ são impressas em FDM; o resto é comprado pronto.
 
 | Peça | Material | Como se obtém | Massa (g) |
 |---|---|---|---|
-| Concha (placa + copo 31 mm + bucha do gancho + parede da trava + caixa do conector) | PETG grafite | impressa | 25,8 |
+| Concha (placa + copo 31 mm + bucha do gancho + parede da trava + caixa do conector + canal da faixa) | PETG grafite | impressa | 26,1 |
 | Anel de travamento do driver (baioneta) | PETG bronze | impresso | 1,7 |
 | Adaptador do driver, um por tamanho | TPU 95A | impresso | 1,2 |
 | Bucha de fricção do gancho | TPU 95A | impressa | 0,1 |
 | Palheta atrás da orelha, 14 × 36 mm | TPU 95A | impressa | 1,4 |
 | Berço da sela (placa fina + clipe no tubo) | TPU 95A | impresso | 3,3 |
-| Presilha da faixa na concha (encaixe) | PETG bronze | impressa | 0,4 |
 | Almofada redonda 110 mm, veludo | comprada | 11 [A] |
 | Fio do gancho, aço mola (corda de piano) 1,6 mm | comprado | 2,3 |
 | Tubo de PTFE 2 × 4 mm no arco + tubo de silicone 4 × 7 mm na perna | comprados | 3,6 |
 | Espuma da sela 6 mm (viscoelástica média, ~25 kPa) em capa de veludo | comprada | 0,6 |
-| Faixa da nuca: aço mola 1,6 mm em capa de silicone de 5,6 mm | comprada | 7,5 o par |
+| Faixa da nuca: aço mola 1,8 mm (sem espiras) em tubo de silicone 2 × 4 mm | comprada | 12,5 o par |
 | Conector 2 pinos 0,78 mm | comprado | 2,7 |
 | Espuma frontal PU reticulada 3 mm, fibra de poliéster enchendo a concha | compradas | 0,7 |
 
-Massa por lado, com metade da faixa: 59,0 g + driver. Com drivers típicos [A]: 40 mm 74 g, 50 mm 85 g, 60 mm 99 g.
+Massa por lado, com metade da faixa: 61,3 g + driver. Com drivers típicos [A]: 40 mm 76 g, 50 mm 87 g, 60 mm 101 g.
+(A conta anterior, 74/85/99 g, pesava a faixa por baixo: o arame calculado é de 1,8 mm e a capa grossa não entrava.
+Com o tubo de 4 mm a faixa ficou 6 g mais leve do que seria com a capa de 5,8 mm.)
 
 ## 3. Como foi verificado
 
@@ -49,7 +50,7 @@ ficar depois de alguns minutos correndo). Depois mais uma volta completa, contan
 | Casos de corrida em que solta | 0 | 0 | 0 | 0 |
 | Vinco da orelha parado (kPa) | 0,8 | 0,9 | 1,0 | 4 |
 | Vinco a cada passada, pico (kPa) | 6,4 | 7,2 | 8,2 | 8 |
-| Puxão de cabo que derruba (N) | 2,4 | 2,4 | 2,4 | > 1 |
+| Puxão de cabo que derruba (N) | 2,4 | 2,4 | 2,6 | > 1 |
 | Vinco depois de correr um tempo (kPa) | | | 3,8 | 4 |
 | Passadas que deslocam, depois de acomodado | | | 0 de 1080 | 0 |
 
@@ -100,9 +101,24 @@ fechada. O valor real depende dos dados do driver; com eles na mão dá para afi
   folga de 14 vezes, fio com 9 vezes.
 - Fio do gancho: folga de 8 vezes na corrida; abre uns 10 mm para trás ou para baixo antes de entortar.
 - Baioneta (ressaltos de 14 mm): segura 440 g de desaceleração com driver de 60 mm e 1100 g com 40 mm.
-- Presilha da faixa, placa da almofada: folga de 11 a 14 vezes.
+- Canal da faixa na tampa e placa da almofada: folga de 8 vezes ou mais (detalhe em strength.json).
 - Vibração: o fone na cabeça vibra em 21 a 56 Hz, longe do ritmo da passada (2 a 3 Hz). O driver não fica isolado da
   concha (a borda de TPU é rígida demais para isso), o que é normal.
+
+### Queda, faixa ao colocar, fadiga e calor (studies/durability.py)
+
+| Verificação | Resultado |
+|---|---|
+| Queda de 1 m de frente, sobre a almofada | a espuma amortece: 200 a 330 g de desaceleração; a baioneta segura (folga 1,3 com 60 mm no pior caso, 2 a 6 nos outros) |
+| Queda de costas, desenho anterior (presilha no meio da tampa) | a pancada concentrava num ponto de uma tampa plana de 1,2 mm: pelo cálculo trincaria (aguenta 0,15 J, a queda dá 0,6 a 0,8 J). Engrossar a tampa quase não ajuda (2 mm: 0,25 J) |
+| Queda de costas, desenho refinado | nada fica em pé na tampa: o tubo da faixa (0,8 mm saliente, silicone) encosta primeiro e a tampa inteira apoia no chão; as paredes recebem a pancada em compressão |
+| Driver contra o encosto traseiro na queda de costas | folga 2,8 (60 mm) a 6,7 (40 mm) |
+| Queda de quina (borda arredondada) | não dá para calcular de forma confiável (o PETG amassa antes); decidir no teste de queda |
+| Faixa aberta para passar pela cabeça | abre ~50 mm por lado além da cabeça maior antes de entortar; folga 1,65 ao vestir e 2,4 em fadiga (10 mil vezes) |
+| Fadiga por passada (10 milhões) | fio do gancho 5,0; dobras da trava 4,4; furo da trava 5,9; fio da faixa 3,7 |
+| Encaixe do driver depois de envelhecer e de um carro quente (TPU perde 1/3 da pressão) | o driver só começa a bater com 1,8 g de lado (60 mm, pior impressão); na corrida são 0,4 g |
+| Bucha do gancho depois de relaxar | ainda segura 6,5 vezes o que a corrida pede |
+| Calor | PETG amolece a 80 °C: banco do carro (até ~60 °C) ok; não deixar no painel ao sol |
 
 ### Cargas fora da corrida (categorias do UMEH-2)
 
@@ -140,11 +156,21 @@ típicos, mas acima de ~35 g o vinco da orelha passa da meta de conforto a cada 
 - Copo 10 mm mais fundo (31 mm) e cheio de fibra de poliéster.
 - Ressaltos da baioneta de 9 para 14 mm de largura.
 
+### Refino final do desenho
+
+- Presilha da faixa removida: a ponta da faixa encaixa num canal na tampa (perfil fechadura, entra por pressão) com a
+  ponta do arame dobrada num furo cego. Tampa lisa, uma peça a menos, e a queda de costas não bate mais num ponto.
+- Faixa com arame de 1,8 mm sem espiras (o que os cálculos sempre usaram) e tubo de silicone 2 × 4 mm, mais fino e leve.
+- Caixa do conector com cantos arredondados, parede da trava e topo da bucha do gancho com bordas suavizadas.
+- A corrida com 60 mm foi refeita com a faixa nova: 0 de 5400 soltam, vinco 8,2 kPa, puxão que derruba 2,6 N.
+
 ## 6. O que fica em aberto
 
 - Valores [A] (almofada, drivers, atritos, rigidez da pele) são típicos; confirmar com as peças na mão.
 - A forma da faixa atrás da cabeça no modelo 3D é aproximada; o ajuste final é dobrando o fio.
 - Acabamento visual (caixa do conector, forma do copo) ainda não foi refinado.
 - Corrida longa só foi calculada com 60 mm (decisão: não precisa com 40 e 50).
+- Teste de queda: imprimir uma concha e soltar 10 vezes de 1 m em piso de cerâmica (frente, costas, quinas). Se a
+  quina trincar, a saída é parede de 1,6 mm (+~2 g por lado).
 - Teste real: pesar as peças, medir a pressão no vinco com filme sensível depois de 20 minutos de esteira, e ouvir a
   vedação correndo.

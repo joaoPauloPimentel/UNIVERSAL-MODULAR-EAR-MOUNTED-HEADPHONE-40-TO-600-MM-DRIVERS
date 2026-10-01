@@ -145,19 +145,57 @@ def path_length(P):
     return float(np.linalg.norm(np.diff(P, axis=0), axis=1).sum())
 
 
-NECK_EYE_Z = 3.4       # band axis above the cup end (= neckband.EYE_Z_OUT)
+NECK_EYE_Z = -1.2      # band axis BELOW the back face: the sleeve lies in a keyhole channel in the back (3.6 mm
+                       # opening on the 4 mm sleeve: it snaps in; 0.8 mm proud), the wire end bent down into a blind hole (= neckband.EYE_Z_OUT). Refinement
+                       # 2026-10-01: no clip standing on the back, so a back-down drop no longer lands on a point in
+                       # the middle of the flat back (studies/durability.py)
+NECK_SLEEVE = 4.0      # [DS] silicone tube 2 x 4 mm over the band wire (was 5.8 mm OD: 7 g lighter per band)
+NECK_PIN = 3.5         # wire end bent 90 deg into the back (blind hole): the band cannot slide out of the channel
+NECK_EXIT_DEG = 68.0   # the channel follows the cup's rounded edge to this angle, then the band leaves tangentially
 
 
 def neck_path():
-    """First part of the neckband (mm, this side's frame; the rest runs around the nape): eye on the back of the cup
-    on the pad axis -> back across the cup face and over its rounded edge -> out over the top of the pad, clear of its
-    outer edge -> down behind the pad towards the head -> back and down towards the nape. Every point keeps the
-    silicone sleeve clear of the shell and the pad (checked against the meshes)."""
-    zc = Z_F + CUP_H + NECK_EYE_Z
+    """First part of the neckband (mm, this side's frame; the rest runs around the nape). Index 0 is the bent end in
+    the blind hole, then the eye (on the pad axis, in the back channel), along the channel over the cup's rounded edge
+    (axis NECK_EYE_Z under the surface), out tangentially over the top of the pad, clear of its outer edge -> down
+    behind the pad towards the head -> back and down towards the nape. Checked against the meshes (band_clearance.py).
+    Returns the points; neck_embedded() gives the index of the last point inside the channel."""
+    return _neck()[0]
+
+
+def neck_embedded():
+    return _neck()[1]
+
+
+def _neck():
+    zt = Z_F + CUP_H
+    e = -NECK_EYE_Z
+    pc = pocket_c()
     ro = PAD["od"] / 2 + 8.0               # outside the pad's outer edge + sleeve radius + gap
-    return [(0.0, 0.0, zc), (-14.0, -1.0, zc), (-30.0, -3.0, zc + 0.3), (-43.0, -5.0, zc - 4.0),
-            (-0.94 * ro, -8.0, Z_F + 9.0), (-ro, -12.0, Z_F + 2.0), (-ro - 1.0, -18.0, 12.0),
+    u = np.array([-43.0, -5.0]); u = u / np.linalg.norm(u)
+    r1 = POCKET_R + HUB_WALL - CUP_ROUND
+    # where the line from the axis along u reaches r1 (from the pocket centre)
+    s = np.linspace(0, 60, 6001)
+    rr = np.linalg.norm(s[:, None] * u[None, :] - pc[None, :], axis=1)
+    s1 = s[np.argmax(rr >= r1)]
+    p1 = s1 * u
+    v = (p1 - pc) / np.linalg.norm(p1 - pc)            # radial direction at the rim crossing
+    pts = [(0.0, 0.0, zt - e - NECK_PIN), (0.0, 0.0, zt - e)]
+    for f in (0.35, 0.7):
+        q = f * p1; pts.append((q[0], q[1], zt - e))
+    pts.append((p1[0], p1[1], zt - e))
+    rc = CUP_ROUND - e
+    for th in (18.0, 36.0, NECK_EXIT_DEG):
+        t = math.radians(th)
+        q = pc + v * (r1 + rc * math.sin(t))
+        pts.append((q[0], q[1], zt - CUP_ROUND + rc * math.cos(t)))
+    n_emb = len(pts) - 1
+    t = math.radians(NECK_EXIT_DEG)
+    last = np.array(pts[-1]); tan = np.r_[v * math.cos(t), -math.sin(t)]
+    pts.append(tuple(last + 7.0 * tan))
+    pts += [(-0.94 * ro, -8.0, Z_F + 9.0), (-ro, -12.0, Z_F + 2.0), (-ro - 1.0, -18.0, 12.0),
             (-ro - 3.0, -26.0, 0.0), (-ro - 9.0, -34.0, -10.0)]
+    return [tuple(map(float, p)) for p in pts], n_emb
 
 
 def _leg_dir():
@@ -191,9 +229,9 @@ def write_scad(path):
         f"HOOK_DESC = {lab.index('descent')};",
         f"PADDLE = {list(PADDLE) if PADDLE else 'undef'}; PINNA_PT = {list(PINNA_PT)};",
         f"LEG_DIR = [{_leg_dir()[0]:.4f}, {_leg_dir()[1]:.4f}];",
-        f"NECK_EYE_Z = {NECK_EYE_Z};",
+        f"NECK_EYE_Z = {NECK_EYE_Z}; NECK_PIN = {NECK_PIN}; NECK_EMB = {neck_embedded() if NECK else 0};",
         "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
-        f"NECK_D = {NECK_WIRE_D};",
+        f"NECK_D = {NECK_WIRE_D}; NECK_SL = {NECK_SLEEVE};",
         "SADDLE = " + (f"[{SADDLE['w']}, {SADDLE['t_foam']}, {SADDLE['carrier_t']}]" if SADDLE else "undef") + ";",
         f"ARCH_C = [{ARCH_C[0]}, {ARCH_C[1]}]; ARCH_R = {ARCH_R}; ARCH_A = [{ARCH_A0}, {ARCH_A1}]; Z_ROOT = {Z_ROOT};",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
@@ -205,7 +243,8 @@ def write_scad(path):
 GROOVE_R_IN = None              # hook routed in a groove in the plate face under the pad (small pad): exits at this radius
 SADDLE = None                    # wide soft saddle on the hook arch: dict(w, t_foam, E_foam, carrier_t) (model A, 2026-10-01)
 NECK = False                     # neckband (user's choice 2026-10-01): eye on the back of the cup, wire to the nape
-NECK_WIRE_D = 1.6                # sized in neckband.design (2 N band: 1.6 mm, 2 apex coils)
+NECK_WIRE_D = 1.8                # sized in neckband.design for the 2 N band: 1.8 mm music wire, no coils (the plain
+                                 # bent wire; the contact model has always used this one)
 PADDLE = None                    # (w, L, t) mm: wide TPU paddle on the rear leg, against the back of the pinna
 LOBE_PT = None                   # contact under the lobule attachment (only a hook that wraps under it)
 
