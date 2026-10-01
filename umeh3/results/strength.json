@@ -1,0 +1,122 @@
+{
+ "bushing": {
+  "static_Tz_Nmm": 7.904519610610854,
+  "static_Fz_N": 0.17379498514387126,
+  "run_Tz_Nmm": 65.68930911206174,
+  "run_Fz_N": 1.9284606456294022,
+  "run_Mbend_Nmm": 71.13634604962047,
+  "slip_T_nom_Nmm": 17.411765259102435,
+  "slip_T_min_Nmm": 0.0,
+  "slide_F_nom_N": 21.76470657387804,
+  "slide_F_min_N": 0.0,
+  "cases": 5400,
+  "tags": {
+   "Tz": {
+    "g": [
+     0.15133703381111877,
+     -0.9875,
+     0.0440551040998907
+    ],
+    "acc": [
+     -0.6,
+     1.5,
+     -0.4
+    ],
+    "axis": "roll (tilt)",
+    "sign": -1,
+    "omega": false,
+    "cable": [
+     0.12491922621231355,
+     -0.5833333333333333,
+     0.8025692550457806
+    ]
+   },
+   "Fz": {
+    "g": [
+     -0.041025296535146145,
+     -0.9775,
+     0.20690740693412418
+    ],
+    "acc": [
+     -0.6,
+     1.5,
+     -0.4
+    ],
+    "axis": "roll (tilt)",
+    "sign": -1,
+    "omega": false,
+    "cable": [
+     0.12491922621231355,
+     -0.5833333333333333,
+     0.8025692550457806
+    ]
+   }
+  }
+ },
+ "wire": {
+  "Sut_MPa": 2065.338995964973,
+  "S_bend_MPa": 1549.0042469737296,
+  "use_worst_MPa": 176.90157980144872,
+  "SF_use": 8.75630533493429,
+  "donning": {
+   "outwards (+z)": {
+    "stress_per_mm_MPa": 59.20058759672351,
+    "at": "descent",
+    "force_per_mm_N": 0.6147930067140701,
+    "opening_at_set_mm": 26.165352572606224
+   },
+   "rearwards (-x)": {
+    "stress_per_mm_MPa": 147.64209714104842,
+    "at": "arch",
+    "force_per_mm_N": 2.5176315157369764,
+    "opening_at_set_mm": 10.491616395111913
+   },
+   "down (-y)": {
+    "stress_per_mm_MPa": 161.05645825187835,
+    "at": "plate",
+    "force_per_mm_N": 3.076108940291179,
+    "opening_at_set_mm": 9.617771704325083
+   }
+  }
+ },
+ "bayonet": {
+  "per_size": {
+   "40": {
+    "capacity_N": 113.79375000000002,
+    "g_held": 716.0352248272739
+   },
+   "45": {
+    "capacity_N": 113.79375000000002,
+    "g_held": 574.2460713961306
+   },
+   "50": {
+    "capacity_N": 113.79375000000002,
+    "g_held": 426.4621559633028
+   },
+   "55": {
+    "capacity_N": 113.79375000000002,
+    "g_held": 339.1745801813402
+   },
+   "60": {
+    "capacity_N": 113.79375000000002,
+    "g_held": 281.54783112140376
+   }
+  },
+  "limiting": "ring lug (shear)",
+  "per_lug_N": 37.931250000000006
+ },
+ "eye_clip": {
+  "F_use_N": 2.676224277496046,
+  "F_tug_N": 3.0,
+  "jaw_tip_capacity_N": 21.914062499999993,
+  "snap_force_per_jaw_N": 263.6718749999999,
+  "snap_stress_MPa": 140.62499999999997,
+  "SF_snap": 0.08311111111111114,
+  "note": "band pull goes into the clip base in compression (sleeve pressed into the bore); jaws only hold the sleeve in the slot"
+ },
+ "flange": {
+  "F_pad_N": 7.897571232043041,
+  "stress_MPa": 1.072543023003472,
+  "SF": 11.144657830627
+ }
+}

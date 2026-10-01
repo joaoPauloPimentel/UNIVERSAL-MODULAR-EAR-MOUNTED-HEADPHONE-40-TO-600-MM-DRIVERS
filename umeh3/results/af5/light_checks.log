@@ -1,0 +1,49 @@
+== tolerances
+D40: flap squeeze nom 0.30 mm, 3-sigma 0.05..0.55 (ok 0.05..0.9); rim fit -0.24..+0.44 mm (+ clearance, - interference)
+D45: flap squeeze nom 0.30 mm, 3-sigma 0.05..0.55 (ok 0.05..0.9); rim fit -0.24..+0.43 mm (+ clearance, - interference)
+D50: flap squeeze nom 0.30 mm, 3-sigma 0.05..0.55 (ok 0.05..0.9); rim fit -0.23..+0.43 mm (+ clearance, - interference)
+D55: flap squeeze nom 0.30 mm, 3-sigma 0.05..0.55 (ok 0.05..0.9); rim fit -0.23..+0.44 mm (+ clearance, - interference)
+D60: flap squeeze nom 0.30 mm, 3-sigma 0.05..0.55 (ok 0.05..0.9); rim fit -0.24..+0.43 mm (+ clearance, - interference)
+adapter_in_pocket: nom 0.30, 3-sigma 0.06..0.54
+bayonet_engagement: nom 0.80, 3-sigma 0.54..1.06
+bushing_interference: nom 0.15, 3-sigma -0.00..0.30
+bushing min: p 0.00 MPa, slide force 0.0 N, turn torque 0.0 N mm
+bushing nom: p 1.35 MPa, slide force 21.8 N, turn torque 17.4 N mm
+bushing max: p 2.74 MPa, slide force 44.1 N, turn torque 35.2 N mm
+== vibration
+D40: driver on TPU fn 6619 Hz, isolates above 9361 Hz
+D45: driver on TPU fn 6256 Hz, isolates above 8848 Hz
+D50: driver on TPU fn 5651 Hz, isolates above 7991 Hz
+D55: driver on TPU fn 5270 Hz, isolates above 7454 Hz
+D60: driver on TPU fn 5008 Hz, isolates above 7082 Hz
+rigid modes 60 mm: 22.3 Hz rotation about y, 23.7 Hz rotation about x, 36.4 Hz translation z, 37.7 Hz rotation about z, 56.6 Hz rotation about x, 58.9 Hz rotation about y
+== acoustics
+D40: Vb 30.0 cm3, Vfront 63.7 cm3, closed box Fc 522 Hz Qtc 1.74
+    vedado (fresta 0,05 mm em toda a volta) [A]: 30 Hz 124.4 dB, 50 Hz 124.5 dB, 100 Hz 124.6 dB, 200 Hz 125.2 dB, 500 Hz 129.9 dB, 1000 Hz 119.7 dB
+    correndo, abertura leve (0,2 mm em 1/4 da volta) [A]: 30 Hz 122.5 dB, 50 Hz 123.8 dB, 100 Hz 124.6 dB, 200 Hz 125.4 dB, 500 Hz 130.0 dB, 1000 Hz 119.9 dB
+    correndo, abertura forte (0,5 mm em 1/2 da volta) [A]: 30 Hz 97.0 dB, 50 Hz 102.3 dB, 100 Hz 111.4 dB, 200 Hz 126.1 dB, 500 Hz 131.7 dB, 1000 Hz 120.9 dB
+D45: Vb 27.6 cm3, Vfront 63.7 cm3, closed box Fc 608 Hz Qtc 2.34
+    vedado (fresta 0,05 mm em toda a volta) [A]: 30 Hz 122.4 dB, 50 Hz 122.4 dB, 100 Hz 122.5 dB, 200 Hz 123.0 dB, 500 Hz 127.1 dB, 1000 Hz 122.1 dB
+    correndo, abertura leve (0,2 mm em 1/4 da volta) [A]: 30 Hz 120.4 dB, 50 Hz 121.7 dB, 100 Hz 122.6 dB, 200 Hz 123.2 dB, 500 Hz 127.2 dB, 1000 Hz 122.3 dB
+    correndo, abertura forte (0,5 mm em 1/2 da volta) [A]: 30 Hz 94.8 dB, 50 Hz 100.1 dB, 100 Hz 109.2 dB, 200 Hz 123.9 dB, 500 Hz 129.0 dB, 1000 Hz 123.3 dB
+D50: Vb 24.6 cm3, Vfront 63.7 cm3, closed box Fc 720 Hz Qtc 3.20
+    vedado (fresta 0,05 mm em toda a volta) [A]: 30 Hz 120.1 dB, 50 Hz 120.1 dB, 100 Hz 120.2 dB, 200 Hz 120.6 dB, 500 Hz 123.6 dB, 1000 Hz 126.0 dB
+    correndo, abertura leve (0,2 mm em 1/4 da volta) [A]: 30 Hz 118.0 dB, 50 Hz 119.4 dB, 100 Hz 120.3 dB, 200 Hz 120.8 dB, 500 Hz 123.7 dB, 1000 Hz 126.2 dB
+    correndo, abertura forte (0,5 mm em 1/2 da volta) [A]: 30 Hz 92.3 dB, 50 Hz 97.5 dB, 100 Hz 106.5 dB, 200 Hz 121.1 dB, 500 Hz 125.9 dB, 1000 Hz 127.4 dB
+D55: Vb 21.0 cm3, Vfront 63.7 cm3, closed box Fc 862 Hz Qtc 4.35
+    vedado (fresta 0,05 mm em toda a volta) [A]: 30 Hz 117.7 dB, 50 Hz 117.7 dB, 100 Hz 117.7 dB, 200 Hz 118.0 dB, 500 Hz 120.1 dB, 1000 Hz 131.5 dB
+    correndo, abertura leve (0,2 mm em 1/4 da volta) [A]: 30 Hz 115.4 dB, 50 Hz 116.9 dB, 100 Hz 117.8 dB, 200 Hz 118.3 dB, 500 Hz 120.3 dB, 1000 Hz 131.6 dB
+    correndo, abertura forte (0,5 mm em 1/2 da volta) [A]: 30 Hz 89.5 dB, 50 Hz 94.7 dB, 100 Hz 103.7 dB, 200 Hz 118.0 dB, 500 Hz 122.9 dB, 1000 Hz 132.4 dB
+D60: Vb 16.6 cm3, Vfront 63.7 cm3, closed box Fc 1070 Hz Qtc 6.12
+    vedado (fresta 0,05 mm em toda a volta) [A]: 30 Hz 114.7 dB, 50 Hz 114.7 dB, 100 Hz 114.7 dB, 200 Hz 114.9 dB, 500 Hz 116.3 dB, 1000 Hz 124.3 dB
+    correndo, abertura leve (0,2 mm em 1/4 da volta) [A]: 30 Hz 112.3 dB, 50 Hz 113.9 dB, 100 Hz 114.8 dB, 200 Hz 115.2 dB, 500 Hz 116.5 dB, 1000 Hz 124.3 dB
+    correndo, abertura forte (0,5 mm em 1/2 da volta) [A]: 30 Hz 86.1 dB, 50 Hz 91.3 dB, 100 Hz 100.2 dB, 200 Hz 114.2 dB, 500 Hz 119.5 dB, 1000 Hz 124.7 dB
+D40 felt on driver back: 0.0 mm peak +6.4 dB @ 595 Hz, 100 Hz 125 dB; 0.5 mm peak +5.8 dB @ 585 Hz, 100 Hz 125 dB; 1.0 mm peak +5.2 dB @ 575 Hz, 100 Hz 125 dB; 1.5 mm peak +4.6 dB @ 565 Hz, 100 Hz 125 dB; 2.0 mm peak +4.1 dB @ 555 Hz, 100 Hz 125 dB; 3.0 mm peak +3.2 dB @ 537 Hz, 100 Hz 125 dB; 4.0 mm peak +2.5 dB @ 518 Hz, 100 Hz 125 dB
+D45 felt on driver back: 0.0 mm peak +8.9 dB @ 696 Hz, 100 Hz 123 dB; 0.5 mm peak +8.1 dB @ 696 Hz, 100 Hz 123 dB; 1.0 mm peak +7.3 dB @ 696 Hz, 100 Hz 123 dB; 1.5 mm peak +6.7 dB @ 684 Hz, 100 Hz 123 dB; 2.0 mm peak +6.1 dB @ 672 Hz, 100 Hz 123 dB; 3.0 mm peak +5.0 dB @ 660 Hz, 100 Hz 123 dB; 4.0 mm peak +4.1 dB @ 649 Hz, 100 Hz 122 dB
+D50 felt on driver back: 0.0 mm peak +11.4 dB @ 827 Hz, 100 Hz 120 dB; 0.5 mm peak +10.5 dB @ 827 Hz, 100 Hz 120 dB; 1.0 mm peak +9.6 dB @ 827 Hz, 100 Hz 120 dB; 1.5 mm peak +8.8 dB @ 813 Hz, 100 Hz 120 dB; 2.0 mm peak +8.1 dB @ 813 Hz, 100 Hz 120 dB; 3.0 mm peak +6.9 dB @ 799 Hz, 100 Hz 120 dB; 4.0 mm peak +5.9 dB @ 785 Hz, 100 Hz 120 dB
+D55 felt on driver back: 0.0 mm peak +13.9 dB @ 983 Hz, 100 Hz 118 dB; 0.5 mm peak +12.8 dB @ 983 Hz, 100 Hz 118 dB; 1.0 mm peak +11.8 dB @ 983 Hz, 100 Hz 118 dB; 1.5 mm peak +11.0 dB @ 967 Hz, 100 Hz 118 dB; 2.0 mm peak +10.2 dB @ 967 Hz, 100 Hz 118 dB; 3.0 mm peak +8.8 dB @ 967 Hz, 100 Hz 118 dB; 4.0 mm peak +7.6 dB @ 950 Hz, 100 Hz 118 dB
+D60 felt on driver back: 0.0 mm peak +16.6 dB @ 1190 Hz, 100 Hz 115 dB; 0.5 mm peak +15.4 dB @ 1190 Hz, 100 Hz 115 dB; 1.0 mm peak +14.3 dB @ 1190 Hz, 100 Hz 115 dB; 1.5 mm peak +13.3 dB @ 1190 Hz, 100 Hz 115 dB; 2.0 mm peak +12.4 dB @ 1190 Hz, 100 Hz 115 dB; 3.0 mm peak +10.9 dB @ 1169 Hz, 100 Hz 115 dB; 4.0 mm peak +9.6 dB @ 1169 Hz, 100 Hz 115 dB
+front cavity modes {'radial_11': 3380, 'radial_01': 7036, 'axial_1': 7210} rear {'radial_11': 3222, 'radial_01': 6707, 'axial_1': 13415}
+== contacts 60 mm (kPa)
+static  {'pad_p': 0.66, 'root_p': 0.89, 'helix_p': 0.0, 'sulcus_p': 1.43, 'lobe_p': 0.0, 'pinna_p': 1.01}
+running {'pad_p': 1.69, 'root_p': 7.71, 'helix_p': 4.42, 'sulcus_p': 2.65, 'lobe_p': 3.53, 'pinna_p': 1.78}

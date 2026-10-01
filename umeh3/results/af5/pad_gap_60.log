@@ -1,0 +1,1 @@
+{'D': 60, 'n': 5400, 'released': 0, 'open_share_of_cases': 0.5842592592592593, 'gap_mm_p50': 0.08558877870183507, 'gap_mm_p90': 1.1082184356497442, 'gap_mm_max': 2.7567381495261953, 'ring_open_p50': 0.1875, 'ring_open_p90': 0.4375, 'ring_open_max': 0.625, 'gap_mm_p90_when_open': 1.2770147763115938, 'ring_open_p90_when_open': 0.5}
