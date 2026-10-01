@@ -178,9 +178,11 @@ module paddle() {
 // neckband: music wire in a silicone sleeve (first part; the rest runs around the nape) + PETG eye clip on the cup
 module neckband() { if (NECK != undef) { sweep_tube(NECK, NECK_D + 4.0, 0, len(NECK) - 1); } }
 module neck_eye() {
-    if (NECK != undef) translate([NECK[0][0], NECK[0][1], NECK[0][2] - 1.5 - 0.01]) difference() {
-        hull() { cylinder(d = 9, h = 3.5, $fn = 40); translate([-8, 0, 0]) cylinder(d = 7, h = 3.5, $fn = 40); }
-        translate([0, 0, 1.5]) rotate([0, -90, 0]) cylinder(d = NECK_D + 0.2, h = 20, $fn = 16);
+    // clip on the cup end gripping the band's silicone sleeve; the sleeve runs clear of the cup
+    if (NECK != undef) translate([NECK[0][0], NECK[0][1], NECK[0][2] - NECK_EYE_Z - 0.01]) difference() {
+        hull() { cylinder(d = 11, h = NECK_EYE_Z + 3.2, $fn = 40); translate([-9, 0, 0]) cylinder(d = 9, h = NECK_EYE_Z + 3.2, $fn = 40); }
+        translate([0, 0, NECK_EYE_Z]) rotate([0, -90, 0]) cylinder(d = NECK_D + 4.2, h = 30, $fn = 24, center = true);
+        translate([-20, -(NECK_D + 3.4) / 2, NECK_EYE_Z]) cube([40, NECK_D + 3.4, 10]);   // snap-in slot
     }
 }
 // wide soft saddle on the arch (model A final): TPU carrier clipped on the wire + slow-rebound foam strip in a velour sock

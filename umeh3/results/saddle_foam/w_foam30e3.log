@@ -1,0 +1,9 @@
+sustained root 3685
+{'P': 0.5, 'neck': 2.0} {'E_foam': 30000.0} fail in settled cycle 0 / 1080
+acc []
+axis []
+omega []
+cable []
+g []
+Counter()
+[]

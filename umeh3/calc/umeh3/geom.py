@@ -132,16 +132,19 @@ def path_length(P):
     return float(np.linalg.norm(np.diff(P, axis=0), axis=1).sum())
 
 
+NECK_EYE_Z = 3.4       # band axis above the cup end (= neckband.EYE_Z_OUT)
+
+
 def neck_path():
     """First part of the neckband (mm, this side's frame; the rest runs around the nape): eye on the back of the cup
-    on the pad axis -> back across the cup face past the rim -> down the module side towards the head -> back and down
-    towards the nape (it leaves this side's frame there, drawn as a stub)."""
-    zc = Z_F + CUP_H + 1.5
-    R = POCKET_R + HUB_WALL + 4.0
-    pc = pocket_c()
-    xb = pc[0] - R
-    return [(0.0, 0.0, zc), (xb + 6.0, -2.0, zc), (xb, -4.0, zc - 6.0), (xb - 2.0, -8.0, Z_F - 4.0),
-            (xb - 14.0, -16.0, 4.0), (xb - 34.0, -28.0, -6.0), (xb - 56.0, -38.0, -20.0)]
+    on the pad axis -> back across the cup face and over its rounded edge -> out over the top of the pad, clear of its
+    outer edge -> down behind the pad towards the head -> back and down towards the nape. Every point keeps the
+    silicone sleeve clear of the shell and the pad (checked against the meshes)."""
+    zc = Z_F + CUP_H + NECK_EYE_Z
+    ro = PAD["od"] / 2 + 8.0               # outside the pad's outer edge + sleeve radius + gap
+    return [(0.0, 0.0, zc), (-14.0, -1.0, zc), (-30.0, -3.0, zc + 0.3), (-43.0, -5.0, zc - 4.0),
+            (-0.94 * ro, -8.0, Z_F + 9.0), (-ro, -12.0, Z_F + 2.0), (-ro - 1.0, -18.0, 12.0),
+            (-ro - 3.0, -26.0, 0.0), (-ro - 9.0, -34.0, -10.0)]
 
 
 def _leg_dir():
@@ -174,6 +177,7 @@ def write_scad(path):
         f"HOOK_DESC = {lab.index('descent')};",
         f"PADDLE = {list(PADDLE) if PADDLE else 'undef'}; PINNA_PT = {list(PINNA_PT)};",
         f"LEG_DIR = [{_leg_dir()[0]:.4f}, {_leg_dir()[1]:.4f}];",
+        f"NECK_EYE_Z = {NECK_EYE_Z};",
         "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
         f"NECK_D = {NECK_WIRE_D};",
         "SADDLE = " + (f"[{SADDLE['w']}, {SADDLE['t_foam']}, {SADDLE['carrier_t']}]" if SADDLE else "undef") + ";",
@@ -210,7 +214,7 @@ VARIANTS = {
                LEG_PTS=[(-18.5, 8.0, 6.0), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
                TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
                LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0), NECK=True,
-               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=20e3, carrier_t=1.2, foam_rho=50.0)),
+               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=30e3, carrier_t=1.2, foam_rho=50.0)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.

@@ -1,0 +1,4 @@
+AF D50 {'P': 0.5, 'neck': 2.0} eye [0.0, 0.0] M=80.8 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.5g
+  static: root 856 pad 629 pinna 1012 npad 16
+  treadmill: rel=0/5400 (0.0%) root=7179 pad=1522 pinna=1641 disp=2.03 npadmin=6 lost=0
+  tug min 2.81 N
