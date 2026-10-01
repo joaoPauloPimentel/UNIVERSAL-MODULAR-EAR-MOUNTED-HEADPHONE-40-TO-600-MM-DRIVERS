@@ -27,7 +27,7 @@ FOAM_RETIC = Val(30.0, "DS", "kg/m3 reticulated PU foam (front foam), 25-35")
 SOCKET_M = Val(0.6, "DS", "g, 0.78 mm 2-pin female socket")
 PLUG_M = Val(1.5, "A", "g, cable plug seated in the socket (rides on the module)")
 LEADS_M = Val(0.6, "A", "g, internal leads + JST-SH pair (driver <-> socket)")
-PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg", "pad",
+PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg", "pad",
          "front_foam", "socket", "fibre", "paddle", "saddle_carrier", "saddle_foam", "neckband", "neck_eye"]
 
 

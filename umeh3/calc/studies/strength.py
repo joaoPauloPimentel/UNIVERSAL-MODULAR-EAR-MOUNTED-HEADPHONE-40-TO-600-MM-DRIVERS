@@ -60,6 +60,16 @@ out["bushing"] = dict(static_Tz_Nmm=abs(M0[2]) * 1e3, static_Fz_N=abs(F0[2]), ru
                       slip_T_min_Nmm=T_min, slide_F_nom_N=F_nom, slide_F_min_N=F_min, cases=n,
                       tags=dict(Tz=worst["Tz"][1], Fz=worst["Fz"][1]))
 
+# rotation lock (pin at the end of the 15 mm crank in a PETG hole): the running twist goes into the pin
+T_run = worst["Tz"][0]
+F_pin = T_run / (geom.LOCK["r"] * 1e-3)
+engaged = geom.LOCK["pin"] / 2 * 1e-3                      # pin half way in (height adjustment +-)
+p_pin = F_pin / (geom.WIRE_D * 1e-3 * engaged)
+S_bear = PETG["S_bear"].v * PETG["kT_40C"].v * stc.K_SUSTAINED / GAMMA_M_PRINT.v
+s_crank = T_run / (math.pi * (geom.WIRE_D * 1e-3) ** 3 / 32)
+out["lock"] = dict(F_pin_N=F_pin, p_hole_MPa=p_pin / 1e6, SF_hole=S_bear / p_pin, crank_stress_MPa=s_crank / 1e6,
+                   SF_crank=0.75 * wire_sut(geom.WIRE_D) / s_crank)
+
 # ---------------------------------------------------------------- 2. hook wire stress
 d = geom.WIRE_D * 1e-3
 Sut = wire_sut(geom.WIRE_D)
@@ -172,6 +182,8 @@ print(f"bushing: static twist {b['static_Tz_Nmm']:.1f} N mm, running worst {b['r
       f"{b['slip_T_nom_Nmm']:.1f} (worst print {b['slip_T_min_Nmm']:.1f}); axial static {b['static_Fz_N']:.2f} N, running "
       f"{b['run_Fz_N']:.2f} N vs slide force nom {b['slide_F_nom_N']:.1f} (worst print {b['slide_F_min_N']:.1f}) N; "
       f"bending at the exit {b['run_Mbend_Nmm']:.0f} N mm")
+lk = out["lock"]
+print(f"rotation lock: pin force {lk['F_pin_N']:.1f} N, hole bearing {lk['p_hole_MPa']:.2f} MPa (SF {lk['SF_hole']:.1f}), crank {lk['crank_stress_MPa']:.0f} MPa (SF {lk['SF_crank']:.1f})")
 wv = out["wire"]
 print(f"wire: Sut {wv['Sut_MPa']:.0f} MPa, set limit {wv['S_bend_MPa']:.0f}; in use worst {wv['use_worst_MPa']:.0f} MPa (SF {wv['SF_use']:.1f})")
 for k, x in wv["donning"].items():

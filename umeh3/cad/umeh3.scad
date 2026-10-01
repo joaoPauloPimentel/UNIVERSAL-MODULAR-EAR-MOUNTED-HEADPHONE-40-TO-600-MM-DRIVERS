@@ -6,7 +6,7 @@
 //  front_ring   PETG, 3-lug bayonet (30 deg turn by hand): locks adapter + driver from the front.
 //  adapter(D)   TPU 95A, one per driver size: rim seat, aperture lip, conical spring flap (axial preload).
 //  bushing      TPU 95A friction bushing in the boss: the hook wire turns and slides in it to set the height.
-//  stop_cap     PETG cap on the wire tail (keeps the hook from being pulled out).
+//  stop_cap     PETG collar on the wire above the boss (pull-out stop); the crank pin locks rotation (lock_wall()).
 //  hook         music wire, PTFE liner, silicone sleeves (purchased, cut to length; wire bent on the jig).
 //  pad          purchased round 110 mm velour pad (visual), front_foam: 3 mm reticulated PU disc.
 //  Frame: x forward, y up, z away from the head; origin on the pad axis in the skin plane. Right side;
@@ -63,6 +63,18 @@ module flange() {
         translate([0, 0, -0.01]) difference() { cylinder(d = FLANGE_OD + 1, h = 0.6); cylinder(d1 = FLANGE_OD - 1.2, d2 = FLANGE_OD + 0.01, h = 0.6); }
     }
 }
+// rotation lock: arc wall on the back of the plate around the hook boss axis, away from the cup, with a row of holes
+// for the pin at the end of the wire crank. LOCK = [r, w, hole, depth, step, n]
+module lock_wall() {
+    a_out = atan2(HH[1] - PC[1], HH[0] - PC[0]);
+    span = (LOCK[5] - 1) * LOCK[4] + 2 * LOCK[1] / LOCK[0] * 180 / PI;
+    translate([HH[0], HH[1], Z_F + PLATE_T - 0.01]) difference() {
+        rotate([0, 0, a_out - span / 2]) rotate_extrude(angle = span, $fn = 160)
+            translate([LOCK[0] - LOCK[1] / 2, 0]) square([LOCK[1], BOSS_L - PLATE_T]);
+        for (k = [0 : LOCK[5] - 1]) rotate([0, 0, a_out + (k - (LOCK[5] - 1) / 2) * LOCK[4]])
+            translate([LOCK[0], 0, BOSS_L - PLATE_T - LOCK[3]]) cylinder(d = LOCK[2], h = LOCK[3] + 1, $fn = 20);
+    }
+}
 module hook_boss_solid() {
     hull() {
         translate([HH[0], HH[1], Z_F]) cylinder(d = BUSH_OD + 2.4, h = BOSS_L, $fn = 48);
@@ -100,6 +112,7 @@ module shell() {
             flange();
             at_pc() rotate_extrude($fn = 160) difference() { cup_outer2d(); }
             hook_boss_solid();
+            lock_wall();
             socket_housing(false);
             if (GROOVE) groove_rib();
         }
@@ -250,6 +263,7 @@ module placed(p) {
     if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) adapter(D);
     if (p == "driver") at_pc() translate([0, 0, ZL_ADP + 1.0 - 0.0]) driver_vis(D);
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
+    // stop collar on the wire just above the bushing boss (keeps the hook from being pulled towards the head)
     if (p == "stop_cap") translate([HH[0], HH[1], Z_F + BOSS_L + 0.2]) stop_cap();
     if (p == "wire") hook_wire();
     if (p == "sleeve_arch" && SADDLE == undef) sleeve_arch();
@@ -264,9 +278,9 @@ module placed(p) {
     if (p == "neck_eye") neck_eye();
     if (p == "fibre") fibre();
 }
-PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg",
+PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg",
          "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "neck_eye", "saddle_carrier", "saddle_foam"];
-COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "#A27449", "Silver", "#3A3D42", "#3A3D42",
+COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "Silver", "#3A3D42", "#3A3D42",
        "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#A27449", "#1D1F22", "#2E3036"];
 
 module sided() { if (side == "L") mirror([1, 0, 0]) children(); else children(); }

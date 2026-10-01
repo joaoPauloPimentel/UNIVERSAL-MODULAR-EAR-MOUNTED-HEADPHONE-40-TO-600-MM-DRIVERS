@@ -12,10 +12,10 @@ são impressas em FDM; o resto é comprado pronto.
 
 | Peça | Material | Como se obtém | Massa (g) |
 |---|---|---|---|
-| Concha (placa + copo + bucha do gancho + caixa do conector) | PETG grafite | impressa | 20,1 |
+| Concha (placa + copo 31 mm + bucha do gancho + parede da trava + caixa do conector) | PETG grafite | impressa | 25,8 |
 | Anel de travamento do driver (baioneta) | PETG bronze | impresso | 1,7 |
 | Adaptador do driver, um por tamanho | TPU 95A | impresso | 1,2 |
-| Bucha de fricção e tampinha do gancho | TPU 95A / PETG | impressas | 0,2 |
+| Bucha de fricção do gancho | TPU 95A | impressa | 0,1 |
 | Palheta atrás da orelha, 14 × 36 mm | TPU 95A | impressa | 1,4 |
 | Berço da sela (placa fina + clipe no tubo) | TPU 95A | impresso | 3,3 |
 | Presilha da faixa na concha (encaixe) | PETG bronze | impressa | 0,4 |
@@ -25,9 +25,9 @@ são impressas em FDM; o resto é comprado pronto.
 | Espuma da sela 6 mm (viscoelástica média, ~25 kPa) em capa de veludo | comprada | 0,6 |
 | Faixa da nuca: aço mola 1,6 mm em capa de silicone de 5,6 mm | comprada | 7,5 o par |
 | Conector 2 pinos 0,78 mm | comprado | 2,7 |
-| Espuma frontal PU reticulada 3 mm, fibra de poliéster na concha | compradas | 0,4 |
+| Espuma frontal PU reticulada 3 mm, fibra de poliéster enchendo a concha | compradas | 0,7 |
 
-Massa por lado, com metade da faixa: 52,8 g + driver. Com drivers típicos [A]: 40 mm 68 g, 50 mm 79 g, 60 mm 93 g.
+Massa por lado, com metade da faixa: 59,0 g + driver. Com drivers típicos [A]: 40 mm 74 g, 50 mm 85 g, 60 mm 99 g.
 
 ## 3. Como foi verificado
 
@@ -47,20 +47,21 @@ ficar depois de alguns minutos correndo). Depois mais uma volta completa, contan
 | Driver | 40 mm | 50 mm | 60 mm | Meta |
 |---|---|---|---|---|
 | Casos de corrida em que solta | 0 | 0 | 0 | 0 |
-| Vinco da orelha parado (kPa) | 0,7 | 0,8 | 0,9 | 4 |
-| Vinco a cada passada, pico (kPa) | 6,2 | 6,9 | 7,7 | 8 |
-| Puxão de cabo que derruba (N) | 2,7 | 2,8 | 2,8 | > 1 |
-| Vinco depois de correr um tempo (kPa) | | | 3,9 | 4 |
+| Vinco da orelha parado (kPa) | 0,8 | 0,9 | 1,0 | 4 |
+| Vinco a cada passada, pico (kPa) | 6,4 | 7,2 | 8,2 | 8 |
+| Puxão de cabo que derruba (N) | 2,4 | 2,4 | 2,4 | > 1 |
+| Vinco depois de correr um tempo (kPa) | | | 3,8 | 4 |
 | Passadas que deslocam, depois de acomodado | | | 0 de 1080 | 0 |
 
-A corrida longa foi rodada só com 60 mm, o caso mais pesado.
+A corrida longa foi rodada só com 60 mm, o caso mais pesado. Com 60 mm o vinco a cada passada fica 2% acima da
+meta de 8 kPa (que já é um valor de conforto assumido); veio dos 6 g a mais da trava do gancho e do copo mais fundo.
 
 ### Atrito do gancho na orelha (60 mm, depois de acomodado)
 
 | Contato | Passadas em que escorrega | Escorregamento médio |
 |---|---|---|
 | Sela na raiz da orelha | 1% | menos de 0,01 mm |
-| Lado da sela na hélice | todas | 1,0 mm |
+| Lado da sela na hélice | todas | 1,0 mm (força ~0,02 N) |
 | Perna no sulco atrás da orelha | 2% | menos de 0,01 mm |
 | Ponta sob o lóbulo | não encosta enquanto corre | |
 
@@ -74,31 +75,49 @@ e a faixa da nuca, que tira do gancho quase todo o puxão do cabo.
 
 ### Vedação acústica (fundo fechado, 60 mm)
 
-Parado, a almofada encosta em toda a volta (16 de 16 setores), com 0,46 kPa em média e 2,2 N de força. Correndo, no
-pico de algumas passadas parte da almofada desencosta por um instante:
+Parado, a almofada encosta em toda a volta (16 de 16 setores). Correndo, a almofada levanta um pouco em 72% dos
+casos: na metade deles menos de 0,35 mm, em 1 de cada 10 mais de 1,6 mm em metade da volta. Com abertura leve o grave
+quase não muda; com a forte cai bastante por um instante (o grave "respira" no ritmo da corrida). Decisão: manter a
+faixa de 2 N.
 
-| Faixa | Almofada | Passadas com abertura momentânea |
+### Acústica do fundo fechado (valores de driver típicos [A])
+
+| Driver | Volume atrás (cm³) | Pico de médios acima do nível em 100 Hz |
 |---|---|---|
-| 2 N | típica (20 kPa) | 56% |
-| 2,5 N | macia (10 kPa) | 41% |
-| 3 N | típica (20 kPa) | 34% |
+| 40 mm | 60 | +2,2 dB perto de 390 Hz |
+| 50 mm | 55 | +5,5 dB perto de 575 Hz |
+| 60 mm | 47 | +8,7 dB perto de 760 Hz |
 
-Na prática: andando ou parado, a vedação é completa. Correndo, o grave deve "respirar" um pouco a cada passada. Uma
-faixa mais firme ou uma almofada mais macia reduzem isso, mas não eliminam; eliminar pediria um aperto de fone de
-estúdio (4 a 6 N), que pesa mais e cansa.
+Com o copo raso do primeiro desenho os picos eram +6,4, +11,4 e +16,6 dB. O grave é plano até 30 Hz com a vedação
+fechada. O valor real depende dos dados do driver; com eles na mão dá para afinar a fibra.
+
+### Tolerâncias, vibração e resistência
+
+- Encaixe sem cola: o flap do adaptador fica com 0,05 a 0,55 mm de aperto em 99,7% das impressões (aceita 0,05 a 0,9).
+- Bucha do gancho: interferência de 0 a 0,3 mm conforme a impressora; imprimir 3 buchas (furo 1,35, 1,45 e 1,55 mm) e
+  ficar com a que desliza firme.
+- Trava de giro: o giro do gancho na corrida (até 67 N·mm, 4 vezes o que a bucha segura) vai para o pino; furo com
+  folga de 14 vezes, fio com 9 vezes.
+- Fio do gancho: folga de 8 vezes na corrida; abre uns 10 mm para trás ou para baixo antes de entortar.
+- Baioneta (ressaltos de 14 mm): segura 440 g de desaceleração com driver de 60 mm e 1100 g com 40 mm.
+- Presilha da faixa, placa da almofada: folga de 11 a 14 vezes.
+- Vibração: o fone na cabeça vibra em 21 a 56 Hz, longe do ritmo da passada (2 a 3 Hz). O driver não fica isolado da
+  concha (a borda de TPU é rígida demais para isso), o que é normal.
 
 ## 5. Mudanças desta rodada
 
-- Faixa da nuca refeita: passa por cima da concha e contorna a almofada por fora. Sem interferência com nenhuma peça
-  (folga medida contra as malhas); a presilha agora segura a capa de silicone por encaixe.
-- Espuma da sela de 20 para 25 kPa: com a mais macia, no impacto do pé com a cabeça inclinando, o fone afundava pouco
-  mais de 3 mm e cerca de 4% das passadas o deslocavam depois de acomodado. Com 25 kPa, nenhuma.
-- Berço da sela mais leve (4,2 para 3,3 g): placa fina sob a espuma e um clipe em volta do tubo do fio.
+- Faixa da nuca refeita: passa por cima da concha e contorna a almofada por fora, sem encostar em nenhuma peça.
+- Espuma da sela de 20 para 25 kPa e berço mais leve (3,3 g).
+- Trava de giro do gancho: a ponta do fio dobra num braço de 12 mm com pino, que entra num de 9 furos a cada 16°
+  (±64°). Para ajustar: puxe o pino, gire, encaixe em outro furo; ajuste fino dobrando o fio.
+- Copo 10 mm mais fundo (31 mm) e cheio de fibra de poliéster.
+- Ressaltos da baioneta de 9 para 14 mm de largura.
 
 ## 6. O que fica em aberto
 
 - Valores [A] (almofada, drivers, atritos, rigidez da pele) são típicos; confirmar com as peças na mão.
 - A forma da faixa atrás da cabeça no modelo 3D é aproximada; o ajuste final é dobrando o fio.
 - Acabamento visual (caixa do conector, forma do copo) ainda não foi refinado.
+- Cálculos pesados ainda não rodados: cargas fora da corrida, corrida longa com 40 e 50 mm, massa máxima de driver.
 - Teste real: pesar as peças, medir a pressão no vinco com filme sensível depois de 20 minutos de esteira, e ouvir a
   vedação correndo.

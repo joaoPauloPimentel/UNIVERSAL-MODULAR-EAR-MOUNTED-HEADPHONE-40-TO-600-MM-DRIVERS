@@ -116,9 +116,14 @@ for D in geom.SIZES:
     Ts = ac.ts(D)
     V_mag = math.pi * (drv["rear_d"] / 2e3) ** 2 * max(drv["depth"] - drv["rim_t"] - (geom.ADAPTER_H - 1.0 - drv["rim_t"]), 0) * 1e-3 * ac.MOTOR_FILL
     Vb = V_ch - V_mag - V_fibre + math.pi * (geom.SHOULDER_RI * 1e-3) ** 2 * geom.SHOULDER_T * 1e-3
-    cb = ac.closed_box(Ts, Vb)
-    ZB = ac.compliance(Vb, f)
-    row = dict(Vb_cm3=Vb * 1e6, Vfront_cm3=V_front_base * 1e6, Fc_Hz=cb["Fc"], Qtc=cb["Qtc"], alpha=cb["alpha"])
+    # chamber filled with polyester fibre: isothermal compression -> effective volume x FILL_GAIN [LIT 1.2-1.4], and
+    # ~10 mm of fibre in the flow path behind the motor (open area 30 % of the rear disc [A])
+    FILL_GAIN = 1.3
+    from umeh2.materials import ACOUSTIC_MAT as _AM
+    R_fib = _AM["fibre_sigma"].v * 0.010 / (0.30 * math.pi * (drv["rear_d"] / 2e3) ** 2)
+    cb = ac.closed_box(Ts, FILL_GAIN * Vb)
+    ZB = R_fib + ac.compliance(FILL_GAIN * Vb, f)
+    row = dict(Vb_cm3=Vb * 1e6, Vb_eff_cm3=FILL_GAIN * Vb * 1e6, Vfront_cm3=V_front_base * 1e6, Fc_Hz=cb["Fc"], Qtc=cb["Qtc"], alpha=cb["alpha"])
     spl = {}
     for name, (w, pr) in LEAKS.items():
         ZF = ac.front_impedance_sealed(V_front_base, w, pr, land, f)
@@ -138,7 +143,8 @@ for D in geom.SIZES:
     ZF = ac.front_impedance_sealed(V_front_base, 0.05e-3, perim, land, f)
     rows = []
     for t_mm in (0.0, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0):
-        ZB = ac.felt_R(ACOUSTIC_MAT["felt_sigma"].v, t_mm * 1e-3, A_v) + ac.compliance(Vb, f)
+        R_fib = ACOUSTIC_MAT["fibre_sigma"].v * 0.010 / A_v
+        ZB = ac.felt_R(ACOUSTIC_MAT["felt_sigma"].v, t_mm * 1e-3, A_v) + R_fib + ac.compliance(1.3 * Vb, f)
         u, _ = ac.solve_driver(Ts, ZF, ZB, f)
         sdb = ac.spl(Ts["Sd"] * u * ZF)
         ref = float(np.interp(100, f, sdb)); band = (f > 150) & (f < 5000)

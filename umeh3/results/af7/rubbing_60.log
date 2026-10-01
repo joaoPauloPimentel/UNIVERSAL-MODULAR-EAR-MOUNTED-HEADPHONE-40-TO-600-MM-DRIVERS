@@ -1,0 +1,9 @@
+AF D60 {'P': 0.5, 'neck': 2.0} saddle {'w': 20.0, 't_foam': 6.0, 'E_foam': 25000.0, 'carrier_t': 1.2, 'foam_rho': 50.0}  strides 1080  released 0
+contact         mu  strides slipping %  mean slip um  p95 slip um  work uJ/stride
+H root F      0.50                 2.2           1.4          0.0            0.35
+H root B      0.50                 0.3           0.1          0.0            0.02
+H helix       0.50               100.0         950.5       1688.2           21.39
+H sulcus      0.70                 1.7           1.8          0.0            0.31
+H lobe        0.70               100.0         930.0       1798.2            0.00
+Pad 00        0.50                46.9         215.9        923.6            6.75
+pads (all)                        86.1         197.7       1083.1           61.29

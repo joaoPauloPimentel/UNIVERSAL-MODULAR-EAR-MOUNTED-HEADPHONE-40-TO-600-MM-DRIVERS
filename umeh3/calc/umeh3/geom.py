@@ -48,16 +48,22 @@ SHOULDER_RI = 26.0     # rear shoulder inner radius (passes the 60 mm basket, re
 SHOULDER_T = 1.2
 WALL = 1.2             # [A] cup wall
 HUB_WALL = 2.2         # pocket wall (holds the bayonet grooves)
-LUG_N, LUG_W, LUG_H, LUG_DEPTH, TWIST = 3, 9.0, 1.0, 1.1, 30.0   # bayonet: 3 lugs, 30 deg turn
-CUP_H = 21.0           # cup outer height behind the plate front face (clears the 60 mm magnet + fibre)
+LUG_N, LUG_W, LUG_H, LUG_DEPTH, TWIST = 3, 14.0, 1.0, 1.1, 30.0  # bayonet: 3 lugs 14 mm wide (drop, strength.py), 30 deg turn
+CUP_H = 31.0           # cup outer height behind the plate front face; 10 mm deeper than the first draft: bigger rear
+                       # chamber, lower closed-box resonance (studies/rear_options.py)
 CUP_ROUND = 8.0
-FIBRE_T = 3.0          # polyester fibre pad on the inside of the cup end (rear damping)
+FIBRE_T = 11.8         # polyester fibre fill of the rear chamber above the motor (damping, isothermal volume gain)
 
 # ------------------------------------------------------------------ hook
 WIRE_D = 1.6           # mm ASTM A228 music wire (sized in hook.py)
 HOOK_HOLE_R, HOOK_HOLE_A = 28.0, 50.0      # where the wire passes the plate (inside the pad opening, front-top)
 BOSS_L = 16.0          # bushing boss behind the plate (wire guide + friction bushing)
 BUSH_OD, BUSH_L = 4.4, 8.0                 # TPU friction bushing (printed), bore 1.45 on the 1.6 wire
+# rotation lock: the wire tail is bent into a 12 mm radial crank whose end is bent down into a pin; the pin drops
+# into one of 9 holes in an arc wall on the back of the plate (16 deg steps, +-64 deg; the wire bends by hand for fine
+# tuning). The bushing only holds the height; running twists the hook up to ~66 N mm, more than its friction
+# (strength.py). Height range = pin length in the hole. To turn: lift the pin out, turn, drop it in another hole.
+LOCK = dict(r=12.0, w=4.0, hole=2.1, depth=9.0, step=16.0, n=9, pin=7.0)
 PTFE = (2.0, 3.0)      # [DS] PTFE liner tube ID x OD (the sleeve turns on the wire)
 SIL_ARCH = (3.0, 8.0)  # [DS] silicone tube ID x OD over the liner on the root arch (wide bearing)
 SIL_LEG = (3.0, 5.0)   # [DS] silicone tube ID x OD over the liner on the descent and the rear leg
@@ -105,7 +111,14 @@ def hook_path(step_deg=7.0):
 
     def add(p, l):
         pts.append(np.asarray(p, float)); lab.append(l)
-    add([h[0], h[1], Z_F + BOSS_L + 3.0], "tail")
+    zc = Z_F + BOSS_L + 2.0 + LOCK["pin"] / 2               # crank above the lock wall, pin half way in its hole
+    u = np.array([h[0] - pocket_c()[0], h[1] - pocket_c()[1]]); u = u / np.linalg.norm(u)     # away from the cup
+    R = LOCK["r"]
+    add([h[0] + R * u[0], h[1] + R * u[1], zc - LOCK["pin"]], "pin")
+    add([h[0] + R * u[0], h[1] + R * u[1], zc - 1.5], "pin")
+    add([h[0] + (R - 1.5) * u[0], h[1] + (R - 1.5) * u[1], zc], "crank")
+    add([h[0] + 1.5 * u[0], h[1] + 1.5 * u[1], zc], "crank")
+    add([h[0], h[1], zc - 1.5], "tail")
     add([h[0], h[1], Z_F + BOSS_L - BUSH_L / 2], "bushing")
     if GROOVE_R_IN is None:
         add([h[0], h[1], Z_F], "plate")
@@ -168,6 +181,7 @@ def write_scad(path):
         f"HUB_WALL = {HUB_WALL}; LUG_N = {LUG_N}; LUG_W = {LUG_W}; LUG_H = {LUG_H}; LUG_DEPTH = {LUG_DEPTH}; TWIST = {TWIST};",
         f"CUP_H = {CUP_H}; CUP_ROUND = {CUP_ROUND}; FIBRE_T = {FIBRE_T};",
         f"WIRE_D = {WIRE_D}; HH = [{hh[0]:.4f}, {hh[1]:.4f}]; BOSS_L = {BOSS_L}; BUSH_OD = {BUSH_OD}; BUSH_L = {BUSH_L};",
+        f"LOCK = [{LOCK['r']}, {LOCK['w']}, {LOCK['hole']}, {LOCK['depth']}, {LOCK['step']}, {LOCK['n']}];",
         f"PTFE = [{PTFE[0]}, {PTFE[1]}]; SIL_ARCH = [{SIL_ARCH[0]}, {SIL_ARCH[1]}]; SIL_LEG = [{SIL_LEG[0]}, {SIL_LEG[1]}];",
         f"SOCKET = [{SOCKET['w']}, {SOCKET['l']}, {SOCKET['h']}]; SOCKET_A = {SOCKET['a']};",
         "HOOK = [" + ", ".join(f"[{p[0]:.3f}, {p[1]:.3f}, {p[2]:.3f}]" for p in P) + "];",

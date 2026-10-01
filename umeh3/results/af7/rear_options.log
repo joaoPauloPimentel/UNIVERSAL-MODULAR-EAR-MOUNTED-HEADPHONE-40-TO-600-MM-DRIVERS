@@ -1,0 +1,21 @@
+D40
+  como desenhado                                       30 Hz  -0.3 dB, pico  +4.8 dB @ 467 Hz (100 Hz = 128 dB/1V)
+  copo 10 mm mais fundo                                30 Hz  -0.3 dB, pico  +4.0 dB @ 421 Hz (100 Hz = 130 dB/1V)
+  copo cheio de fibra                                  30 Hz  -0.2 dB, pico  +2.2 dB @ 393 Hz (100 Hz = 129 dB/1V)
+  copo +10 mm e cheio de fibra                         30 Hz  -0.2 dB, pico  +1.6 dB @ 348 Hz (100 Hz = 130 dB/1V)
+  respiro amortecido (2 furos 1,5 mm + feltro 3 mm)    30 Hz  +2.2 dB, pico  +3.9 dB @ 467 Hz (100 Hz = 128 dB/1V)
+  copo +10 mm, fibra e respiro                         30 Hz  +0.6 dB, pico  +1.5 dB @ 348 Hz (100 Hz = 130 dB/1V)
+D50
+  como desenhado                                       30 Hz  -0.2 dB, pico  +9.2 dB @ 638 Hz (100 Hz = 125 dB/1V)
+  copo 10 mm mais fundo                                30 Hz  -0.2 dB, pico  +8.3 dB @ 575 Hz (100 Hz = 126 dB/1V)
+  copo cheio de fibra                                  30 Hz  -0.2 dB, pico  +5.5 dB @ 575 Hz (100 Hz = 126 dB/1V)
+  copo +10 mm e cheio de fibra                         30 Hz  -0.2 dB, pico  +4.7 dB @ 509 Hz (100 Hz = 127 dB/1V)
+  respiro amortecido (2 furos 1,5 mm + feltro 3 mm)    30 Hz  +2.7 dB, pico  +7.9 dB @ 649 Hz (100 Hz = 125 dB/1V)
+  copo +10 mm, fibra e respiro                         30 Hz  +0.7 dB, pico  +4.5 dB @ 518 Hz (100 Hz = 127 dB/1V)
+D60
+  como desenhado                                       30 Hz  -0.1 dB, pico +13.5 dB @ 827 Hz (100 Hz = 121 dB/1V)
+  copo 10 mm mais fundo                                30 Hz  -0.1 dB, pico +12.3 dB @ 733 Hz (100 Hz = 123 dB/1V)
+  copo cheio de fibra                                  30 Hz  -0.1 dB, pico  +8.7 dB @ 759 Hz (100 Hz = 122 dB/1V)
+  copo +10 mm e cheio de fibra                         30 Hz  -0.2 dB, pico  +7.7 dB @ 672 Hz (100 Hz = 124 dB/1V)
+  respiro amortecido (2 furos 1,5 mm + feltro 3 mm)    30 Hz  +3.3 dB, pico +11.5 dB @ 842 Hz (100 Hz = 122 dB/1V)
+  copo +10 mm, fibra e respiro                         30 Hz  +1.0 dB, pico  +7.4 dB @ 672 Hz (100 Hz = 124 dB/1V)

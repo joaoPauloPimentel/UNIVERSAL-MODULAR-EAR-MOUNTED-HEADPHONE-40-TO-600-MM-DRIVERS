@@ -3,7 +3,7 @@ sys.path.insert(0,'.')
 import umeh3
 from umeh3 import geom, loads, contacts as ct, neckband as nb
 from umeh2 import support as sp
-sad=json.loads(sys.argv[2]); S=dict(w=20, t_foam=6, E_foam=20e3, carrier_t=1.2, foam_rho=50); S.update(sad); geom.apply("AF", SADDLE=S); v=json.loads(sys.argv[1])
+sad=json.loads(sys.argv[2]); S=dict(geom.VARIANTS["AF"]["SADDLE"]); S.update(sad); geom.apply("AF", SADDLE=S); v=json.loads(sys.argv[1])
 mp=nb.with_band(loads.mass_props(60), v["neck"])
 C,link,info=ct.contact_set(v); model=nb.ModelN(C,link)
 W_st=loads.static_wrench(mp)
