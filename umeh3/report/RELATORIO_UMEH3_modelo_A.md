@@ -18,7 +18,7 @@ são impressas em FDM; o resto é comprado pronto.
 | Bucha de fricção do gancho | TPU 95A | impressa | 0,1 |
 | Palheta atrás da orelha, 14 × 36 mm | TPU 95A | impressa | 1,4 |
 | Berço da sela (placa fina + clipe no tubo) | TPU 95A | impresso | 3,3 |
-| Almofada redonda 110 mm, veludo | comprada | 11 [A] |
+| Almofada redonda 110 mm (furo ~68 mm), veludo | comprada | 11 [A] |
 | Fio do gancho, aço mola (corda de piano) 1,6 mm | comprado | 2,3 |
 | Tubo de PTFE 2 × 4 mm no arco + tubo de silicone 4 × 7 mm na perna | comprados | 3,6 |
 | Espuma da sela 6 mm (viscoelástica média, ~25 kPa) em capa de veludo | comprada | 0,6 |
@@ -167,6 +167,13 @@ típicos, mas acima de ~35 g o vinco da orelha passa da meta de conforto a cada 
   emoldura a tampa e o copo encontra a placa com um filete côncavo de 3 mm. No lado esquerdo as letras saem
   espelhadas no CAD de propósito, para lerem certo depois do espelhamento.
 - A corrida com 60 mm foi refeita com a faixa nova: 0 de 5400 soltam, vinco 8,2 kPa, puxão que derruba 2,6 N.
+
+### Almofada real e compras no Brasil
+
+A almofada de 110 mm encontrada à venda tem furo de ~68 mm e 23 mm de altura (o cálculo assumia 60 e 25 mm). Refiz a
+corrida com 60 mm e furo de 68 mm: 0 de 5400 soltam, vinco a cada passada 8,4 kPa, puxão que derruba 2,6 N
+(studies/pad68_check.py). A diferença de altura é compensada pelo ajuste da bucha. Onde comprar cada peça no Brasil:
+docs/02_lista_de_compras.md.
 
 ## 6. O que fica em aberto
 

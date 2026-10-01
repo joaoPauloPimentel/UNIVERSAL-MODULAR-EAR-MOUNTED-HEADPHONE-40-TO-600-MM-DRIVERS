@@ -72,7 +72,7 @@ module lock_wall() {
     span = (LOCK[5] - 1) * LOCK[4] + 2 * LOCK[1] / LOCK[0] * 180 / PI;
     translate([HH[0], HH[1], Z_F + PLATE_T - 0.01]) difference() {
         rotate([0, 0, a_out - span / 2]) rotate_extrude(angle = span, $fn = 160)
-            translate([LOCK[0] - LOCK[1] / 2, 0]) offset(r = 1.0) offset(delta = -1.0) translate([0, -2]) square([LOCK[1], BOSS_L - PLATE_T + 2]);
+            translate([LOCK[0] - LOCK[1] / 2, 0]) intersection() { offset(r = 1.0) offset(delta = -1.0) translate([0, -2]) square([LOCK[1], BOSS_L - PLATE_T + 2]); square([LOCK[1], BOSS_L]); }
         for (k = [0 : LOCK[5] - 1]) rotate([0, 0, a_out + (k - (LOCK[5] - 1) / 2) * LOCK[4]])
             translate([LOCK[0], 0, BOSS_L - PLATE_T - LOCK[3]]) cylinder(d = LOCK[2], h = LOCK[3] + 1, $fn = 20);
     }
@@ -341,7 +341,7 @@ if (part == "print_shell") sided() translate([0, 0, -Z_F]) shell();
 if (part == "print_front_ring") sided() front_ring();
 if (part == "print_adapter") adapter(D);
 if (part == "print_bushing") bushing();
-if (part == "print_bend_jig") bend_jig();
+if (part == "print_bend_jig") sided() bend_jig();
 
 // wire bending jig (PETG plate with the hook path as a groove; bend the wire around the pins by hand)
 module bend_jig() {
