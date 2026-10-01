@@ -131,7 +131,7 @@ module neck_channel() {
 }
 // ---------------------------------------------------------------- brand (commercial finish)
 // Raised 0.4 mm wordmark on the flat back + a small side letter; printed in bronze by a filament change at the layer
-// where the letters start (the back is the top of the print). A 0.4 mm groove ring frames the back face.
+// where the letters start (the back is the top of the print). A raised 0.8 mm ring in the same colour frames the back.
 LOGO_TXT = "UMEH";
 LOGO_FONT = "DejaVu Sans:style=Bold";
 LOGO_H = 0.4;
@@ -140,6 +140,8 @@ module logo(letter, flip) {
     module flat2d() {
         translate([PC[0], PC[1] - 14.5]) text(LOGO_TXT, size = 5.0, font = LOGO_FONT, halign = "center", valign = "center", spacing = 1.22);
         translate([PC[0], PC[1] + 13.5]) text(letter, size = 3.2, font = LOGO_FONT, halign = "center", valign = "center");
+        // accent ring framing the back face (same colour as the letters)
+        translate([PC[0], PC[1]]) difference() { circle(r = 22.6, $fn = 160); circle(r = 21.8, $fn = 160); }
     }
     translate([0, 0, Z_F + CUP_H - 0.01]) linear_extrude(LOGO_H + 0.01)
         if (flip) translate([PC[0], 0]) mirror([1, 0]) translate([-PC[0], 0]) flat2d(); else flat2d();
@@ -181,7 +183,6 @@ module shell_body() {
         neck_spine();
         }
         neck_channel();
-        bezel_groove();
     }
 }
 

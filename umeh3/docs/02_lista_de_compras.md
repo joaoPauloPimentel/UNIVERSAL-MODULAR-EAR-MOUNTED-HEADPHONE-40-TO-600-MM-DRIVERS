@@ -29,6 +29,8 @@ Pesquisa de outubro de 2026. Os preços são faixas vistas em anúncios e mudam;
 | PETG grafite (ou preto) | ~60 g | Voolt3D (PETG HF cinza grafite), GTMax3D | 85-110 o kg |
 | PETG bronze | ~5 g (anéis e logo) | Master Print PETG Bronze (Printloja, Tavares3D, PrimeUp) | 90-130 o kg |
 | Versão preto e roxo: PETG preto + PETG roxo (no lugar do grafite e do bronze) | ~60 g + ~5 g | PETG preto: Voolt3D, GTMax3D; PETG roxo: procurar "filamento petg roxo 1,75" (disponibilidade da cor não conferida) | 85-130 o kg |
+| Versão preto e roxo: TPU 95A roxo (palheta) | ~3 g | procurar "filamento tpu roxo 1,75" (cor não conferida) | |
+| Versão preto e roxo: capa roxa da faixa | 0,5 m | "mangueira silicone 2x4 colorida" ou "termo retrátil roxo 6mm" por cima da preta (não conferido) | |
 | TPU 95A | ~15 g | Voolt3D TPU, 3D Fila TPU Flex (95A), National 3D | 55-90 (500 g) |
 | PLA qualquer | ~25 g | qualquer | (gabarito de dobra) |
 

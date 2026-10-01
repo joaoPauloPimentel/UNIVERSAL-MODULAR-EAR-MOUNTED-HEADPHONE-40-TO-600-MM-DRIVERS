@@ -20,20 +20,21 @@ mesa 75-80 °C; TPU a 220-230 °C, sem retração ou com retração curta.
 
 ## Logo em bronze (troca de filamento)
 
-A logo UMEH e a letra do lado (L/R) ficam 0,4 mm em relevo na tampa, que é o topo da concha na impressão. Para elas
+A logo UMEH, a letra do lado (L/R) e o aro que emoldura a tampa ficam 0,4 mm em relevo, que é o topo da concha na impressão. Para elas
 saírem em bronze:
 
 1. No fatiador, coloque uma pausa / troca de filamento (M600 ou "pause at height") na **primeira camada acima de
    31,0 mm** (com camada de 0,2 mm, a camada que começa em 31,0 mm).
-2. Quando a impressora parar, troque o PETG grafite pelo PETG bronze e retome. Só as letras são impressas depois disso.
+2. Quando a impressora parar, troque o PETG grafite pelo PETG bronze e retome. Só as letras e o aro são impressos depois disso.
 
 Se preferir não trocar filamento, imprima tudo em grafite e pinte só o topo das letras com tinta acrílica bronze e um
 pincel quase seco.
 
 ## Versão preto e roxo
 
-Mesmas peças e configurações: concha em PETG preto, anéis e logo em PETG roxo (a troca de filamento é a mesma), e a
-capinha da sela em suede roxo. TPU, almofada e tubos em preto.
+Mesmas peças e configurações: concha em PETG preto; anéis, logo e aro da tampa em PETG roxo (a troca de filamento é a
+mesma); palheta em TPU roxo; capinha da sela em suede roxo; capa da faixa em silicone roxo (ou termo-retrátil roxo
+por cima do silicone preto). Adaptadores, bucha, berço da sela, almofada e tubos do gancho em preto.
 
 ![Preto e roxo](img/07_preto_roxo_tampa.png)
 
