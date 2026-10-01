@@ -214,7 +214,7 @@ VARIANTS = {
                LEG_PTS=[(-18.5, 8.0, 6.0), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
                TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
                LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0), NECK=True,
-               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=30e3, carrier_t=1.2, foam_rho=50.0)),
+               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=25e3, carrier_t=1.2, foam_rho=50.0)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.

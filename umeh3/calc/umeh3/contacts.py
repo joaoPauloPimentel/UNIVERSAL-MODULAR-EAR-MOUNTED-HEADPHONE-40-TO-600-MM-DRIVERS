@@ -154,7 +154,7 @@ def contact_set(v=None):
     if v["helix"]:
         z_h = geom.Z_ROOT + (sad["w"] / 2 if sad else v["arch_od"] / 2)
         pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1] + r_c + 3.0, z_h]) * 1e-3
-        add("H helix", pt, [0, 0, -1], v["k_helix"], 120e-6, "silicone/dry skin", node, mu_root)
+        add("H helix", pt, [0, 0, -1], v["k_helix"], 120e-6, root_key, node, mu_root)   # saddle: its velour side
     # sulcus: leg on the mastoid skin; the leg's own compliance (apex -> point) in series
     ps = mm(geom.SULCUS_PT)
     i_s = nearest(P, ps)

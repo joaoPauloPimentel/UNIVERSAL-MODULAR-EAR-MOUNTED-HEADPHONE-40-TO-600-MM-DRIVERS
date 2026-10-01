@@ -192,9 +192,13 @@ module saddle_sector(r0, r1) {
             translate([r0, Z_ROOT - SADDLE[0] / 2]) offset(r = 0.8) offset(delta = -0.8) square([r1 - r0, SADDLE[0]]);
 }
 module saddle_foam() { if (SADDLE != undef) { rc = ARCH_R - 2 - SADDLE[2] - SADDLE[1]; saddle_sector(rc, rc + SADDLE[1]); } }
+// carrier: thin TPU plate under the foam + a snap-on clip tube around the PTFE-lined wire (light: ~2 g)
 module saddle_carrier() {
     if (SADDLE != undef) difference() {
-        saddle_sector(ARCH_R - 2 - SADDLE[2], ARCH_R + 2.6);
+        union() {
+            saddle_sector(ARCH_R - 2 - SADDLE[2], ARCH_R - 0.6);
+            sweep_tube(HOOK, PTFE[1] + 2.4, HOOK_ARCH[0], HOOK_ARCH[1]);
+        }
         sweep_tube(HOOK, PTFE[1] + 0.2, HOOK_ARCH[0], HOOK_ARCH[1]);
     }
 }
