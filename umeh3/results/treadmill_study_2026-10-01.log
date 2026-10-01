@@ -1,0 +1,28 @@
+A {'P': 0.5} M=87.5 static root 5750 pinna 6724 sulc 2769 npad 9
+  treadmill: n=5400 rel=406 (7.5%) lost=0 root=32821 pinna=17299 lobe=7898 disp=2.91
+A {'P': 1.2, 'paddle': [14, 36]} M=87.5 static root 5527 pinna 3145 sulc 1361 npad 13
+  treadmill: n=5400 rel=219 (4.1%) lost=0 root=29514 pinna=4854 lobe=9195 disp=2.49
+A {'P': 1.2, 'paddle': [14, 36], 'wire_d': 2.0} M=87.5 static root 4974 pinna 3121 sulc 2248 npad 13
+  treadmill: n=5400 rel=198 (3.7%) lost=0 root=30182 pinna=5350 lobe=10008 disp=2.57
+B {'P': 0.3} M=74.9 static root 6601 pinna 5449 sulc 3673 npad 9
+  treadmill: n=5400 rel=618 (11.4%) lost=0 root=40858 pinna=18725 lobe=0 disp=2.52
+B {'P': 0.8, 'paddle': [14, 36]} M=74.9 static root 6102 pinna 2043 sulc 1739 npad 12
+  treadmill: n=5400 rel=421 (7.8%) lost=0 root=38954 pinna=3823 lobe=0 disp=2.25
+base {'P': 0.3} M=82.7 static root 7158 pinna 5841 sulc 3420 npad 9
+  treadmill: n=5400 rel=635 (11.8%) lost=0 root=47158 pinna=21951 lobe=0 disp=2.95
+A D40 {'P': 1.2, 'paddle': [14, 36]} M=67.7 static root 4353 pinna 3151 sulc 1213 npad 16
+  treadmill: n=5400 rel=242 (4.5%) lost=0 root=25831 pinna=4900 lobe=6764 disp=2.48
+B D40 {'P': 1.2, 'paddle': [14, 36]} M=56.5 static root 4721 pinna 3073 sulc 2003 npad 16
+  treadmill: n=5400 rel=296 (5.5%) lost=0 root=33107 pinna=4587 lobe=0 disp=2.12
+A D60 M=87.5 tug min 0.75 N at [0.696, -0.174, 0.696]; outward-ish (z>0.5): [0.84, 2.39, 1.64, 0.75, 1.73, 1.03]
+  treadmill cable 0.5 N: rel=44/5400 root=26417 pinna=4386 disp=1.96 npadmin=3
+B D60 M=74.9 tug min 0.70 N at [0.696, -0.174, 0.696]; outward-ish (z>0.5): [0.89, 1.97, 1.27, 0.7, 1.31, 0.8]
+  treadmill cable 0.5 N: rel=158/5400 root=30818 pinna=4286 disp=2.56 npadmin=4
+A socket now [-16.4 -38.3  36. ] Z_F 24.0
+  low socket tug min 0.75 N
+  treadmill cable 0.5 N low socket: rel=40/5400 root=26313 disp=2.12
+  treadmill cable 1.0 N low socket: rel=204/5400 root=30110 disp=2.55
+B socket now [-12.5 -34.4  31. ] Z_F 19.0
+  low socket tug min 0.61 N
+  treadmill cable 0.5 N low socket: rel=199/5400 root=31714 disp=2.98
+  treadmill cable 1.0 N low socket: rel=414/5400 root=41008 disp=1.98

@@ -19,6 +19,7 @@ PRINT = {
     "adapter":    ("TPU", 2, 99, 1.00),
     "bushing":    ("TPU", 2, 99, 1.00),
     "stop_cap":   ("PETG", 3, 4, 0.30),
+    "paddle":     ("TPU", 2, 3, 0.15),     # soft gyroid core
 }
 PTFE_RHO = Val(2200.0, "STD", "PTFE density")
 FOAM_RETIC = Val(30.0, "DS", "kg/m3 reticulated PU foam (front foam), 25-35")
@@ -26,7 +27,7 @@ SOCKET_M = Val(0.6, "DS", "g, 0.78 mm 2-pin female socket")
 PLUG_M = Val(1.5, "A", "g, cable plug seated in the socket (rides on the module)")
 LEADS_M = Val(0.6, "A", "g, internal leads + JST-SH pair (driver <-> socket)")
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg", "pad",
-         "front_foam", "socket", "fibre"]
+         "front_foam", "socket", "fibre", "paddle"]
 
 
 def export(part, out, D):
@@ -70,13 +71,14 @@ def assembly(D, jobs=4, tag=None):
     """Per-part rows (kg, m, kg m^2 about the part COM) and the total (M, com, I about the COM) in the skin frame."""
     os.makedirs(TMP, exist_ok=True)
     tag = tag or f"D{D}"
-    outs = {p: os.path.join(TMP, f"{tag}_{p}.stl") for p in PARTS}
+    parts = [p for p in PARTS if p != "paddle" or geom.PADDLE]
+    outs = {p: os.path.join(TMP, f"{tag}_{p}.stl") for p in parts}
     with cf.ThreadPoolExecutor(jobs) as ex:
-        list(ex.map(lambda p: export(p, outs[p], D), PARTS))
+        list(ex.map(lambda p: export(p, outs[p], D), parts))
     P, _ = geom.hook_path()
     wire_len = geom.path_length(P) * 1e-3
     rows = []
-    for p in PARTS:
+    for p in parts:
         V, area, cen, C = mesh_props(read_stl(outs[p]))
         m, f, mat = _mass(p, V, area, D, wire_len)
         s = m / V

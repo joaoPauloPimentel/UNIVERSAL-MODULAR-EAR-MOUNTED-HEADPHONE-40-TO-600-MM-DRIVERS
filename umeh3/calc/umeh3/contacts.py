@@ -38,9 +38,12 @@ LEG_W = 3.5      # [A] mm loaded width of the 5 mm leg sleeve on skin
 LEG_L = 20.0     # [A] mm loaded length of the leg on the pinna's cranial face
 SULC_L = 15.0    # [A] mm loaded length of the leg on the mastoid skin
 K_LINK_T = 40.0  # [A] N/m tangential stiffness of the clamp (the pinna moves with the leg)
-DEF = dict(P=0.30, mu_level=1, mu_root=None, root_w=geom.ROOT_W, root_zone_L=geom.ROOT_ZONE_L, k_pinna=K_PINNA.v,
-           k_helix=K_HELIX.v, helix=True, arch=True, E_foam=geom.PAD["E_foam"], leg_od=geom.SIL_LEG[1],
-           arch_od=geom.SIL_ARCH[1], wire_d=geom.WIRE_D, mu_scale=1.0)
+DEF = dict(P=0.30, mu_level=1, mu_root=None, root_w=None, root_zone_L=None, k_pinna=K_PINNA.v,
+           k_helix=K_HELIX.v, helix=True, arch=True, E_foam=None, leg_od=None, arch_od=None, wire_d=None,
+           mu_scale=1.0, lobe=True, paddle=None)   # paddle: (w, L) mm of a wide rear paddle on the leg
+E_LOBE = Val(60e3, "A", "Pa, soft tissue of the lobule attachment (no cartilage), 30-100 kPa")
+T_LOBE = Val(5e-3, "A", "m, tissue depth at the lobule attachment")
+LOBE_L = 10.0    # [A] mm loaded length of the tip under the lobule
 
 
 def mm(p):
@@ -77,7 +80,7 @@ def wire_compliance(P, i0, i1, d_mm):
 def hook_points():
     P, lab = geom.hook_path()
     P = mm(P)
-    i_plate = lab.index("plate")
+    i_plate = lab.index("groove") if "groove" in lab else lab.index("plate")    # wire built in where it leaves the shell
     arch = [i for i, l in enumerate(lab) if l == "arch"]
     # apex = arch point nearest to 90 deg
     ang = [math.degrees(math.atan2(P[i][1] - geom.ARCH_C[1] * 1e-3, P[i][0] - geom.ARCH_C[0] * 1e-3)) for i in arch]
@@ -92,6 +95,11 @@ def nearest(P, p):
 def contact_set(v=None):
     """Contacts + clamp spring for the design variables v (DEF overridden). Returns (C, link, info)."""
     v = dict(DEF, **(v or {}))
+    for k, g in (("root_w", geom.ROOT_W), ("root_zone_L", geom.ROOT_ZONE_L), ("E_foam", geom.PAD["E_foam"]),
+                 ("leg_od", geom.SIL_LEG[1]), ("arch_od", geom.SIL_ARCH[1]), ("wire_d", geom.WIRE_D),
+                 ("paddle", tuple(geom.PADDLE[:2]) if geom.PADDLE else False)):
+        if v[k] is None:
+            v[k] = g
     C = []
 
     def add(name, r, n, k, area, mu_key, node=None, mu=None):
@@ -140,16 +148,24 @@ def contact_set(v=None):
     ps = mm(geom.SULCUS_PT)
     i_s = nearest(P, ps)
     C_leg = wire_compliance(P, i_apex, i_s, v["wire_d"])
-    A_s = LEG_W * SULC_L * 0.7 * 1e-6
+    A_s = 0.7 * v["leg_od"] * SULC_L * 0.7 * 1e-6 if not v["paddle"] else v["paddle"][0] * v["paddle"][1] * 0.5 * 0.7 * 1e-6
     t_leg = (v["leg_od"] - geom.SIL_LEG[0]) / 2 * 1e-3
     k_s = 1 / (C_leg[2, 2] + t_leg / (SILICONE["E"].v * A_s) + TISSUE["t_mastoid"].v / (TISSUE["E_mastoid"].v * A_s))
     add("H sulcus", ps, [0, 0, 1], k_s, A_s, "silicone/dry skin", node, mu_root)
+
+    if geom.LOBE_PT is not None and v["lobe"]:
+        # tip curled forward under the lobule attachment: holds the hook down when the module bounces up
+        pl = mm(geom.LOBE_PT)
+        C_tip = wire_compliance(P, i_apex, nearest(P, pl), v["wire_d"])
+        A_l = 0.7 * v["leg_od"] * LOBE_L * 0.7 * 1e-6
+        k_l = 1 / (C_tip[1, 1] + t_leg / (SILICONE["E"].v * A_l) + T_LOBE.v / (E_LOBE.v * A_l))
+        add("H lobe", pl, [0, -1, 0], k_l, A_l, "silicone/dry skin", node, mu_root)
 
     # ---- pinna clamp (rear leg pre-bent onto the cranial face of the pinna)
     pp = mm(geom.PINNA_PT)
     i_p = nearest(P, pp)
     C_pl = wire_compliance(P, i_plate, i_p, v["wire_d"])      # whole wire plate -> leg point, z
-    A_p = LEG_W * (v["leg_od"] / geom.SIL_LEG[1]) * LEG_L * 0.7 * 1e-6
+    A_p = (0.7 * v["leg_od"] * LEG_L if not v["paddle"] else v["paddle"][0] * v["paddle"][1]) * 0.7 * 1e-6
     kz = 1 / (C_pl[2, 2] + 1 / v["k_pinna"] + t_leg / (SILICONE["E"].v * A_p))
     link = (pp, v["P"], kz, K_LINK_T)
     info = dict(r_g=r_g, A_seg=A_seg, k_seg=k_seg, k_root=k_r, A_root=A_r, A_pinna=A_p, A_sulcus=A_s, k_sulcus=k_s,
@@ -176,7 +192,7 @@ def metrics(r, C, info):
         n_pad=n_pad, pad_p=max(x["p_mean"] for x in pads), pad_F=sum(x["Fn"] for x in pads),
         root_p=max((x["p_mean"] for x in root), default=0.0), root_F=sum(x["Fn"] for x in root),
         helix_p=ct["H helix"]["p_mean"] if "H helix" in ct else 0.0,
-        sulcus_p=ct["H sulcus"]["p_mean"], clamp=clamp, pinna_p=max(clamp, 0.0) / info["A_pinna"],
+        sulcus_p=ct["H sulcus"]["p_mean"], lobe_p=ct["H lobe"]["p_mean"] if "H lobe" in ct else 0.0, clamp=clamp, pinna_p=max(clamp, 0.0) / info["A_pinna"],
         rot=math.degrees(float(np.linalg.norm(r["q"][3:6]))), disp=float(np.linalg.norm(r["q"][:3])) * 1e3,
         util=util, pad_slip=any(x["slipping"] for x in pads),
         root_slip=any(x["slipping"] for x in root))

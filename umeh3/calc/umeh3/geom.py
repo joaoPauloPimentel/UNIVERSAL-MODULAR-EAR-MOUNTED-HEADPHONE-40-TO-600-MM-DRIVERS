@@ -107,8 +107,16 @@ def hook_path(step_deg=7.0):
         pts.append(np.asarray(p, float)); lab.append(l)
     add([h[0], h[1], Z_F + BOSS_L + 3.0], "tail")
     add([h[0], h[1], Z_F + BOSS_L - BUSH_L / 2], "bushing")
-    add([h[0], h[1], Z_F], "plate")
-    add([h[0], h[1], 12.0], "descent")
+    if GROOVE_R_IN is None:
+        add([h[0], h[1], Z_F], "plate")
+        add([h[0], h[1], 12.0], "descent")
+    else:
+        zg = Z_F + 0.3                       # wire centre in the plate-face groove (behind the pad's back face)
+        add([h[0], h[1], zg], "plate")
+        g = pol(GROOVE_R_IN, HOOK_HOLE_A)[:2]
+        add([g[0], g[1], zg], "groove")
+        add([g[0] - 0.8, g[1] - 0.8, 12.0], "descent")
+        h = g
     a0 = arch_pt(ARCH_A0)
     add([0.5 * (h[0] + a0[0]) + 0.6, 0.5 * (h[1] + a0[1]) + 0.6, 6.0], "descent")
     n = int(math.ceil((ARCH_A1 - ARCH_A0) / step_deg))
@@ -122,6 +130,13 @@ def hook_path(step_deg=7.0):
 
 def path_length(P):
     return float(np.linalg.norm(np.diff(P, axis=0), axis=1).sum())
+
+
+def _leg_dir():
+    """Unit direction (xy) of the rear leg at the pinna clamp point."""
+    P = np.array(LEG_PTS, float)
+    d = P[-1, :2] - P[0, :2]
+    return d / np.linalg.norm(d)
 
 
 def write_scad(path):
@@ -143,9 +158,51 @@ def write_scad(path):
         "HOOK = [" + ", ".join(f"[{p[0]:.3f}, {p[1]:.3f}, {p[2]:.3f}]" for p in P) + "];",
         f"HOOK_ARCH = [{a0}, {a1}];   // index range of the arch (wide sleeve)",
         f"HOOK_PLATE = {lab.index('plate')};",
+        f"GROOVE = {'true' if GROOVE_R_IN is not None else 'false'}; GROOVE_R_IN = {GROOVE_R_IN or 0}; HOOK_A = {HOOK_HOLE_A};",
+        f"HOOK_DESC = {lab.index('descent')};",
+        f"PADDLE = {list(PADDLE) if PADDLE else 'undef'}; PINNA_PT = {list(PINNA_PT)};",
+        f"LEG_DIR = [{_leg_dir()[0]:.4f}, {_leg_dir()[1]:.4f}];",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
         "  " + ", ".join(f"[{D}, {DRIVERS[D]['mount_d']}, {DRIVERS[D]['rim_t']}, {DRIVERS[D]['rear_d']}, "
                          f"{DRIVERS[D]['depth']}, {DRIVERS[D]['front_open']}]" for D in SIZES) + "];",
     ]
     with open(path, "w") as fh:
         fh.write("\n".join(lines) + "\n")
+GROOVE_R_IN = None              # hook routed in a groove in the plate face under the pad (small pad): exits at this radius
+PADDLE = None                    # (w, L, t) mm: wide TPU paddle on the rear leg, against the back of the pinna
+LOBE_PT = None                   # contact under the lobule attachment (only a hook that wraps under it)
+
+# ------------------------------------------------------------------ design variants
+# base: first draft (2026-10-01). A "gancho maior": longer, wider hook for running: the arch covers more of the root
+# with a 10 mm sleeve, the rear leg runs down behind the ear and its tip curls forward under the lobule attachment,
+# so a bounce cannot lift the hook off the root. B "almofada menor": set in variant B (pad size chosen by the user).
+VARIANTS = {
+    "base": {},
+    "A": dict(ARCH_A0=35.0, ARCH_A1=145.0, PTFE=(2.0, 4.0), SIL_ARCH=(4.0, 10.0), SIL_LEG=(4.0, 7.0),
+              ROOT_W=7.5, ROOT_ZONE_L=15.0, Z_ROOT=5.0,
+              LEG_PTS=[(-16.0, 8.0, 5.5), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
+              TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
+              LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0)),
+    # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
+    # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
+    # and runs in a groove in the plate face to the opening; the driver pocket is centred.
+    "B": dict(PAD=dict(od=90.0, id=50.0, t=20.0, comp=1.0, lip_fit=78.0, mass=7.0, E_foam=20e3, contact_frac=0.7),
+              FLANGE_OD=78.0, POCKET_E=0.0, HOOK_HOLE_R=35.0, GROOVE_R_IN=23.5, PADDLE=(14.0, 36.0, 3.0)),
+}
+_KEYS = sorted({k for v in VARIANTS.values() for k in v} | {"PAD"})
+_BASE = {k: globals()[k] for k in _KEYS}
+VARIANT = "base"
+
+
+def apply(name, **extra):
+    """Switch the module to design variant `name` (VARIANTS) plus extra overrides; recompute Z_F."""
+    global VARIANT, Z_F
+    import copy
+    g = globals()
+    for k, v in _BASE.items():
+        g[k] = copy.deepcopy(v)
+    for k, v in dict(VARIANTS[name], **extra).items():
+        g[k] = copy.deepcopy(v)
+    Z_F = g["PAD"]["t"] - g["PAD"]["comp"]
+    g["FLANGE_OD"] = dict(VARIANTS[name], **extra).get("FLANGE_OD", g["PAD"]["lip_fit"])
+    VARIANT = name

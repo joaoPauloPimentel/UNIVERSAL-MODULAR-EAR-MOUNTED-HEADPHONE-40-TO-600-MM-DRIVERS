@@ -78,6 +78,12 @@ module socket_housing(cut = false) {
             translate([0, 0, -6]) cylinder(d = 3.0, h = 7, $fn = 24);             // lead hole into the chamber
         }
 }
+// small pad: the wire passes the plate under the pad and runs in a groove in the plate face to the pad opening
+module groove_path(w, z0, h) {
+    hull() for (r = [GROOVE_R_IN - 1.5, norm(HH)]) rotate([0, 0, HOOK_A]) translate([r, 0, z0]) cylinder(d = w, h = h, $fn = 24);
+}
+module groove_rib() { groove_path(WIRE_D + 3.2, Z_F, PLATE_T + 1.6); }
+module groove_cut() { groove_path(WIRE_D + 0.4, Z_F - 1, 1 + 0.3 + WIRE_D / 2 + 0.2); }
 module bayonet_cut() {
     for (a = LUG_A0) {
         // axial entry channel
@@ -95,6 +101,7 @@ module shell() {
             at_pc() rotate_extrude($fn = 160) difference() { cup_outer2d(); }
             hook_boss_solid();
             socket_housing(false);
+            if (GROOVE) groove_rib();
         }
         at_pc() rotate_extrude($fn = 160) cup_inner2d();
         at_pc() bayonet_cut();
@@ -102,6 +109,7 @@ module shell() {
         translate([HH[0], HH[1], Z_F - 1]) cylinder(d = WIRE_D + 0.3, h = BOSS_L + 2, $fn = 24);
         translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) cylinder(d = BUSH_OD, h = BUSH_L + 1, $fn = 48);
         socket_housing(true);
+        if (GROOVE) groove_cut();
         // pocket front chamfer
         at_pc() translate([0, 0, -0.01]) cylinder(r1 = POCKET_R + 0.5, r2 = POCKET_R, h = 0.5);
     }
@@ -151,9 +159,21 @@ module sweep_tube(pts, d, i0, i1) {
 module hook_wire() { sweep_tube(HOOK, WIRE_D, 0, len(HOOK) - 1); }
 module sleeve_arch() { sweep_tube(HOOK, SIL_ARCH[1], HOOK_ARCH[0], HOOK_ARCH[1]); }
 module sleeve_leg() {
-    sweep_tube(HOOK, SIL_LEG[1], HOOK_PLATE + 1, HOOK_ARCH[0]);
+    sweep_tube(HOOK, SIL_LEG[1], HOOK_DESC, HOOK_ARCH[0]);
     sweep_tube(HOOK, SIL_LEG[1], HOOK_ARCH[1], len(HOOK) - 1);
     translate(HOOK[len(HOOK) - 1]) sphere(d = SIL_LEG[1] + 1.5, $fn = 24);     // silicone end cap
+}
+// wide TPU paddle on the rear leg (bears on the back of the pinna; spreads the clamp force)
+module paddle() {
+    if (PADDLE != undef) {
+        w = PADDLE[0]; L = PADDLE[1]; t = PADDLE[2];
+        a = atan2(LEG_DIR[1], LEG_DIR[0]);
+        difference() {
+            translate([PINNA_PT[0], PINNA_PT[1], PINNA_PT[2] - t / 2]) rotate([0, 0, a]) hull()
+                for (s = [-1, 1]) translate([s * (L - w) / 2, 0, 0]) cylinder(d = w, h = t, $fn = 40);
+            sweep_tube(HOOK, WIRE_D + 0.1, HOOK_ARCH[1], len(HOOK) - 1);
+        }
+    }
 }
 module bushing() {
     difference() { cylinder(d = BUSH_OD - 0.1, h = BUSH_L); translate([0, 0, -1]) cylinder(d = WIRE_D - 0.15, h = BUSH_L + 2, $fn = 24);
@@ -210,12 +230,13 @@ module placed(p) {
     if (p == "pad") pad();
     if (p == "front_foam") front_foam();
     if (p == "socket") socket_vis();
+    if (p == "paddle") paddle();
     if (p == "fibre") fibre();
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg",
-         "pad", "front_foam", "socket", "fibre"];
+         "pad", "front_foam", "socket", "fibre", "paddle"];
 COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "#A27449", "Silver", "#3A3D42", "#3A3D42",
-       "#2E3036", "#55585E", "Goldenrod", "#8E8A80"];
+       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22"];
 
 module sided() { if (side == "L") mirror([1, 0, 0]) children(); else children(); }
 
