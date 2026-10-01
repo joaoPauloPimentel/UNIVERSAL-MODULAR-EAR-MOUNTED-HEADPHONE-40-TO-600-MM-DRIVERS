@@ -1,0 +1,4 @@
+AF D60 1 g normal: cases 5610, released 0 (0.0 %), pad open 842, root 3.8 kPa, pad 1.1, pinna 1.4, helix 0.8, lobe 0.0, sulcus 2.1, disp 1.31 mm, rot 1.32 deg, p_lim 4 kPa  [77 s]
+AF D60 2 g dynamic: cases 21000, released 0 (0.0 %), pad open 11698, root 7.3 kPa, pad 1.8, pinna 1.9, helix 6.0, lobe 3.5, sulcus 2.9, disp 2.15 mm, rot 3.63 deg, p_lim 8 kPa  [364 s]
+AF D60 3 g severe: cases 21000, released 1733 (8.3 %), pad open 13784, root 12.3 kPa, pad 2.8, pinna 2.4, helix 9.5, lobe 23.7, sulcus 4.4, disp 3.00 mm, rot 5.00 deg, p_lim 8 kPa  [504 s]
+AF D60 5 g accidental: cases 3000, released 3000 (100.0 %), pad open 0, root -inf kPa, pad -inf, pinna -inf, helix -inf, lobe -inf, sulcus -inf, disp -inf mm, rot -inf deg, p_lim 75 kPa  [65 s]

@@ -104,6 +104,33 @@ fechada. O valor real depende dos dados do driver; com eles na mão dá para afi
 - Vibração: o fone na cabeça vibra em 21 a 56 Hz, longe do ritmo da passada (2 a 3 Hz). O driver não fica isolado da
   concha (a borda de TPU é rígida demais para isso), o que é normal.
 
+### Cargas fora da corrida (categorias do UMEH-2)
+
+| Categoria | 40 mm | 50 mm | 60 mm | Meta de pressão |
+|---|---|---|---|---|
+| 1 g normal (cabeça inclinada até 45°, cabo 0,5 N): soltou | 0% | 0% | 0% | |
+| 1 g normal: vinco, pior caso | 2,9 kPa | 3,3 kPa | 3,8 kPa | 4 kPa |
+| 2 g (andar rápido, virar a cabeça, cabo 1 N): soltou | 0% | 0% | 0% | |
+| 2 g: vinco, pior caso | 5,5 kPa | 6,2 kPa | 7,3 kPa | 8 kPa |
+| 3 g severo (pulo, tranco, cabo 2 N): soltou | 3,2% | 4,7% | 8,3% | |
+| 3 g severo: vinco / ponta sob o lóbulo | 11 / 19 kPa | 12 / 20 kPa | 12 / 24 kPa | 8 kPa |
+| 5 g acidental com cabo enganchado (20 N) | sai sempre | sai sempre | sai sempre | |
+
+Parado, andando e correndo o fone fica preso e as pressões ficam dentro das metas. Em trancos fortes (3 g, cabo
+puxando 2 N) ele se desloca em 3 a 8% dos casos e a ponta do gancho aperta o lóbulo com força por um instante. Com o
+cabo enganchado de verdade o fone sai da cabeça, o que é o desejado: ele solta antes de quebrar algo ou machucar.
+
+### Massa máxima de driver (esteira, sem soltar)
+
+| Tamanho | Driver típico | Máximo que segura sem soltar | Máximo dentro da meta de conforto (vinco 8 kPa) |
+|---|---|---|---|
+| 40 mm | 15 g | 45 g | ~33 g |
+| 50 mm | 26 g | 46 g | ~35 g |
+| 60 mm | 40 g | 55 g | ~38 g |
+
+O limite de conforto é estimado entre os pontos calculados. Ou seja: o fone segura drivers bem mais pesados que os
+típicos, mas acima de ~35 g o vinco da orelha passa da meta de conforto a cada passada.
+
 ## 5. Mudanças desta rodada
 
 - Faixa da nuca refeita: passa por cima da concha e contorna a almofada por fora, sem encostar em nenhuma peça.
@@ -118,6 +145,6 @@ fechada. O valor real depende dos dados do driver; com eles na mão dá para afi
 - Valores [A] (almofada, drivers, atritos, rigidez da pele) são típicos; confirmar com as peças na mão.
 - A forma da faixa atrás da cabeça no modelo 3D é aproximada; o ajuste final é dobrando o fio.
 - Acabamento visual (caixa do conector, forma do copo) ainda não foi refinado.
-- Cálculos pesados ainda não rodados: cargas fora da corrida, corrida longa com 40 e 50 mm, massa máxima de driver.
+- Corrida longa só foi calculada com 60 mm (decisão: não precisa com 40 e 50).
 - Teste real: pesar as peças, medir a pressão no vinco com filme sensível depois de 20 minutos de esteira, e ouvir a
   vedação correndo.
