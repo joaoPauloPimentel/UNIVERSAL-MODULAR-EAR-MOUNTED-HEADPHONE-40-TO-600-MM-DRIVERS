@@ -132,6 +132,18 @@ def path_length(P):
     return float(np.linalg.norm(np.diff(P, axis=0), axis=1).sum())
 
 
+def neck_path():
+    """First part of the neckband (mm, this side's frame; the rest runs around the nape): eye on the back of the cup
+    on the pad axis -> back across the cup face past the rim -> down the module side towards the head -> back and down
+    towards the nape (it leaves this side's frame there, drawn as a stub)."""
+    zc = Z_F + CUP_H + 1.5
+    R = POCKET_R + HUB_WALL + 4.0
+    pc = pocket_c()
+    xb = pc[0] - R
+    return [(0.0, 0.0, zc), (xb + 6.0, -2.0, zc), (xb, -4.0, zc - 6.0), (xb - 2.0, -8.0, Z_F - 4.0),
+            (xb - 14.0, -16.0, 4.0), (xb - 34.0, -28.0, -6.0), (xb - 56.0, -38.0, -20.0)]
+
+
 def _leg_dir():
     """Unit direction (xy) of the rear leg at the pinna clamp point."""
     P = np.array(LEG_PTS, float)
@@ -162,6 +174,8 @@ def write_scad(path):
         f"HOOK_DESC = {lab.index('descent')};",
         f"PADDLE = {list(PADDLE) if PADDLE else 'undef'}; PINNA_PT = {list(PINNA_PT)};",
         f"LEG_DIR = [{_leg_dir()[0]:.4f}, {_leg_dir()[1]:.4f}];",
+        "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
+        f"NECK_D = {NECK_WIRE_D};",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
         "  " + ", ".join(f"[{D}, {DRIVERS[D]['mount_d']}, {DRIVERS[D]['rim_t']}, {DRIVERS[D]['rear_d']}, "
                          f"{DRIVERS[D]['depth']}, {DRIVERS[D]['front_open']}]" for D in SIZES) + "];",
@@ -169,6 +183,8 @@ def write_scad(path):
     with open(path, "w") as fh:
         fh.write("\n".join(lines) + "\n")
 GROOVE_R_IN = None              # hook routed in a groove in the plate face under the pad (small pad): exits at this radius
+NECK = False                     # neckband (user's choice 2026-10-01): eye on the back of the cup, wire to the nape
+NECK_WIRE_D = 1.6                # sized in neckband.design (2 N band: 1.6 mm, 2 apex coils)
 PADDLE = None                    # (w, L, t) mm: wide TPU paddle on the rear leg, against the back of the pinna
 LOBE_PT = None                   # contact under the lobule attachment (only a hook that wraps under it)
 

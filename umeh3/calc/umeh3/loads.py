@@ -9,6 +9,7 @@ import numpy as np
 from umeh2 import support as sp
 from umeh2.materials import G, CABLE
 from . import RESULTS, mass, geom, contacts as ct
+from .neckband import ModelN
 
 
 def mass_props(D, refresh=False):
@@ -117,7 +118,7 @@ def sweep(mp, v, cat, seq="A", **kw):
     clamp_lost = the rear leg would leave the pinna (clamp force <= 0); pad_open = fewer than all 16 pad sectors
     touching (seal broken)."""
     C, link, info = ct.contact_set(v)
-    model = sp.Model(C, link)
+    model = ModelN(C, link)
     if not model.set_base(static_wrench(mp), seq=seq):
         return dict(ok=False, why=model.base_why)
     worst = {k: (-np.inf, None) for k in KEYS_MAX}
@@ -144,7 +145,7 @@ def sweep(mp, v, cat, seq="A", **kw):
 
 def static(mp, v, seq="A"):
     C, link, info = ct.contact_set(v)
-    model = sp.Model(C, link)
+    model = ModelN(C, link)
     if not model.set_base(static_wrench(mp), seq=seq):
         return dict(ok=False, why=model.base_why)
     r = model.solve(static_wrench(mp))
@@ -155,7 +156,7 @@ def shakedown(mp, v, cat="2 g dynamic", seq="A", n_cyc=12, **kw):
     """Repeated head motion (every case of cat applied and removed, cycle after cycle) from donning sequence seq;
     the sustained state in use. Returns the umeh2.support.shakedown dict + metrics of the final state."""
     C, link, info = ct.contact_set(v)
-    model = sp.Model(C, link)
+    model = ModelN(C, link)
     W_st = static_wrench(mp)
     W = [w for _, w in cases(mp, cat, **kw)]
     sd = sp.shakedown(model, W_st, W, seq=seq, n_cyc=n_cyc, pads=ct.PADS)
@@ -172,7 +173,7 @@ def tug_limits(mp, v, polar=(0.0, 30.0, 60.0, 80.0), az_step=45.0, F_max=6.0, n_
     """Largest cable pull (N) the side holds (no release) from the donned state, head upright, per direction of the
     pull: polar angle from straight down x azimuth (0 = forward, 90 = outward, away from the head). Bisection."""
     C, link, info = ct.contact_set(v)
-    model = sp.Model(C, link)
+    model = ModelN(C, link)
     W0 = static_wrench(mp)
     if not model.set_base(W0, seq=seq):
         return None

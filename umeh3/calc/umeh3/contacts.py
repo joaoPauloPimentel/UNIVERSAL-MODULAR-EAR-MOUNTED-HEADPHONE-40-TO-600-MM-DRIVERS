@@ -40,7 +40,7 @@ SULC_L = 15.0    # [A] mm loaded length of the leg on the mastoid skin
 K_LINK_T = 40.0  # [A] N/m tangential stiffness of the clamp (the pinna moves with the leg)
 DEF = dict(P=0.30, mu_level=1, mu_root=None, root_w=None, root_zone_L=None, k_pinna=K_PINNA.v,
            k_helix=K_HELIX.v, helix=True, arch=True, E_foam=None, leg_od=None, arch_od=None, wire_d=None,
-           mu_scale=1.0, lobe=True, paddle=None)   # paddle: (w, L) mm of a wide rear paddle on the leg
+           mu_scale=1.0, lobe=True, paddle=None, neck=None, k_root_scale=1.0)   # k_root_scale: softer root bearing (compliant saddle); neck: band preload N (None = no band)   # paddle: (w, L) mm of a wide rear paddle on the leg
 E_LOBE = Val(60e3, "A", "Pa, soft tissue of the lobule attachment (no cartilage), 30-100 kPa")
 T_LOBE = Val(5e-3, "A", "m, tissue depth at the lobule attachment")
 LOBE_L = 10.0    # [A] mm loaded length of the tip under the lobule
@@ -140,6 +140,7 @@ def contact_set(v=None):
         u = np.array([math.cos(th), math.sin(th), 0.0])
         pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1], geom.Z_ROOT]) * 1e-3 + (geom.ARCH_R - v["arch_od"] / 2) * 1e-3 * u
         k_z, A_z = (k_r, A_r) if v["arch"] else (2 * k_r, 2 * A_r)
+        k_z *= v["k_root_scale"]
         add(nm, pt, u, k_z, A_z, "silicone/dry skin", node, mu_root)
     if v["helix"]:
         pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1] + geom.ARCH_R, geom.Z_ROOT + v["arch_od"] / 2]) * 1e-3
@@ -168,8 +169,17 @@ def contact_set(v=None):
     A_p = (0.7 * v["leg_od"] * LEG_L if not v["paddle"] else v["paddle"][0] * v["paddle"][1]) * 0.7 * 1e-6
     kz = 1 / (C_pl[2, 2] + 1 / v["k_pinna"] + t_leg / (SILICONE["E"].v * A_p))
     link = (pp, v["P"], kz, K_LINK_T)
+    neck = None
+    if v["neck"]:
+        from . import neckband as nb
+        e = nb.eye_point()
+        dz = nb.design(v["neck"], e)
+        if dz is None:
+            raise ValueError(f"no stock wire carries a {v['neck']} N neckband")
+        neck = dz
+        link = [link, (mm(e), v["neck"], dz["k_side"], nb.K_T)]
     info = dict(r_g=r_g, A_seg=A_seg, k_seg=k_seg, k_root=k_r, A_root=A_r, A_pinna=A_p, A_sulcus=A_s, k_sulcus=k_s,
-                k_clamp=kz, wire_k_apex=np.linalg.inv(Cw[:3, :3]), P=v["P"], v=v)
+                k_clamp=kz, neck=neck, wire_k_apex=np.linalg.inv(Cw[:3, :3]), P=v["P"], v=v)
     return C, link, info
 
 

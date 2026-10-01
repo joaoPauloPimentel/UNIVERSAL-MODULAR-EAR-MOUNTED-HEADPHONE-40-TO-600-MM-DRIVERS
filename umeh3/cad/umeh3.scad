@@ -175,6 +175,14 @@ module paddle() {
         }
     }
 }
+// neckband: music wire in a silicone sleeve (first part; the rest runs around the nape) + PETG eye clip on the cup
+module neckband() { if (NECK != undef) { sweep_tube(NECK, NECK_D + 4.0, 0, len(NECK) - 1); } }
+module neck_eye() {
+    if (NECK != undef) translate([NECK[0][0], NECK[0][1], NECK[0][2] - 1.5 - 0.01]) difference() {
+        hull() { cylinder(d = 9, h = 3.5, $fn = 40); translate([-8, 0, 0]) cylinder(d = 7, h = 3.5, $fn = 40); }
+        translate([0, 0, 1.5]) rotate([0, -90, 0]) cylinder(d = NECK_D + 0.2, h = 20, $fn = 16);
+    }
+}
 module bushing() {
     difference() { cylinder(d = BUSH_OD - 0.1, h = BUSH_L); translate([0, 0, -1]) cylinder(d = WIRE_D - 0.15, h = BUSH_L + 2, $fn = 24);
         translate([0, 0, BUSH_L - 1.0]) cylinder(d1 = WIRE_D - 0.15, d2 = WIRE_D + 0.8, h = 1.01, $fn = 24); }
@@ -231,12 +239,14 @@ module placed(p) {
     if (p == "front_foam") front_foam();
     if (p == "socket") socket_vis();
     if (p == "paddle") paddle();
+    if (p == "neckband") neckband();
+    if (p == "neck_eye") neck_eye();
     if (p == "fibre") fibre();
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg",
-         "pad", "front_foam", "socket", "fibre", "paddle"];
+         "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "neck_eye"];
 COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "#A27449", "Silver", "#3A3D42", "#3A3D42",
-       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22"];
+       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#A27449"];
 
 module sided() { if (side == "L") mirror([1, 0, 0]) children(); else children(); }
 

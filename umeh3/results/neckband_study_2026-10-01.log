@@ -1,0 +1,60 @@
+A D60 {'P': 0.5, 'neck': 2.0} eye [0.0, 0.0] M=91.0 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.5g
+  static: root 5081 pad 634 pinna 979 npad 16
+  treadmill: rel=0/5400 (0.0%) root=28093 pad=1595 pinna=1543 disp=1.26 npadmin=7 lost=0
+  tug min 3.09 N
+A D60 {'P': 0.5, 'neck': 2.0} eye [0, -8] M=91.0 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.5g
+  static: root 5441 pad 771 pinna 976 npad 16
+  treadmill: rel=0/5400 (0.0%) root=28369 pad=1808 pinna=1612 disp=1.21 npadmin=7 lost=0
+  tug min 3.14 N
+A D60 {'P': 0.5, 'neck': 3.5} eye [0.0, 0.0] M=95.2 band d=2.5 coils=5 k_side=182 Pmin/max=2.41/4.59 SFy=2.05 mass=22.6g
+  static: root 5491 pad 881 pinna 758 npad 16
+  treadmill: rel=0/5400 (0.0%) root=28402 pad=1798 pinna=1156 disp=1.49 npadmin=9 lost=0
+  tug min 4.03 N
+B D60 {'P': 0.5, 'neck': 2.0} eye [0.0, 0.0] M=78.3 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.3g
+  static: root 5716 pad 826 pinna 851 npad 16
+  treadmill: rel=0/5400 (0.0%) root=30909 pad=2217 pinna=1511 disp=1.22 npadmin=8 lost=0
+  tug min 2.44 N
+B D60 {'P': 0.5, 'neck': 2.0} eye [0, -8] M=78.3 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.3g
+  static: root 6248 pad 1075 pinna 864 npad 16
+  treadmill: rel=0/5400 (0.0%) root=31441 pad=2569 pinna=1596 disp=1.18 npadmin=7 lost=0
+  tug min 2.48 N
+B D60 {'P': 0.5, 'neck': 3.5} eye [0.0, 0.0] M=82.5 band d=2.5 coils=5 k_side=183 Pmin/max=2.40/4.60 SFy=2.04 mass=22.2g
+  static: root 6180 pad 1172 pinna 564 npad 16
+  treadmill: rel=0/5400 (0.0%) root=31337 pad=2555 pinna=1098 disp=1.49 npadmin=10 lost=3
+  tug min 3.19 N
+A D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.2} eye [0.0, 0.0] M=91.0 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.5g
+  static: root 2103 pad 647 pinna 991 npad 16
+  treadmill: rel=0/5400 (0.0%) root=17368 pad=1779 pinna=1892 disp=2.67 npadmin=6 lost=0
+  tug min 2.67 N
+A D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.08} eye [0.0, 0.0] M=91.0 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.5g
+  static: root 1049 pad 652 pinna 995 npad 16
+  treadmill: rel=1319/5400 (24.4%) root=9554 pad=1501 pinna=1791 disp=3.00 npadmin=6 lost=0
+  tug min 1.88 N
+B D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.2} eye [0.0, 0.0] M=78.3 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.3g
+  static: root 2030 pad 852 pinna 878 npad 16
+  treadmill: rel=0/5400 (0.0%) root=18081 pad=2499 pinna=1872 disp=2.52 npadmin=7 lost=0
+  tug min 2.06 N
+B D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.08} eye [0.0, 0.0] M=78.3 band d=1.6 coils=2 k_side=45 Pmin/max=1.73/2.27 SFy=1.58 mass=7.3g
+  static: root 940 pad 859 pinna 885 npad 16
+  treadmill: rel=871/5400 (16.1%) root=9730 pad=2259 pinna=1754 disp=3.00 npadmin=6 lost=0
+  tug min 1.73 N
+A D60 {'P': 0.5, 'neck': 3.0, 'k_root_scale': 0.2} eye [0.0, 0.0] M=93.4 band d=2.25 coils=3 k_side=152 Pmin/max=2.09/3.91 SFy=1.82 mass=15.9g
+  static: root 2100 pad 809 pinna 844 npad 16
+  treadmill: rel=0/5400 (0.0%) root=16424 pad=1900 pinna=1589 disp=2.53 npadmin=7 lost=0
+  tug min 3.23 N
+A D60 {'P': 0.5, 'neck': 3.0, 'k_root_scale': 0.12} eye [0.0, 0.0] M=93.4 band d=2.25 coils=3 k_side=152 Pmin/max=2.09/3.91 SFy=1.82 mass=15.9g
+  static: root 1437 pad 812 pinna 847 npad 16
+  treadmill: rel=167/5400 (3.1%) root=13742 pad=1802 pinna=1520 disp=3.00 npadmin=7 lost=0
+  tug min 2.67 N
+B D60 {'P': 0.5, 'neck': 3.0, 'k_root_scale': 0.2} eye [0.0, 0.0] M=80.7 band d=2.25 coils=3 k_side=153 Pmin/max=2.08/3.92 SFy=1.82 mass=15.6g
+  static: root 2076 pad 1073 pinna 688 npad 16
+  treadmill: rel=0/5400 (0.0%) root=16990 pad=2696 pinna=1565 disp=2.31 npadmin=7 lost=0
+  tug min 2.53 N
+B D60 {'P': 0.5, 'neck': 3.0, 'k_root_scale': 0.12} eye [0.0, 0.0] M=80.7 band d=2.25 coils=3 k_side=153 Pmin/max=2.08/3.92 SFy=1.82 mass=15.6g
+  static: root 1353 pad 1078 pinna 692 npad 16
+  treadmill: rel=87/5400 (1.6%) root=13723 pad=2743 pinna=1479 disp=3.00 npadmin=8 lost=0
+  tug min 2.34 N
+A D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.2}: cycles=2 converged=True released=48 sustained root=10558 Pa pad=580 pinna=997 npad=16
+B D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.2}: cycles=3 converged=True released=119 sustained root=13926 Pa pad=756 pinna=875 npad=16
+A D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.1, 'root_w': 15}: cycles=2 converged=True released=48 sustained root=5279 Pa pad=580 pinna=997 npad=16
+A D60 {'P': 0.5, 'neck': 2.0, 'k_root_scale': 0.075, 'root_w': 20}: cycles=2 converged=True released=48 sustained root=3959 Pa pad=580 pinna=997 npad=16
