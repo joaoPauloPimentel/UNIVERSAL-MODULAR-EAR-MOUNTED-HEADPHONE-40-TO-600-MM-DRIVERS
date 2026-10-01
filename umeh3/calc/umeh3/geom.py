@@ -176,6 +176,8 @@ def write_scad(path):
         f"LEG_DIR = [{_leg_dir()[0]:.4f}, {_leg_dir()[1]:.4f}];",
         "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
         f"NECK_D = {NECK_WIRE_D};",
+        "SADDLE = " + (f"[{SADDLE['w']}, {SADDLE['t_foam']}, {SADDLE['carrier_t']}]" if SADDLE else "undef") + ";",
+        f"ARCH_C = [{ARCH_C[0]}, {ARCH_C[1]}]; ARCH_R = {ARCH_R}; ARCH_A = [{ARCH_A0}, {ARCH_A1}]; Z_ROOT = {Z_ROOT};",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
         "  " + ", ".join(f"[{D}, {DRIVERS[D]['mount_d']}, {DRIVERS[D]['rim_t']}, {DRIVERS[D]['rear_d']}, "
                          f"{DRIVERS[D]['depth']}, {DRIVERS[D]['front_open']}]" for D in SIZES) + "];",
@@ -183,6 +185,7 @@ def write_scad(path):
     with open(path, "w") as fh:
         fh.write("\n".join(lines) + "\n")
 GROOVE_R_IN = None              # hook routed in a groove in the plate face under the pad (small pad): exits at this radius
+SADDLE = None                    # wide soft saddle on the hook arch: dict(w, t_foam, E_foam, carrier_t) (model A, 2026-10-01)
 NECK = False                     # neckband (user's choice 2026-10-01): eye on the back of the cup, wire to the nape
 NECK_WIRE_D = 1.6                # sized in neckband.design (2 N band: 1.6 mm, 2 apex coils)
 PADDLE = None                    # (w, L, t) mm: wide TPU paddle on the rear leg, against the back of the pinna
@@ -199,6 +202,15 @@ VARIANTS = {
               LEG_PTS=[(-16.0, 8.0, 5.5), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
               TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
               LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0)),
+    # A final (user 2026-10-01: continue with A only, neckband, wide soft saddle approved): A + neckband + a 20 mm wide
+    # saddle on the arch: TPU carrier clipped on the wire, 6 mm slow-rebound foam strip in a velour sock on the root side.
+    # The arch radius grows by the saddle build-up so the bearing stays on the root (contact radius 17 mm as before).
+    "AF": dict(ARCH_A0=35.0, ARCH_A1=145.0, PTFE=(2.0, 4.0), SIL_ARCH=(4.0, 10.0), SIL_LEG=(4.0, 7.0),
+               ROOT_W=20.0, ROOT_ZONE_L=15.0, Z_ROOT=10.0, ARCH_R=26.0,
+               LEG_PTS=[(-18.5, 8.0, 6.0), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
+               TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
+               LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0), NECK=True,
+               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=20e3, carrier_t=1.2, foam_rho=50.0)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.

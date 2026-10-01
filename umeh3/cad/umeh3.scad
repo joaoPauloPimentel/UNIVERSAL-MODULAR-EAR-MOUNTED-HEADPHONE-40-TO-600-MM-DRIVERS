@@ -183,6 +183,19 @@ module neck_eye() {
         translate([0, 0, 1.5]) rotate([0, -90, 0]) cylinder(d = NECK_D + 0.2, h = 20, $fn = 16);
     }
 }
+// wide soft saddle on the arch (model A final): TPU carrier clipped on the wire + slow-rebound foam strip in a velour sock
+module saddle_sector(r0, r1) {
+    translate([ARCH_C[0], ARCH_C[1], 0]) rotate([0, 0, ARCH_A[0]])
+        rotate_extrude(angle = ARCH_A[1] - ARCH_A[0], $fn = 160)
+            translate([r0, Z_ROOT - SADDLE[0] / 2]) offset(r = 0.8) offset(delta = -0.8) square([r1 - r0, SADDLE[0]]);
+}
+module saddle_foam() { if (SADDLE != undef) { rc = ARCH_R - 2 - SADDLE[2] - SADDLE[1]; saddle_sector(rc, rc + SADDLE[1]); } }
+module saddle_carrier() {
+    if (SADDLE != undef) difference() {
+        saddle_sector(ARCH_R - 2 - SADDLE[2], ARCH_R + 2.6);
+        sweep_tube(HOOK, PTFE[1] + 0.2, HOOK_ARCH[0], HOOK_ARCH[1]);
+    }
+}
 module bushing() {
     difference() { cylinder(d = BUSH_OD - 0.1, h = BUSH_L); translate([0, 0, -1]) cylinder(d = WIRE_D - 0.15, h = BUSH_L + 2, $fn = 24);
         translate([0, 0, BUSH_L - 1.0]) cylinder(d1 = WIRE_D - 0.15, d2 = WIRE_D + 0.8, h = 1.01, $fn = 24); }
@@ -233,7 +246,9 @@ module placed(p) {
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
     if (p == "stop_cap") translate([HH[0], HH[1], Z_F + BOSS_L + 0.2]) stop_cap();
     if (p == "wire") hook_wire();
-    if (p == "sleeve_arch") sleeve_arch();
+    if (p == "sleeve_arch" && SADDLE == undef) sleeve_arch();
+    if (p == "saddle_carrier") saddle_carrier();
+    if (p == "saddle_foam") saddle_foam();
     if (p == "sleeve_leg") sleeve_leg();
     if (p == "pad") pad();
     if (p == "front_foam") front_foam();
@@ -244,9 +259,9 @@ module placed(p) {
     if (p == "fibre") fibre();
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg",
-         "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "neck_eye"];
+         "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "neck_eye", "saddle_carrier", "saddle_foam"];
 COL = ["#2B2E33", "#A27449", "#1D1F22", "DimGray", "#1D1F22", "#A27449", "Silver", "#3A3D42", "#3A3D42",
-       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#A27449"];
+       "#2E3036", "#55585E", "Goldenrod", "#8E8A80", "#1D1F22", "#3A3D42", "#A27449", "#1D1F22", "#2E3036"];
 
 module sided() { if (side == "L") mirror([1, 0, 0]) children(); else children(); }
 

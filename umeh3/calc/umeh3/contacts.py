@@ -132,18 +132,28 @@ def contact_set(v=None):
     phi = math.radians(geom.ROOT_PHI)
     t_sl = (v["arch_od"] - geom.SIL_ARCH[0]) / 2 * 1e-3
     A_r = v["root_w"] * v["root_zone_L"] * 0.7 * 1e-6
-    k_r = 1 / (t_sl / (SILICONE["E"].v * A_r) + TISSUE["t_root"].v / (TISSUE["E_root"].v * A_r))
+    sad = geom.SADDLE
+    if sad:
+        # soft saddle: slow-rebound foam strip (the compliant layer) on a TPU carrier, velour sock on the skin
+        k_r = 1 / (sad["t_foam"] * 1e-3 / (sad["E_foam"] * A_r) + TISSUE["t_root"].v / (TISSUE["E_root"].v * A_r))
+        r_c = geom.ARCH_R - 2.0 - sad["carrier_t"] - sad["t_foam"]        # bearing radius (root surface)
+        root_key = "velour/dry skin"
+    else:
+        k_r = 1 / (t_sl / (SILICONE["E"].v * A_r) + TISSUE["t_root"].v / (TISSUE["E_root"].v * A_r))
+        r_c = geom.ARCH_R - v["arch_od"] / 2
+        root_key = "silicone/dry skin"
     mu_root = v["mu_root"]
     zones = ((+1, "H root F"), (-1, "H root B")) if v["arch"] else ((0, "H root"),)
     for sgn, nm in zones:
         th = math.pi / 2 - sgn * phi
         u = np.array([math.cos(th), math.sin(th), 0.0])
-        pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1], geom.Z_ROOT]) * 1e-3 + (geom.ARCH_R - v["arch_od"] / 2) * 1e-3 * u
+        pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1], geom.Z_ROOT]) * 1e-3 + r_c * 1e-3 * u
         k_z, A_z = (k_r, A_r) if v["arch"] else (2 * k_r, 2 * A_r)
         k_z *= v["k_root_scale"]
-        add(nm, pt, u, k_z, A_z, "silicone/dry skin", node, mu_root)
+        add(nm, pt, u, k_z, A_z, root_key, node, mu_root)
     if v["helix"]:
-        pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1] + geom.ARCH_R, geom.Z_ROOT + v["arch_od"] / 2]) * 1e-3
+        z_h = geom.Z_ROOT + (sad["w"] / 2 if sad else v["arch_od"] / 2)
+        pt = np.array([geom.ARCH_C[0], geom.ARCH_C[1] + r_c + 3.0, z_h]) * 1e-3
         add("H helix", pt, [0, 0, -1], v["k_helix"], 120e-6, "silicone/dry skin", node, mu_root)
     # sulcus: leg on the mastoid skin; the leg's own compliance (apex -> point) in series
     ps = mm(geom.SULCUS_PT)
