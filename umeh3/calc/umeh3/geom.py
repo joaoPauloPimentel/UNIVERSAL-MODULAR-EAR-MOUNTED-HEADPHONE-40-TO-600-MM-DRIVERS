@@ -205,6 +205,18 @@ def _leg_dir():
     return d / np.linalg.norm(d)
 
 
+def _wp_scad():
+    if not WP:
+        return "WP = undef;"
+    w = WP
+    return ("WP = true; " + f"MEMB_T = {w['memb_t']}; OR_CORD = {w['cord']}; OR_G = [{w['groove'][0]}, {w['groove'][1]}]; "
+            f"OR_GD = {w['gdepth']}; CABLE_D = {w['cable_d']}; GL_CORD = {w['gland_cord']}; GL_ID = {w['gland_id']}; "
+            f"POGO = [{w['pogo_d']}, {w['pogo_l']}, {w['pogo_a']}, {w['pogo_z']}]; "
+            f"SLIDER = [{w['slider'][0]}, {w['slider'][1]}, {w['slider'][2]}]; MAGNET = [{w['magnet'][0]}, {w['magnet'][1]}]; "
+            f"MOD_SIDE = \"{w['module_side']}\"; BOARD = {list(w['board'])}; CHARGER = {list(w['charger'])}; "
+            f"BATT = {list(w['battery'])}; POST_R = {w['post_r']}; POST_L = {w['post_l']};")
+
+
 def write_scad(path):
     """cad/params3.scad: every CAD number, generated (do not edit by hand)."""
     P, lab = hook_path()
@@ -232,6 +244,7 @@ def write_scad(path):
         f"NECK_EYE_Z = {NECK_EYE_Z}; NECK_PIN = {NECK_PIN}; NECK_EMB = {neck_embedded() if NECK else 0};",
         "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
         f"NECK_D = {NECK_WIRE_D}; NECK_SL = {NECK_SLEEVE};",
+        _wp_scad(),
         "SADDLE = " + (f"[{SADDLE['w']}, {SADDLE['t_foam']}, {SADDLE['carrier_t']}]" if SADDLE else "undef") + ";",
         f"ARCH_C = [{ARCH_C[0]}, {ARCH_C[1]}]; ARCH_R = {ARCH_R}; ARCH_A = [{ARCH_A0}, {ARCH_A1}]; Z_ROOT = {Z_ROOT};",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
@@ -247,6 +260,12 @@ NECK_WIRE_D = 1.8                # sized in neckband.design for the 2 N band: 1.
                                  # bent wire; the contact model has always used this one)
 PADDLE = None                    # (w, L, t) mm: wide TPU paddle on the rear leg, against the back of the pinna
 LOBE_PT = None                   # contact under the lobule attachment (only a hook that wraps under it)
+# waterproof build (UMEH-3W, user 2026-10-03: shower + brief dive = IPX7, Bluetooth, one module, wires in the band).
+# Seal chain (no glue): front ring -> ePTFE acoustic membrane -> O-ring A in the adapter front face; adapter back face
+# -> O-ring B -> shell shoulder. The bayonet clamps the stack to a hard stop (squeeze set by the groove depth). Cable
+# into each cup through an O-ring gland under the band sleeve; magnetic pogo charge port with an O-ring; power by a
+# magnet slider over a reed switch (no hole). Electronics on printed trays twisted onto posts inside the cups.
+WP = None
 
 # ------------------------------------------------------------------ design variants
 # base: first draft (2026-10-01). A "gancho maior": longer, wider hook for running: the arch covers more of the root
@@ -268,6 +287,24 @@ VARIANTS = {
                TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
                LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0), NECK=True,
                SADDLE=dict(w=20.0, t_foam=6.0, E_foam=25e3, carrier_t=1.2, foam_rho=50.0)),
+    # W: waterproof A final (see WP). Pocket +1.2 mm radius so the TPU adapter keeps a 1.25 mm wall outside the 60 mm
+    # rim (it separates wet from dry); adapter 6 mm (2 mm lips carry the O-ring grooves); cup +2.5 mm (rear chamber
+    # kept); band sleeve 4x6 (wire + 4-core cable); protein-leather pad (heavier) [A].
+    "AW": dict(ARCH_A0=35.0, ARCH_A1=145.0, PTFE=(2.0, 4.0), SIL_ARCH=(4.0, 10.0), SIL_LEG=(4.0, 7.0),
+               ROOT_W=20.0, ROOT_ZONE_L=15.0, Z_ROOT=10.0, ARCH_R=26.0,
+               LEG_PTS=[(-18.5, 8.0, 6.0), (-14.5, -5.0, 5.5), (-11.5, -17.0, 5.5), (-6.5, -25.5, 5.0)],
+               TIP=(-0.5, -28.0, 6.5), PINNA_PT=(-14.5, -3.0, 5.5), SULCUS_PT=(-12.5, -12.0, 3.5),
+               LOBE_PT=(-3.5, -27.0, 5.0), PADDLE=(14.0, 36.0, 3.0), NECK=True,
+               SADDLE=dict(w=20.0, t_foam=6.0, E_foam=25e3, carrier_t=1.2, foam_rho=50.0),
+               PAD=dict(od=110.0, id=60.0, t=25.0, comp=1.0, lip_fit=96.0, mass=14.0, E_foam=20e3, contact_frac=0.7),
+               POCKET_R=31.7, ADAPTER_H=6.0, ADAPTER_SQ=0.0, CUP_H=33.5, NECK_SLEEVE=6.0, NECK_EYE_Z=-1.7,
+               WP=dict(memb_t=0.2, cord=1.5, groove=(28.0, 30.0), gdepth=1.2, oring="55 x 1,5 mm NBR",
+                       cable_d=2.2, gland_cord=1.0, gland_id=2.0,
+                       pogo_d=8.5, pogo_l=7.0, pogo_a=13.0, pogo_z=7.0,     # pogo_a/z: x, y on the back (pocket frame)
+                      
+                       slider=(11.0, -4.0, 12.0), magnet=(6.0, 2.0), module_side="R",
+                       board=(23.0, 16.5, 3.0), charger=(17.0, 26.0, 4.0), battery=(30.0, 20.0, 4.0),
+                       post_r=24.0, post_l=8.2)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.

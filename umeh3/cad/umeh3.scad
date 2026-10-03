@@ -21,13 +21,20 @@ D = 50;
 side = "R";
 $fn = $preview ? 64 : 128;
 
+// waterproof build (UMEH-3W): defaults when WP is off; umeh3w.scad includes params3w.scad after this file
+MEMB_T = 0; OR_CORD = 1.5; OR_G = [28, 30]; OR_GD = 1.2; CABLE_D = 2.2; GL_CORD = 1.0; GL_ID = 2.0;
+POGO = [8.5, 7, 250, 19]; SLIDER = [11, -4, 12]; MAGNET = [6, 2]; MOD_SIDE = "R";
+BOARD = [23, 16.5, 3]; CHARGER = [17, 26, 4]; BATT = [30, 20, 4]; POST_R = 24; POST_L = 5.3;
+
 function drv(d) = DRV[search(d, DRV)[0]];
 R_HUB = POCKET_R + HUB_WALL;                 // shell outer radius around the pocket centre
-ZL_ADP = RING_T;                             // adapter front face (local z from the plate face)
-ZL_SH = RING_T + ADAPTER_H - ADAPTER_SQ;     // shoulder front face
+ZL_ADP = RING_T + MEMB_T;                    // adapter front face (local z from the plate face)
+ZL_SH = RING_T + MEMB_T + ADAPTER_H - ADAPTER_SQ;     // shoulder front face
 ZL_CH = ZL_SH + SHOULDER_T;                  // chamber starts
 AP_R = 52.8 / 2;                             // front ring opening (60 mm driver aperture)
-LUG_A0 = [20, 140, 260];                     // lug entry angles (clear of the hook boss and the socket)
+// lug entry angles (clear of the hook boss and the socket); the waterproof pocket is 1.2 mm wider, its grooves would
+// reach the hook wire hole at 49 deg, so the lugs turn to put the hook in the middle of a gap
+LUG_A0 = WP == true ? [80, 200, 320] : [20, 140, 260];
 HOOK_ANG = atan2(HH[1] - PC[1], HH[0] - PC[0]);
 SOCK_Z = 12.0;                               // socket housing centre, local z
 
@@ -167,22 +174,162 @@ module shell_body() {
             cup_fillet();
             hook_boss_solid();
             lock_wall();
-            socket_housing(false);
+            if (WP != true) socket_housing(false);
             if (GROOVE) groove_rib();
         }
         at_pc() rotate_extrude($fn = 160) cup_inner2d();
         at_pc() bayonet_cut();
-        // hook: wire passage through plate and boss, bushing bore at the back
-        translate([HH[0], HH[1], Z_F - 1]) cylinder(d = WIRE_D + 0.3, h = BOSS_L + 2, $fn = 24);
-        translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) cylinder(d = BUSH_OD, h = BUSH_L + 1, $fn = 48);
-        socket_housing(true);
         if (GROOVE) groove_cut();
         // pocket front chamfer
         at_pc() translate([0, 0, -0.01]) cylinder(r1 = POCKET_R + 0.5, r2 = POCKET_R, h = 0.5);
     }
         neck_spine();
+        bushing_wall();
+        if (WP == true) wp_solids();
         }
         neck_channel();
+        // hook: wire passage through plate and boss, bushing bore at the back
+        translate([HH[0], HH[1], Z_F - 1]) cylinder(d = WIRE_D + 0.3, h = BOSS_L + 2, $fn = 24);
+        translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) cylinder(d = BUSH_OD, h = BUSH_L + 1, $fn = 48);
+        if (WP != true) socket_housing(true);
+        if (WP == true) wp_cuts();
+    }
+}
+// the bushing bore runs next to the cup: without this wall it opened a 1 x 9 mm slit into the rear chamber
+module bushing_wall() {
+    intersection() {
+        translate([HH[0], HH[1], Z_F + ZL_SH]) cylinder(d = BUSH_OD + 2.4, h = BOSS_L - ZL_SH, $fn = 48);
+        at_pc() rotate_extrude($fn = 160) cup_outer2d();
+    }
+}
+
+// ---------------------------------------------------------------- waterproof features (UMEH-3W)
+NECK_GL = 4;                                 // band point where the cable leaves the sleeve and enters the cup
+module at_gland() { translate(NECK[NECK_GL] - [0, 0, NECK_SL / 2 + 0.15]) children(); }   // on the channel floor
+GL_BORE = CABLE_D + 2 * GL_CORD * 0.8;       // O-ring on the cable, 20 % radial squeeze
+// charge port on the flat back of the power-side cup (mirror place of the slider on the other side), +z inward
+module at_pogo() { at_pc() translate([POGO[2], POGO[3], CUP_H]) rotate([180, 0, 0]) children(); }
+POST_A = [140, 215, 330];                    // clear of the parts on both trays and of the band spine
+TRAY_Z = CUP_H - WALL - POST_L;              // tray back face (local z), components between tray and back wall
+module wp_solids() {
+    // cable gland boss under the channel floor
+    intersection() {
+        at_gland() translate([0, 0, -7]) cylinder(d = GL_BORE + 3.2, h = 7, $fn = 32);
+        at_pc() rotate_extrude($fn = 160) cup_outer2d();
+    }
+    // tray posts on the inside of the back
+    for (a = POST_A) at_pc() rotate([0, 0, a]) translate([POST_R, 0, TRAY_Z - 2.2]) cylinder(d = 4, h = POST_L + 2.3, $fn = 24);
+    if (side != MOD_SIDE) {
+        // charge port boss (radial, through the cup wall), slightly proud outside
+        at_pogo() {
+            translate([0, 0, -0.6]) cylinder(d1 = POGO[0] + 3.0, d2 = POGO[0] + 4.4, h = 0.61, $fn = 40);   // bezel
+            cylinder(d = POGO[0] + 4.4, h = POGO[1] + 4.6, $fn = 40);
+        }
+    } else {
+        // power slider rail on the back (dovetail, printed on the top surface; 45 deg flanks)
+        at_pc() translate([SLIDER[0], SLIDER[1], CUP_H - 0.01]) slider_rail();
+    }
+}
+module slider_rail() {
+    L = SLIDER[2] - SLIDER[1];
+    translate([0, 0, 0]) hull() {
+        translate([-2.0, 0, 0]) cube([4.0, L, 0.01]);
+        translate([-3.0, 0, 1.0]) cube([6.0, L, 0.6]);
+    }
+    translate([0, L - 1.2, 0]) translate([-3.0, 0, 0]) cube([6.0, 1.2, 3.0]);   // end stop at the ON end
+}
+module wp_cuts() {
+    // cable gland: counterbore for the O-ring on the cable, through hole into the cup
+    at_gland() {
+        translate([0, 0, -GL_CORD * 1.3]) cylinder(d = GL_BORE, h = GL_CORD * 1.3 + 0.5, $fn = 32);
+        translate([0, 0, -8]) cylinder(d = CABLE_D + 0.3, h = 9, $fn = 24);
+    }
+    if (side != MOD_SIDE) at_pogo() {
+        translate([0, 0, -1]) cylinder(d = POGO[0] - 0.6, h = 1.6, $fn = 40);          // face lip (0.6 deep)
+        translate([0, 0, 0.6]) cylinder(d = POGO[0] + 0.2, h = POGO[1] + 6, $fn = 40); // body + TPU lock plug
+        translate([0, 0, 0.6 + POGO[1] / 2 - 0.8]) cylinder(d = POGO[0] + 2.4, h = 1.6, $fn = 40);   // O-ring groove
+    }
+}
+// visual / purchased parts of the waterproof build
+module torus(r, c) { rotate_extrude($fn = 120) translate([r, 0]) circle(d = c, $fn = 16); }
+module membrane() { at_pc() translate([0, 0, RING_T]) cylinder(r = POCKET_R - 0.3, h = MEMB_T); }
+module orings() {
+    rm = (OR_G[0] + OR_G[1]) / 2;
+    at_pc() { translate([0, 0, ZL_ADP + OR_CORD * 0.4]) torus(rm, OR_CORD * 0.9); translate([0, 0, ZL_SH - OR_CORD * 0.4]) torus(rm, OR_CORD * 0.9); }
+    at_gland() translate([0, 0, -GL_CORD * 0.65]) torus(CABLE_D / 2 + GL_CORD * 0.4, GL_CORD * 0.8);
+    if (side != MOD_SIDE) at_pogo() translate([0, 0, 0.6 + POGO[1] / 2]) torus(POGO[0] / 2 + 0.6, 1.2);
+}
+module pogo_vis() {
+    if (side != MOD_SIDE) at_pogo() {
+        translate([0, 0, 0.6]) cylinder(d = POGO[0], h = POGO[1], $fn = 40);
+        for (s = [-1, 1]) translate([s * 1.4, 0, 0.3]) cylinder(d = 1.2, h = 0.4, $fn = 12);
+    }
+}
+module pogo_plug() {    // TPU friction plug behind the connector (holds it on the face lip; wires through the slot)
+    if (side != MOD_SIDE) at_pogo() translate([0, 0, 0.6 + POGO[1]]) difference() {
+        cylinder(d = POGO[0] + 0.35, h = 4.0, $fn = 40);
+        translate([-1.5, -2.5, -1]) cube([3, 5, 6]);
+    }
+}
+// tray: twisted onto the three posts (keyholes), components face the back wall
+module tray() {
+    difference() {
+        union() {
+            at_pc() translate([0, 0, TRAY_Z - 1.2]) {
+                difference() { cylinder(r = 25.0, h = 1.2); translate([0, 0, -1]) cylinder(r = 22.5, h = 4); }
+                for (a = POST_A) rotate([0, 0, a]) translate([POST_R, 0, 0]) cylinder(d = 7, h = 1.2, $fn = 24);
+                linear_extrude(1.2) tray_beds();
+            }
+        }
+        // keyholes: enter at the wide end, turn 12 deg to lock under the post heads
+        at_pc() for (a = POST_A) rotate([0, 0, a]) translate([POST_R, 0, TRAY_Z - 3]) cylinder(d = 3.0, h = 5, $fn = 20);
+        // notch for the cable gland boss
+        at_gland() translate([0, 0, -12]) cylinder(d = GL_BORE + 4.2, h = 12, $fn = 32);
+    }
+}
+// layout (pocket-centre frame): everything below the band spine (which crosses the back from the axis to the rear)
+module tray_beds() {
+    if (side == MOD_SIDE) {
+        translate([0, -12.5]) square([BATT[0] + 2, BATT[1] + 2], center = true);
+        translate([SLIDER[0], SLIDER[2] - 4]) square([6, 6], center = true);
+        hull() { translate([SLIDER[0], SLIDER[2] - 4]) circle(r = 2); translate([6, -4]) circle(r = 2); }
+    } else
+        translate([0, -12.5]) square([CHARGER[1] + 2, CHARGER[0] + 2], center = true);
+    for (a = POST_A) hull() { rotate([0, 0, a]) translate([POST_R, 0]) circle(r = 2); translate([0, -12]) circle(r = 2); }
+}
+// module side: battery on the tray, Bluetooth board on top of it, reed switch on a pedestal under the slider;
+// other side: charger (and the charge port in the back). 4-core cable in the band: battery +/- to the charger,
+// left driver +/- from the board.
+module electronics() { color("#1F5E3A") elec("board"); color("#C8E6F0") elec("reed"); color("Silver") elec("battery"); color("#1E3F7A") elec("charger"); }
+module elec(what) {
+    at_pc() translate([0, 0, TRAY_Z]) {
+        if (side == MOD_SIDE) {
+            if (what == "battery") translate([-BATT[0] / 2, -12.5 - BATT[1] / 2, 0]) cube([BATT[0], BATT[1], BATT[2]]);
+            if (what == "board") translate([-BOARD[0] / 2, -12.5 - BOARD[1] / 2, BATT[2] + 0.1]) cube([BOARD[0], BOARD[1], BOARD[2]]);
+            if (what == "reed") translate([SLIDER[0] - 2, SLIDER[2] - 6, 0]) { cube([4, 4, POST_L - 2.6]);
+                translate([2, -3, POST_L - 1.5]) rotate([-90, 0, 0]) cylinder(d = 2.2, h = 10, $fn = 12); }
+        } else {
+            if (what == "charger") translate([-CHARGER[1] / 2, -12.5 - CHARGER[0] / 2, 0]) cube([CHARGER[1], CHARGER[0], CHARGER[2]]);
+        }
+    }
+}
+module slider() {    // TPU, snaps over the rail; magnet pressed into its underside pocket; ON at the rail's stop
+    L = 9;
+    if (side == MOD_SIDE) at_pc() translate([SLIDER[0], SLIDER[2] - 1.2 - L, CUP_H]) difference() {
+        hull() { translate([-4.5, 0, 0]) cube([9, L, 0.01]); translate([-4.0, 0.5, 3.2]) cube([8, L - 1, 0.01]); }
+        hull() { translate([-2.15, -1, -0.01]) cube([4.3, L + 2, 0.01]); translate([-3.15, -1, 1.0]) cube([6.3, L + 2, 0.7]); }
+        translate([0, L / 2, 1.7]) cylinder(d = MAGNET[0] + 0.1, h = MAGNET[1], $fn = 24);
+        for (k = [0 : 2]) translate([-4.6, 1.5 + k * 2.5, 2.6]) cube([9.2, 0.8, 1]);         // grip ribs
+    }
+}
+module ring_key() {     // PLA key: two pins in the ring notches, turn the sealed ring with it
+    difference() {
+        union() {
+            cylinder(r = POCKET_R - 2, h = 3);
+            translate([-6, -(POCKET_R + 14), 0]) cube([12, 2 * POCKET_R + 28, 4]);
+            for (s = [0, 180]) rotate([0, 0, 80 + s]) translate([(AP_R + POCKET_R) / 2, 0, -2.5]) cylinder(d = 2.8, h = 2.6, $fn = 20);
+        }
+        translate([0, 0, -1]) cylinder(r = AP_R - 6, h = 6);
     }
 }
 
@@ -203,7 +350,25 @@ module front_ring() {
 
 // ---------------------------------------------------------------- TPU adapter per driver
 // front lip (aperture 0.88 D) with a conical spring flap at its outer edge; rim seat; back lip.
-module adapter(d) {
+module adapter(d) { if (WP == true) adapter_w(d); else adapter_a(d); }
+// waterproof adapter: 2 mm front lip with the O-ring A groove (membrane side), rim seat, 2 mm back lip with O-ring B
+// groove (shoulder side); no lead notch (the leads go back into the dry chamber); 1.25 mm TPU outside the 60 mm rim
+module adapter_w(d) {
+    v = drv(d); ro = v[1] / 2; rt = v[2]; ap = v[5] / 2;
+    RO = POCKET_R - 0.15; lip = (ADAPTER_H - rt) / 2;
+    difference() {
+        cylinder(r = RO, h = ADAPTER_H);
+        translate([0, 0, -1]) cylinder(r = ap, h = 20);
+        translate([0, 0, lip]) cylinder(r = ro + 0.05, h = rt + 0.01);
+        translate([0, 0, lip + rt - 0.01]) cylinder(r = v[3] / 2 + 0.6, h = 20);
+        for (z = [-0.01, ADAPTER_H - OR_GD]) translate([0, 0, z]) difference() {
+            cylinder(r = OR_G[1], h = OR_GD + 0.02); translate([0, 0, -1]) cylinder(r = OR_G[0], h = OR_GD + 2); }
+        // weight: annular pocket from the back, inside O-ring B (dry side), outside the rim seat wall (small drivers)
+        if (OR_G[0] - 1.0 - (ro + 1.2) > 1.5) translate([0, 0, lip]) difference() {
+            cylinder(r = OR_G[0] - 1.0, h = ADAPTER_H); translate([0, 0, -1]) cylinder(r = ro + 1.2, h = ADAPTER_H + 2); }
+    }
+}
+module adapter_a(d) {
     v = drv(d); ro = v[1] / 2; rt = v[2]; ap = v[5] / 2;
     RO = POCKET_R - 0.15;
     difference() {
@@ -300,7 +465,8 @@ module socket_vis() {
         translate([-SOCKET[2] / 2, -SOCKET[0] / 2, 0]) cube([SOCKET[2], SOCKET[0], SOCKET[1]]);
 }
 module fibre() {
-    at_pc() translate([0, 0, CUP_H - WALL - FIBRE_T]) cylinder(r = R_HUB - CUP_ROUND, h = FIBRE_T);
+    if (WP == true) at_pc() translate([0, 0, TRAY_Z - 1.2 - 4]) cylinder(r = 22, h = 4);   // thin layer under the tray
+    else at_pc() translate([0, 0, CUP_H - WALL - FIBRE_T]) cylinder(r = R_HUB - CUP_ROUND, h = FIBRE_T);
 }
 
 // ---------------------------------------------------------------- placed parts (head frame)
@@ -317,12 +483,22 @@ module placed(p) {
     if (p == "sleeve_leg") sleeve_leg();
     if (p == "pad") pad();
     if (p == "front_foam") front_foam();
-    if (p == "socket") socket_vis();
+    if (p == "socket" && WP != true) socket_vis();
     if (p == "paddle") paddle();
     if (p == "neckband") neckband();
     if (p == "fibre") fibre();
     if (p == "logo") logo(side, side == "L");
     if (p == "logo_L") logo("L", true);       // the left letters as the right side's mirror image (viewer)
+    if (WP == true) {
+        if (p == "membrane") membrane();
+        if (p == "orings") orings();
+        if (p == "pogo") pogo_vis();
+        if (p == "pogo_plug") pogo_plug();
+        if (p == "tray") tray();
+        if (p == "electronics") electronics();
+        if (p == "board" || p == "reed" || p == "battery" || p == "charger") elec(p);
+        if (p == "slider") slider();
+    }
 }
 PARTS = ["shell", "front_ring", "adapter", "driver", "bushing", "wire", "sleeve_arch", "sleeve_leg",
          "pad", "front_foam", "socket", "fibre", "paddle", "neckband", "saddle_carrier", "saddle_foam"];
@@ -343,6 +519,10 @@ if (part == "print_front_ring") sided() front_ring();
 if (part == "print_adapter") adapter(D);
 if (part == "print_bushing") bushing();
 if (part == "print_bend_jig") sided() bend_jig();
+if (part == "print_tray") sided() translate([0, 0, -(Z_F + TRAY_Z - 1.2)]) tray();
+if (part == "print_slider") sided() translate([0, 0, -(Z_F + CUP_H)]) slider();
+if (part == "print_pogo_plug") cylinder(d = POGO[0] + 0.35, h = 4.0, $fn = 40);
+if (part == "print_ring_key") ring_key();
 
 // wire bending jig (PETG plate with the hook path as a groove; bend the wire around the pins by hand)
 module bend_jig() {
