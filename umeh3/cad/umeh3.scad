@@ -124,7 +124,7 @@ module bayonet_cut() {
 // the surface: 3.6 mm opening on the 4 mm sleeve, it snaps in); blind hole for the bent wire end
 module neck_spine() {
     if (NECK != undef) intersection() {
-        union() { sweep_tube(NECK, NECK_SL + 0.3 + 2 * WALL, 1, NECK_EMB); translate(NECK[1] - [0, 0, NECK_PIN / 2]) sphere(d = 7, $fn = 32); }
+        union() { sweep_tube(NECK, NECK_SL + 0.3 + 2 * WALL, 1, NECK_EMB); translate(NECK[1] - [0, 0, NECK_PIN / 2]) sphere(d = WP == true ? 5.5 : 7, $fn = 32); }
         at_pc() rotate_extrude($fn = 160) cup_outer2d();
     }
 }
@@ -218,7 +218,12 @@ module wp_solids() {
         at_pc() rotate_extrude($fn = 160) cup_outer2d();
     }
     // tray posts on the inside of the back
-    for (a = POST_A) at_pc() rotate([0, 0, a]) translate([POST_R, 0, TRAY_Z - 2.2]) cylinder(d = 4, h = POST_L + 2.3, $fn = 24);
+    // tray posts: body down to the tray, a 2.8 mm neck through the tray's keyhole slot, a 4.4 mm head under it
+    for (a = POST_A) at_pc() rotate([0, 0, a]) translate([POST_R, 0, 0]) {
+        translate([0, 0, TRAY_Z]) cylinder(d = 4, h = POST_L + 0.1, $fn = 24);
+        translate([0, 0, TRAY_Z - 1.25]) cylinder(d = 2.8, h = 1.3, $fn = 20);
+        translate([0, 0, TRAY_Z - 2.05]) cylinder(d = 4.4, h = 0.8, $fn = 24);
+    }
     if (side != MOD_SIDE) {
         // charge port boss (radial, through the cup wall), slightly proud outside
         at_pogo() {
@@ -281,35 +286,41 @@ module tray() {
                 linear_extrude(1.2) tray_beds();
             }
         }
-        // keyholes: enter at the wide end, turn 12 deg to lock under the post heads
-        at_pc() for (a = POST_A) rotate([0, 0, a]) translate([POST_R, 0, TRAY_Z - 3]) cylinder(d = 3.0, h = 5, $fn = 20);
+        // keyholes: the heads pass the wide end (4.8 mm), then turn the tray 12 deg so the necks sit in the 3 mm slots
+        at_pc() for (a = POST_A) translate([0, 0, TRAY_Z - 3]) {
+            rotate([0, 0, a - 12]) translate([POST_R, 0, 0]) cylinder(d = 4.8, h = 5, $fn = 24);
+            rotate([0, 0, a - 12]) rotate_extrude(angle = 12, $fn = 120) translate([POST_R - 1.5, 0]) square([3.0, 5]);
+            rotate([0, 0, a]) translate([POST_R, 0, 0]) cylinder(d = 3.0, h = 5, $fn = 20);
+        }
         // notch for the cable gland boss
         at_gland() translate([0, 0, -12]) cylinder(d = GL_BORE + 4.2, h = 12, $fn = 32);
+        // clearance for the pogo boss (charger side)
+        if (side != MOD_SIDE) at_pogo() cylinder(d = POGO[0] + 5.4, h = 30, $fn = 40);
     }
 }
 // layout (pocket-centre frame): everything below the band spine (which crosses the back from the axis to the rear)
+// one 503030 cell (30 x 30 x 5) on each tray, under the band spine (the tray sits low for it); module side: Bluetooth
+// board on the cell + reed switch on a pedestal under the slider; other side: charger on the cell. The two cells work
+// in parallel through the band cable (4 cores: cell +/- to the charger side, left driver +/- from the board).
+BATT_C = [0, -10];
 module tray_beds() {
+    translate(BATT_C) square([BATT[0] + 1, BATT[1] + 1], center = true);
     if (side == MOD_SIDE) {
-        translate([0, -12.5]) square([BATT[0] + 2, BATT[1] + 2], center = true);
         translate([SLIDER[0], SLIDER[2] - 4]) square([6, 6], center = true);
-        hull() { translate([SLIDER[0], SLIDER[2] - 4]) circle(r = 2); translate([6, -4]) circle(r = 2); }
-    } else
-        translate([0, -12.5]) square([CHARGER[1] + 2, CHARGER[0] + 2], center = true);
+        hull() { translate([SLIDER[0], SLIDER[2] - 4]) circle(r = 2); translate([6, 0]) circle(r = 2); }
+    }
     for (a = POST_A) hull() { rotate([0, 0, a]) translate([POST_R, 0]) circle(r = 2); translate([0, -12]) circle(r = 2); }
 }
-// module side: battery on the tray, Bluetooth board on top of it, reed switch on a pedestal under the slider;
-// other side: charger (and the charge port in the back). 4-core cable in the band: battery +/- to the charger,
-// left driver +/- from the board.
 module electronics() { color("#1F5E3A") elec("board"); color("#C8E6F0") elec("reed"); color("Silver") elec("battery"); color("#1E3F7A") elec("charger"); }
 module elec(what) {
     at_pc() translate([0, 0, TRAY_Z]) {
+        if (what == "battery") translate([BATT_C[0] - BATT[0] / 2, BATT_C[1] - BATT[1] / 2, 0]) cube([BATT[0], BATT[1], BATT[2]]);
         if (side == MOD_SIDE) {
-            if (what == "battery") translate([-BATT[0] / 2, -12.5 - BATT[1] / 2, 0]) cube([BATT[0], BATT[1], BATT[2]]);
-            if (what == "board") translate([-BOARD[0] / 2, -12.5 - BOARD[1] / 2, BATT[2] + 0.1]) cube([BOARD[0], BOARD[1], BOARD[2]]);
+            if (what == "board") translate([-BOARD[0] / 2, -12 - BOARD[1] / 2, BATT[2] + 0.1]) cube([BOARD[0], BOARD[1], BOARD[2]]);
             if (what == "reed") translate([SLIDER[0] - 2, SLIDER[2] - 6, 0]) { cube([4, 4, POST_L - 2.6]);
                 translate([2, -3, POST_L - 1.5]) rotate([-90, 0, 0]) cylinder(d = 2.2, h = 10, $fn = 12); }
         } else {
-            if (what == "charger") translate([-CHARGER[1] / 2, -12.5 - CHARGER[0] / 2, 0]) cube([CHARGER[1], CHARGER[0], CHARGER[2]]);
+            if (what == "charger") translate([-CHARGER[1] / 2, -12.5 - CHARGER[0] / 2, BATT[2] + 0.1]) cube([CHARGER[1], CHARGER[0], CHARGER[2]]);
         }
     }
 }
@@ -457,7 +468,7 @@ module driver_vis(d) {
     difference() { cylinder(r = v[1] / 2, h = v[2]); translate([0, 0, -1]) cylinder(r = v[5] / 2 - 0.5, h = 5); }
     translate([0, 0, 0.3]) difference() { cylinder(r1 = v[5] / 2 - 0.5, r2 = v[3] * 0.18, h = v[4] * 0.25);
         translate([0, 0, -0.01]) cylinder(r1 = v[5] / 2 - 1.1, r2 = v[3] * 0.18 - 0.6, h = v[4] * 0.25 - 0.5); }
-    translate([0, 0, v[2]]) cylinder(r1 = v[1] / 2 - 1.5, r2 = v[3] / 2, h = v[4] * 0.5);
+    translate([0, 0, v[2]]) cylinder(r1 = WP == true ? v[3] / 2 : v[1] / 2 - 1.5, r2 = v[3] / 2, h = v[4] * 0.5);
     translate([0, 0, v[2] + v[4] * 0.5]) cylinder(r = v[3] / 2 * 0.85, h = v[4] * 0.5 - v[2]);
 }
 module socket_vis() {
@@ -465,7 +476,7 @@ module socket_vis() {
         translate([-SOCKET[2] / 2, -SOCKET[0] / 2, 0]) cube([SOCKET[2], SOCKET[0], SOCKET[1]]);
 }
 module fibre() {
-    if (WP == true) at_pc() translate([0, 0, TRAY_Z - 1.2 - 4]) cylinder(r = 22, h = 4);   // thin layer under the tray
+    if (WP == true) at_pc() translate([0, 0, TRAY_Z - 1.2 - 1.5]) cylinder(r = 20, h = 1.5);   // thin layer under the tray
     else at_pc() translate([0, 0, CUP_H - WALL - FIBRE_T]) cylinder(r = R_HUB - CUP_ROUND, h = FIBRE_T);
 }
 
@@ -474,7 +485,7 @@ module placed(p) {
     if (p == "shell") shell();
     if (p == "front_ring") at_pc() translate([0, 0, 0]) front_ring();
     if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) adapter(D);
-    if (p == "driver") at_pc() translate([0, 0, ZL_ADP + 1.0 - 0.0]) driver_vis(D);
+    if (p == "driver") at_pc() translate([0, 0, ZL_ADP + (WP == true ? (ADAPTER_H - drv(D)[2]) / 2 : 1.0)]) driver_vis(D);
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
     if (p == "wire") hook_wire();
     if (p == "sleeve_arch" && SADDLE == undef) sleeve_arch();

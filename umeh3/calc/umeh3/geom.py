@@ -300,11 +300,11 @@ VARIANTS = {
                POCKET_R=31.7, ADAPTER_H=6.0, ADAPTER_SQ=0.0, CUP_H=33.5, NECK_SLEEVE=6.0, NECK_EYE_Z=-1.7,
                WP=dict(memb_t=0.2, cord=1.5, groove=(28.0, 30.0), gdepth=1.2, oring="55 x 1,5 mm NBR",
                        cable_d=2.2, gland_cord=1.0, gland_id=2.0,
-                       pogo_d=8.5, pogo_l=7.0, pogo_a=13.0, pogo_z=7.0,     # pogo_a/z: x, y on the back (pocket frame)
+                       pogo_d=8.5, pogo_l=7.0, pogo_a=12.0, pogo_z=12.5,     # pogo_a/z: x, y on the back (pocket frame)
                       
                        slider=(11.0, -4.0, 12.0), magnet=(6.0, 2.0), module_side="R",
-                       board=(23.0, 16.5, 3.0), charger=(17.0, 26.0, 4.0), battery=(30.0, 20.0, 4.0),
-                       post_r=24.0, post_l=8.2)),
+                       board=(23.0, 16.5, 3.0), charger=(17.0, 26.0, 4.0), battery=(30.0, 30.0, 5.0),
+                       post_r=24.0, post_l=10.2)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.
