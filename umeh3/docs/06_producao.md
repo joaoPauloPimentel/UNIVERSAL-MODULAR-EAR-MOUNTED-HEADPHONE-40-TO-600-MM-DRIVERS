@@ -9,12 +9,12 @@ Os valores abaixo são estimativas, sem cotação de fornecedor. Nada aqui muda 
 |---|---|---|---|
 | Peças compradas | 70–100 | 65–95 | compra direta da fábrica (1688 ou AliExpress em lote de 100+) |
 | Impressão | ~30 (~10 h) | ~15–18 (~5–6 h) | perfil rápido e placa cheia |
-| Mão de obra | 25–40 (1–1,5 h) | 15–25 (35–50 min) | gabaritos e cabos prontos |
+| Mão de obra | 25–40 (1–1,5 h) | 18–30 (40–60 min) | gabaritos e montagem em linha; a solda continua na bancada |
 | Caixa | ~8 | ~3 | caixa kraft com berço de papelão |
-| **Total** | **~135–180** | **~100–140** | |
+| **Total** | **~135–180** | **~105–145** | |
 
 Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e devoluções, então o lucro fica em
-**R$ 55–95 por par**. No Mercado Livre sobram uns R$ 185.
+**R$ 50–90 por par**. No Mercado Livre sobram uns R$ 185.
 
 ## 1. Impressão (de ~10 h para ~5–6 h por par)
 
@@ -29,12 +29,13 @@ Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e
 - **Fazenda de impressoras baratas** (tipo Bambu A1 ou Creality K1, ~R$ 2,5–3,5 mil) em vez de uma impressora cara.
   Cada uma faz uns 4 pares por dia com o perfil rápido.
 
-## 2. Montagem (de 1–1,5 h para 35–50 min por par)
+## 2. Montagem (de 1–1,5 h para 40–60 min por par)
 
 - **Gabarito impresso para dobrar o arame** do gancho e da faixa: uma placa com pinos no formato da curva. O arame é
   dobrado em volta dos pinos em 2–3 minutos, sempre igual.
-- **Cabo e conector 0,78 já soldados de fábrica** (o fornecedor vende o soquete com fio e JST na ponta). Tira a solda
-  da montagem.
+- **Solda feita na bancada** (Antonio, 4 de outubro de 2026: sem cabo já soldado de fábrica). Para ir rápido: um
+  suporte impresso que segura o soquete 0,78 e o JST na posição certa, fios cortados e desencapados em lote, e a solda
+  de vários soquetes em fila.
 - **Capa da sela cortada em lote** com molde de papelão, e a costura feita em fila (10 capas de uma vez).
 - **Bancada em linha:** uma pessoa só dobra arames, outra só monta conchas. Rende mais que montar um par de cada vez.
 
