@@ -55,6 +55,13 @@ td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
 tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10px; }
 .go { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .cta { font: 600 14px var(--body); background: var(--accent); color: #fff; border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+.parts { display: grid; gap: 10px; }
+.part { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 14px; }
+.part small { display: block; color: var(--muted); font-size: 13px; }
+.step { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: var(--chip); }
+.step button { font: 600 15px var(--body); color: var(--fg); background: transparent; border: 0; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+.step output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.part em { font-style: normal; color: var(--muted); font-variant-numeric: tabular-nums; }
 #copied { font-size: 13px; color: var(--muted); }
 #orderText { width: 100%; box-sizing: border-box; font: 12px var(--mono); color: var(--fg); background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 8px; margin-top: 10px; min-height: 140px; }
 @media (max-width: 860px) {
@@ -77,6 +84,11 @@ tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10p
     </div>
   </section>
   <aside>
+    <div>
+      <h2>Como quer receber</h2>
+      <div class="seg" role="group" aria-label="Como quer receber" id="modes"></div>
+      <p class="note" id="modeNote" style="margin-top:8px"></p>
+    </div>
     <div>
       <h2>Cores</h2>
       <div id="colors"></div>
@@ -108,12 +120,17 @@ tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10p
       <h2>Extras</h2>
       <div class="checks" id="extras"></div>
     </div>
+    <div>
+      <h2>Peças avulsas</h2>
+      <p class="note" style="margin-bottom:10px">Para reposição, para trocar a cor ou para montar o seu do zero. Saem nas cores e no tamanho escolhidos acima.</p>
+      <div class="parts" id="parts"></div>
+    </div>
     <div class="bill">
       <h2>Seu pedido</h2>
       <div style="overflow-x:auto"><table><tbody id="lines"></tbody><tfoot><tr><td>Total</td><td id="total"></td></tr></tfoot></table></div>
       <div class="go"><button class="cta" id="copy">Copiar pedido</button><span id="copied" role="status"></span></div>
       <textarea id="orderText" readonly aria-label="Texto do pedido"></textarea>
-      <p class="note" style="margin-top:8px">Preços de exemplo para teste de mercado; o par inclui os dois lados, a faixa da nuca, um cabo e o adaptador do driver escolhido. Driver não incluso.</p>
+      <p class="note" style="margin-top:8px">Preços de exemplo para teste de mercado. O par, montado ou em kit, inclui os dois lados, a faixa da nuca, um cabo e o adaptador do driver escolhido. Driver não incluso.</p>
     </div>
   </aside>
 </div>
@@ -148,12 +165,28 @@ const GROUPS = [
 const PADS = [["Veludo", 0], ["Couro sintético", 20]];
 const EXTRAS = [
   { id: "set", name: "Conjunto de cor extra", desc: "anel e aro da tampa em outra cor, para trocar quando quiser", price: 49 },
-  { id: "adp", name: "Adaptador extra", desc: "um segundo tamanho de driver (par)", price: 19 },
-  { id: "sad", name: "Sela de reposição", desc: "berço, espuma e capa (par)", price: 29 },
   { id: "hook", name: "Gancho sob medida", desc: "você manda uma foto da orelha com uma régua e o arame vem dobrado no seu formato", price: 59 },
 ];
-const BASE_PRICE = 399, ENG_PRICE = 39;
-const state = { size: 50, pad: 0, cable: 0, eng: "", extras: {} };
+const ENG_PRICE = 39;
+const MODES = [
+  { name: "Montado", price: 399, line: "UMEH-3 com fio montado, par", note: "Chega pronto para usar: é só encaixar o driver no adaptador e girar o anel." },
+  { name: "Kit para montar", price: 349, line: "UMEH-3 com fio em kit para montar, par", note: "Todas as peças do par, impressas e compradas, com o guia de montagem passo a passo. O gancho já vem dobrado; o resto encaixa à mão, sem cola." },
+  { name: "Só peças avulsas", price: 0, line: "", note: "Monte o pedido só com as peças da lista abaixo." },
+];
+// spare parts, priced per unit
+const PARTS_SHOP = [
+  { id: "cup", name: "Concha", desc: "um lado, com tampa, logo ou gravação", price: 69 },
+  { id: "ring", name: "Anel de baioneta", desc: "um lado, na cor de destaque", price: 19 },
+  { id: "adp", name: "Adaptador de driver", desc: "par, no tamanho escolhido", price: 19 },
+  { id: "hook", name: "Gancho completo", desc: "um lado: arame dobrado, tubos, palheta e sela", price: 39 },
+  { id: "sad", name: "Sela", desc: "um lado: berço, espuma e capa", price: 15 },
+  { id: "pad", name: "Palheta de TPU", desc: "um lado", price: 9 },
+  { id: "band", name: "Faixa da nuca", desc: "arame com tubo de silicone", price: 29 },
+  { id: "cush", name: "Almofadas 110 mm", desc: "par, no material escolhido", price: 49 },
+  { id: "cable", name: "Cabo 0,78 mm", desc: "na cor escolhida", price: 39 },
+  { id: "foam", name: "Espuma frontal e fibra", desc: "par", price: 12 },
+];
+const state = { mode: 0, size: 50, pad: 0, cable: 0, eng: "", extras: {}, qty: {} };
 
 // fixed finishes for the parts the customer does not pick
 const FIXED = { adapter: ["#121315", 0.85, 0], bushing: ["#121315", 0.85, 0], saddle_carrier: ["#121315", 0.85, 0], wire: ["#b9bcc0", 0.3, 0.9],
@@ -221,23 +254,34 @@ function drawSegs() {
   seg($("pads"), PADS.map(([n, p]) => p ? `${n} +R$ ${p}` : n), state.pad, i => { state.pad = i; drawSegs(); repaint(); update(); });
 }
 $("extras").innerHTML = EXTRAS.map(e => `<label class="check"><input type="checkbox" data-x="${e.id}"><span>${e.name}<small>${e.desc}</small></span><em>+${brl(e.price)}</em></label>`).join("");
+$("parts").innerHTML = PARTS_SHOP.map(e => `<div class="part"><span>${e.name} <em>${brl(e.price)}</em><small>${e.desc}</small></span>
+  <span class="step"><button data-p="${e.id}" data-d="-1" aria-label="Menos ${e.name}">−</button><output id="q_${e.id}">0</output><button data-p="${e.id}" data-d="1" aria-label="Mais ${e.name}">+</button></span></div>`).join("");
+$("parts").addEventListener("click", ev => { const b = ev.target.closest("button"); if (!b) return;
+  const q = Math.max(0, Math.min(20, (state.qty[b.dataset.p] || 0) + +b.dataset.d)); state.qty[b.dataset.p] = q;
+  $("q_" + b.dataset.p).textContent = q; update(); });
+function drawModes() { seg($("modes"), MODES.map(m => m.name), state.mode, i => { state.mode = i; drawModes(); update(); }); $("modeNote").textContent = MODES[state.mode].note; }
 $("extras").addEventListener("change", ev => { state.extras[ev.target.dataset.x] = ev.target.checked; update(); });
 $("eng").addEventListener("input", ev => { state.eng = ev.target.value.replace(/\s+/g, " ").trimStart(); $("engCount").textContent = `${state.eng.length}/12`; drawEng(); showEng(); update(); });
 
 // bill and order text
 function update() {
-  const L = [[`UMEH-3 com fio, par · driver ${state.size} mm`, BASE_PRICE]];
-  if (state.pad) L.push([`Almofada de ${PADS[state.pad][0].toLowerCase()}`, PADS[state.pad][1]]);
+  const M = MODES[state.mode], L = [];
+  if (M.price) { L.push([`${M.line} · driver ${state.size} mm`, M.price]);
+    if (state.pad) L.push([`Almofada de ${PADS[state.pad][0].toLowerCase()}`, PADS[state.pad][1]]); }
+  for (const e of PARTS_SHOP) { const q = state.qty[e.id] || 0;
+    if (q) L.push([`${q} × ${e.name}`, q * (e.price + (e.id === "cush" ? PADS[state.pad][1] : 0))]); }
   if (state.eng.trim()) L.push([`Gravação “${state.eng.trim().toUpperCase()}”`, ENG_PRICE]);
   for (const e of EXTRAS) if (state.extras[e.id]) L.push([e.name, e.price]);
   const tot = L.reduce((s, [, v]) => s + v, 0);
+  if (!L.length) L.push(["Nada escolhido ainda", 0]);
   $("lines").innerHTML = L.map(([n, v]) => `<tr><td>${n.replace(/</g, "&lt;")}</td><td>${brl(v)}</td></tr>`).join("");
   $("total").textContent = brl(tot);
-  const txt = ["Pedido UMEH-3 com fio", `Driver: ${state.size} mm`,
+  const txt = ["Pedido UMEH-3 com fio", `Entrega: ${M.name}`, `Driver: ${state.size} mm`,
     ...GROUPS.map(g => `${g.name}: ${g.pal[g.pick][0]}`),
     `Almofada: ${PADS[state.pad][0]}`, `Cabo: ${CABLE[state.cable][0]}`,
     `Gravação: ${state.eng.trim() ? state.eng.trim().toUpperCase() : "logo UMEH"}`,
     ...EXTRAS.filter(e => state.extras[e.id]).map(e => `Extra: ${e.name}`),
+    ...PARTS_SHOP.filter(e => state.qty[e.id]).map(e => `Peça avulsa: ${state.qty[e.id]} × ${e.name}`),
     `Total: ${brl(tot)}`].join("\n");
   $("orderText").value = txt;
   $("sub").textContent = `Monte o seu · driver ${state.size} mm`;
@@ -349,7 +393,7 @@ function tick() {
   controls.update(); renderer.render(scene, camera);
   requestAnimationFrame(tick);
 }
-drawColors(); drawCable(); drawSegs(); drawEng(); update();
+drawModes(); drawColors(); drawCable(); drawSegs(); drawEng(); update();
 document.fonts?.ready.then(drawEng);
 loadSize(50).catch(() => { $("status").textContent = "Não foi possível carregar as peças. Recarregue a página."; });
 tick();
