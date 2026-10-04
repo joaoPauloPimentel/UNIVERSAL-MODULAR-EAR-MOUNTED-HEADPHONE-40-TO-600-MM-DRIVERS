@@ -14,8 +14,12 @@ Um lado de cada vez; o lado esquerdo é o espelho do direito (use as peças `_L`
 
    ![Gabarito](img/05_gabarito.png)
 
-3. Fora do gabarito, faça as dobras que saem do plano, comparando com o modelo 3D: o arco fica ~10 mm afastado da
-   cabeça, a perna ~5 mm, e a ponta curva para baixo do lóbulo.
+3. Fora do gabarito plano, faça as dobras que saem do plano e confira no **berço 3D** (`gabaritos/gabarito_gancho_R` ou
+   `_L`): o fio tem que cair no sulco **em todo o comprimento**, do trecho reto em pé (na coluna) até a ponta. O aço mola
+   volta um pouco depois de dobrado: dobre um pouco além e corrija até ele assentar sozinho, sem você segurar.
+
+   ![Berço do gancho](img/09_gabarito_gancho.png)
+
 4. Lixe a ponta cortada (fio de aço corta a pele).
 
 ## 2. Vestir o gancho
@@ -38,9 +42,13 @@ Na ordem, pela ponta da perna:
 
 1. Passe a ponta reta do fio por dentro da concha (do lado da almofada para trás) pelo furo ao lado do copo.
 2. Empurre a **bucha de TPU** escolhida no teste pelo fio até entrar no furo da bucha atrás da concha.
-3. Ajuste a altura do arco (o fio desliza na bucha) e dobre a trava: ~1,5 mm acima da bucha, dobre o fio 90° para
-   fora do copo; meça 12 mm e dobre 90° para baixo; corte deixando 7 mm. Esse pino entra num dos 9 furos da parede da
-   trava.
+3. Ajuste a altura do arco (o fio desliza na bucha) e dobre a trava com a **chave da trava** (`gabaritos/chave_trava`):
+   encaixe a fenda da chave no fio, com a chave deitada em cima do ressalto e a ponta comprida virada para a parede de
+   furos. Dobre o fio 90° por cima da chave, dentro do sulco, e depois 90° para baixo na ponta dela (isso dá a altura e
+   os 12 mm certos). Tire a chave de lado, passe o pino pelo furo da aba marcada "7" até a dobra encostar e corte rente
+   embaixo: o pino fica com 7 mm. Esse pino entra num dos 9 furos da parede da trava.
+
+   ![Chave da trava](img/10_chave_trava.png)
 4. Para girar o gancho depois: puxe o pino para cima, gire, solte em outro furo.
 
 ## 4. Conector e fios
@@ -77,11 +85,14 @@ Na ordem, pela ponta da perna:
 1. Corte 430 mm de fio de 1,8 mm e dobre 90° os últimos 3,5 mm de cada ponta (esses pinos entram nos furos cegos das
    tampas).
 2. Vista a mangueira de silicone 2 × 4 mm no fio, deixando os pinos de fora.
-3. Dê a forma da faixa olhando o modelo 3D: de cada ponta, ~30 mm reto (no canal da tampa), desce pela borda arredondada
-   do copo, passa por cima da almofada por fora e segue em curva atrás da cabeça, na altura da nuca.
-4. **Ajuste da força (2 N):** sem estar na cabeça, a distância entre as duas pontas deve ficar ~220 mm. Vestida, elas
-   abrem para ~260 mm. Feche ou abra a curva da nuca até medir isso. Conferência opcional: abrindo as pontas para 260
-   mm, uma balança de bagagem presa numa ponta marca ~200 g.
+3. Dê a forma da faixa na **placa da faixa** (`gabaritos/gabarito_faixa`): ponha um pino no furo de uma ponta e vá
+   dobrando o fio para dentro do sulco até a outra ponta, curvando a parte da nuca com as mãos (dobre um pouco além,
+   porque o aço volta). Está certo quando o fio inteiro fica no sulco e os dois pinos caem nos furos sem forçar.
+4. **Força (2 N):** a placa já tem a forma solta certa: pontas a ~217 mm uma da outra, que abrem para ~258 mm na
+   cabeça. Conferência opcional: abrindo as pontas para 258 mm, uma balança de bagagem presa numa ponta marca ~200 g.
+
+   ![Placa da faixa](img/11_gabarito_faixa.png)
+
 5. Encaixe cada ponta: o pino no furo cego e a mangueira no canal da tampa, apertando com o polegar até entrar.
 
 ![Tampa](img/06_tampa.png)

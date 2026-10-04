@@ -14,6 +14,9 @@ precisa de cola nem de parafuso.
 | `palheta.stl` | 2 | TPU 95A | 2 / 3 / 15 % giroide | Peça plana; o fatiador deita na face maior. |
 | `berco_sela_R.stl`, `berco_sela_L.stl` | 1 de cada | TPU 95A | 2 / 3 / 30 % | Imprimir em pé, como está no arquivo (20 mm de altura), sem suporte. |
 | `gabarito_dobra_R.stl`, `gabarito_dobra_L.stl` | 1 de cada | PLA ou PETG | 2 / 3 / 20 % | Ferramenta para dobrar o fio do gancho. Não vai no fone. |
+| `gabaritos/gabarito_gancho_R.stl`, `_L.stl` | 1 de cada | PLA ou PETG | 2 / 3 / 20 % | Berço 3D para conferir o fio do gancho dobrado. Não vai no fone. |
+| `gabaritos/chave_trava.stl` | 1 | PLA ou PETG | 2 / 3 / 50 % | Chave para dobrar a trava do gancho e cortar o pino. Não vai no fone. |
+| `gabaritos/gabarito_faixa.stl` | 1 | PLA ou PETG | 2 / 3 / 20 % | Placa com a forma solta da faixa da nuca (231 × 146 mm, cabe na mesa de 256 mm). Não vai no fone. |
 
 Configuração geral: bico 0,4 mm, camada 0,2 mm (0,15 mm na concha deixa a curva da tampa mais lisa), PETG a 235-245 °C,
 mesa 75-80 °C; TPU a 220-230 °C, sem retração ou com retração curta.
