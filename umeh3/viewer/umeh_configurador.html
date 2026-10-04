@@ -28,6 +28,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--body); font-s
 .seg { display: inline-flex; flex-wrap: wrap; background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .seg button, .tog { font: 500 13px var(--body); color: var(--fg); background: transparent; border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer; font-variant-numeric: tabular-nums; }
 .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.seg button:disabled { opacity: 0.35; cursor: not-allowed; }
 .tog { background: var(--chip); border: 1px solid var(--line); }
 .tog[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -104,7 +105,11 @@ tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10p
     <div>
       <h2>Driver e almofada</h2>
       <div class="row">
-        <div class="lab"><b>Tamanho do driver</b><span>o adaptador vem junto</span></div>
+        <div class="lab"><b>Driver</b><span id="drvNote"></span></div>
+        <div class="seg" role="group" aria-label="Driver" id="drivers"></div>
+      </div>
+      <div class="row">
+        <div class="lab"><b>Tamanho do driver</b><span id="sizeNote">o adaptador vem junto</span></div>
         <div class="seg" role="group" aria-label="Tamanho do driver" id="sizes"></div>
       </div>
       <div class="row">
@@ -130,7 +135,7 @@ tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10p
       <div style="overflow-x:auto"><table><tbody id="lines"></tbody><tfoot><tr><td>Total</td><td id="total"></td></tr></tfoot></table></div>
       <div class="go"><button class="cta" id="copy">Copiar pedido</button><span id="copied" role="status"></span></div>
       <textarea id="orderText" readonly aria-label="Texto do pedido"></textarea>
-      <p class="note" style="margin-top:8px">Preços de exemplo para teste de mercado. O par, montado ou em kit, inclui os dois lados, a faixa da nuca, um cabo e o adaptador do driver escolhido. Driver não incluso.</p>
+      <p class="note" style="margin-top:8px">Preços de exemplo para teste de mercado. O par, montado ou em kit, inclui os dois lados, a faixa da nuca, um cabo e o adaptador do driver escolhido. O driver só vem junto se você escolher um acima.</p>
     </div>
   </aside>
 </div>
@@ -162,6 +167,13 @@ const GROUPS = [
   { id: "saddle", name: "Sela", what: "capa da espuma do gancho", pal: FAB, parts: ["saddle_foam"], pick: 2 },
   { id: "band", name: "Faixa e gancho", what: "tubos de silicone", pal: SIL, parts: ["neckband", "sleeve_arch", "sleeve_leg"], pick: 3 },
 ];
+const DRIVERS = [
+  { name: "Sem driver", price: 0, size: 0, line: "", note: "use o seu, de 40 a 60 mm" },
+  { name: "ELFINEAR 40 mm", price: 119, size: 40, line: "Par de drivers ELFINEAR ED13 40 mm",
+    note: "bom custo, graves cheios" },
+  { name: "Tymphany 50 mm", price: 169, size: 50, line: "Par de drivers Tymphany HPD-50N25 50 mm, com feltro de 4 mm atrás",
+    note: "o mais equilibrado" },
+];
 const PADS = [["Veludo", 0], ["Couro sintético", 20]];
 const EXTRAS = [
   { id: "set", name: "Conjunto de cor extra", desc: "anel e aro da tampa em outra cor, para trocar quando quiser", price: 49 },
@@ -186,7 +198,7 @@ const PARTS_SHOP = [
   { id: "cable", name: "Cabo 0,78 mm", desc: "na cor escolhida", price: 39 },
   { id: "foam", name: "Espuma frontal e fibra", desc: "par", price: 12 },
 ];
-const state = { mode: 0, size: 50, pad: 0, cable: 0, eng: "", extras: {}, qty: {} };
+const state = { mode: 0, drv: 0, size: 50, pad: 0, cable: 0, eng: "", extras: {}, qty: {} };
 
 // fixed finishes for the parts the customer does not pick
 const FIXED = { adapter: ["#121315", 0.85, 0], bushing: ["#121315", 0.85, 0], saddle_carrier: ["#121315", 0.85, 0], wire: ["#b9bcc0", 0.3, 0.9],
@@ -250,7 +262,13 @@ function seg(el, items, cur, onPick) {
   items.forEach((t, i) => { const b = document.createElement("button"); b.textContent = t; b.setAttribute("aria-pressed", i === cur); b.onclick = () => onPick(i); el.append(b); });
 }
 function drawSegs() {
+  seg($("drivers"), DRIVERS.map(d => d.price ? `${d.name} +R$ ${d.price}` : d.name), state.drv, i => {
+    state.drv = i; const D = DRIVERS[i].size; if (D && D !== state.size) loadSize(D); else { drawSegs(); update(); } });
+  $("drvNote").textContent = DRIVERS[state.drv].note;
+  const lock = DRIVERS[state.drv].size;
   seg($("sizes"), SIZES.map(D => `${D} mm`), SIZES.indexOf(state.size), i => { loadSize(SIZES[i]); });
+  $("sizes").querySelectorAll("button").forEach((b, i) => { b.disabled = !!lock && SIZES[i] !== lock; });
+  $("sizeNote").textContent = lock ? `fixo em ${lock} mm pelo driver escolhido` : "o adaptador vem junto";
   seg($("pads"), PADS.map(([n, p]) => p ? `${n} +R$ ${p}` : n), state.pad, i => { state.pad = i; drawSegs(); repaint(); update(); });
 }
 $("extras").innerHTML = EXTRAS.map(e => `<label class="check"><input type="checkbox" data-x="${e.id}"><span>${e.name}<small>${e.desc}</small></span><em>+${brl(e.price)}</em></label>`).join("");
@@ -268,6 +286,7 @@ function update() {
   const M = MODES[state.mode], L = [];
   if (M.price) { L.push([`${M.line} · driver ${state.size} mm`, M.price]);
     if (state.pad) L.push([`Almofada de ${PADS[state.pad][0].toLowerCase()}`, PADS[state.pad][1]]); }
+  if (DRIVERS[state.drv].price) L.push([DRIVERS[state.drv].line, DRIVERS[state.drv].price]);
   for (const e of PARTS_SHOP) { const q = state.qty[e.id] || 0;
     if (q) L.push([`${q} × ${e.name}`, q * (e.price + (e.id === "cush" ? PADS[state.pad][1] : 0))]); }
   if (state.eng.trim()) L.push([`Gravação “${state.eng.trim().toUpperCase()}”`, ENG_PRICE]);
@@ -276,7 +295,7 @@ function update() {
   if (!L.length) L.push(["Nada escolhido ainda", 0]);
   $("lines").innerHTML = L.map(([n, v]) => `<tr><td>${n.replace(/</g, "&lt;")}</td><td>${brl(v)}</td></tr>`).join("");
   $("total").textContent = brl(tot);
-  const txt = ["Pedido UMEH-3 com fio", `Entrega: ${M.name}`, `Driver: ${state.size} mm`,
+  const txt = ["Pedido UMEH-3 com fio", `Entrega: ${M.name}`, `Driver: ${DRIVERS[state.drv].price ? DRIVERS[state.drv].line : `sem driver (adaptador ${state.size} mm)`}`,
     ...GROUPS.map(g => `${g.name}: ${g.pal[g.pick][0]}`),
     `Almofada: ${PADS[state.pad][0]}`, `Cabo: ${CABLE[state.cable][0]}`,
     `Gravação: ${state.eng.trim() ? state.eng.trim().toUpperCase() : "logo UMEH"}`,
