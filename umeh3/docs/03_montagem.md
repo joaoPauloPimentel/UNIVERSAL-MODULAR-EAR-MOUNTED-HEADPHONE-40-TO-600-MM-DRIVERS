@@ -27,7 +27,8 @@ Na ordem, pela ponta da perna:
    inteiro com a descida (~50 mm + 10 mm).
 3. **Silicone 4 × 7** por cima do PTFE na perna e na descida (não no arco). Feche a ponta da perna com uma gota de
    silicone de vedação ou um pedaço de silicone dobrado.
-4. **Sela**: corte uma tira de espuma viscoelástica de 20 × 40 × 6 mm, costure uma capinha de suede/veludo que a vista
+4. **Sela**: corte uma tira de espuma viscoelástica (de travesseiro NASA, pode ser um velho) de 20 × 40 × 6 mm, costure
+   uma capinha de pano macio (camiseta velha, microfibra ou suede) que a vista
    junto com a placa do berço, e encaixe o clipe do berço no PTFE do arco (ele entra por pressão). A espuma fica do
    lado de dentro do arco, que apoia na raiz da orelha.
 
@@ -54,7 +55,7 @@ Na ordem, pela ponta da perna:
 
 ![Vista explodida](img/02_explodida.png)
 
-1. Ponha **um pouco de fibra siliconada** (~0,5 g, um tufo solto) no fundo do copo. Não aperte.
+1. Ponha **um pouco de fibra siliconada** (~0,5 g, um tufo solto; serve a de uma almofada velha) no fundo do copo. Não aperte.
 2. Encaixe o **driver** no **adaptador de TPU** do tamanho dele: a borda do driver entra no assento do adaptador.
 3. Passe os fios pelo entalhe do adaptador, ligue o JST e coloque o adaptador no bolso da concha com o entalhe virado
    para o conector.
@@ -66,8 +67,9 @@ Na ordem, pela ponta da perna:
 
 ## 6. Espuma da frente e almofada
 
-1. Corte um disco de **72 mm** de espuma de filtro de 3 mm, com um corte pequeno onde o fio do gancho passa, e
-   apoie sobre o anel.
+1. Corte um disco de **72 mm** de **TNT ou voal** (tecido bem fino, que o som atravessa), com um corte pequeno onde o
+   fio do gancho passa, e apoie sobre o anel. Ele só segura poeira; a almofada prende a borda. (Se preferir, serve
+   também espuma de filtro de 3 mm, como no projeto original.)
 2. Vista a **almofada**: estique a borda elástica de tecido por cima da aba da placa até ela prender atrás do friso.
 
 ## 7. Faixa da nuca (corda de piano 1,8 mm)

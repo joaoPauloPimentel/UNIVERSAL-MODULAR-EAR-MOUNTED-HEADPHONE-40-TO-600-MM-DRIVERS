@@ -7,8 +7,8 @@ precisa de cola nem de parafuso.
 
 | Arquivo | Quantas | Material | Paredes / topo-fundo / preenchimento | Observação |
 |---|---|---|---|---|
-| `concha_R.stl`, `concha_L.stl` | 1 de cada | PETG grafite + PETG bronze (logo) | 3 / 4 / 20 % | Placa para baixo. Suporte em árvore **só dentro do copo** (o teto interno é uma ponte de ~49 mm); ele sai pela abertura do driver. Troca de filamento para a logo: veja abaixo. |
-| `anel_baioneta.stl` | 2 | PETG bronze | 3 / 4 / 30 % | Face com os entalhes para baixo, sem suporte. |
+| `concha_R.stl`, `concha_L.stl` | 1 de cada | PETG de uma cor só (a logo sai em relevo na mesma cor); bronze opcional | 3 / 4 / 20 % | Placa para baixo. Suporte em árvore **só dentro do copo** (o teto interno é uma ponte de ~49 mm); ele sai pela abertura do driver. Troca de filamento para a logo: veja abaixo. |
+| `anel_baioneta.stl` | 2 | PETG (mesma cor da concha; bronze opcional) | 3 / 4 / 30 % | Face com os entalhes para baixo, sem suporte. |
 | `adaptador_40mm.stl` … `adaptador_60mm.stl` | 2 do tamanho do seu driver | TPU 95A | 2 / sólido (100 %) | Imprimir devagar (20-25 mm/s). Serve nos dois lados. |
 | `bucha_teste_furo_1.35.stl`, `_1.45`, `_1.55` | 1 de cada para testar, depois 2 da escolhida | TPU 95A | sólido | Furo para o fio de 1,6 mm. Escolha a que desliza firme no fio (teste 2 do roteiro). |
 | `palheta.stl` | 2 | TPU 95A | 2 / 3 / 15 % giroide | Peça plana; o fatiador deita na face maior. |
@@ -18,7 +18,9 @@ precisa de cola nem de parafuso.
 Configuração geral: bico 0,4 mm, camada 0,2 mm (0,15 mm na concha deixa a curva da tampa mais lisa), PETG a 235-245 °C,
 mesa 75-80 °C; TPU a 220-230 °C, sem retração ou com retração curta.
 
-## Logo em bronze (troca de filamento)
+## Logo em bronze (opcional, troca de filamento)
+
+Na versão econômica tudo sai numa cor só e a logo fica em relevo, sem troca de filamento. Para destacá-la:
 
 A logo UMEH, a letra do lado (L/R) e o aro que emoldura a tampa ficam 0,4 mm em relevo, que é o topo da concha na impressão. Para elas
 saírem em bronze:
