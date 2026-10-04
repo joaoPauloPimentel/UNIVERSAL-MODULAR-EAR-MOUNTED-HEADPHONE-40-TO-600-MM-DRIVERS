@@ -214,7 +214,8 @@ def _wp_scad():
             f"POGO = [{w['pogo_d']}, {w['pogo_l']}, {w['pogo_a']}, {w['pogo_z']}]; "
             f"SLIDER = [{w['slider'][0]}, {w['slider'][1]}, {w['slider'][2]}]; MAGNET = [{w['magnet'][0]}, {w['magnet'][1]}]; "
             f"MOD_SIDE = \"{w['module_side']}\"; BOARD = {list(w['board'])}; CHARGER = {list(w['charger'])}; "
-            f"BATT = {list(w['battery'])}; POST_R = {w['post_r']}; POST_L = {w['post_l']};")
+            f"BATT = {list(w['battery'])}; POST_R = {w['post_r']}; POST_L = {w['post_l']}; "
+            + (f"POD = {list(w['pod'])};" if w.get('pod') else "POD = undef;"))
 
 
 def write_scad(path):
@@ -303,7 +304,7 @@ VARIANTS = {
                        pogo_d=8.5, pogo_l=7.0, pogo_a=12.0, pogo_z=12.5,     # pogo_a/z: x, y on the back (pocket frame)
                       
                        slider=(11.0, -4.0, 12.0), magnet=(6.0, 2.0), module_side="R",
-                       board=(23.0, 16.5, 3.0), charger=(17.0, 26.0, 4.0), battery=(30.0, 30.0, 5.0),
+                       board=(23.0, 16.5, 3.0), charger=(17.0, 26.0, 4.0), battery=(30.0, 30.0, 5.0), pod=(50.0, 34.0, 6.0),   # user 2026-10-04: one 603450 cell in a sealed pod at the nape
                        post_r=24.0, post_l=10.2)),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)

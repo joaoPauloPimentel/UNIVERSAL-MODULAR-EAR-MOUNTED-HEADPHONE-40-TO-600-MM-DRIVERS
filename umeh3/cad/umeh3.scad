@@ -24,7 +24,7 @@ $fn = $preview ? 64 : 128;
 // waterproof build (UMEH-3W): defaults when WP is off; umeh3w.scad includes params3w.scad after this file
 MEMB_T = 0; OR_CORD = 1.5; OR_G = [28, 30]; OR_GD = 1.2; CABLE_D = 2.2; GL_CORD = 1.0; GL_ID = 2.0;
 POGO = [8.5, 7, 250, 19]; SLIDER = [11, -4, 12]; MAGNET = [6, 2]; MOD_SIDE = "R";
-BOARD = [23, 16.5, 3]; CHARGER = [17, 26, 4]; BATT = [30, 20, 4]; POST_R = 24; POST_L = 5.3;
+BOARD = [23, 16.5, 3]; CHARGER = [17, 26, 4]; BATT = [30, 20, 4]; POST_R = 24; POST_L = 5.3; POD = undef;
 
 function drv(d) = DRV[search(d, DRV)[0]];
 R_HUB = POCKET_R + HUB_WALL;                 // shell outer radius around the pocket centre
@@ -303,8 +303,9 @@ module tray() {
 // board on the cell + reed switch on a pedestal under the slider; other side: charger on the cell. The two cells work
 // in parallel through the band cable (4 cores: cell +/- to the charger side, left driver +/- from the board).
 BATT_C = [0, -10];
+EL_Z = POD == undef ? BATT[2] + 0.1 : 0.1;   // board / charger sit on the cell, or on the tray when the cell is in the nape pod
 module tray_beds() {
-    translate(BATT_C) square([BATT[0] + 1, BATT[1] + 1], center = true);
+    if (POD == undef) translate(BATT_C) square([BATT[0] + 1, BATT[1] + 1], center = true);
     if (side == MOD_SIDE) {
         translate([SLIDER[0], SLIDER[2] - 4]) square([6, 6], center = true);
         hull() { translate([SLIDER[0], SLIDER[2] - 4]) circle(r = 2); translate([6, 0]) circle(r = 2); }
@@ -314,13 +315,13 @@ module tray_beds() {
 module electronics() { color("#1F5E3A") elec("board"); color("#C8E6F0") elec("reed"); color("Silver") elec("battery"); color("#1E3F7A") elec("charger"); }
 module elec(what) {
     at_pc() translate([0, 0, TRAY_Z]) {
-        if (what == "battery") translate([BATT_C[0] - BATT[0] / 2, BATT_C[1] - BATT[1] / 2, 0]) cube([BATT[0], BATT[1], BATT[2]]);
+        if (what == "battery" && POD == undef) translate([BATT_C[0] - BATT[0] / 2, BATT_C[1] - BATT[1] / 2, 0]) cube([BATT[0], BATT[1], BATT[2]]);
         if (side == MOD_SIDE) {
-            if (what == "board") translate([-BOARD[0] / 2, -12 - BOARD[1] / 2, BATT[2] + 0.1]) cube([BOARD[0], BOARD[1], BOARD[2]]);
+            if (what == "board") translate([-BOARD[0] / 2, -12 - BOARD[1] / 2, EL_Z]) cube([BOARD[0], BOARD[1], BOARD[2]]);
             if (what == "reed") translate([SLIDER[0] - 2, SLIDER[2] - 6, 0]) { cube([4, 4, POST_L - 2.6]);
                 translate([2, -3, POST_L - 1.5]) rotate([-90, 0, 0]) cylinder(d = 2.2, h = 10, $fn = 12); }
         } else {
-            if (what == "charger") translate([-CHARGER[1] / 2, -12.5 - CHARGER[0] / 2, BATT[2] + 0.1]) cube([CHARGER[1], CHARGER[0], CHARGER[2]]);
+            if (what == "charger") translate([-CHARGER[1] / 2, -12.5 - CHARGER[0] / 2, EL_Z]) cube([CHARGER[1], CHARGER[0], CHARGER[2]]);
         }
     }
 }
@@ -545,3 +546,69 @@ module bend_jig() {
         }
     }
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// nape battery pod (UMEH-3W, user 2026-10-04): one 603450 cell in a sealed PETG box at the back of the neckband.
+// Pod frame: x along the band, y up, z away from the neck (z = 0 on the skin side). Each half-band ends at the pod:
+// the silicone tube presses into an end socket over a 2 x 1 O-ring on the cable (same gland as the cups); the steel
+// wire leaves the tube just before the socket, enters a blind hole in the end block and its 90 deg tail drops into
+// a cross hole. The lid closes on a printed TPU gasket with 4 M2 x 10 self-tapping screws.
+PD_W = 1.6; PD_FL = 1.6; PD_LID = 2.0; PD_GK = 0.8; PD_END = 6.0;
+function pd_cav() = [POD[0] + 2, POD[1] + 2, POD[2] + 1];
+function pd_out() = [pd_cav()[0] + 2 * PD_END, pd_cav()[1] + 2 * PD_W, PD_FL + pd_cav()[2]];
+PD_SOCK_Z = 4.3; PD_WIRE = [-7, 2.0];          // socket axis height; wire hole (y, z)
+PD_SCR = [[1, 1], [1, -1], [-1, 1], [-1, -1]];
+function pd_scr(s) = [s[0] * (pd_cav()[0] / 2 + PD_END / 2), s[1] * 13];
+module pd_outline(o = 0) { offset(r = 4 + o) offset(r = -4) square([pd_out()[0], pd_out()[1]], center = true); }
+module pod_base() {
+    c = pd_cav(); o = pd_out();
+    difference() {
+        union() {
+            linear_extrude(o[2]) pd_outline();
+            for (sx = [-1, 1]) translate([sx * o[0] / 2, 0, PD_SOCK_Z]) rotate([0, sx * 90, 0]) cylinder(d = 8.6, h = 6, $fn = 40);
+        }
+        translate([-c[0] / 2, -c[1] / 2, PD_FL]) cube([c[0], c[1], c[2] + 1]);
+        for (sx = [-1, 1]) {
+            translate([sx * o[0] / 2, 0, PD_SOCK_Z]) rotate([0, sx * 90, 0]) {
+                translate([0, 0, 0]) cylinder(d = 6.2, h = 7, $fn = 40);                 // tube socket
+                translate([0, 0, -1.0]) cylinder(d = GL_BORE, h = 1.01, $fn = 24);     // O-ring counterbore
+                translate([0, 0, -PD_END - 1]) cylinder(d = CABLE_D + 0.1, h = PD_END + 2, $fn = 20);   // cable into the cavity
+            }
+            translate([sx * (o[0] / 2 + 1), PD_WIRE[0], PD_WIRE[1]]) rotate([0, -sx * 90, 0]) cylinder(d = NECK_D + 0.2, h = PD_END, $fn = 16);
+            translate([sx * (o[0] / 2 - 3.5), PD_WIRE[0], -1]) cylinder(d = NECK_D + 0.2, h = PD_WIRE[1] + 1, $fn = 16);   // tail hole (in the end block)
+        }
+        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], o[2] - 8]) cylinder(d = 1.6, h = 9, $fn = 16);
+    }
+}
+module pod_gasket() {   // TPU, 0.8 mm, squeezed ~25 % by the lid
+    c = pd_cav(); o = pd_out();
+    translate([0, 0, o[2]]) linear_extrude(PD_GK) difference() {
+        pd_outline(); square([c[0], c[1]], center = true);
+        for (s = PD_SCR) translate(pd_scr(s)) circle(d = 2.4, $fn = 16);
+    }
+}
+module pod_lid() {
+    c = pd_cav(); o = pd_out();
+    translate([0, 0, o[2] + PD_GK]) difference() {
+        union() {
+            linear_extrude(PD_LID) pd_outline();
+            translate([-c[0] / 2 + 0.2, -c[1] / 2 + 0.2, -PD_GK - 0.8]) difference() {     // locating lip
+                cube([c[0] - 0.4, c[1] - 0.4, PD_GK + 0.8]);
+                translate([0.8, 0.8, -1]) cube([c[0] - 2, c[1] - 2, 4]);
+            }
+        }
+        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], -2]) cylinder(d = 2.3, h = 5, $fn = 16);
+        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], PD_LID - 0.8]) cylinder(d1 = 2.3, d2 = 4.0, h = 0.81, $fn = 16);
+        translate([0, 0, PD_LID - 0.4]) linear_extrude(0.41) text("UMEH", size = 7, halign = "center", valign = "center", font = "Liberation Sans:style=Bold");
+    }
+}
+module pod_cell() { translate([-POD[0] / 2, -POD[1] / 2, PD_FL + 0.2]) cube([POD[0], POD[1], POD[2]]); }
+module pod_orings() { for (sx = [-1, 1]) translate([sx * (pd_out()[0] / 2 - 0.5), 0, PD_SOCK_Z]) rotate([0, 90, 0]) torus(CABLE_D / 2 + GL_CORD / 2, GL_CORD); }
+if (part == "pod_base" && POD != undef) pod_base();
+if (part == "pod_lid" && POD != undef) pod_lid();
+if (part == "pod_gasket" && POD != undef) pod_gasket();
+if (part == "pod_cell" && POD != undef) pod_cell();
+if (part == "pod_orings" && POD != undef) pod_orings();
+if (part == "print_pod_base" && POD != undef) pod_base();
+if (part == "print_pod_lid" && POD != undef) translate([0, 0, PD_LID + pd_out()[2] + PD_GK]) rotate([180, 0, 0]) pod_lid();
+if (part == "print_pod_gasket" && POD != undef) translate([0, 0, -pd_out()[2]]) pod_gasket();
