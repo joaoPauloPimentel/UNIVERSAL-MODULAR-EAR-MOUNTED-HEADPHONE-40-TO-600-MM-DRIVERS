@@ -19,9 +19,10 @@ Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e
 ## 1. Impressão (de ~10 h para ~5–6 h por par)
 
 - **Bico 0,6 mm e camada de 0,28 mm** nas peças de PETG (conchas, bandejas, anéis). A concha é fosca e o veludo cobre a
-  frente, então a camada mais grossa quase não aparece. Manter bico 0,4 só para a logo e o aro em relevo.
+  frente, então a camada mais grossa quase não aparece. As letras da logo, de 0,4 mm, podem perder nitidez com o bico
+  0,6: conferir na impressão de teste.
 - **2 paredes e 10% de preenchimento giroide** onde o cálculo de resistência deixa folga (anéis e adaptadores). As
-  conchas continuam com 1,6 mm de parede, como no teste de queda.
+  conchas mantêm a parede e o preenchimento do projeto.
 - **Placa cheia:** imprimir 4 conchas por placa, e os anéis, adaptadores e palhetas juntos numa placa só. Menos
   aquecimento e menos troca de placa por par.
 - **Troca de filamento da logo** em lote: todas as conchas da placa trocam na mesma camada, uma vez só.
