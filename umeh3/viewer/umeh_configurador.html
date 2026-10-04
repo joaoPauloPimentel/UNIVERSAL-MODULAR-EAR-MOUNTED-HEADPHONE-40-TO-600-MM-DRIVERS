@@ -1,0 +1,356 @@
+<meta charset="utf-8">
+<title>UMEH Configurador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: the 3-D stage beside an order column (choices, then the bill); stacks on phones. */
+:root {
+  --bg: #eceae6; --stage: #dedad3; --fg: #1d1f22; --muted: #62666c; --line: #c9c4bb;
+  --accent: #7a46c2; --chip: #f6f4f0; --field: #ffffff;
+  --display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #16171a; --stage: #1f2125; --fg: #ebe7e0; --muted: #9a9ea5; --line: #34373c; --accent: #a983e0; --chip: #24262a; --field: #1b1c1f; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #16171a; --stage: #1f2125; --fg: #ebe7e0; --muted: #9a9ea5; --line: #34373c; --accent: #a983e0; --chip: #24262a; --field: #1b1c1f; color-scheme: dark }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { display: grid; grid-template-columns: minmax(0, 1fr) 390px; height: 100%; }
+.stage { position: relative; background: radial-gradient(120% 90% at 50% 40%, var(--chip) 0%, var(--stage) 70%); min-height: 70vh; }
+#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+.badge { position: absolute; left: 20px; top: 18px; display: grid; gap: 2px; pointer-events: none; }
+.badge h1 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 4vw, 40px); letter-spacing: 0.02em; margin: 0; line-height: 1; }
+.badge span { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.status { position: absolute; left: 20px; bottom: 16px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.controls { position: absolute; right: 16px; bottom: 16px; left: 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; pointer-events: none; }
+.controls > * { pointer-events: auto; }
+.seg { display: inline-flex; flex-wrap: wrap; background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.seg button, .tog { font: 500 13px var(--body); color: var(--fg); background: transparent; border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.tog { background: var(--chip); border: 1px solid var(--line); }
+.tog[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+aside { overflow-y: auto; border-left: 1px solid var(--line); padding-block: 26px; padding-inline: 24px; display: grid; gap: 22px; align-content: start; min-width: 0; }
+aside h2 { font-family: var(--display); font-weight: 400; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 10px; color: var(--muted); }
+.row { display: grid; gap: 6px; }
+.row + .row { margin-top: 12px; }
+.lab { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.lab b { font-weight: 600; }
+.lab span { color: var(--muted); }
+.sws { display: flex; flex-wrap: wrap; gap: 8px; }
+.sws button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); cursor: pointer; padding: 0; position: relative; }
+.sws button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fg); }
+input[type=text] { font: 500 16px var(--body); color: var(--fg); background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+.check { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 8px; align-items: start; font-size: 14px; cursor: pointer; }
+.check input { margin-top: 3px; accent-color: var(--accent); }
+.check small { display: block; color: var(--muted); font-size: 13px; }
+.check em { font-style: normal; font-variant-numeric: tabular-nums; color: var(--muted); }
+.checks { display: grid; gap: 10px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.bill { border-top: 2px solid var(--fg); padding-top: 12px; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 14px; }
+td { padding: 5px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td:last-child { text-align: right; white-space: nowrap; padding-left: 12px; }
+tfoot td { border-bottom: 0; font-weight: 600; font-size: 18px; padding-top: 10px; }
+.go { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cta { font: 600 14px var(--body); background: var(--accent); color: #fff; border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+#copied { font-size: 13px; color: var(--muted); }
+#orderText { width: 100%; box-sizing: border-box; font: 12px var(--mono); color: var(--fg); background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 8px; margin-top: 10px; min-height: 140px; }
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .stage { min-height: 60vh; }
+  .status { display: none; }
+  aside { overflow: visible; border-left: 0; border-top: 1px solid var(--line); padding-inline: 16px; }
+}
+</style>
+
+<div class="wrap">
+  <section class="stage" aria-label="Modelo 3D">
+    <canvas id="view"></canvas>
+    <div class="badge"><h1>UMEH-3</h1><span id="sub">Monte o seu · driver 50 mm</span></div>
+    <div class="status" id="status">Carregando peças…</div>
+    <div class="controls">
+      <button class="tog" id="explode" aria-pressed="false">Vista explodida</button>
+      <button class="tog" id="padtog" aria-pressed="true">Almofada</button>
+      <button class="tog" id="spin" aria-pressed="true">Girar</button>
+    </div>
+  </section>
+  <aside>
+    <div>
+      <h2>Cores</h2>
+      <div id="colors"></div>
+    </div>
+    <div>
+      <h2>Gravação na tampa</h2>
+      <div class="row">
+        <label class="lab" for="eng"><b>Nome ou texto em relevo</b><span id="engCount">0/12</span></label>
+        <input type="text" id="eng" maxlength="12" placeholder="Vazio = logo UMEH" autocomplete="off">
+        <p class="note">Impresso em relevo de 0,4 mm na cor de destaque, no lugar da logo. Até 12 letras; o mesmo texto nos dois lados.</p>
+      </div>
+    </div>
+    <div>
+      <h2>Driver e almofada</h2>
+      <div class="row">
+        <div class="lab"><b>Tamanho do driver</b><span>o adaptador vem junto</span></div>
+        <div class="seg" role="group" aria-label="Tamanho do driver" id="sizes"></div>
+      </div>
+      <div class="row">
+        <div class="lab"><b>Almofada redonda 110 mm</b></div>
+        <div class="seg" role="group" aria-label="Almofada" id="pads"></div>
+      </div>
+      <div class="row">
+        <div class="lab"><b>Cabo removível 0,78 mm</b><span id="cableName"></span></div>
+        <div class="sws" id="cable"></div>
+      </div>
+    </div>
+    <div>
+      <h2>Extras</h2>
+      <div class="checks" id="extras"></div>
+    </div>
+    <div class="bill">
+      <h2>Seu pedido</h2>
+      <div style="overflow-x:auto"><table><tbody id="lines"></tbody><tfoot><tr><td>Total</td><td id="total"></td></tr></tfoot></table></div>
+      <div class="go"><button class="cta" id="copy">Copiar pedido</button><span id="copied" role="status"></span></div>
+      <textarea id="orderText" readonly aria-label="Texto do pedido"></textarea>
+      <p class="note" style="margin-top:8px">Preços de exemplo para teste de mercado; o par inclui os dois lados, a faixa da nuca, um cabo e o adaptador do driver escolhido. Driver não incluso.</p>
+    </div>
+  </aside>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/utils/BufferGeometryUtils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+THREE.ColorManagement.legacyMode = false;   // hex colours are sRGB
+const SIZES = [40, 45, 50, 55, 60];
+const brl = v => "R$ " + v.toFixed(2).replace(".", ",");
+
+// palettes: [name, hex, roughness, metalness]; filaments and parts sold in Brazil
+const PETG = [["Preto fosco", "#141518", 0.62, 0.04], ["Grafite", "#2c2f34", 0.6, 0.05], ["Branco", "#e9e7e2", 0.55, 0.02],
+  ["Cinza", "#8a8d91", 0.55, 0.03], ["Azul-marinho", "#1f2c4a", 0.55, 0.04], ["Verde-musgo", "#3c4a35", 0.6, 0.03], ["Vermelho", "#a3242a", 0.5, 0.03]];
+const SILK = [["Roxo metálico", "#7a46c2", 0.32, 0.5], ["Bronze", "#a27449", 0.34, 0.55], ["Ouro", "#c9a03a", 0.3, 0.6],
+  ["Prata", "#b9bcc0", 0.3, 0.65], ["Cobre", "#b0623a", 0.32, 0.55], ["Preto", "#1a1b1e", 0.4, 0.3]];
+const TPU = [["Preto", "#121315", 0.85, 0], ["Branco", "#e4e2dd", 0.85, 0], ["Roxo", "#5b2f99", 0.8, 0], ["Vermelho", "#9b2228", 0.8, 0], ["Azul", "#2a4f8f", 0.8, 0]];
+const FAB = [["Grafite", "#34363b", 1, 0], ["Preto", "#16171a", 1, 0], ["Roxo", "#4b2a78", 1, 0], ["Vinho", "#5a1f2b", 1, 0], ["Azul", "#22355e", 1, 0]];
+const SIL = [["Preto", "#232428", 0.75, 0], ["Cinza", "#5f656c", 0.75, 0], ["Branco", "#dedcd6", 0.75, 0], ["Roxo", "#6a3bb0", 0.7, 0], ["Vermelho", "#a3242a", 0.7, 0], ["Azul", "#2a4f8f", 0.7, 0]];
+const CABLE = [["Preto", "#1c1d20"], ["Branco", "#e4e2dd"], ["Roxo", "#6a3bb0"], ["Prata trançado", "#b9bcc0"]];
+
+// customer groups; each lists the 3-D parts it paints
+const GROUPS = [
+  { id: "shell", name: "Concha", what: "PETG", pal: PETG, parts: ["shell"], pick: 0 },
+  { id: "accent", name: "Destaque", what: "anel, aro e logo/gravação", pal: SILK, parts: ["front_ring", "stop_cap", "logo", "logo_L", "eng"], pick: 0 },
+  { id: "paddle", name: "Palheta", what: "TPU atrás da orelha", pal: TPU, parts: ["paddle"], pick: 2 },
+  { id: "saddle", name: "Sela", what: "capa da espuma do gancho", pal: FAB, parts: ["saddle_foam"], pick: 2 },
+  { id: "band", name: "Faixa e gancho", what: "tubos de silicone", pal: SIL, parts: ["neckband", "sleeve_arch", "sleeve_leg"], pick: 3 },
+];
+const PADS = [["Veludo", 0], ["Couro sintético", 20]];
+const EXTRAS = [
+  { id: "set", name: "Conjunto de cor extra", desc: "anel e aro da tampa em outra cor, para trocar quando quiser", price: 49 },
+  { id: "adp", name: "Adaptador extra", desc: "um segundo tamanho de driver (par)", price: 19 },
+  { id: "sad", name: "Sela de reposição", desc: "berço, espuma e capa (par)", price: 29 },
+  { id: "hook", name: "Gancho sob medida", desc: "você manda uma foto da orelha com uma régua e o arame vem dobrado no seu formato", price: 59 },
+];
+const BASE_PRICE = 399, ENG_PRICE = 39;
+const state = { size: 50, pad: 0, cable: 0, eng: "", extras: {} };
+
+// fixed finishes for the parts the customer does not pick
+const FIXED = { adapter: ["#121315", 0.85, 0], bushing: ["#121315", 0.85, 0], saddle_carrier: ["#121315", 0.85, 0], wire: ["#b9bcc0", 0.3, 0.9],
+  front_foam: ["#3a3d42", 1, 0], fibre: ["#8e8a80", 1, 0], socket: ["#c9a227", 0.35, 0.8], driver: ["#26282c", 0.45, 0.4] };
+const EXP = { pad: -34, front_foam: -24, front_ring: -16, driver: -9, adapter: -4, fibre: 12, bushing: 14, stop_cap: 22 };
+const SHOWN = ["shell", "front_ring", "adapter", "driver", "bushing", "stop_cap", "wire", "sleeve_arch", "sleeve_leg", "pad", "front_foam",
+  "socket", "fibre", "paddle", "logo", "logo_L", "saddle_carrier", "saddle_foam"];
+let showPad = true;
+
+const $ = id => document.getElementById(id);
+const groupOf = p => GROUPS.find(g => g.parts.includes(p));
+function finish(p) {
+  if (p === "pad") return state.pad ? ["#17181b", 0.45, 0, "leather"] : ["#1e1f23", 1, 0, "velour"];
+  const g = groupOf(p);
+  if (g) { const [, c, r, m] = g.pal[g.pick]; return [c, r, m]; }
+  return FIXED[p] || ["#696969", 0.6, 0];
+}
+function material(p) {
+  const [c, r, m, kind] = finish(p);
+  if (p === "eng") return new THREE.MeshPhysicalMaterial({ color: c, roughness: r, metalness: m, map: engTex, transparent: true, alphaTest: 0.4, side: THREE.DoubleSide, envMapIntensity: 0.9, clearcoat: 0.3 });
+  return new THREE.MeshPhysicalMaterial({ color: c, roughness: r, metalness: m, envMapIntensity: m > 0.3 ? 0.9 : 0.3,
+    clearcoat: kind === "leather" ? 0.5 : (groupOf(p)?.id === "accent" ? 0.3 : 0), clearcoatRoughness: 0.4,
+    sheen: kind === "velour" ? 1 : 0, sheenColor: new THREE.Color("#5a5d63"), sheenRoughness: 0.6 });
+}
+
+// engraving drawn on a canvas, laid on the cap face (cap at z 55 in each side's frame, logo relief is 0.4 mm)
+const engCanvas = document.createElement("canvas"); engCanvas.width = engCanvas.height = 512;
+const engTex = new THREE.CanvasTexture(engCanvas); engTex.encoding = THREE.sRGBEncoding; engTex.anisotropy = 4;
+function drawEng() {
+  const x = engCanvas.getContext("2d"); x.clearRect(0, 0, 512, 512);
+  x.strokeStyle = "#fff"; x.lineWidth = 10; x.beginPath(); x.arc(256, 256, 242, 0, 2 * Math.PI); x.stroke();   // the 0.4 mm rim of the cap
+  const t = state.eng.toUpperCase();
+  let fs = 120; x.font = `600 ${fs}px Unbounded, "Arial Black", sans-serif`;
+  while (x.measureText(t).width > 400 && fs > 30) { fs -= 4; x.font = `600 ${fs}px Unbounded, "Arial Black", sans-serif`; }
+  x.fillStyle = "#fff"; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText(t, 256, 262);
+  engTex.needsUpdate = true;
+}
+
+// side panel controls
+function swatchRow(pal, cur, onPick) {
+  const d = document.createElement("div"); d.className = "sws";
+  pal.forEach(([n, c], i) => { const b = document.createElement("button"); b.style.background = c; b.title = n;
+    b.setAttribute("aria-label", n); b.setAttribute("aria-pressed", i === cur); b.onclick = () => onPick(i); d.append(b); });
+  return d;
+}
+function drawColors() {
+  $("colors").innerHTML = "";
+  for (const g of GROUPS) {
+    const row = document.createElement("div"); row.className = "row";
+    row.innerHTML = `<div class="lab"><b>${g.name}</b><span>${g.pal[g.pick][0]} · ${g.what}</span></div>`;
+    row.append(swatchRow(g.pal, g.pick, i => { g.pick = i; drawColors(); repaint(); update(); }));
+    $("colors").append(row);
+  }
+}
+function drawCable() {
+  $("cable").innerHTML = ""; $("cable").append(...swatchRow(CABLE, state.cable, i => { state.cable = i; drawCable(); update(); }).children);
+  $("cableName").textContent = CABLE[state.cable][0];
+}
+function seg(el, items, cur, onPick) {
+  el.innerHTML = "";
+  items.forEach((t, i) => { const b = document.createElement("button"); b.textContent = t; b.setAttribute("aria-pressed", i === cur); b.onclick = () => onPick(i); el.append(b); });
+}
+function drawSegs() {
+  seg($("sizes"), SIZES.map(D => `${D} mm`), SIZES.indexOf(state.size), i => { loadSize(SIZES[i]); });
+  seg($("pads"), PADS.map(([n, p]) => p ? `${n} +R$ ${p}` : n), state.pad, i => { state.pad = i; drawSegs(); repaint(); update(); });
+}
+$("extras").innerHTML = EXTRAS.map(e => `<label class="check"><input type="checkbox" data-x="${e.id}"><span>${e.name}<small>${e.desc}</small></span><em>+${brl(e.price)}</em></label>`).join("");
+$("extras").addEventListener("change", ev => { state.extras[ev.target.dataset.x] = ev.target.checked; update(); });
+$("eng").addEventListener("input", ev => { state.eng = ev.target.value.replace(/\s+/g, " ").trimStart(); $("engCount").textContent = `${state.eng.length}/12`; drawEng(); showEng(); update(); });
+
+// bill and order text
+function update() {
+  const L = [[`UMEH-3 com fio, par · driver ${state.size} mm`, BASE_PRICE]];
+  if (state.pad) L.push([`Almofada de ${PADS[state.pad][0].toLowerCase()}`, PADS[state.pad][1]]);
+  if (state.eng.trim()) L.push([`Gravação “${state.eng.trim().toUpperCase()}”`, ENG_PRICE]);
+  for (const e of EXTRAS) if (state.extras[e.id]) L.push([e.name, e.price]);
+  const tot = L.reduce((s, [, v]) => s + v, 0);
+  $("lines").innerHTML = L.map(([n, v]) => `<tr><td>${n.replace(/</g, "&lt;")}</td><td>${brl(v)}</td></tr>`).join("");
+  $("total").textContent = brl(tot);
+  const txt = ["Pedido UMEH-3 com fio", `Driver: ${state.size} mm`,
+    ...GROUPS.map(g => `${g.name}: ${g.pal[g.pick][0]}`),
+    `Almofada: ${PADS[state.pad][0]}`, `Cabo: ${CABLE[state.cable][0]}`,
+    `Gravação: ${state.eng.trim() ? state.eng.trim().toUpperCase() : "logo UMEH"}`,
+    ...EXTRAS.filter(e => state.extras[e.id]).map(e => `Extra: ${e.name}`),
+    `Total: ${brl(tot)}`].join("\n");
+  $("orderText").value = txt;
+  $("sub").textContent = `Monte o seu · driver ${state.size} mm`;
+}
+$("copy").onclick = () => {
+  const t = $("orderText").value;
+  const done = m => { $("copied").textContent = m; };
+  const fallback = () => { $("orderText").focus(); $("orderText").select(); done("Texto selecionado, copie com Ctrl+C."); };
+  try { navigator.clipboard.writeText(t).then(() => done("Pedido copiado."), fallback); } catch (e) { fallback(); }
+};
+
+// scene
+const canvas = $("view");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(32, 1, 1, 5000);
+const controls = new THREE.OrbitControls(camera, canvas);
+controls.enableDamping = true; controls.autoRotate = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+controls.autoRotateSpeed = 0.8;
+if (!controls.autoRotate) $("spin").setAttribute("aria-pressed", "false");
+const key = new THREE.DirectionalLight(0xffffff, 1.3); key.position.set(120, 220, 180); key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048); Object.assign(key.shadow.camera, { left: -150, right: 150, top: 150, bottom: -150 });
+scene.add(key, new THREE.HemisphereLight(0xffffff, 0x444444, 0.35));
+const floor = new THREE.Mesh(new THREE.CircleGeometry(400, 64), new THREE.ShadowMaterial({ opacity: 0.18 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+const root = new THREE.Group(); scene.add(root);   // head frame: x right, y up, z back
+const sideR = new THREE.Group(), sideL = new THREE.Group(), mirrorL = new THREE.Group();
+sideR.rotation.y = Math.PI / 2; mirrorL.scale.x = -1; mirrorL.add(sideL); sideL.rotation.y = Math.PI / 2;
+root.add(sideR, mirrorL);
+// engraving planes, one per side; the left one is flipped back so the text reads right
+const engMeshes = [sideR, sideL].map(grp => {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(53, 53), material("eng"));
+  m.position.set(0, 0, 55.42); if (grp === sideL) m.scale.x = -1; m.userData.part = "eng"; grp.add(m); return m;
+});
+function showEng() {
+  const on = !!state.eng.trim();
+  engMeshes.forEach(m => m.visible = on);
+  meshes.forEach(m => { if (m.userData.part === "logo" || m.userData.part === "logo_L") m.visible = !on; });
+}
+let band = null;
+const cache = {};
+let meshes = [], exploded = 0, explodeTarget = 0;
+function repaint() { [...meshes, ...engMeshes].forEach(m => { m.material.dispose(); m.material = material(m.userData.part); }); }
+
+function prep(g) { g = THREE.BufferGeometryUtils.mergeVertices(g, 1e-3); return THREE.BufferGeometryUtils.toCreasedNormals(g, Math.PI / 5); }
+async function loadSize(D) {
+  $("status").textContent = `Carregando o driver de ${D} mm…`;
+  if (!cache[D]) {
+    const r = await fetch(`AF/m${D}.json`);
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json(), out = {};
+    for (const [p, v] of Object.entries(data)) {
+      if (p[0] === "_") { out[p] = v; continue; }   // positions quantised to 16 bits per axis over the part's box
+      const bin = atob(v.b), q = new Uint16Array(bin.length / 2);
+      for (let i = 0; i < q.length; i++) q[i] = bin.charCodeAt(2 * i) | (bin.charCodeAt(2 * i + 1) << 8);
+      const pos = new Float32Array(q.length);
+      for (let i = 0; i < q.length; i++) pos[i] = v.o[i % 3] + q[i] * v.s[i % 3];
+      const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      out[p] = prep(g);
+    }
+    cache[D] = out;
+  }
+  meshes.forEach(m => m.parent.remove(m)); meshes = [];
+  for (const p of SHOWN) if (cache[D][p]) for (const grp of [sideR, sideL]) {
+    if ((p === "logo" && grp === sideL) || (p === "logo_L" && grp === sideR)) continue;   // letters read right on both sides
+    const m = new THREE.Mesh(cache[D][p], material(p)); m.userData.part = p;
+    if (p === "pad" || p === "front_foam") m.visible = showPad; m.castShadow = m.receiveShadow = true;
+    meshes.push(m); grp.add(m);
+  }
+  const B = cache[D]._band;
+  sideR.position.x = B.hw; sideL.position.x = B.hw;
+  if (band) { root.remove(band); band.geometry.dispose(); }
+  const curve = new THREE.CatmullRomCurve3(B.pts.map(([x, y, z]) => new THREE.Vector3(x, y, z)), false, "centripetal");
+  band = new THREE.Mesh(new THREE.TubeGeometry(curve, 240, B.d / 2, 14, false), material("neckband"));
+  band.userData.part = "neckband"; band.castShadow = true; meshes.push(band); root.add(band);
+  root.position.set(0, 0, 0);
+  const box = new THREE.Box3().setFromObject(root), c = box.getCenter(new THREE.Vector3());
+  root.position.set(-c.x, -box.min.y + 4, -c.z);
+  const h = box.max.y - box.min.y, span = box.getSize(new THREE.Vector3()).length();
+  controls.target.set(0, h / 2, 0);
+  if (!loadSize.framed) {   // back off on tall, narrow screens so both cups fit
+    const k = Math.max(1, 1.25 * canvas.clientHeight / Math.max(1, canvas.clientWidth));
+    camera.position.set(span * 0.95 * k, span * 0.55 * k, span * 0.9 * k); loadSize.framed = true; }
+  state.size = D; showEng(); drawSegs(); update();
+  $("status").textContent = "Arraste para girar";
+}
+$("explode").onclick = e => { explodeTarget = explodeTarget ? 0 : 1; e.currentTarget.setAttribute("aria-pressed", !!explodeTarget); };
+$("padtog").onclick = e => { showPad = !showPad; e.currentTarget.setAttribute("aria-pressed", showPad);
+  meshes.forEach(m => { if (m.userData.part === "pad" || m.userData.part === "front_foam") m.visible = showPad; }); };
+$("spin").onclick = e => { controls.autoRotate = !controls.autoRotate; e.currentTarget.setAttribute("aria-pressed", controls.autoRotate); };
+
+function resize() {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (canvas.width !== Math.round(w * renderer.getPixelRatio()) || canvas.height !== Math.round(h * renderer.getPixelRatio())) {
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+}
+function tick() {
+  resize();
+  exploded += (explodeTarget - exploded) * 0.12;
+  meshes.forEach(m => { if (m !== band) m.position.z = (EXP[m.userData.part] || 0) * exploded; });
+  controls.update(); renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+drawColors(); drawCable(); drawSegs(); drawEng(); update();
+document.fonts?.ready.then(drawEng);
+loadSize(50).catch(() => { $("status").textContent = "Não foi possível carregar as peças. Recarregue a página."; });
+tick();
+</script>
