@@ -548,67 +548,94 @@ module bend_jig() {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-// nape battery pod (UMEH-3W, user 2026-10-04): one 603450 cell in a sealed PETG box at the back of the neckband.
-// Pod frame: x along the band, y up, z away from the neck (z = 0 on the skin side). Each half-band ends at the pod:
-// the silicone tube presses into an end socket over a 2 x 1 O-ring on the cable (same gland as the cups); the steel
-// wire leaves the tube just before the socket, enters a blind hole in the end block and its 90 deg tail drops into
-// a cross hole. The lid closes on a printed TPU gasket with 4 M2 x 10 self-tapping screws.
-PD_W = 1.6; PD_FL = 1.6; PD_LID = 2.0; PD_GK = 0.8; PD_END = 6.0;
-function pd_cav() = [POD[0] + 2, POD[1] + 2, POD[2] + 1];
-function pd_out() = [pd_cav()[0] + 2 * PD_END, pd_cav()[1] + 2 * PD_W, PD_FL + pd_cav()[2]];
-PD_SOCK_Z = 4.3; PD_WIRE = [-7, 2.0];          // socket axis height; wire hole (y, z)
+// nape battery pod (UMEH-3W, user 2026-10-04): one 603450 cell in a sealed PETG box at the back of the neckband,
+// resting on the nape (user's card "apoiar e aliviar"): the neck side is curved (neck r ~70 mm) and carries a 3 mm
+// self-adhesive neoprene strip, so the neck takes most of the pod's weight instead of the ear hooks.
+// Pod frame: x along the band, y up, z away from the neck (z = 0 at the middle of the curved face).
+// Each half-band ends at the pod: the silicone tube presses into an end socket over a 2 x 1 O-ring on the cable (same
+// gland as the cups); the steel wire leaves the tube through a slit, enters a hole in the block beside the socket and
+// its 90 deg tail drops into a cross hole (outside the sealed box). The lid closes on a printed TPU gasket with
+// 4 M2 x 8 pan-head self-tapping screws in corner bosses; the gasket also seals round each screw.
+// Home printing: base on its long side (no supports), lid flat, gasket flat in TPU.
+PD_W = 1.2; PD_FL = 1.2; PD_LID = 1.2; PD_GK = 0.8; PD_RIM = [2.0, 0.8];   // walls, floor, lid, gasket, lid edge frame
+PD_RN = 70; PD_NEO = 3;                    // neck radius, neoprene thickness
+PD_RB = PD_RN + PD_NEO;                    // radius of the base's neck face
+PD_BOSS = 4.6; PD_SEAL = 2.4;            // screw bosses, gasket land width
+function pd_cav() = [POD[0] + 2 + 2 * PD_BOSS + 1.2, POD[1] + 1.2, POD[2] + 1.4];
+function pd_out() = [pd_cav()[0] + 2 * PD_W, pd_cav()[1] + 2 * PD_W, PD_FL + pd_cav()[2]];
+function pd_zf(x) = sqrt(PD_RB * PD_RB - x * x) - PD_RB;   // neck face height at x
+PD_SOCK_Z = 0.5; PD_WIRE_Y = -7.5; PD_SOCK_L = 6;
+function pd_bx() = pd_cav()[0] / 2 - PD_BOSS / 2;
+function pd_by() = pd_cav()[1] / 2 - PD_BOSS / 2;
 PD_SCR = [[1, 1], [1, -1], [-1, 1], [-1, -1]];
-function pd_scr(s) = [s[0] * (pd_cav()[0] / 2 + PD_END / 2), s[1] * 13];
+function pd_scr(s) = [s[0] * pd_bx(), s[1] * pd_by()];
 module pd_outline(o = 0) { offset(r = 4 + o) offset(r = -4) square([pd_out()[0], pd_out()[1]], center = true); }
+module pd_neck_cyl(r) { translate([0, 0, -PD_RB]) rotate([90, 0, 0]) cylinder(r = r, h = 100, center = true, $fn = 360); }
+module pd_shell() { difference() { translate([0, 0, -20]) linear_extrude(20 + pd_out()[2]) pd_outline(); pd_neck_cyl(PD_RB); } }
 module pod_base() {
-    c = pd_cav(); o = pd_out();
+    c = pd_cav(); o = pd_out(); xe = o[0] / 2;
     difference() {
         union() {
-            linear_extrude(o[2]) pd_outline();
-            for (sx = [-1, 1]) translate([sx * o[0] / 2, 0, PD_SOCK_Z]) rotate([0, sx * 90, 0]) cylinder(d = 8.6, h = 6, $fn = 40);
-        }
-        translate([-c[0] / 2, -c[1] / 2, PD_FL]) cube([c[0], c[1], c[2] + 1]);
-        for (sx = [-1, 1]) {
-            translate([sx * o[0] / 2, 0, PD_SOCK_Z]) rotate([0, sx * 90, 0]) {
-                translate([0, 0, 0]) cylinder(d = 6.2, h = 7, $fn = 40);                 // tube socket
-                translate([0, 0, -1.0]) cylinder(d = GL_BORE, h = 1.01, $fn = 24);     // O-ring counterbore
-                translate([0, 0, -PD_END - 1]) cylinder(d = CABLE_D + 0.1, h = PD_END + 2, $fn = 20);   // cable into the cavity
+            difference() {
+                pd_shell();
+                difference() {                                                      // the cavity, above the curved floor
+                    translate([-c[0] / 2, -c[1] / 2, -20]) cube([c[0], c[1], 40]);
+                    pd_neck_cyl(PD_RB + PD_FL);
+                    for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], -30]) cylinder(d = PD_BOSS, h = 60, $fn = 24);
+                }
             }
-            translate([sx * (o[0] / 2 + 1), PD_WIRE[0], PD_WIRE[1]]) rotate([0, -sx * 90, 0]) cylinder(d = NECK_D + 0.2, h = PD_END, $fn = 16);
-            translate([sx * (o[0] / 2 - 3.5), PD_WIRE[0], -1]) cylinder(d = NECK_D + 0.2, h = PD_WIRE[1] + 1, $fn = 16);   // tail hole (in the end block)
+            translate([0, 0, o[2] - 1.2]) linear_extrude(1.2) difference() { pd_outline(); pd_outline(-PD_SEAL); }   // 2.4 mm seal ledge
+            intersection() { pd_shell(); for (sx = [-1, 1]) translate([sx * 18 - 0.6, -c[1] / 2, -20]) cube([1.2, c[1], 20 + PD_FL]); }   // cell rests
+            for (sx = [-1, 1]) {
+                translate([sx * xe, 0, PD_SOCK_Z]) rotate([0, sx * 90, 0]) cylinder(d = 8.6, h = PD_SOCK_L, $fn = 40);
+                hull() for (dz = [-2.4, 2.4]) translate([sx * xe, PD_WIRE_Y, PD_SOCK_Z + dz]) rotate([0, sx * 90, 0]) cylinder(d = 3.6, h = PD_SOCK_L, $fn = 24);
+                translate([sx * (xe + PD_SOCK_L / 2), (PD_WIRE_Y - 1.8) / 2, PD_SOCK_Z]) cube([PD_SOCK_L, -PD_WIRE_Y + 1.8, 4.8], center = true);
+            }
         }
-        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], o[2] - 8]) cylinder(d = 1.6, h = 9, $fn = 16);
+        for (sx = [-1, 1]) {
+            translate([sx * (xe + PD_SOCK_L + 0.01), 0, PD_SOCK_Z]) rotate([0, -sx * 90, 0]) {
+                cylinder(d = 6.2, h = PD_SOCK_L - 1.0, $fn = 40);                                   // tube socket
+                translate([0, 0, PD_SOCK_L - 1.01]) cylinder(d = GL_BORE, h = 1.02, $fn = 24);    // O-ring seat
+                cylinder(d = CABLE_D + 0.1, h = PD_SOCK_L + PD_W + 2, $fn = 20);                 // cable into the box
+            }
+            translate([sx * (xe + PD_SOCK_L + 1), PD_WIRE_Y, PD_SOCK_Z]) rotate([0, -sx * 90, 0]) cylinder(d = NECK_D + 0.2, h = PD_SOCK_L - 0.5, $fn = 16);
+            translate([sx * (xe + 1.8), PD_WIRE_Y, PD_SOCK_Z - 5]) cylinder(d = NECK_D + 0.2, h = 10, $fn = 16);   // tail hole
+        }
+        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], o[2] - 6.5]) cylinder(d = 1.6, h = 7, $fn = 16);
     }
 }
-module pod_gasket() {   // TPU, 0.8 mm, squeezed ~25 % by the lid
-    c = pd_cav(); o = pd_out();
-    translate([0, 0, o[2]]) linear_extrude(PD_GK) difference() {
-        pd_outline(); square([c[0], c[1]], center = true);
-        for (s = PD_SCR) translate(pd_scr(s)) circle(d = 2.4, $fn = 16);
-    }
+module pd_seal() { difference() { pd_outline(); difference() { pd_outline(-PD_SEAL);
+    for (s = PD_SCR) translate(pd_scr(s)) circle(d = PD_BOSS, $fn = 24); } } }
+module pod_gasket() {   // TPU, 0.8 mm, squeezed ~25 % by the lid; seals the rim and round each screw
+    translate([0, 0, pd_out()[2]]) linear_extrude(PD_GK) difference() { pd_seal(); for (s = PD_SCR) translate(pd_scr(s)) circle(d = 2.4, $fn = 16); }
 }
 module pod_lid() {
     c = pd_cav(); o = pd_out();
     translate([0, 0, o[2] + PD_GK]) difference() {
         union() {
             linear_extrude(PD_LID) pd_outline();
-            translate([-c[0] / 2 + 0.2, -c[1] / 2 + 0.2, -PD_GK - 0.8]) difference() {     // locating lip
-                cube([c[0] - 0.4, c[1] - 0.4, PD_GK + 0.8]);
-                translate([0.8, 0.8, -1]) cube([c[0] - 2, c[1] - 2, 4]);
-            }
+            translate([0, 0, PD_LID - 0.01]) linear_extrude(PD_RIM[1]) difference() { pd_outline(); pd_outline(-PD_RIM[0]); }   // stiff edge over the gasket
+            for (y = [-6, 6]) translate([-c[0] / 2 + PD_BOSS + 1, y - 0.6, -0.8]) cube([c[0] - 2 * PD_BOSS - 2, 1.2, 0.81]);   // ribs
         }
         for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], -2]) cylinder(d = 2.3, h = 5, $fn = 16);
-        for (s = PD_SCR) translate([pd_scr(s)[0], pd_scr(s)[1], PD_LID - 0.8]) cylinder(d1 = 2.3, d2 = 4.0, h = 0.81, $fn = 16);
         translate([0, 0, PD_LID - 0.4]) linear_extrude(0.41) text("UMEH", size = 7, halign = "center", valign = "center", font = "Liberation Sans:style=Bold");
     }
 }
-module pod_cell() { translate([-POD[0] / 2, -POD[1] / 2, PD_FL + 0.2]) cube([POD[0], POD[1], POD[2]]); }
-module pod_orings() { for (sx = [-1, 1]) translate([sx * (pd_out()[0] / 2 - 0.5), 0, PD_SOCK_Z]) rotate([0, 90, 0]) torus(CABLE_D / 2 + GL_CORD / 2, GL_CORD); }
-if (part == "pod_base" && POD != undef) pod_base();
-if (part == "pod_lid" && POD != undef) pod_lid();
-if (part == "pod_gasket" && POD != undef) pod_gasket();
-if (part == "pod_cell" && POD != undef) pod_cell();
-if (part == "pod_orings" && POD != undef) pod_orings();
-if (part == "print_pod_base" && POD != undef) pod_base();
-if (part == "print_pod_lid" && POD != undef) translate([0, 0, PD_LID + pd_out()[2] + PD_GK]) rotate([180, 0, 0]) pod_lid();
-if (part == "print_pod_gasket" && POD != undef) translate([0, 0, -pd_out()[2]]) pod_gasket();
+module pd_lipshape() { difference() { square([pd_cav()[0], pd_cav()[1]], center = true); for (s = PD_SCR) translate(pd_scr(s)) circle(d = PD_BOSS + 1.6, $fn = 24); } }
+module pod_cell() { translate([-POD[0] / 2, -POD[1] / 2, PD_FL + 0.05]) cube([POD[0], POD[1], POD[2]]); }
+module pod_pad() { intersection() { translate([0, 0, -30]) linear_extrude(40) offset(delta = -2) pd_outline(); difference() { pd_neck_cyl(PD_RB - 0.01); pd_neck_cyl(PD_RN); } } }
+module pod_orings() { for (sx = [-1, 1]) translate([sx * (pd_out()[0] / 2 + 0.5), 0, PD_SOCK_Z]) rotate([0, 90, 0]) torus(CABLE_D / 2 + GL_CORD / 2, GL_CORD); }
+if (POD != undef) {
+    if (part == "pod_base") pod_base();
+    if (part == "pod_lid") pod_lid();
+    if (part == "pod_gasket") pod_gasket();
+    if (part == "pod_cell") pod_cell();
+    if (part == "pod_pad") pod_pad();
+    if (part == "pod_orings") pod_orings();
+    if (part == "pod_echo") echo(POD_FRAME = [pd_out()[0] / 2 + PD_SOCK_L, PD_SOCK_Z, pd_out(), pd_zf(pd_out()[0] / 2)]);
+    if (part == "print_pod_base") rotate([90, 0, 0]) translate([0, pd_out()[1] / 2, 0]) pod_base();   // on its long side
+    if (part == "print_pod_lid") translate([0, 0, PD_LID + PD_RIM[1] + pd_out()[2] + PD_GK]) rotate([180, 0, 0]) pod_lid();
+    if (part == "print_pod_gasket") translate([0, 0, -pd_out()[2]]) pod_gasket();
+    if (part == "print_neoprene_template") linear_extrude(0.6) difference() { offset(delta = -2) pd_outline();   // cutting template:
+        offset(delta = -3) offset(delta = -2) pd_outline(); }                                                     // a frame to trace on the sheet
+}
