@@ -34,7 +34,7 @@ Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e
 - **Gabarito impresso para dobrar o arame** do gancho e da faixa: uma placa com pinos no formato da curva. O arame é
   dobrado em volta dos pinos em 2–3 minutos, sempre igual.
 - **Solda feita na bancada** (Antonio, 4 de outubro de 2026: sem cabo já soldado de fábrica). Para ir rápido: um
-  suporte impresso que segura o soquete 0,78 e o JST na posição certa, fios cortados e desencapados em lote, e a solda
+  suporte impresso que segura o soquete 0,78 e o adaptador com as lâminas de contato na posição certa, fios cortados e desencapados em lote, e a solda
   de vários soquetes em fila.
 - **Capa da sela cortada em lote** com molde de papelão, e a costura feita em fila (10 capas de uma vez).
 - **Bancada em linha:** uma pessoa só dobra arames, outra só monta conchas. Rende mais que montar um par de cada vez.

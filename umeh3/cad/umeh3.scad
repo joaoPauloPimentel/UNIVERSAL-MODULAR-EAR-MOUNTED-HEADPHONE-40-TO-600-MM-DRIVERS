@@ -396,7 +396,56 @@ module adapter_a(d) {
         translate([0, 0, -1]) cylinder(r = ap, h = 10);                           // aperture
         translate([0, 0, 1.0]) cylinder(r = ro + 0.05, h = rt + 0.01);            // rim seat (driver snaps in)
         translate([0, 0, 1.0 + rt - 0.01]) cylinder(r = v[3] / 2 + 0.6, h = 10);   // back lip opening (basket)
-        rotate([0, 0, SOCKET_A - 0]) translate([ro - 2, -1.2, 1.0]) cube([POCKET_R, 2.4, 10]);   // lead notch
+        if (CONTACTS) contact_cuts(d);
+        else rotate([0, 0, SOCKET_A - 0]) translate([ro - 2, -1.2, 1.0]) cube([POCKET_R, 2.4, 10]);   // lead notch
+    }
+}
+
+// ---------------------------------------------------------------- solder-free driver contacts (2026-10-06)
+// Two phosphor-bronze leaf springs (0.2 x 2 mm) lie on the front face of the adapter's back lip, on the driver's back
+// flange, one each side of a 1.6 mm TPU rib at SOCKET_A. Each is a cantilever: fixed end (CT_FIX) in a 0.25 mm recess,
+// free part (CT_FREE) over a shallow window in the lip (floor = bend stop), bent up CT_PRE so it presses the driver's solder pad when the
+// driver snaps in. The driver is turned so its two pads straddle the rib. The fixed end's 3 mm tab goes back through
+// a slot; the wire from the socket is soldered to it once at the bench (never at the driver), then runs in a groove in
+// the lip's back face to the open chamber (r < SHOULDER_RI). Force and stress: calc/studies/driver_contacts.py.
+CONTACTS = true;
+CT = [0.2, 2.0, 1.6];                 // leaf thickness, width, rib between the leaves
+CT_FREE = 8.0; CT_FIX = 3.5; CT_PRE = 0.5; CT_TAB = 3.0;
+CT_STOP = 0.2;                         // window floor this far behind the flat leaf: caps its bend (stress) for raised pads
+function ct_rc(d) = let(v = drv(d)) (v[3] / 2 + 0.6 + v[1] / 2) / 2;      // mid radius of the driver's back flange
+function ct_deg(d, L) = L / ct_rc(d) * 180 / PI;
+module ct_sector(r0, r1, a0, a1) {
+    rotate([0, 0, min(a0, a1)]) rotate_extrude(angle = abs(a1 - a0), $fn = 240) translate([r0, 0]) square([r1 - r0, 1]);
+}
+// angle span of one leaf, side s = +1 / -1 from the rib
+function ct_a(d, s, L) = SOCKET_A + s * (ct_deg(d, CT[2] / 2) + ct_deg(d, L));
+module contact_cuts(d) {
+    v = drv(d); rc = ct_rc(d); rt = v[2]; zl = 1.0 + rt; w = CT[1] / 2 + 0.3;
+    for (s = [-1, 1]) {
+        a0 = ct_a(d, s, 0); a1 = ct_a(d, s, CT_FREE); a2 = ct_a(d, s, CT_FREE + CT_FIX);
+        translate([0, 0, zl - 0.01]) scale([1, 1, CT[0] + CT_STOP + 0.01]) ct_sector(rc - w, rc + w, a0, a1);   // window
+        translate([0, 0, zl - 0.01]) scale([1, 1, CT[0] + 0.06]) ct_sector(rc - w, rc + w, a1, a2 + 0.5); // recess
+        rotate([0, 0, a2]) translate([rc - w, -0.35, zl - 0.01]) cube([2 * w, 0.7, 10]);                 // tab slot
+        // wire groove on the back face, from the tab inwards to the open chamber
+        rotate([0, 0, a2 + s * ct_deg(d, 1.0)]) translate([min(rc, SHOULDER_RI) - 3.5, -0.4, ADAPTER_H - 0.6])
+            cube([max(rc, SHOULDER_RI) - min(rc, SHOULDER_RI) + 3.5 + w, 0.8, 1]);
+    }
+    // index mark on the front lip: the driver's pads go here
+    rotate([0, 0, SOCKET_A]) translate([v[5] / 2 + 0.4, -0.5, -0.01]) cube([1.2, 1.0, 0.41]);
+}
+// the leaves as fitted (visual): free part tilted up CT_PRE at the tip, dimple at the tip, tab bent back
+module contacts_vis(d) {
+    v = drv(d); rc = ct_rc(d); rt = v[2]; zl = 1.0 + rt; n = 12;
+    for (s = [-1, 1]) {
+        a1 = ct_a(d, s, CT_FREE); a2 = ct_a(d, s, CT_FREE + CT_FIX);
+        translate([0, 0, zl]) scale([1, 1, CT[0]]) ct_sector(rc - CT[1] / 2, rc + CT[1] / 2, a1, a2);   // in the recess
+        for (i = [0 : n - 1]) {           // free part: cubic bend, tip CT_PRE proud (towards the driver, -z)
+            u0 = i / n; u1 = (i + 1) / n;
+            hull() for (u = [u0, u1]) rotate([0, 0, ct_a(d, s, CT_FREE * (1 - u))])
+                translate([rc - CT[1] / 2, -0.01, zl - CT_PRE * (3 * u * u - u * u * u) / 2]) cube([CT[1], 0.02, CT[0]]);
+        }
+        rotate([0, 0, ct_a(d, s, 0.6)]) translate([rc, 0, zl - CT_PRE + 0.15]) sphere(r = 0.5, $fn = 16);   // dimple
+        rotate([0, 0, a2]) translate([rc - CT[1] / 2, -0.1, zl]) cube([CT[1], 0.2, CT_TAB + ADAPTER_H - zl]);
     }
 }
 
@@ -486,6 +535,7 @@ module placed(p) {
     if (p == "shell") shell();
     if (p == "front_ring") at_pc() translate([0, 0, 0]) front_ring();
     if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) adapter(D);
+    if (p == "contacts" && CONTACTS && WP != true) at_pc() translate([0, 0, ZL_ADP]) contacts_vis(D);
     if (p == "driver") at_pc() translate([0, 0, ZL_ADP + (WP == true ? (ADAPTER_H - drv(D)[2]) / 2 : 1.0)]) driver_vis(D);
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
     if (p == "wire") hook_wire();

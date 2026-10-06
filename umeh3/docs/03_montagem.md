@@ -51,23 +51,40 @@ Na ordem, pela ponta da perna:
    ![Chave da trava](img/10_chave_trava.png)
 4. Para girar o gancho depois: puxe o pino para cima, gire, solte em outro furo.
 
-## 4. Conector e fios
+## 4. Conector e contatos de mola (solda só aqui, uma vez)
 
-1. Solde dois fios finos (28 AWG) nos pinos do **soquete 0,78 mm** e o rabicho de um **JST-SH** na outra ponta. Marque
-   o positivo (vermelho).
-2. Passe os fios pelo furo da caixa do conector para dentro do copo e encaixe o soquete por pressão na caixa (pinos
+O driver nunca é soldado: ele encosta em duas lâminas de mola presas no adaptador. A solda é só entre o soquete e as
+lâminas, feita uma vez na montagem; depois qualquer driver de 40 a 60 mm troca sem ferro de solda.
+
+![Contatos de mola no adaptador](img/12_contatos_driver.png)
+
+1. Corte duas lâminas de **bronze fosforoso 0,2 mm** de **2 × 15 mm** com tesoura. Lixe as rebarbas.
+2. Dobre 3 mm de uma ponta a 90° (a aba). Na outra ponta, marque um ponto a 0,6 mm da borda com um prego e uma batida
+   leve de martelo: é o calombo que encosta no terminal do driver.
+3. Encaixe cada lâmina no rebaixo da face de dentro do adaptador, com a aba passando pela fenda para trás. A parte
+   solta (8 mm, do lado da nervura central) fica sobre a janela rasa.
+4. Curve a parte solta com a unha para que a ponta fique **~0,5 mm** acima da face, para o lado do driver. Mais que
+   isso não precisa: o fundo da janela limita a dobra.
+5. Solde dois fios finos (28 AWG) nos pinos do **soquete 0,78 mm**. Marque o positivo (vermelho).
+6. Solde cada fio na aba de uma lâmina, por trás do adaptador, e deite o fio no sulco da face de trás. O positivo vai na
+   lâmina do lado marcado "+" (a sua escolha; anote).
+7. Passe os fios pelo furo da caixa do conector para dentro do copo e encaixe o soquete por pressão na caixa (pinos
    para fora, apontando para baixo e para trás).
-3. Solde o outro lado do JST nos terminais do driver, respeitando o + do driver.
 
 ## 5. Driver, adaptador e anel (sem cola)
 
 ![Vista explodida](img/02_explodida.png)
 
 1. Ponha **um pouco de fibra siliconada** (~0,5 g, um tufo solto; serve a de uma almofada velha) no fundo do copo. Não aperte.
-2. Encaixe o **driver** no **adaptador de TPU** do tamanho dele: a borda do driver entra no assento do adaptador.
-3. Passe os fios pelo entalhe do adaptador, ligue o JST e coloque o adaptador no bolso da concha com o entalhe virado
-   para o conector.
-4. Ponha o **anel de baioneta**: os três ressaltos entram nos três canais, empurre e gire 30° até travar: sentido horário
+2. Gire o **driver** até os dois terminais dele ficarem um de cada lado da **marca** do adaptador (a nervura entre as
+   lâminas), com o + do lado da lâmina positiva, e encaixe: a borda do driver entra no assento. Os terminais devem estar
+   limpos e planos: raspe a solda velha de um driver reaproveitado. Se a traseira do driver for de **metal**, cole um
+   pedacinho de fita isolante no metal sob as lâminas (deixando só os terminais livres), senão o metal liga uma lâmina
+   na outra.
+3. Coloque o adaptador no bolso da concha com a marca virada para o conector.
+4. Teste antes de fechar: ligue o cabo e toque música. Se um lado ficar mudo ou chiar, gire o driver 1 ou 2 mm e
+   encaixe de novo.
+5. Ponha o **anel de baioneta**: os três ressaltos entram nos três canais, empurre e gire 30° até travar: sentido horário
    olhando de frente no lado direito, anti-horário no esquerdo. Os dois entalhes da face ajudam a girar com a unha. A aba do adaptador fica levemente
    apertada; é isso que segura o driver sem cola e sem chiado.
 

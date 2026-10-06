@@ -25,7 +25,7 @@ Os itens trocados estão marcados com ★.
 | Soquete fêmea 2 pinos 0,78 mm | 2 | "0.78mm 2pin socket DIY IEM female" | **Só AliExpress** (não achei avulso no ML/Shopee) | 4-25 + frete | |
 | Cabo 2 pinos 0,78 mm (padrão KZ/TRN) | 1 | "cabo fone 2 pin 0.78mm" | ML (TRN, KZ, BQEYZ) | 40-120 | Escolha um cabo com "Y" baixo e conector P2 ou USB-C que você já use. |
 | Drivers | 1 par | "driver fone de ouvido 40 mm", "alto falante 50mm para fone" | ML, Casa do Periférico, Amazon.com.br; **60 mm só no AliExpress** ("60mm headphone driver") | ★ **40 mm, o mais barato (~29 o par)**, ou drivers tirados de um fone velho (0); 50 mm 42-66 o par | A concha aceita 40, 45, 50, 55 e 60 mm com o adaptador do tamanho. Prefira drivers leves (até ~35 g cada). |
-| Conector JST-SH 2 vias com fio | 2 pares | "conector jst sh 2 vias 1.0mm" | ML | ~30 (5 pares) | Muitos anúncios "JST" são PH 2,0 mm: procure "SH" ou "passo 1.0". Liga o driver ao soquete sem solda no driver. |
+| Fita de bronze fosforoso 0,2 mm, **dura (mola)** | 4 lâminas de 2 × 15 mm (um pedaço de 20 × 50 mm dá para 15 fones) | "fita bronze fosforoso 0,2mm", "phosphor bronze strip 0.2mm" | Império dos Metais, Kametal; ou AliExpress | ~20-40 o pedaço | Os contatos de mola do adaptador: o driver encaixa e encosta nelas, sem solda no driver. Peça têmpera **dura/mola**; a meio-dura entorta se o terminal do driver for alto. |
 
 ## Filamentos
 
