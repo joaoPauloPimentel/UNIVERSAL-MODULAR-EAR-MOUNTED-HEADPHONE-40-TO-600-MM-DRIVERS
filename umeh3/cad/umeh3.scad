@@ -57,8 +57,9 @@ module cup_inner2d() {
     translate([0, -1]) square([POCKET_R, ZL_SH + 1]);          // pocket
     translate([0, -1]) square([SHOULDER_RI, ZL_CH + 2]);       // through the shoulder
 }
+// oval pad (PAD_ODX < PAD_OD): the round flange, pad and front foam are squeezed along x (front-back)
 module flange() {
-    translate([0, 0, Z_F]) difference() {
+    scale([FLANGE_ODX / FLANGE_OD, 1, 1]) translate([0, 0, Z_F]) difference() {
         union() {
             cylinder(d = FLANGE_OD, h = PLATE_T);
             // rear bead on the rim: the pad's elastic lip hooks behind it
@@ -499,17 +500,22 @@ module bushing() {
 // ---------------------------------------------------------------- purchased parts (visual / mass)
 module pad() {
     t = PAD_T - PAD_COMP;
-    rotate_extrude($fn = 160) hull() {
-        translate([PAD_ID / 2 + 4, 4]) circle(r = 4, $fn = 32);
-        translate([PAD_OD / 2 - 6, 6]) circle(r = 6, $fn = 32);
-        translate([PAD_ID / 2 + 1, t - 1]) square([PAD_OD / 2 - PAD_ID / 2 - 1, 1]);
+    difference() {
+        scale([PAD_ODX / PAD_OD, 1, 1]) rotate_extrude($fn = 160) hull() {
+            translate([PAD_ID / 2 + 4, 4]) circle(r = 4, $fn = 32);
+            translate([PAD_OD / 2 - 6, 6]) circle(r = 6, $fn = 32);
+            translate([PAD_ID / 2 + 1, t - 1]) square([PAD_OD / 2 - PAD_ID / 2 - 1, 1]);
+        }
+        // the opening at the head face (its own aspect ratio when oval)
+        scale([PAD_IDX / PAD_ID, 1, 1]) translate([0, 0, -1]) cylinder(d = PAD_ID, h = t + 2);
     }
     // fabric lip wrapped over the flange rim
-    translate([0, 0, Z_F - 0.01]) difference() { cylinder(d = FLANGE_OD + 1.6, h = PLATE_T + 2.2); translate([0, 0, -1]) cylinder(d = FLANGE_OD - 6, h = 6); }
+    scale([FLANGE_ODX / FLANGE_OD, 1, 1]) translate([0, 0, Z_F - 0.01])
+        difference() { cylinder(d = FLANGE_OD + 1.6, h = PLATE_T + 2.2); translate([0, 0, -1]) cylinder(d = FLANGE_OD - 6, h = 6); }
 }
 module front_foam() {
     translate([0, 0, Z_F - 3.0]) difference() {
-        cylinder(d = PAD_ID + 4, h = 3.0);
+        scale([(PAD_IDX + 4) / (PAD_ID + 4), 1, 1]) cylinder(d = PAD_ID + 4, h = 3.0);
         translate([HH[0], HH[1], -1]) cylinder(d = WIRE_D + 1, h = 5, $fn = 16);
     }
 }
