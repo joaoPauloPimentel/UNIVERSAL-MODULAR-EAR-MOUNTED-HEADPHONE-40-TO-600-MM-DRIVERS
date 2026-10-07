@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297mm" height="210mm" viewBox="0 0 297 210">
+<rect width="297" height="210" fill="#fff"/>
+<text x="18.5" y="18.0" font-family="DejaVu Sans, Arial, sans-serif" font-size="4.2" font-weight="bold">UMEH-3 · berço de EVA 10 mm (corte 2 iguais) · imprimir em A4 deitado, escala 100%</text>
+<rect x="18.5" y="24.0" width="260" height="170" fill="none" stroke="#000" stroke-width="0.4"/>
+<circle cx="86.5" cy="109.0" r="54.0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>
+<line x1="83.5" y1="109.0" x2="89.5" y2="109.0" stroke="#000" stroke-width="0.25"/><line x1="86.5" y1="106.0" x2="86.5" y2="112.0" stroke="#000" stroke-width="0.25"/>
+<text x="86.5" y="121.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="3.5">furo Ø 108 mm (L)</text>
+<text x="86.5" y="126.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="3">concha com a almofada para baixo</text>
+<circle cx="210.5" cy="109.0" r="54.0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>
+<line x1="207.5" y1="109.0" x2="213.5" y2="109.0" stroke="#000" stroke-width="0.25"/><line x1="210.5" y1="106.0" x2="210.5" y2="112.0" stroke="#000" stroke-width="0.25"/>
+<text x="210.5" y="121.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="3.5">furo Ø 108 mm (R)</text>
+<text x="210.5" y="126.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="3">concha com a almofada para baixo</text>
+<path d="M74.5,24.0 a12,9 0 0 0 24,0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>
+<path d="M198.5,24.0 a12,9 0 0 0 24,0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>
+<text x="148.5" y="201.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="3.4">contorno = fundo interno da caixa (260 × 170 mm) · tracejado = cortar fora · confira: a régua abaixo deve medir 100 mm</text>
+<line x1="18.5" y1="205.0" x2="118.5" y2="205.0" stroke="#000" stroke-width="0.4"/>
+<line x1="18.5" y1="203.5" x2="18.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="28.5" y1="203.5" x2="28.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="38.5" y1="203.5" x2="38.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="48.5" y1="203.5" x2="48.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="58.5" y1="203.5" x2="58.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="68.5" y1="203.5" x2="68.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="78.5" y1="203.5" x2="78.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="88.5" y1="203.5" x2="88.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="98.5" y1="203.5" x2="98.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="108.5" y1="203.5" x2="108.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+<line x1="118.5" y1="203.5" x2="118.5" y2="205.0" stroke="#000" stroke-width="0.3"/>
+</svg>

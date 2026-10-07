@@ -9,6 +9,7 @@ faixa na nuca. Modelo A final.
 | [02_lista_de_compras.md](02_lista_de_compras.md) | Peças compradas e onde achar no Brasil |
 | [03_montagem.md](03_montagem.md) | Montagem passo a passo, com imagens |
 | [04_testes.md](04_testes.md) | Testes com as peças reais (pesagem, bucha, queda, esteira, som) |
+| [07_embalagem.md](07_embalagem.md) | Caixa pronta, berço de EVA e adesivo do logo para enviar o fone |
 | [../report/RELATORIO_UMEH3_modelo_A.md](../report/RELATORIO_UMEH3_modelo_A.md) | Relatório técnico: cálculos e resultados |
 
 Modelo 3D interativo: https://claude.ai/artifact/Sx1FKkQEhf4qXN1DecbGXC
