@@ -1,0 +1,40 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Cartão UMEH</title><style>
+@page{size:297mm 210mm;margin:0}
+*{box-sizing:border-box}body{margin:0;font-family:"DejaVu Sans",Arial,sans-serif;color:#17181b}
+.sheet{display:flex;width:297mm;height:210mm}
+.card{width:148.5mm;height:210mm;padding:9mm 9mm 7mm;border-right:0.2mm dashed #bbb;display:flex;flex-direction:column;gap:2.4mm;font-size:2.75mm;line-height:1.32}
+.card:last-child{border-right:0}
+.top{display:flex;align-items:center;justify-content:space-between;background:#141518;color:#fff;margin:-9mm -9mm 0;padding:5mm 9mm;border-bottom:1.2mm solid #7a46c2}
+.top b{font-size:7.5mm;letter-spacing:0.4mm}.top span{font-size:2.6mm;color:#c6a9f2;text-align:right}
+h2{font-size:3.3mm;margin:1.2mm 0 0;color:#5b2f99;text-transform:uppercase;letter-spacing:0.25mm}
+ol,ul{margin:0;padding-left:4.5mm}li{margin:0.5mm 0}
+.box{border:0.3mm solid #7a46c2;border-radius:1.5mm;padding:1.8mm 2.5mm}
+.foot{margin-top:auto;font-size:2.4mm;color:#555;border-top:0.2mm solid #ccc;padding-top:1.5mm}
+</style></head><body><div class="sheet" id="s"></div>
+<template id="c"><div class="card">
+<div class="top"><b>UMEH</b><span>Fone sem tiara<br>Como montar e usar</span></div>
+<div class="box"><b>Na caixa:</b> 2 conchas com gancho (L e R), faixa da nuca, cabo 2 pinos 0,78 mm e este cartão.</div>
+<h2>1. Encaixe a faixa da nuca</h2>
+<ol><li>A curva da faixa fica para baixo, atrás da nuca. Cada ponta tem um pino dobrado.</li>
+<li>Ponha o pino no furo da tampa (atrás da concha) e aperte a mangueira de silicone com o polegar para dentro do canal até entrar inteira. Faça nos dois lados.</li></ol>
+<h2>2. Ligue o cabo</h2>
+<ol><li>Encaixe os conectores de 2 pinos: o L do cabo na concha L, o R na concha R. Empurre reto, sem girar.</li>
+<li>Prenda o cabo na faixa perto de cada concha, para o puxão ir para a faixa e não para a orelha.</li></ol>
+<h2>3. Vista e ajuste</h2>
+<ol><li>Passe cada gancho por cima da orelha; a faixa fica atrás da nuca, sem tocar no cabelo de cima.</li>
+<li>A almofada da sela deve apoiar na <b>raiz da orelha</b> (onde ela encontra a cabeça), não no topo dela. Para subir ou descer a concha, deslize o fio do gancho na bucha.</li>
+<li>Para centralizar a almofada na orelha, levante o gancho até o pino da trava sair do furo, gire e encaixe em outro dos 9 furos.</li>
+<li>Ajuste fino: dobre o fio do gancho com a mão, devagar.</li></ol>
+<h2>4. Troque o driver sem solda</h2>
+<ol><li>Puxe a almofada e tire a tela da frente.</li>
+<li>Gire o anel 30° para soltar (anti-horário no lado direito, horário no esquerdo) e tire o driver com o adaptador.</li>
+<li>Use o adaptador do mesmo tamanho do novo driver (40 a 60 mm). Gire o driver até os dois terminais ficarem um de cada lado da marca do adaptador, com o + do lado do +, e encaixe.</li>
+<li>Teste com música antes de fechar. Se chiar ou ficar mudo, gire o driver 1 ou 2 mm. Traseira de metal: cubra o metal com fita isolante, deixando só os terminais livres.</li></ol>
+<h2>Cuidados</h2>
+<ul><li>Não deixe no carro ao sol: o plástico deforma acima de 80 °C.</li>
+<li>Limpe a almofada com pano úmido; não molhe as conchas.</li>
+<li>Não puxe pelo cabo; tire o fone pelos ganchos.</li></ul>
+<div class="foot">Dúvidas e peças: [SEU CONTATO] · Feito no Brasil, impresso em 3D.</div>
+</div></template>
+<script>const s=document.getElementById('s'),t=document.getElementById('c');s.append(t.content.cloneNode(true),t.content.cloneNode(true));</script>
+</body></html>

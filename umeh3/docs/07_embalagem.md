@@ -50,13 +50,21 @@ Folha A4 com 15 adesivos de 5 cm: [`embalagem/adesivos_logo.pdf`](embalagem/ades
   recorte pela linha cinza. Um furador de 5 cm ("furador de papel 5cm") deixa o corte redondo e rápido.
 - Use 1 adesivo na tampa e, se quiser, 1 fechando a aba (lacre).
 
+## Cartão "como montar e usar"
+
+Folha A4 deitada com 2 cartões A5: [`embalagem/cartao.pdf`](embalagem/cartao.pdf). Imprima, corte ao meio pela
+linha tracejada e dobre ao meio (fica A6). Antes de imprimir, troque **[SEU CONTATO]** em `embalagem/cartao.html`
+e gere de novo com `node embalagem/render_cartao.js`.
+
+![Cartão](embalagem/cartao.png)
+
 ## Ordem para fechar a caixa
 
 1. 2 camadas de EVA no fundo.
 2. Conchas L e R nos furos, almofada para baixo, ganchos virados para o centro.
 3. Placa de papelão por cima.
 4. Faixa da nuca com a curva para baixo; o cabo enrolado no saquinho dentro da curva.
-5. Manual por cima.
+5. Cartão por cima.
 6. Feche, cole o adesivo na tampa e o lacre na aba.
 
 Arquivos gerados por `embalagem/gen.py` (molde e adesivos em SVG) e `embalagem/render.js` (PDF e PNG).
