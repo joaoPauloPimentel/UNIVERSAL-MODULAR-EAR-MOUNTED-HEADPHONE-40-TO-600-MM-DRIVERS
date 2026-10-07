@@ -9,6 +9,7 @@ back along the module side and around the back of the head at the nape. In the c
 spring (-z at the eye, k_side; tangential K_T [A]) next to the pinna clamp.
 """
 import math
+import os
 import numpy as np
 from umeh2 import support as sp
 from umeh2 import linkspring as ls
@@ -40,6 +41,10 @@ def path(eye_mm):
 def design(P, eye_mm=None):
     """Wire sized for preload P (umeh2.linkspring.size_wire); returns the chosen design dict."""
     eye_mm = eye_point() if eye_mm is None else eye_mm
+    fixed = os.environ.get("UMEH_BAND")      # "d,coils" forces a wire, e.g. "1.8,0" (user 2026-10-07: plain 1.8 mm)
+    if fixed:
+        d, n = fixed.split(",")
+        return ls.link_design(float(d), P, int(n), path=path(eye_mm))
     _, _, chosen, _ = ls.size_wire(P, ns=range(0, 9), path=path(eye_mm))
     return chosen
 
