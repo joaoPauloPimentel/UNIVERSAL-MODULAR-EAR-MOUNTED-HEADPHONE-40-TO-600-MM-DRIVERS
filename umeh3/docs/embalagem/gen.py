@@ -2,27 +2,29 @@
 import sys, pathlib
 OUT = pathlib.Path(sys.argv[1])
 BOX = (260, 170)                       # inner box floor, mm
-CUP_D = 108                            # hole for the 110 mm pad, 1 mm squeeze per side
+CUP_D = 108                            # hole height for the oval 110 x 90 pad (long side across the box), 1 mm squeeze per side
+CUP_W = 88                             # hole width
 GAP = 16
 FONT = "DejaVu Sans, Arial, sans-serif"
 
 def berco():
     W, H = 297, 210
     ox, oy = (W - BOX[0]) / 2, (H - BOX[1]) / 2 + 4
-    cx = [ox + BOX[0] / 2 - (CUP_D + GAP) / 2, ox + BOX[0] / 2 + (CUP_D + GAP) / 2]
+    cx = [ox + BOX[0] / 2 - (CUP_W + GAP) / 2, ox + BOX[0] / 2 + (CUP_W + GAP) / 2]
     cy = oy + BOX[1] / 2
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}mm" height="{H}mm" viewBox="0 0 {W} {H}">',
          f'<rect width="{W}" height="{H}" fill="#fff"/>',
          f'<text x="{ox}" y="{oy-6}" font-family="{FONT}" font-size="4.2" font-weight="bold">UMEH-3 · berço de EVA 10 mm (corte 2 iguais) · imprimir em A4 deitado, escala 100%</text>',
          f'<rect x="{ox}" y="{oy}" width="{BOX[0]}" height="{BOX[1]}" fill="none" stroke="#000" stroke-width="0.4"/>']
     for i, x in enumerate(cx):
-        s.append(f'<circle cx="{x}" cy="{cy}" r="{CUP_D/2}" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>')
+        s.append(f'<ellipse cx="{x}" cy="{cy}" rx="{CUP_W/2}" ry="{CUP_D/2}" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>')
         s.append(f'<line x1="{x-3}" y1="{cy}" x2="{x+3}" y2="{cy}" stroke="#000" stroke-width="0.25"/><line x1="{x}" y1="{cy-3}" x2="{x}" y2="{cy+3}" stroke="#000" stroke-width="0.25"/>')
-        s.append(f'<text x="{x}" y="{cy+12}" text-anchor="middle" font-family="{FONT}" font-size="3.5">furo Ø {CUP_D} mm ({"R" if i else "L"})</text>')
+        s.append(f'<text x="{x}" y="{cy+12}" text-anchor="middle" font-family="{FONT}" font-size="3.5">furo oval {CUP_W} × {CUP_D} mm ({"R" if i else "L"})</text>')
         s.append(f'<text x="{x}" y="{cy+17}" text-anchor="middle" font-family="{FONT}" font-size="3">concha com a almofada para baixo</text>')
-    # finger notches on the long edges so the cups lift out
+    # finger notches on the long edges so the cups lift out (at the ends of the ovals)
     for x in cx:
-        s.append(f'<path d="M{x-12},{oy} a12,9 0 0 0 24,0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>')
+        y0 = cy - CUP_D / 2 + 0.6       # notch on the top of each hole, to get a finger under the cup
+        s.append(f'<path d="M{x-12},{y0} a12,10 0 0 1 24,0" fill="none" stroke="#000" stroke-width="0.4" stroke-dasharray="3 1.5"/>')
     s.append(f'<text x="{ox+BOX[0]/2}" y="{oy+BOX[1]+7}" text-anchor="middle" font-family="{FONT}" font-size="3.4">contorno = fundo interno da caixa ({BOX[0]} × {BOX[1]} mm) · tracejado = cortar fora · confira: a régua abaixo deve medir 100 mm</text>')
     rx, ry = ox, oy + BOX[1] + 11
     s.append(f'<line x1="{rx}" y1="{ry}" x2="{rx+100}" y2="{ry}" stroke="#000" stroke-width="0.4"/>')

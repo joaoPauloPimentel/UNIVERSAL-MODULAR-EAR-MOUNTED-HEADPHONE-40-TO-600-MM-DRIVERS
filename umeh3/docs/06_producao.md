@@ -21,9 +21,9 @@ Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e
 - **Bico 0,6 mm e camada de 0,28 mm** nas peças de PETG (conchas, bandejas, anéis). A concha é fosca e o veludo cobre a
   frente, então a camada mais grossa quase não aparece. As letras da logo, de 0,4 mm, podem perder nitidez com o bico
   0,6: conferir na impressão de teste.
-- **2 paredes e 10% de preenchimento giroide** onde o cálculo de resistência deixa folga (anéis e adaptadores). As
+- **2 paredes e 10% de preenchimento giroide** onde o cálculo de resistência deixa folga (anéis e placas de quebrar). As
   conchas mantêm a parede e o preenchimento do projeto.
-- **Placa cheia:** imprimir 4 conchas por placa, e os anéis, adaptadores e palhetas juntos numa placa só. Menos
+- **Placa cheia:** imprimir 4 conchas por placa, e os anéis, placas de quebrar e palhetas juntos numa placa só. Menos
   aquecimento e menos troca de placa por par.
 - **Troca de filamento da logo** em lote: todas as conchas da placa trocam na mesma camada, uma vez só.
 - **Fazenda de impressoras baratas** (tipo Bambu A1 ou Creality K1, ~R$ 2,5–3,5 mil) em vez de uma impressora cara.
@@ -34,14 +34,14 @@ Vendendo direto a R$ 300 sobram uns R$ 195 depois de pagamento, frete, imposto e
 - **Gabarito impresso para dobrar o arame** do gancho e da faixa: uma placa com pinos no formato da curva. O arame é
   dobrado em volta dos pinos em 2–3 minutos, sempre igual.
 - **Solda feita na bancada** (Antonio, 4 de outubro de 2026: sem cabo já soldado de fábrica). Para ir rápido: um
-  suporte impresso que segura o soquete 0,78 e o adaptador com as lâminas de contato na posição certa, fios cortados e desencapados em lote, e a solda
+  suporte impresso que segura o soquete 0,78 e as tiras de contato na posição certa, fios cortados e desencapados em lote, e a solda
   de vários soquetes em fila.
 - **Capa da sela cortada em lote** com molde de papelão, e a costura feita em fila (10 capas de uma vez).
 - **Bancada em linha:** uma pessoa só dobra arames, outra só monta conchas. Rende mais que montar um par de cada vez.
 
 ## 3. Compras
 
-- Comprar de **uma fábrica só** os itens chineses (soquete 0,78, almofada 110 mm, cabo, espuma frontal), em lote de
+- Comprar de **uma fábrica só** os itens chineses (soquete 0,78, almofada oval 110 × 90, cabo, espuma frontal), em lote de
   100 ou mais, e juntar num envio para pagar uma taxa de importação só.
 - Filamento em **rolo de 3 kg ou mais** direto da marca nacional, que sai mais barato por quilo.
 - Arame de aço mola e tubo de silicone **em rolo** (50–100 m), cortados na bancada.

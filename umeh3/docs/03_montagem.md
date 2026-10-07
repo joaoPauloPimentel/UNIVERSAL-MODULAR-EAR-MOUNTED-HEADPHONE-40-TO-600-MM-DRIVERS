@@ -1,7 +1,8 @@
 # UMEH-3: guia de montagem
 
-Um lado de cada vez; o lado esquerdo é o espelho do direito (use as peças `_L`). Modelo 3D para consultar de qualquer
-ângulo: https://claude.ai/artifact/Sx1FKkQEhf4qXN1DecbGXC
+Um lado de cada vez; o lado esquerdo é o espelho do direito (use as peças `_L`). Versão **oval** (almofada 110 × 90 mm,
+assento universal para drivers de 40 a 60 mm). Modelo 3D para consultar de qualquer ângulo:
+https://claude.ai/artifact/URyddQ9yXXfGch5ddgCAYa
 
 ![Conjunto](img/01_conjunto.png)
 
@@ -51,62 +52,78 @@ Na ordem, pela ponta da perna:
    ![Chave da trava](img/10_chave_trava.png)
 4. Para girar o gancho depois: puxe o pino para cima, gire, solte em outro furo.
 
-## 4. Conector e contatos de mola (solda só aqui, uma vez)
+## 4. Assento universal: cortar as peças do seu tamanho
 
-O driver nunca é soldado: ele encosta em duas lâminas de mola presas no adaptador. A solda é só entre o soquete e as
-lâminas, feita uma vez na montagem; depois qualquer driver de 40 a 60 mm troca sem ferro de solda.
+O mesmo jogo serve para qualquer driver de 40 a 60 mm: você só corta os furos do tamanho do seu. Meça o driver (o
+diâmetro da borda) e use o tamanho mais próximo: 40, 45, 50, 55 ou 60.
 
-![Contatos de mola no adaptador](img/12_contatos_driver.png)
+![Assento universal](img/12_assento.png)
 
-1. Corte duas lâminas de **bronze fosforoso 0,2 mm** de **2 × 15 mm** com tesoura. Lixe as rebarbas.
-2. Dobre 3 mm de uma ponta a 90° (a aba). Na outra ponta, marque um ponto a 0,6 mm da borda com um prego e uma batida
-   leve de martelo: é o calombo que encosta no terminal do driver.
-3. Encaixe cada lâmina no rebaixo da face de dentro do adaptador, com a aba passando pela fenda para trás. A parte
-   solta (8 mm, do lado da nervura central) fica sobre a janela rasa.
-4. Curve a parte solta com a unha para que a ponta fique **~0,5 mm** acima da face, para o lado do driver. Mais que
-   isso não precisa: o fundo da janela limita a dobra.
-5. Solde dois fios finos (28 AWG) nos pinos do **soquete 0,78 mm**. Marque o positivo (vermelho).
-6. Solde cada fio na aba de uma lâmina, por trás do adaptador, e deite o fio no sulco da face de trás. O positivo vai na
-   lâmina do lado marcado "+" (a sua escolha; anote).
-7. Passe os fios pelo furo da caixa do conector para dentro do copo e encaixe o soquete por pressão na caixa (pinos
+1. Imprima o molde [`assento/molde_assento.pdf`](assento/molde_assento.pdf) em escala 100% (a régua mede 100 mm).
+2. Cole o molde com fita no EVA e corte por lado:
+   - **F** (frente), EVA 2 mm: contorno + o círculo do seu tamanho;
+   - **M** (meio), EVA 2 mm: contorno + o círculo do seu tamanho (no driver de 60 mm a borda dele já enche o bolso: não use o M);
+   - **S** (trás), EVA 1 mm: contorno + o círculo do seu tamanho.
+   Um compasso de corte deixa o círculo perfeito; com estilete, vá em várias passadas leves.
+3. **Placa de quebrar** (`placa_quebra`, PETG): ela sai com o furo de 40 mm e anéis presos por 4 pontes. Para um driver
+   maior, corte com alicate de corte rente ou estilete **as pontes de cada anel até o tamanho do seu** e tire os anéis.
+   Lixe as pontinhas que sobrarem. O entalhe na borda é a passagem das tiras.
+4. **Tiras de contato**: corte 2 tiras de **bronze fosforoso 0,2 mm de 3 × 30 mm** (se a fita for de 5 mm, corte no
+   comprimento até 3 mm, com tesoura forte). Lixe as rebarbas e deixe as tiras **retas**.
+
+## 5. Conector e tiras (solda só aqui, uma vez)
+
+O driver nunca é soldado: os terminais dele encostam nas duas tiras. A solda é só entre o soquete e as tiras, feita uma
+vez; depois qualquer driver troca sem ferro de solda.
+
+1. Solde dois fios finos (28 AWG) nos pinos do **soquete 0,78 mm**. Marque o positivo (vermelho).
+2. Solde cada fio na ponta de uma tira (2 mm da ponta) e isole com termo-retrátil fino. Anote qual tira é o +.
+3. Passe os fios pelo furo da caixa do conector para dentro do copo e encaixe o soquete por pressão na caixa (pinos
    para fora, apontando para baixo e para trás).
+4. Deite as duas tiras **retas e paralelas, 1,5 mm uma da outra**, na face da frente do disco **S**, do furo até a
+   borda, como no desenho do molde. Na borda, dobre as duas tiras 90° para trás (para o lado da solda). Um pedacinho
+   de fita fina na borda segura as tiras enquanto você monta.
 
-## 5. Driver, adaptador e anel (sem cola)
+## 6. Driver, assento e anel (sem cola)
 
 ![Vista explodida](img/02_explodida.png)
 
-1. Ponha **um pouco de fibra siliconada** (~0,5 g, um tufo solto; serve a de uma almofada velha) no fundo do copo. Não aperte.
-2. Gire o **driver** até os dois terminais dele ficarem um de cada lado da **marca** do adaptador (a nervura entre as
-   lâminas), com o + do lado da lâmina positiva, e encaixe: a borda do driver entra no assento. Os terminais devem estar
-   limpos e planos: raspe a solda velha de um driver reaproveitado. Se a traseira do driver for de **metal**, cole um
-   pedacinho de fita isolante no metal sob as lâminas (deixando só os terminais livres), senão o metal liga uma lâmina
-   na outra.
-3. Coloque o adaptador no bolso da concha com a marca virada para o conector.
-4. Teste antes de fechar: ligue o cabo e toque música. Se um lado ficar mudo ou chiar, gire o driver 1 ou 2 mm e
-   encaixe de novo.
-5. Ponha o **anel de baioneta**: os três ressaltos entram nos três canais, empurre e gire 30° até travar: sentido horário
-   olhando de frente no lado direito, anti-horário no esquerdo. Os dois entalhes da face ajudam a girar com a unha. A aba do adaptador fica levemente
-   apertada; é isso que segura o driver sem cola e sem chiado.
+Monte de trás para a frente, com a concha deitada e o bolso virado para cima:
+
+1. Ponha **um pouco de fibra siliconada** (~0,5 g, um tufo solto) no fundo do copo. Não aperte.
+2. **Placa de quebrar**, com o entalhe da borda alinhado com a fenda do degrau do bolso (do lado do conector).
+3. **Disco S** com as tiras para cima; as pontas dobradas das tiras e os fios passam pelo entalhe e pela fenda.
+4. **Disco M** (se usar) por cima do S.
+5. **Driver**, de frente para cima: gire até os dois terminais dele ficarem **em cima das tiras**, o + na tira
+   positiva, e encaixe a borda dentro do furo do M. Os terminais devem estar limpos e planos (raspe a solda velha de um
+   driver reaproveitado). Se a traseira do driver for de **metal**, cole fita isolante no metal sob as tiras, deixando
+   só os terminais livres, senão o metal liga uma tira na outra.
+6. **Disco F** por cima da borda do driver.
+7. Teste antes de fechar: ligue o cabo e toque música. Se um lado ficar mudo ou chiar, gire o driver um pouco.
+8. Ponha o **anel de baioneta**: os três ressaltos entram nos três canais, empurre e gire 30° até travar: sentido horário
+   olhando de frente no lado direito, anti-horário no esquerdo. Os raios por dentro do anel apertam o EVA; é isso que
+   segura o driver sem cola e aperta os terminais contra as tiras.
 
 ![Corte](img/03_corte.png)
 
-## 6. Espuma da frente e almofada
+## 7. Espuma da frente e almofada
 
 1. Corte um disco de **72 mm** de **TNT ou voal** (tecido bem fino, que o som atravessa), com um corte pequeno onde o
    fio do gancho passa, e apoie sobre o anel. Ele só segura poeira; a almofada prende a borda. (Se preferir, serve
    também espuma de filtro de 3 mm, como no projeto original.)
-2. Vista a **almofada**: estique a borda elástica de tecido por cima da aba da placa até ela prender atrás do friso.
+2. Vista a **almofada oval** com o lado comprido (110 mm) **de cima para baixo**: estique a borda elástica de tecido
+   por cima da aba oval da placa até ela prender atrás do friso.
 
-## 7. Faixa da nuca (corda de piano 1,8 mm)
+## 8. Faixa da nuca (corda de piano 1,8 mm, reta)
 
-1. Corte 430 mm de fio de 1,8 mm e dobre 90° os últimos 3,5 mm de cada ponta (esses pinos entram nos furos cegos das
+1. Corte 410 mm de fio de 1,8 mm e dobre 90° os últimos 3,5 mm de cada ponta (esses pinos entram nos furos cegos das
    tampas).
 2. Vista a mangueira de silicone 2 × 4 mm no fio, deixando os pinos de fora.
 3. Dê a forma da faixa na **placa da faixa** (`gabaritos/gabarito_faixa`): ponha um pino no furo de uma ponta e vá
    dobrando o fio para dentro do sulco até a outra ponta, curvando a parte da nuca com as mãos (dobre um pouco além,
    porque o aço volta). Está certo quando o fio inteiro fica no sulco e os dois pinos caem nos furos sem forçar.
-4. **Força (2 N):** a placa já tem a forma solta certa: pontas a ~217 mm uma da outra, que abrem para ~258 mm na
-   cabeça. Conferência opcional: abrindo as pontas para 258 mm, uma balança de bagagem presa numa ponta marca ~200 g.
+4. **Força (2 N):** a placa já tem a forma solta certa: pontas a ~198 mm uma da outra, que abrem para ~238 mm na
+   cabeça. Conferência opcional: abrindo as pontas para 238 mm, uma balança de bagagem presa numa ponta marca ~200 g.
 
    ![Placa da faixa](img/11_gabarito_faixa.png)
 
@@ -114,7 +131,7 @@ lâminas, feita uma vez na montagem; depois qualquer driver de 40 a 60 mm troca 
 
 ![Tampa](img/06_tampa.png)
 
-## 8. Cabo e ajuste na cabeça
+## 9. Cabo e ajuste na cabeça
 
 1. Ligue o cabo 2 pinos nos dois lados (marcação L/R do cabo com o L/R das tampas).
 2. Prenda o cabo na faixa perto de cada concha com um anel de silicone ou velcro fino: assim o puxão do cabo vai para a
@@ -123,4 +140,4 @@ lâminas, feita uma vez na montagem; depois qualquer driver de 40 a 60 mm troca 
    orelha e não no topo dela; escolha o furo da trava em que a almofada fica centrada; ajuste fino dobrando o fio com a
    mão.
 
-Se a almofada comprada tiver altura diferente de 25 mm (a encontrada tem 23 mm), o ajuste de altura da bucha compensa.
+Se a almofada comprada tiver altura diferente de 22 mm, o ajuste de altura da bucha compensa.

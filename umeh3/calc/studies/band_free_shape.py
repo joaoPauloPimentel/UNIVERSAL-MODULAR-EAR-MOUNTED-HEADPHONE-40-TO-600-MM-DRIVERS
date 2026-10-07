@@ -9,7 +9,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from umeh3 import geom, neckband as nb, RESULTS
 from umeh2.materials import WIRE
-geom.apply("AF")
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
 P = 2.0
 d = geom.NECK_WIRE_D * 1e-3
 EI = WIRE["E"].v * math.pi * d ** 4 / 64
@@ -71,7 +71,7 @@ res = dict(worn_eye_x=float(W[-1, 0]), free_eye_x=float(F[-1, 0]), calc_free_hal
            length_half_mm=float(L.sum()), worn_apex_y=float(W[0, 1]), free_apex_y=float(F[0, 1]),
            k_side_check_N_per_mm=P / (W[-1, 0] - F[-1, 0]))
 print(json.dumps(res, indent=1))
-json.dump(res, open(os.path.join(RESULTS, "band_free_shape.json"), "w"), indent=1)
+json.dump(res, open(os.path.join(RESULTS, "band_free_shape.json" if geom.VARIANT == "AF" else f"band_free_shape_{geom.VARIANT}.json"), "w"), indent=1)
 step = max(1, int(4.0 / 0.25))
 pts = F[::step].tolist() + [F[-1].tolist()]
 with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "cad", "params_jig.scad"), "w") as fh:

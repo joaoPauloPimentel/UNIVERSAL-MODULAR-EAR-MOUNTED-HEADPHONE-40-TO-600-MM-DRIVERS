@@ -7,14 +7,14 @@ importa. Anote os resultados e mande para atualizar o relatório.
 
 | Peça | Calculado (g) | Medido (g) |
 |---|---|---|
-| Concha impressa | 26,1 | |
-| Anel de baioneta | 1,7 | |
-| Adaptador | 1,2 | |
-| Almofada (uma) | 11 | |
+| Concha impressa (oval) | 22,4 | |
+| Anel de baioneta (com raios) | 2,4 | |
+| Assento (3 discos de EVA + placa de quebrar + tiras) | 4,0 / 2,9 / 1,6 (40 / 50 / 60 mm) | |
+| Almofada oval (uma) | 10 | |
 | Driver (um) | 15 / 26 / 40 (40 / 50 / 60 mm) | |
 | Gancho completo (fio, tubos, sela, palheta, bucha) | ~12 | |
-| Faixa completa | 12,5 | |
-| Um lado montado com metade da faixa | 76 / 87 / 101 | |
+| Faixa completa (1,8 mm reta) | ~12 | |
+| Um lado montado com metade da faixa | ~74 / 84 / 97 | |
 
 ## 2. Bucha do gancho (escolher o furo)
 

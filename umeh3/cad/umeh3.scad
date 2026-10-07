@@ -635,6 +635,24 @@ if (part == "print_tray") sided() translate([0, 0, -(Z_F + TRAY_Z - 1.2)]) tray(
 if (part == "print_slider") sided() translate([0, 0, -(Z_F + CUP_H)]) slider();
 if (part == "print_pogo_plug") cylinder(d = POGO[0] + 0.35, h = 4.0, $fn = 40);
 if (part == "print_ring_key") ring_key();
+if (part == "print_break_plate") print_break_plate();
+
+// break-away plate as printed: smallest (40 mm) hole, then one through slot per larger size held by 4 bridges.
+// Cut the bridges of every slot inside your size with a craft knife / flush cutter and pop the rings out.
+module print_break_plate() {
+    t = UNIV[3];
+    difference() {
+        cylinder(r = POCKET_R - 0.15, h = t, $fn = 160);
+        translate([0, 0, -1]) cylinder(r = univ_hole(3, DRV[0][0]), h = t + 2, $fn = 120);
+        for (k = [1 : len(DRV) - 1]) let(r = univ_hole(3, DRV[k][0])) difference() {
+            translate([0, 0, -1]) difference() { cylinder(r = r + 0.3, h = t + 2, $fn = 160); cylinder(r = r - 0.3, h = t + 2, $fn = 160); }
+            for (a = [0 : 90 : 270]) rotate([0, 0, a + 45 * (k % 2)]) translate([0, -0.5, -2]) cube([POCKET_R, 1.0, t + 4]);
+        }
+        // edge notch for the two strip tails (turn the plate so it lines up with the slot in the shoulder)
+        w = 2 * UNIV[5] + UNIV[6] + 1.0;
+        translate([POCKET_R - 0.15 - 0.8, -w / 2, -1]) cube([2, w, t + 2]);
+    }
+}
 
 // wire bending jig (PETG plate with the hook path as a groove; bend the wire around the pins by hand)
 module bend_jig() {

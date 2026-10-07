@@ -7,13 +7,13 @@ fone completo, o cabo e o manual. Tudo é feito em casa.
 
 | Item | Medida | Como vai |
 |---|---|---|
-| Cada concha com almofada e gancho | 110 × 110 × 56 mm | almofada para baixo, num furo do berço |
+| Cada concha com almofada oval e gancho | 110 × 90 × ~47 mm | almofada para baixo, num furo do berço |
 | Faixa da nuca (solta das tampas) | ~230 × 120 mm, 46 mm de altura | por cima da placa, com a curva da nuca para baixo |
 | Cabo 0,78 mm enrolado | ~80 mm | num saquinho, dentro da curva da faixa |
 | Manual / cartão | A6 dobrado | por cima de tudo |
 
 A faixa vai solta para a caixa ficar pequena e a faixa não forçar as conchas na viagem. O cliente encaixa as pontas
-como no passo 7.5 da montagem (`03_montagem.md`); o manual precisa ter esse passo.
+como no passo 8.5 da montagem (`03_montagem.md`); o manual precisa ter esse passo.
 
 ## Caixa
 
@@ -21,7 +21,7 @@ como no passo 7.5 da montagem (`03_montagem.md`); o manual precisa ter esse pass
   "caixa kraft fechamento automático"; serve qualquer uma com medida interna igual ou um pouco maior (sobra até ~1 cm
   em cada lado se resolve com o berço).
 - Preço estimado (não conferido): R$ 2 a 4 a unidade em pacote de 25 a 50.
-- Peso total para frete: cerca de 400 g (fone ~180–230 g, cabo ~20 g, caixa ~120 g, EVA ~30 g).
+- Peso total para frete: cerca de 400 g (fone ~170–210 g, cabo ~20 g, caixa ~120 g, EVA ~30 g).
 
 ## Berço de EVA (2 camadas iguais)
 
@@ -31,14 +31,15 @@ medir 100 mm).
 ![Berço](embalagem/berco_eva.png)
 
 1. Compre placas de **EVA 10 mm** (papelaria, "EVA 10mm 40x60"); uma placa dá 2 berços.
-2. Cole o molde no EVA com fita, corte o contorno e os dois furos de 108 mm com estilete de lâmina nova (vá em
-   várias passadas, sem forçar). Os entalhes da borda são para o dedo tirar as conchas.
+2. Cole o molde no EVA com fita, corte o contorno e os dois furos ovais de 88 × 108 mm com estilete de lâmina nova (vá em
+   várias passadas, sem forçar). O entalhe em cima de cada furo é para o dedo tirar a concha.
 3. Corte **2 camadas** e empilhe no fundo da caixa (20 mm). Se a caixa for maior que 26 × 17 cm, aumente o retângulo
    para a medida interna dela e mantenha os furos centrados.
 4. Por cima das conchas vai uma **placa de papelão** do tamanho do fundo (um pedaço de outra caixa), que separa a
    faixa e os acessórios.
 
-O furo de 108 mm é 2 mm menor que a almofada de 110 mm, para ela entrar apertada e a concha não sair do lugar.
+O furo oval de 88 × 108 mm é 2 mm menor que a almofada de 90 × 110 mm, para ela entrar apertada e a concha não sair do lugar.
+O lado comprido da almofada fica no sentido da largura da caixa. (A caixa é a mesma da versão redonda: a faixa da nuca é o que define o comprimento.)
 
 ## Adesivo do logo
 
