@@ -9,13 +9,13 @@ import umeh3
 from umeh3 import geom, RESULTS
 from umeh2 import acoustics as ac
 from umeh2.materials import ACOUSTIC_MAT
-geom.apply("AF")
-lc = json.load(open(os.path.join(RESULTS, "light_checks.json")))["acoustics"]
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
+lc = json.load(open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))["acoustics"]
 f = ac.F
 R_pad_i = geom.PAD["id"] / 2e3
-V_front = math.pi * R_pad_i ** 2 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
+V_front = math.pi * R_pad_i * geom.pad_x("id") / 2e3 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
 land = (geom.PAD["od"] - geom.PAD["id"]) / 2 * geom.PAD["contact_frac"] * 1e-3
-perim = math.pi * geom.PAD["id"] * 1e-3
+perim = math.pi * (geom.PAD["id"] + geom.pad_x("id")) / 2 * 1e-3      # ellipse ~ mean diameter
 R_in = (geom.POCKET_R + geom.HUB_WALL - geom.WALL) * 1e-3
 ZF = ac.front_impedance_sealed(V_front, 0.05e-3, perim, land, f)
 
@@ -51,7 +51,7 @@ for D in (40, 50, 60):
         "respiro amortecido (2 furos 1,5 mm + feltro 3 mm)": run(D, Vb, 0.0, (2, 1.5, 3.0)),
         "copo +10 mm, fibra e respiro": run(D, 1.3 * deeper, R_fib, (2, 1.5, 3.0)),
     }
-json.dump(res, open(os.path.join(RESULTS, "rear_options.json"), "w"), indent=1)
+json.dump(res, open(os.path.join(RESULTS, "rear_options" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json"), "w"), indent=1)
 for D, rows in res.items():
     print(f"D{D}")
     for k, r in rows.items():

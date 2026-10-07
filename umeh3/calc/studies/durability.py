@@ -20,10 +20,10 @@ from umeh3 import geom, neckband as nb, RESULTS
 from umeh2.materials import PETG, TPU, WIRE, music_wire_Sut as wire_sut, GAMMA_M_PRINT, G
 from umeh2 import linkspring as ls
 
-geom.apply("AF")
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
 out = {}
-st = json.load(open(os.path.join(RESULTS, "strength.json")))
-mass = {D: json.load(open(os.path.join(RESULTS, f"mass_AF_{D}.json")))["M"] for D in (40, 50, 60)}   # kg, incl. band share
+st = json.load(open(os.path.join(RESULTS, "strength" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))
+mass = {D: json.load(open(os.path.join(RESULTS, f"mass_{geom.VARIANT}_{D}.json")))["M"] for D in (40, 50, 60)}   # kg, incl. band share
 
 # ================================================================ 1. drop
 H = (0.75, 1.0)            # m: table height, held at chest / putting on
@@ -228,7 +228,7 @@ out["fatigue"] = fat
 t_f, L_f = 0.8e-3, 3.0e-3
 r_f = (geom.POCKET_R - 1.5) * 1e-3
 k_flap = 3 * TPU["E"].v * (2 * math.pi * r_f * t_f ** 3 / 12) / L_f ** 3
-sq = json.load(open(os.path.join(RESULTS, "light_checks.json")))["tolerances"]["squeeze_60"]
+sq = json.load(open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))["tolerances"]["squeeze_60"]
 heat = {}
 for nm, set_ in (("new", 0.0), ("after years at body temperature [A] 10 %", 0.10), ("after a hot car, 70 C (ISO 815 22 h) 25 %", 0.25),
                  ("both", 0.33)):
@@ -240,7 +240,7 @@ for nm, set_ in (("new", 0.0), ("after years at body temperature [A] 10 %", 0.10
         heat[f"flap {nm} D{D}"] = dict(F_min_print_N=F_min, F_nom_N=F_nom, rattle_g_min_print=F_min / (m_d * G),
                                        rattle_g_nom=F_nom / (m_d * G))
 # 4b bushing (height only, the pin holds the rotation): relaxed by 33 %
-bf = json.load(open(os.path.join(RESULTS, "light_checks.json")))["tolerances"]["bushing_force"]
+bf = json.load(open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))["tolerances"]["bushing_force"]
 heat["bushing slide force after 33 % relaxation"] = dict(nom_N=bf["nom"]["F_N"] * 0.67, need_N=st["bushing"]["run_Fz_N"],
                                                        SF=bf["nom"]["F_N"] * 0.67 / st["bushing"]["run_Fz_N"])
 # 4c PETG in a hot car: strength retention, worst sustained part (flange plate under the pad, lugs under flap preload)
@@ -262,7 +262,7 @@ def _clean(o):
     return o
 
 
-json.dump(_clean(out), open(os.path.join(RESULTS, "durability.json"), "w"), indent=1)
+json.dump(_clean(out), open(os.path.join(RESULTS, "durability" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json"), "w"), indent=1)
 
 print("== drop, face down on the pad")
 for k, r in face.items():

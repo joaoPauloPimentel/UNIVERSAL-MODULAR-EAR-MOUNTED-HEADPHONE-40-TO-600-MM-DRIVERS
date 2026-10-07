@@ -114,15 +114,19 @@ def contact_set(v=None):
         C.append(c)
 
     # ---- pad ring
+    # oval pad (geom.pad_x): segments on the ellipse of the ring's mean radius along each axis, equal shares of the area
     R1, R2 = geom.PAD["id"] / 2, geom.PAD["od"] / 2
+    R1x, R2x = geom.pad_x("id") / 2, geom.pad_x("od") / 2
     r_g = math.sqrt((R1 ** 2 + R2 ** 2) / 2)
-    A_seg = math.pi * (R2 ** 2 - R1 ** 2) * geom.PAD["contact_frac"] / N_PAD * 1e-6
+    r_gx = math.sqrt((R1x ** 2 + R2x ** 2) / 2)
+    A_seg = math.pi * (R2 * R2x - R1 * R1x) * geom.PAD["contact_frac"] / N_PAD * 1e-6
     t_pad = (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3
     k_seg = 1 / (t_pad / (v["E_foam"] * A_seg) + TISSUE["t_temporal"].v / (TISSUE["E_temporal"].v * A_seg))
     for i in range(N_PAD):
         a = 360.0 * (i + 0.5) / N_PAD
         hair = HAIR_SECTOR[0] <= a <= HAIR_SECTOR[1]
-        add(f"Pad {i:02d}", mm(geom.pol(r_g, a, 0.0)), [0, 0, 1], k_seg, A_seg, "velour/hair" if hair else "velour/dry skin")
+        pt = np.array([r_gx * math.cos(math.radians(a)), r_g * math.sin(math.radians(a)), 0.0])
+        add(f"Pad {i:02d}", mm(pt), [0, 0, 1], k_seg, A_seg, "velour/hair" if hair else "velour/dry skin")
 
     # ---- hook node (flexible wire from the plate exit to the arch apex)
     P, lab, i_plate, i_apex = hook_points()

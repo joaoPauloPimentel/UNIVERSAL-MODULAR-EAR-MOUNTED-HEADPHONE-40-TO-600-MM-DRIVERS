@@ -10,7 +10,7 @@ from umeh3 import geom, loads, contacts as ct, neckband as nb, RESULTS
 from umeh2 import tolerance as tol, acoustics as ac, dynamics as dy
 from umeh2.materials import TPU, PETG
 
-geom.apply("AF")
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
 V = {"P": 0.5, "neck": 2.0}
 out = {}
 rng = np.random.default_rng(7)
@@ -105,9 +105,9 @@ V_ch = math.pi * R_in ** 2 * h_ch - (1 - math.pi / 4) * (2 * (geom.CUP_ROUND - g
 V_fibre = math.pi * R_in ** 2 * geom.FIBRE_T * 1e-3 * 0.03          # fibre volume share ~3 % [A]
 f = ac.F
 R_pad_i = geom.PAD["id"] / 2e3
-V_front_base = math.pi * R_pad_i ** 2 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
+V_front_base = math.pi * R_pad_i * geom.pad_x("id") / 2e3 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
 land = (geom.PAD["od"] - geom.PAD["id"]) / 2 * geom.PAD["contact_frac"] * 1e-3
-perim = math.pi * geom.PAD["id"] * 1e-3
+perim = math.pi * (geom.PAD["id"] + geom.pad_x("id")) / 2 * 1e-3      # ellipse ~ mean diameter
 LEAKS = {"vedado (fresta 0,05 mm em toda a volta) [A]": (0.05e-3, perim),
          "correndo, abertura leve (0,2 mm em 1/4 da volta) [A]": (0.2e-3, perim / 4),
          "correndo, abertura forte (0,5 mm em 1/2 da volta) [A]": (0.5e-3, perim / 2)}
@@ -178,7 +178,7 @@ def _clean(o):
     return o
 
 
-json.dump(_clean(out), open(os.path.join(RESULTS, "light_checks.json"), "w"), indent=1)
+json.dump(_clean(out), open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json"), "w"), indent=1)
 
 # ------------------------------------------------------------------ summary
 print("== tolerances")

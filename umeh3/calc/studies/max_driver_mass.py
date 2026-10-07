@@ -6,7 +6,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import umeh3
 from umeh3 import geom, loads, neckband as nb, RESULTS
-D = int(sys.argv[1]); geom.apply("AF"); V = {"P": 0.5, "neck": 2.0}
+D = int(sys.argv[1]); geom.apply(os.environ.get("UMEH_VAR", "AF")); V = {"P": 0.5, "neck": 2.0}
 M, com, I, p_c, rows = loads.mass_props(D)
 c_d = np.array(next(r["c_mm"] for r in rows if r["part"] == "driver")) * 1e-3
 m_d0 = next(r["m_g"] for r in rows if r["part"] == "driver")
@@ -41,5 +41,5 @@ else:
         print(f"  D{D} +{mid * 1e3:.0f} g: released {r['released']}, root {r['worst']['root_p'] / 1e3:.1f} kPa", flush=True)
 res = dict(D=D, driver_typical_g=m_d0, max_driver_g=m_d0 + lo * 1e3, bracket_g=[m_d0 + lo * 1e3, m_d0 + hi * 1e3],
            root_at_max_kPa=r_lo["worst"]["root_p"] / 1e3, hist=[(m_d0 + a * 1e3, n, p / 1e3) for a, n, p in hist])
-json.dump(res, open(os.path.join(RESULTS, f"max_driver_AF_{D}.json"), "w"), indent=1)
+json.dump(res, open(os.path.join(RESULTS, f"max_driver_{geom.VARIANT}_{D}.json"), "w"), indent=1)
 print(f"D{D}: max driver {res['max_driver_g']:.0f} g (typical {m_d0:.0f} g), bracket {res['bracket_g'][0]:.0f}-{res['bracket_g'][1]:.0f} g, root there {res['root_at_max_kPa']:.1f} kPa", flush=True)

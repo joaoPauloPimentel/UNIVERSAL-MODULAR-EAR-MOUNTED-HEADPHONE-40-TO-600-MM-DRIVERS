@@ -20,7 +20,10 @@ PRINT = {
     "bushing":    ("TPU", 2, 99, 1.00),
     "paddle":     ("TPU", 2, 3, 0.15),     # soft gyroid core
     "saddle_carrier": ("TPU", 2, 3, 0.30),
+    "break_plate": ("PETG", 2, 99, 1.00),   # universal seat (AO): thin plate, printed solid
 }
+EVA_RHO = Val(110.0, "A", "kg/m3 craft EVA sheet (a 40 x 60 cm x 2 mm sheet weighs ~50-60 g)")
+BRONZE_RHO = Val(8800.0, "STD", "kg/m3 phosphor bronze")
 PTFE_RHO = Val(2200.0, "STD", "PTFE density")
 FOAM_RETIC = Val(30.0, "DS", "kg/m3 reticulated PU foam (front foam), 25-35")
 SOCKET_M = Val(0.6, "DS", "g, 0.78 mm 2-pin female socket")
@@ -40,6 +43,10 @@ def export(part, out, D):
 
 def _mass(p, V, area, D, wire_len):
     """(mass kg, fill fraction, material label)"""
+    if p == "adapter" and geom.UNIV:
+        return EVA_RHO.v * V, None, "craft EVA rings"
+    if p == "contacts":
+        return BRONZE_RHO.v * V, None, "phosphor-bronze strips"
     if p in PRINT:
         mat, per, tb, infill = PRINT[p]
         rho = PETG["rho"].v if mat == "PETG" else TPU["rho"].v
@@ -67,7 +74,7 @@ def _mass(p, V, area, D, wire_len):
     if p == "front_foam":
         return FOAM_RETIC.v * V, None, "reticulated PU"
     if p == "socket":
-        return (SOCKET_M.v + PLUG_M.v + LEADS_M.v) * 1e-3, None, "socket + plug + leads"
+        return (SOCKET_M.v + PLUG_M.v + (0.2 if geom.UNIV else LEADS_M.v)) * 1e-3, None, "socket + plug + leads"
     if p == "fibre":
         return ACOUSTIC_MAT["fibre_density"].v * V, None, "polyester fibre"
     raise KeyError(p)
@@ -81,6 +88,8 @@ def assembly(D, jobs=4, tag=None):
              and (not p.startswith("neck") or geom.NECK)]
     if geom.SADDLE:
         parts = [p for p in parts if p != "sleeve_arch"]
+    if geom.UNIV:
+        parts += ["break_plate", "contacts"]
     outs = {p: os.path.join(TMP, f"{tag}_{p}.stl") for p in parts}
     with cf.ThreadPoolExecutor(jobs) as ex:
         list(ex.map(lambda p: export(p, outs[p], D), parts))

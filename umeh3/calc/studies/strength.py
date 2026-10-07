@@ -15,7 +15,7 @@ from umeh3 import geom, loads, contacts as ct, neckband as nb, RESULTS
 from umeh2.materials import PETG, TPU, WIRE, music_wire_Sut as wire_sut, GAMMA_M_PRINT
 from umeh2 import structure as stc
 
-geom.apply("AF")
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
 V = {"P": 0.5, "neck": 2.0}
 out = {}
 mp = nb.with_band(loads.mass_props(60), V["neck"])
@@ -52,7 +52,7 @@ for tag, W in loads.cases(mp, "treadmill", n_grav=3, n_cable=2):
     for k, v in (("Tz", abs(M[2])), ("Fz", abs(F[2])), ("Mb", float(np.hypot(M[0], M[1])))):
         if v > worst[k][0]:
             worst[k] = (float(v), tag)
-lc = json.load(open(os.path.join(RESULTS, "light_checks.json")))["tolerances"]["bushing_force"]
+lc = json.load(open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))["tolerances"]["bushing_force"]
 T_nom, T_min = lc["nom"]["T_Nmm"], lc["min"]["T_Nmm"]
 F_nom, F_min = lc["nom"]["F_N"], lc["min"]["F_N"]
 out["bushing"] = dict(static_Tz_Nmm=abs(M0[2]) * 1e3, static_Fz_N=abs(F0[2]), run_Tz_Nmm=worst["Tz"][0] * 1e3,
@@ -176,7 +176,7 @@ def _clean(o):
     return o
 
 
-json.dump(_clean(out), open(os.path.join(RESULTS, "strength.json"), "w"), indent=1)
+json.dump(_clean(out), open(os.path.join(RESULTS, "strength" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json"), "w"), indent=1)
 b = out["bushing"]
 print(f"bushing: static twist {b['static_Tz_Nmm']:.1f} N mm, running worst {b['run_Tz_Nmm']:.1f} N mm vs slip torque nom "
       f"{b['slip_T_nom_Nmm']:.1f} (worst print {b['slip_T_min_Nmm']:.1f}); axial static {b['static_Fz_N']:.2f} N, running "

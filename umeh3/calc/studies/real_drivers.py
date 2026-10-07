@@ -13,7 +13,7 @@ geom.apply("AF")
 lc = json.load(open(os.path.join(RESULTS, "light_checks.json")))["acoustics"]
 f = ac.F
 R_pad_i = geom.PAD["id"] / 2e3
-V_front = math.pi * R_pad_i ** 2 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
+V_front = math.pi * R_pad_i * geom.pad_x("id") / 2e3 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
 land = (geom.PAD["od"] - geom.PAD["id"]) / 2 * geom.PAD["contact_frac"] * 1e-3
 ZF = ac.front_impedance_sealed(V_front, 0.05e-3, math.pi * geom.PAD["id"] * 1e-3, land, f)
 

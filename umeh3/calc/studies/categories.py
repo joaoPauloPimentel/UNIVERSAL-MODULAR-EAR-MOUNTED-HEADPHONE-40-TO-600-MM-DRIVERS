@@ -7,7 +7,7 @@ import umeh3
 from umeh3 import geom, loads, neckband as nb, RESULTS
 from umeh2 import support as sp
 D = int(sys.argv[1]); cats = sys.argv[2:] or list(sp.CATEGORIES)
-geom.apply("AF"); V = {"P": 0.5, "neck": 2.0}
+geom.apply(os.environ.get("UMEH_VAR", "AF")); V = {"P": 0.5, "neck": 2.0}
 mp = nb.with_band(loads.mass_props(D), V["neck"])
 out = {}
 for cat in cats:
@@ -21,4 +21,4 @@ for cat in cats:
           f"pinna {w.get('pinna_p', 0) / 1e3:.1f}, helix {w.get('helix_p', 0) / 1e3:.1f}, lobe {w.get('lobe_p', 0) / 1e3:.1f}, "
           f"sulcus {w.get('sulcus_p', 0) / 1e3:.1f}, disp {w.get('disp', 0):.2f} mm, rot {w.get('rot', 0):.2f} deg, "
           f"p_lim {sp.CATEGORIES[cat]['p_lim'] / 1e3:.0f} kPa  [{time.time() - t0:.0f} s]", flush=True)
-    json.dump(out, open(os.path.join(RESULTS, f"categories_AF_{D}.json"), "w"), indent=1, default=str)
+    json.dump(out, open(os.path.join(RESULTS, f"categories_{geom.VARIANT}_{D}.json"), "w"), indent=1, default=str)
