@@ -54,8 +54,8 @@ Folha A4 com 15 adesivos de 5 cm: [`embalagem/adesivos_logo.pdf`](embalagem/ades
 ## Cartão "como montar e usar"
 
 Folha A4 deitada com 2 cartões A5: [`embalagem/cartao.pdf`](embalagem/cartao.pdf). Imprima, corte ao meio pela
-linha tracejada e dobre ao meio (fica A6). Antes de imprimir, troque **[SEU CONTATO]** em `embalagem/cartao.html`
-e gere de novo com `node embalagem/render_cartao.js`.
+linha tracejada e dobre ao meio (fica A6). O contato no rodapé fica em `embalagem/cartao.html`;
+para mudar, edite e gere de novo com `node embalagem/render_cartao.js`.
 
 ![Cartão](embalagem/cartao.png)
 
