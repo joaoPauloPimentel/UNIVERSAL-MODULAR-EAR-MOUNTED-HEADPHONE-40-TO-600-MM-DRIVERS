@@ -1,0 +1,4 @@
+AF D40 1 g normal: cases 5610, released 0 (0.0 %), pad open 43, root 2.6 kPa, pad 1.3, pinna 1.2, helix 0.0, lobe 0.0, sulcus 2.2, disp 1.07 mm, rot 1.06 deg, p_lim 4 kPa  [82 s]
+AF D40 2 g dynamic: cases 21000, released 0 (0.0 %), pad open 4738, root 5.2 kPa, pad 1.7, pinna 1.4, helix 1.9, lobe 2.3, sulcus 3.0, disp 1.77 mm, rot 1.98 deg, p_lim 8 kPa  [408 s]
+AF D40 3 g severe: cases 21000, released 276 (1.3 %), pad open 11487, root 10.8 kPa, pad 2.8, pinna 2.1, helix 8.2, lobe 15.5, sulcus 4.4, disp 3.00 mm, rot 4.99 deg, p_lim 8 kPa  [544 s]
+AF D40 5 g accidental: cases 3000, released 3000 (100.0 %), pad open 0, root -inf kPa, pad -inf, pinna -inf, helix -inf, lobe -inf, sulcus -inf, disp -inf mm, rot -inf deg, p_lim 75 kPa  [92 s]
