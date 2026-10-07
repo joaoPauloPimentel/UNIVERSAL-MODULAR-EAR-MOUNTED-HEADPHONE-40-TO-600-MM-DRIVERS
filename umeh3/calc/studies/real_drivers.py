@@ -9,8 +9,8 @@ import umeh3
 from umeh3 import geom, RESULTS
 from umeh2 import acoustics as ac
 from umeh2.materials import ACOUSTIC_MAT
-geom.apply("AF")
-lc = json.load(open(os.path.join(RESULTS, "light_checks.json")))["acoustics"]
+geom.apply(os.environ.get("UMEH_VAR", "AF"))
+lc = json.load(open(os.path.join(RESULTS, "light_checks" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json")))["acoustics"]
 f = ac.F
 R_pad_i = geom.PAD["id"] / 2e3
 V_front = math.pi * R_pad_i * geom.pad_x("id") / 2e3 * (geom.PAD["t"] - geom.PAD["comp"]) * 1e-3 + math.pi * (geom.POCKET_R * 1e-3) ** 2 * geom.RING_T * 1e-3 - ac.V_PINNA
@@ -58,7 +58,7 @@ for D, b in BOX.items():
     res[f"ELFINEAR {D} mm (faixa estimada)"] = dict(peak_min=min(pk), peak_max=max(pk), spl100_min=min(s1), spl100_max=max(s1),
                                                    rel30_min=min(r30), rel30_max=max(r30), n=len(rows))
 json.dump({k: {kk: vv for kk, vv in v.items() if kk != "curve"} for k, v in res.items()},
-          open(os.path.join(RESULTS, "real_drivers.json"), "w"), indent=1)
+          open(os.path.join(RESULTS, "real_drivers" + ("" if geom.VARIANT == "AF" else "_" + geom.VARIANT) + ".json"), "w"), indent=1)
 for k, r in res.items():
     if "peak_min" in r:
         print(f"{k:48s} 30 Hz {r['rel30_min']:+.1f}..{r['rel30_max']:+.1f} dB, pico {r['peak_min']:+.1f}..{r['peak_max']:+.1f} dB, 100 Hz {r['spl100_min']:.0f}..{r['spl100_max']:.0f} dB/1V ({r['n']} casos)")

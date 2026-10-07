@@ -1,0 +1,9 @@
+bushing: static twist 8.8 N mm, running worst 69.5 N mm vs slip torque nom 17.4 (worst print 0.0); axial static 0.12 N, running 1.80 N vs slide force nom 21.8 (worst print 0.0) N; bending at the exit 62 N mm
+rotation lock: pin force 5.8 N, hole bearing 1.03 MPa (SF 14.1), crank 173 MPa (SF 9.0)
+wire: Sut 2065 MPa, set limit 1549; in use worst 154 MPa (SF 10.1)
+  open the leg outwards (+z): 63 MPa/mm at descent, 0.63 N/mm -> set at 24.8 mm
+  open the leg rearwards (-x): 153 MPa/mm at arch, 2.62 N/mm -> set at 10.1 mm
+  open the leg down (-y): 162 MPa/mm at plate, 3.33 N/mm -> set at 9.6 mm
+bayonet: limiting ring lug (shear), 59 N per lug; held deceleration D40 1114 g, D45 893 g, D50 663 g, D55 528 g, D60 438 g
+band channel: use 2.68 N, tug 3.0 N; trough 0.02 MPa (SF 639); lips 0.75 MPa (SF 8); wire-end pin 0.48 MPa (SF 30.7)
+flange plate: pad 6.7 N, 0.88 MPa, SF sustained 14

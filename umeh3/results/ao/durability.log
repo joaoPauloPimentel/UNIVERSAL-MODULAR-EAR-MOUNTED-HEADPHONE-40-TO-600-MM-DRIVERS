@@ -1,0 +1,62 @@
+== drop, face down on the pad
+  D40_h0.75_rate1: foam strain 0.66, 156 N, 234 g, bayonet SF 4.8
+  D40_h1.0_rate1: foam strain 0.70, 246 N, 368 g, bayonet SF 3.0
+  D40_h0.75_rate3: foam strain 0.46, 114 N, 170 g, bayonet SF 6.6
+  D40_h1.0_rate3: foam strain 0.52, 156 N, 233 g, bayonet SF 4.8
+  D50_h0.75_rate1: foam strain 0.68, 193 N, 252 g, bayonet SF 2.6
+  D50_h1.0_rate1: foam strain 0.71, 307 N, 401 g, bayonet SF 1.7
+  D50_h0.75_rate3: foam strain 0.49, 131 N, 171 g, bayonet SF 3.9
+  D50_h1.0_rate3: foam strain 0.54, 184 N, 240 g, bayonet SF 2.8
+  D60_h0.75_rate1: foam strain 0.70, 245 N, 276 g, bayonet SF 1.6
+  D60_h1.0_rate1: foam strain 0.73, 396 N, 445 g, bayonet SF 1.0
+  D60_h0.75_rate3: foam strain 0.52, 156 N, 175 g, bayonet SF 2.5
+  D60_h1.0_rate3: foam strain 0.57, 223 N, 250 g, bayonet SF 1.8
+== drop, back down on the eye clip (flat back r 24.7 mm)
+  t 1.2 mm: back takes 0.05 J before yield, 0.15 J before crack [A]; k 39 N/mm
+     D40 h0.75: impact 0.43 J, 500 N, defl 3.1 mm, 748 g; no-mark x0.12, crack x0.36
+     D40 h1.0: impact 0.57 J, 621 N, defl 3.3 mm, 928 g; no-mark x0.09, crack x0.27
+     D50 h0.75: impact 0.49 J, 554 N, defl 3.2 mm, 723 g; no-mark x0.11, crack x0.31
+     D50 h1.0: impact 0.65 J, 693 N, defl 3.5 mm, 904 g; no-mark x0.08, crack x0.23
+     D60 h0.75: impact 0.57 J, 621 N, defl 3.3 mm, 697 g; no-mark x0.09, crack x0.27
+     D60 h1.0: impact 0.76 J, 781 N, defl 3.6 mm, 877 g; no-mark x0.07, crack x0.20
+  t 1.6 mm: back takes 0.07 J before yield, 0.20 J before crack [A]; k 91 N/mm
+     D40 h0.75: impact 0.43 J, 515 N, defl 2.5 mm, 770 g; no-mark x0.17, crack x0.46
+     D40 h1.0: impact 0.57 J, 638 N, defl 2.8 mm, 955 g; no-mark x0.13, crack x0.35
+     D50 h0.75: impact 0.49 J, 569 N, defl 2.6 mm, 742 g; no-mark x0.15, crack x0.40
+     D50 h1.0: impact 0.65 J, 714 N, defl 2.9 mm, 932 g; no-mark x0.11, crack x0.30
+     D60 h0.75: impact 0.57 J, 638 N, defl 2.8 mm, 717 g; no-mark x0.13, crack x0.35
+     D60 h1.0: impact 0.76 J, 796 N, defl 3.1 mm, 894 g; no-mark x0.09, crack x0.26
+  t 2.0 mm: back takes 0.09 J before yield, 0.25 J before crack [A]; k 178 N/mm
+     D40 h0.75: impact 0.43 J, 554 N, defl 2.0 mm, 828 g; no-mark x0.22, crack x0.60
+     D40 h1.0: impact 0.57 J, 687 N, defl 2.3 mm, 1027 g; no-mark x0.17, crack x0.45
+     D50 h0.75: impact 0.49 J, 610 N, defl 2.2 mm, 797 g; no-mark x0.19, crack x0.52
+     D50 h1.0: impact 0.65 J, 753 N, defl 2.4 mm, 984 g; no-mark x0.15, crack x0.39
+     D60 h0.75: impact 0.57 J, 687 N, defl 2.3 mm, 771 g; no-mark x0.17, crack x0.45
+     D60 h1.0: impact 0.76 J, 843 N, defl 2.6 mm, 947 g; no-mark x0.13, crack x0.34
+== refined back: sleeve 0.8 mm proud takes 0.032 J at 79 N, then flat landing; rim corner: drop test
+== shoulder (driver inertia, back-down 1 m, 1.2 mm back)
+  D40: 928 g, 147 N, 7 MPa, SF 6.55
+  D50: 904 g, 241 N, 11 MPa, SF 4.00
+  D60: 877 g, 354 N, 17 MPa, SF 2.73
+== neckband donning
+  in the contact model (neckband.design): d 1.6 n 2, k_side 45 N/m, P 1.73-2.27 N, don 3.18 N, SF yield 1.58, fatigue 2.22, 7.4 g
+  geom / CAD note (1.6 mm, 2 coils): d 1.6 n 2, k_side 45 N/m, P 1.73-2.27 N, don 3.18 N, SF yield 1.58, fatigue 2.22, 7.4 g
+  spread to yield per side ~61 mm beyond the largest head
+== fatigue per stride
+   hook wire at the bushing exit {'s_max_MPa': 153.65, 'Kf': 1.0, 's_a_MPa': 76.83, 's_m_MPa': 76.83, 'Se_MPa': 619.6, 'SF_goodman': 6.2}
+   hook crank bends (lock) {'s_max_MPa': 172.81, 'Kf': 1.3, 's_a_MPa': 112.32, 's_m_MPa': 112.32, 'Se_MPa': 619.6, 'SF_goodman': 4.24}
+   lock hole (PETG) {'p_max_MPa': 1.03, 'S_fat_MPa': 5.84, 'SF': 5.65}
+   band channel (PETG) {'dF_per_stride_N': np.float64(0.05), 'note': '0.1 N swing pressing the sleeve into the channel; negligible'}
+   neckband wire {'s_a_MPa': np.float64(6.98), 's_m_MPa': np.float64(700.38), 'SF_goodman': np.float64(2.85)}
+== heat / relaxation
+   flap new D40 {'F_min_print_N': -5.62, 'F_nom_N': 0.0, 'rattle_g_min_print': -35.37, 'rattle_g_nom': 0.0}
+   flap new D60 {'F_min_print_N': -5.62, 'F_nom_N': 0.0, 'rattle_g_min_print': -13.91, 'rattle_g_nom': 0.0}
+   flap after years at body temperature [A] 10 % D40 {'F_min_print_N': -5.06, 'F_nom_N': 0.0, 'rattle_g_min_print': -31.83, 'rattle_g_nom': 0.0}
+   flap after years at body temperature [A] 10 % D60 {'F_min_print_N': -5.06, 'F_nom_N': 0.0, 'rattle_g_min_print': -12.52, 'rattle_g_nom': 0.0}
+   flap after a hot car, 70 C (ISO 815 22 h) 25 % D40 {'F_min_print_N': -4.21, 'F_nom_N': 0.0, 'rattle_g_min_print': -26.53, 'rattle_g_nom': 0.0}
+   flap after a hot car, 70 C (ISO 815 22 h) 25 % D60 {'F_min_print_N': -4.21, 'F_nom_N': 0.0, 'rattle_g_min_print': -10.43, 'rattle_g_nom': 0.0}
+   flap both D40 {'F_min_print_N': -3.76, 'F_nom_N': 0.0, 'rattle_g_min_print': -23.7, 'rattle_g_nom': 0.0}
+   flap both D60 {'F_min_print_N': -3.76, 'F_nom_N': 0.0, 'rattle_g_min_print': -9.32, 'rattle_g_nom': 0.0}
+   bushing slide force after 33 % relaxation {'nom_N': 14.58, 'need_N': 1.8, 'SF': 8.09}
+   lugs under the flap preload, 55 C {'F_N': 5.6, 'capacity_N': 72.89, 'SF': 13.02}
+   PETG Tg C 80.0
