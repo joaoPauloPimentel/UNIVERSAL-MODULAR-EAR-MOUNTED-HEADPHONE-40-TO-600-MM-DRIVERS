@@ -251,6 +251,10 @@ def write_scad(path):
         "NECK = " + ("[" + ", ".join(f"[{p[0]:.2f}, {p[1]:.2f}, {p[2]:.2f}]" for p in neck_path()) + "]" if NECK else "undef") + ";",
         f"NECK_D = {NECK_WIRE_D}; NECK_SL = {NECK_SLEEVE};",
         _wp_scad(),
+        "UNIV = " + (f"[{UNIV['t'][0]}, {UNIV['t'][1]}, {UNIV['t'][2]}, {UNIV['t'][3]}, "
+                     f"{UNIV['strip'][0]}, {UNIV['strip'][1]}, {UNIV['strip'][2]}, "
+                     f"{UNIV['spoke'][0]}, {UNIV['spoke'][1]}, {UNIV['spoke'][2]}, {UNIV['rib'][0]}, {UNIV['rib'][1]}]"
+                     if UNIV else "undef") + ";",
         "SADDLE = " + (f"[{SADDLE['w']}, {SADDLE['t_foam']}, {SADDLE['carrier_t']}]" if SADDLE else "undef") + ";",
         f"ARCH_C = [{ARCH_C[0]}, {ARCH_C[1]}]; ARCH_R = {ARCH_R}; ARCH_A = [{ARCH_A0}, {ARCH_A1}]; Z_ROOT = {Z_ROOT};",
         "DRV = [ // D, rim OD, rim t, rear d, depth, aperture (umeh2.design.DRIVERS)",
@@ -272,6 +276,15 @@ LOBE_PT = None                   # contact under the lobule attachment (only a h
 # into each cup through an O-ring gland under the band sleeve; magnetic pogo charge port with an O-ring; power by a
 # magnet slider over a reed switch (no hole). Electronics on printed trays twisted onto posts inside the cups.
 WP = None
+# universal driver seat (user 2026-10-07: no adapter per size). Stack in the pocket, front to back, each layer
+# pre-scored at the five sizes so the user pops out the inner rings down to the driver's size:
+#   front ring (PETG) with 6 thin spokes to r 16.5: backs the front EVA for small drivers (3 % of a 60 mm aperture)
+#   F  craft EVA 2 mm  -> popped to the driver's aperture: front clamp + front/back seal
+#   M  craft EVA 2 mm  -> popped to the rim OD: centres and grips the driver
+#   S  craft EVA 1 mm  -> popped to the basket: the spring behind the contacts; two straight parallel phosphor-bronze
+#                         strips lie on its front face under the driver's back flange (trimmed at the hole edge)
+#   B  PETG 1.2 mm break-away plate -> snapped to the basket: rigid back for small drivers (the shoulder hole is 52 mm)
+UNIV = None            # dict(t=(F, M, S, B) mm, strip=(t, w, gap) mm, spoke=(n, w, r_in), rib=(w, proud) mm)
 
 # ------------------------------------------------------------------ design variants
 # base: first draft (2026-10-01). A "gancho maior": longer, wider hook for running: the arch covers more of the root
@@ -323,7 +336,12 @@ VARIANTS = {
                SADDLE=dict(w=20.0, t_foam=6.0, E_foam=25e3, carrier_t=1.2, foam_rho=50.0),
                PAD=dict(od=110.0, odx=90.0, id=70.0, idx=50.0, t=22.0, comp=1.0, lip_fit=96.0, lip_fit_x=76.0,
                         mass=10.0, E_foam=20e3, contact_frac=0.7),
-               POCKET_E=5.852, POCKET_A=250.02, CUP_H=24.0, FIBRE_T=5.0),
+               POCKET_E=5.852, POCKET_A=250.02, CUP_H=24.0, FIBRE_T=4.5,
+               # universal EVA seat (one set for 40-60 mm): stack 6 mm, squeezed 0.3 mm by the front ring
+               # the ring's spokes and a 1.2 mm rib at the bore stand 0.3 mm proud of its back: only they squeeze the EVA
+               # (low turning torque); the stack fills the pocket exactly (ADAPTER_SQ 0). studies/univ_seat.py
+               UNIV=dict(t=(2.0, 2.0, 1.0, 1.2), strip=(0.2, 3.0, 1.5), spoke=(6, 1.2, 16.5), rib=(1.2, 0.3)),
+               ADAPTER_H=6.2, ADAPTER_SQ=0.0),
     # B "almofada menor": round 90 mm pad (user's choice 2026-10-01), first-draft hook. The 50 mm opening is too small for
     # the wire to pass the plate inside it next to a 60 mm driver, so the wire passes the plate under the pad (r 35)
     # and runs in a groove in the plate face to the opening; the driver pocket is centred.

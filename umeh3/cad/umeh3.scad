@@ -180,6 +180,7 @@ module shell_body() {
         }
         at_pc() rotate_extrude($fn = 160) cup_inner2d();
         at_pc() bayonet_cut();
+        if (UNIV != undef) at_pc() univ_slot();
         if (GROOVE) groove_cut();
         // pocket front chamfer
         at_pc() translate([0, 0, -0.01]) cylinder(r1 = POCKET_R + 0.5, r2 = POCKET_R, h = 0.5);
@@ -359,6 +360,7 @@ module front_ring() {
         // two finger notches on the face (turn by hand)
         for (s = [0, 180]) rotate([0, 0, 80 + s]) translate([(AP_R + POCKET_R) / 2, 0, -0.01]) cylinder(d = 3.2, h = 1.0, $fn = 24);
     }
+    if (UNIV != undef) front_spokes();      // universal seat: back the front EVA for small drivers
 }
 
 // ---------------------------------------------------------------- TPU adapter per driver
@@ -400,6 +402,47 @@ module adapter_a(d) {
         if (CONTACTS) contact_cuts(d);
         else rotate([0, 0, SOCKET_A - 0]) translate([ro - 2, -1.2, 1.0]) cube([POCKET_R, 2.4, 10]);   // lead notch
     }
+}
+
+// ---------------------------------------------------------------- universal driver seat (UMEH-3 oval, 2026-10-07)
+// UNIV = [F, M, S, B thickness, strip t, strip w, strip gap, spokes n, spoke w, spoke r_in, rib w, rib proud]. One set for every 40-60 mm
+// driver, each layer pre-scored at the five sizes; the user pops out the inner rings down to the driver's size:
+//   F craft EVA -> aperture (front clamp + seal; backed by the spokes of the front ring for small drivers)
+//   M craft EVA -> rim OD (centres and grips the rim)
+//   S craft EVA -> basket (spring behind the contacts: two straight parallel bronze strips on its front face)
+//   B PETG break-away plate -> basket (rigid back for small drivers; concentric rings joined by thin bridges)
+// The strip tails run back along the pocket wall through a slot in the shoulder to the socket wires.
+function univ_z(i) = i == 0 ? 0 : UNIV[i - 1] + univ_z(i - 1);
+function univ_hole(i, d) = let(v = drv(d)) i == 0 ? v[5] / 2 : i == 1 ? v[1] / 2 - 0.15 : v[3] / 2 + 0.6;
+module univ_layer(i, d) {
+    translate([0, 0, univ_z(i)]) difference() {
+        cylinder(r = POCKET_R - 0.15, h = UNIV[i]);
+        translate([0, 0, -1]) cylinder(r = univ_hole(i, d), h = UNIV[i] + 2);
+        // remaining score lines (EVA) / break grooves (PETG) outside the popped-out hole, visual
+        for (k = [0 : len(DRV) - 1]) let(rk = univ_hole(i, DRV[k][0])) if (rk > univ_hole(i, d) + 0.3)
+            translate([0, 0, UNIV[i] - 0.5]) difference() { cylinder(r = rk + 0.2, h = 1); translate([0, 0, -1]) cylinder(r = rk - 0.2, h = 3); }
+    }
+}
+module eva_seat(d) { for (i = [0 : 2]) univ_layer(i, d); }
+module break_plate(d) { univ_layer(3, d); }
+module strips_vis(d) {
+    t = UNIV[4]; w = UNIV[5]; g = UNIV[6]; z = univ_z(2); r0 = univ_hole(2, d); r1 = POCKET_R - 0.25;
+    rotate([0, 0, SOCKET_A]) for (s = [-1, 1]) translate([0, s * (g + w) / 2, 0]) {
+        translate([r0, -w / 2, z - t]) cube([r1 - r0, w, t]);
+        translate([r1 - t, -w / 2, z - t]) cube([t, w, ADAPTER_H - z + t + SHOULDER_T + 3]);
+    }
+}
+// spokes + hub + a rib at the bore, all UNIV[11] proud of the ring's back: only they squeeze the EVA stack
+module front_spokes() {
+    h = RING_T + UNIV[11];
+    for (k = [0 : UNIV[7] - 1]) rotate([0, 0, 90 + k * 360 / UNIV[7]])
+        translate([UNIV[9], -UNIV[8] / 2, 0]) cube([AP_R - UNIV[9] + 0.5, UNIV[8], h]);
+    difference() { cylinder(r = UNIV[9] + 1.2, h = h); translate([0, 0, -1]) cylinder(r = UNIV[9], h = h + 2); }
+    difference() { cylinder(r = AP_R + UNIV[10], h = h); translate([0, 0, -1]) cylinder(r = AP_R, h = h + 2); }
+}
+module univ_slot() {     // shoulder slot for the two strip tails (shell cut, pocket frame)
+    w = 2 * UNIV[5] + UNIV[6] + 1.0;
+    rotate([0, 0, SOCKET_A]) translate([POCKET_R - 1.4, -w / 2, ZL_SH - 0.5]) cube([1.6, w, SHOULDER_T + 1]);
 }
 
 // ---------------------------------------------------------------- solder-free driver contacts (2026-10-06)
@@ -540,9 +583,10 @@ module fibre() {
 module placed(p) {
     if (p == "shell") shell();
     if (p == "front_ring") at_pc() translate([0, 0, 0]) front_ring();
-    if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) adapter(D);
-    if (p == "contacts" && CONTACTS && WP != true) at_pc() translate([0, 0, ZL_ADP]) contacts_vis(D);
-    if (p == "driver") at_pc() translate([0, 0, ZL_ADP + (WP == true ? (ADAPTER_H - drv(D)[2]) / 2 : 1.0)]) driver_vis(D);
+    if (p == "adapter") at_pc() translate([0, 0, ZL_ADP]) if (UNIV != undef) eva_seat(D); else adapter(D);
+    if (p == "break_plate" && UNIV != undef) at_pc() translate([0, 0, ZL_ADP]) break_plate(D);
+    if (p == "contacts" && CONTACTS && WP != true) at_pc() translate([0, 0, ZL_ADP]) if (UNIV != undef) strips_vis(D); else contacts_vis(D);
+    if (p == "driver") at_pc() translate([0, 0, ZL_ADP + (WP == true ? (ADAPTER_H - drv(D)[2]) / 2 : UNIV != undef ? UNIV[0] : 1.0)]) driver_vis(D);
     if (p == "bushing") translate([HH[0], HH[1], Z_F + BOSS_L - BUSH_L]) bushing();
     if (p == "wire") hook_wire();
     if (p == "sleeve_arch" && SADDLE == undef) sleeve_arch();
