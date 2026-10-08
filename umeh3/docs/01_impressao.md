@@ -50,6 +50,9 @@ por cima do silicone preto). Placa de quebrar, bucha, berço da sela, almofada e
 
 ![Preto e roxo](img/07_preto_roxo_tampa.png)
 
+Se o site ou o fatiador avisar de "malha com erro" na concha, aceite o reparo automático: são faces que se tocam por
+dentro da peça (a aba oval e o copo), não buracos.
+
 ## Conferências antes de montar
 
 - Tire o suporte de dentro do copo pela abertura do driver; o canal da faixa e o furo cego na tampa ficam abertos.

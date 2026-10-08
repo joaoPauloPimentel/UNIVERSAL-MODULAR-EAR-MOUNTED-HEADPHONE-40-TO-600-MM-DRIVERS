@@ -57,6 +57,18 @@ Na ordem, pela ponta da perna:
 O mesmo jogo serve para qualquer driver de 40 a 60 mm: você só corta os furos do tamanho do seu. Meça o driver (o
 diâmetro da borda) e use o tamanho mais próximo: 40, 45, 50, 55 ou 60.
 
+**Antes de cortar, meça também a traseira do driver** (tudo o que fica atrás da borda: ímã e carcaça). Ela precisa
+passar pelo furo do disco S e da placa de quebrar:
+
+| Driver | 40 | 45 | 50 | 55 | 60 |
+|---|---|---|---|---|---|
+| Furo do S e da placa (mm) | 34,8 | 39,0 | 43,2 | 47,4 | 51,6 |
+
+Se a traseira do seu driver for mais larga, corte o S e a placa no círculo do tamanho seguinte. Os terminais (pontos
+de solda) precisam ficar **fora** desse furo, em cima das tiras. Limites da concha: o driver pode ter até **14 mm** de
+profundidade (da frente da borda até o fundo do ímã), e o que fica mais de 4 mm atrás da frente da borda precisa caber
+em **52 mm** de diâmetro.
+
 ![Assento universal](img/12_assento.png)
 
 1. Imprima o molde [`assento/molde_assento.pdf`](assento/molde_assento.pdf) em escala 100% (a régua mede 100 mm).

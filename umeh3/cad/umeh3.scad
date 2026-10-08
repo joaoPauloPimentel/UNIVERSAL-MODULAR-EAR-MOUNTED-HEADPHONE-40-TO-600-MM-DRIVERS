@@ -125,7 +125,7 @@ module bayonet_cut() {
 // the surface: 3.6 mm opening on the 4 mm sleeve, it snaps in); blind hole for the bent wire end
 module neck_spine() {
     if (NECK != undef) intersection() {
-        union() { sweep_tube(NECK, NECK_SL + 0.3 + 2 * WALL, 1, NECK_EMB); translate(NECK[1] - [0, 0, NECK_PIN / 2]) sphere(d = WP == true ? 5.5 : 7, $fn = 32); }
+        union() { sweep_tube(NECK, NECK_SL + 0.3 + 2 * WALL, 1, NECK_EMB); translate(NECK[1] - [0, 0, NECK_PIN / 2]) sphere(d = WP == true ? 5.5 : 5, $fn = 32); }   // d 5 (was 7): clears a 14 mm deep 60 mm driver (review 2026-10-08)
         at_pc() rotate_extrude($fn = 160) cup_outer2d();
     }
 }
