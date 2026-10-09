@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>UMEH Caça-Promoções: peças</title><link rel="stylesheet" href="style.css"></head>
+<body class="opcoes"><main>
+<h1>Peças e preços-alvo</h1>
+<p>Quando o menor preço achado ficar <b>igual ou abaixo do alvo</b>, ou cair a porcentagem escolhida desde a última busca, a extensão avisa.
+"Precisa ter" são palavras que o título do anúncio tem que conter (separe por vírgula; use <code>|</code> para alternativas, ex.: <code>1,6|1.6</code>).</p>
+<div class="cfg">
+<label>Procurar a cada <input id="horas" type="number" min="1" max="168"> horas</label>
+<label>Avisar quando cair <input id="queda" type="number" min="1" max="90"> %</label>
+<label><input id="ativo" type="checkbox"> Busca automática ligada</label>
+</div>
+<div class="tw"><table><thead><tr><th>Peça</th><th>Texto da busca</th><th>Precisa ter</th><th>Não pode ter</th><th>Alvo R$</th><th>Lojas</th><th></th></tr></thead><tbody id="linhas"></tbody></table></div>
+<div class="bar"><button id="nova">+ Peça</button><button id="salvar">Salvar</button><button id="padrao" class="sec">Voltar à lista original</button><span id="ok"></span></div>
+</main><script type="module" src="options.js"></script></body></html>
