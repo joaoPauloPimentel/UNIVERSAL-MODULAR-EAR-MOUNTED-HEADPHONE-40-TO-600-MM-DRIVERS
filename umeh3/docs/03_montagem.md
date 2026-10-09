@@ -6,7 +6,7 @@ https://claude.ai/artifact/URyddQ9yXXfGch5ddgCAYa
 
 ![Conjunto](img/01_conjunto.png)
 
-## 1. Dobrar o fio do gancho (corda de piano 1,6 mm)
+## 1. Dobrar o fio do gancho (inox AISI 302 duro 1,6 mm)
 
 1. Corte 200 mm de fio (sobra margem para a trava).
 2. Ponha o fio no sulco do gabarito (`gabarito_dobra_R` para o lado direito) a partir da ponta de baixo e dobre com os
@@ -16,8 +16,8 @@ https://claude.ai/artifact/URyddQ9yXXfGch5ddgCAYa
    ![Gabarito](img/05_gabarito.png)
 
 3. Fora do gabarito plano, faça as dobras que saem do plano e confira no **berço 3D** (`gabaritos/gabarito_gancho_R` ou
-   `_L`): o fio tem que cair no sulco **em todo o comprimento**, do trecho reto em pé (na coluna) até a ponta. O aço mola
-   volta um pouco depois de dobrado: dobre um pouco além e corrija até ele assentar sozinho, sem você segurar.
+   `_L`): o fio tem que cair no sulco **em todo o comprimento**, do trecho reto em pé (na coluna) até a ponta. O inox duro
+   volta um pouco depois de dobrado (um pouco menos que a corda de piano): dobre um pouco além e corrija até ele assentar sozinho, sem você segurar.
 
    ![Berço do gancho](img/09_gabarito_gancho.png)
 
@@ -126,9 +126,9 @@ Monte de trás para a frente, com a concha deitada e o bolso virado para cima:
 2. Vista a **almofada oval** com o lado comprido (110 mm) **de cima para baixo**: estique a borda elástica de tecido
    por cima da aba oval da placa até ela prender atrás do friso.
 
-## 8. Faixa da nuca (corda de piano 1,8 mm, reta)
+## 8. Faixa da nuca (inox AISI 302 duro 1,8 mm, reto)
 
-1. Corte 410 mm de fio de 1,8 mm e dobre 90° os últimos 3,5 mm de cada ponta (esses pinos entram nos furos cegos das
+1. Corte 410 mm de fio de 1,8 mm (se veio em rolo, estique à mão até ficar reto) e dobre 90° os últimos 3,5 mm de cada ponta (esses pinos entram nos furos cegos das
    tampas).
 2. Vista a mangueira de silicone 2 × 4 mm no fio, deixando os pinos de fora.
 3. Dê a forma da faixa na **placa da faixa** (`gabaritos/gabarito_faixa`): ponha um pino no furo de uma ponta e vá

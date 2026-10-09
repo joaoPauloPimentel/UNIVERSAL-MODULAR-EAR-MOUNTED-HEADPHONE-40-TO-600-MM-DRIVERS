@@ -19,10 +19,10 @@ são impressas em FDM; o resto é comprado pronto.
 | Palheta atrás da orelha, 14 × 36 mm | TPU 95A | impressa | 1,4 |
 | Berço da sela (placa fina + clipe no tubo) | TPU 95A | impresso | 3,3 |
 | Almofada redonda 110 mm (furo ~68 mm), veludo | comprada | 11 [A] |
-| Fio do gancho, aço mola (corda de piano) 1,6 mm | comprado | 2,3 |
+| Fio do gancho, inox AISI 302 duro 1,6 mm (antes corda de piano) | comprado | 2,3 |
 | Tubo de PTFE 2 × 4 mm no arco + tubo de silicone 4 × 7 mm na perna | comprados | 3,6 |
 | Espuma da sela 6 mm (viscoelástica média, ~25 kPa) em capa de veludo | comprada | 0,6 |
-| Faixa da nuca: aço mola 1,8 mm (sem espiras) em tubo de silicone 2 × 4 mm | comprada | 12,5 o par |
+| Faixa da nuca: inox AISI 302 duro 1,8 mm (sem espiras) em tubo de silicone 2 × 4 mm | comprada | 12,5 o par |
 | Conector 2 pinos 0,78 mm | comprado | 2,7 |
 | Espuma frontal PU reticulada 3 mm, fibra de poliéster enchendo a concha | compradas | 0,7 |
 
@@ -185,3 +185,28 @@ docs/02_lista_de_compras.md.
   quina trincar, a saída é parede de 1,6 mm (+~2 g por lado).
 - Teste real: pesar as peças, medir a pressão no vinco com filme sensível depois de 20 minutos de esteira, e ouvir a
   vedação correndo.
+
+
+## Anexo: arame de inox AISI 302 duro no lugar da corda de piano (9/10/2026)
+
+O arame disponível no Mercado Livre é inox 302 duro. Foram refeitos os cálculos de resistência e fadiga e a corrida na
+esteira (`UMEH_WIRE=ss302`; resultados em `results/strength_ss302.json`, `results/durability_ss302.json`,
+`results/ss302/`). Valores de tabela (ASTM A313: Sut = 1867/d^0,146 MPa, E = 193 GPa, limite de dobra 0,61 Sut) [A]: o
+vendedor não dá certificado.
+
+| | Corda de piano | Inox 302 |
+|---|---|---|
+| Resistência do fio de 1,6 mm (MPa) | 2065 | 1743 |
+| Gancho em uso, fator de segurança | 8,2 | 6,9 |
+| Gancho: abertura até dobra permanente (para trás) | 10,5 mm | 9,5 mm |
+| Faixa vestindo: fator de segurança | 1,65 | 1,18 |
+| Faixa: folga por lado antes de dobrar | 49 mm | 28 mm |
+| Fadiga (Goodman): gancho / faixa | 5,0 / 3,7 | 4,2 / 3,2 |
+| Rigidez lateral da faixa | 105 N/m | 98 N/m |
+| Esteira 60 mm: soltos / pressão na raiz | 0 / 8,2 kPa | 0 / 8,2 kPa |
+| Esteira 40 mm e 50 mm: soltos | 0 | 0 (6,5 e 7,2 kPa) |
+
+Conclusão: nada solta e a pressão na raiz da orelha não muda. O que piora é a margem ao vestir a faixa. Em 1,8 mm
+reto ela é a melhor opção em inox (1,4 a 1,6 mm ficam com fator de segurança abaixo de 1,1). Falta o teste físico do
+arame (ver `docs/04_testes.md`). As cargas de 1 a 5 g não foram refeitas: a rigidez do fio mudou 7 % e a esteira, que é
+a mais exigente, não mudou.

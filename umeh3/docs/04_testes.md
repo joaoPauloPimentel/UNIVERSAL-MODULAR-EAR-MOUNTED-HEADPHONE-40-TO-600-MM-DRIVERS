@@ -48,3 +48,16 @@ Se a quina trincar, a solução é parede de 1,6 mm (+~2 g por lado). Avise ante
   almofada está vedando.
 - Correndo: o grave "respirar" um pouco no ritmo da passada é esperado (calculado).
 - Se os médios ficarem ásperos ou com eco, ponha mais fibra no copo, um pouco de cada vez.
+
+
+## Teste do arame de inox (novo, 9/10/2026)
+
+O arame comprado no Mercado Livre é inox AISI 302 duro, sem certificado. Os cálculos usaram a resistência de tabela
+(1743 MPa no fio de 1,6 mm), que é cerca de 16 % menor que a da corda de piano. Antes de montar os fones de venda:
+
+1. Dobre um pedaço de 1,8 mm no gabarito da faixa e abra as pontas para 238 mm (cabeça grande) 50 vezes. A forma tem de
+   voltar para dentro de 2 mm das pontas a ~198 mm.
+2. Abra as pontas devagar até o fio **não voltar mais** (ficar dobrado). O cálculo prevê isso a cerca de 28 mm por lado
+   além da cabeça maior. Se ficar dobrado antes de uns 15 mm por lado, o arame é mais mole que o de tabela: troque de
+   fornecedor ou procure inox 302 "mola" certificado.
+3. No fio de 1,6 mm do gancho, abra a perna para trás: o cálculo prevê dobra permanente a cerca de 9,5 mm.

@@ -13,8 +13,8 @@ Os itens trocados estão marcados com ★.
 | Peça | Quanto precisa | Termo de busca | Onde | R$ aprox. | Atenção |
 |---|---|---|---|---|---|
 | Almofada **oval** de veludo, **110 × 90 mm** (versão oval, 7/10/2026) | 1 par | "almofada fone oval 110x90mm", "110x90mm oval earpads velour" | AliExpress; no ML procure pela medida | ~30-60 o par (não conferido) | Confira a medida externa 110 × 90 e o **furo de ~70 × 50 mm** (pergunte ao vendedor se não estiver no anúncio): com furo menor a espuma fica em cima do gancho. Altura de 20-25 mm serve (o projeto usa 22). |
-| Corda de piano (aço mola) 1,6 mm, gancho | 2 pedaços de 200 mm | "arame aço linkagem 1,6mm", "pushrod 1,6mm" | ML (aeromodelismo), Biruta Hobby, Big Field Hobby | ~17 (1,6 × 700 mm) | Vende como pushrod de 300-700 mm, às vezes com rosca ou "Z" numa ponta: corte essa ponta fora. Não use inox de solda (é mole). |
-| Corda de piano 1,8 mm, faixa (reta, sem molinhas) | 1 pedaço de 410 mm | "arame aço linkagem 1,8mm", "pushrod 1,8mm" | ML (aeromodelismo), Biruta Hobby | ~28 (3 × 700 mm) | Precisa de pelo menos 410 mm reto. |
+| Arame de **inox AISI 302 duro** (mola) 1,6 mm, gancho | 2 pedaços de 200 mm | "arame inox aço mola 1,6mm", "AISI 302 duro 1,6mm" | Mercado Livre: rolo de 10 m a R$ 39,04 (MLB-3588616447, conferido 9/10/2026); 5 m a R$ 24,64 | 1,56 por fone (rolo de 10 m rende ~25 fones) | Compre **inox 302 "duro"/mola** (trefilado a frio), nunca recozido nem arame de solda. Troca a corda de piano: calculado de novo (9/10/2026) e atende, com folga menor na faixa. O rolo vem enrolado: alise antes de dobrar. |
+| Arame de **inox AISI 302 duro** 1,8 mm, faixa (sem molinhas) | 1 pedaço de 410 mm | "arame inox aço mola 1,8mm", "AISI 302 duro 1,8mm" | Mercado Livre: rolo de 10 m a R$ 58,00 (MLB-1822366219, conferido 9/10/2026); 1 m a R$ 19,04 | 2,42 por fone (rolo de 10 m rende ~24 fones) | Pergunte ao vendedor se manda **reto**; se vier em rolo, estique à mão antes de dobrar. Precisa de pelo menos 410 mm. |
 | ★ Tubo de PTFE 2 × 4 mm | 0,3 m (compre 1 m, o menor que se acha) | "tubo ptfe 2x4 impressora 3d" | Saravati, Soldafria, Smartkits, ML | 11-30 por 1 m | Medida padrão de impressora 3D. |
 | Mangueira de silicone 4 × 7 mm | 0,2 m | "mangueira silicone aquário 4mm" | Amazon.com.br, lojas de aquário (Fishtop, Natureef) | 10-40 | Confira o diâmetro externo: 4 × 6 também serve; 4 × 8 fica mais grosso. |
 | Mangueira de silicone 2 × 4 mm | 0,5 m | "mangueira silicone 2x4mm" | OFA Ambiental, Borrachas Moema, Amazon.com.br | 10-25 por metro | Capa da faixa da nuca. |
@@ -42,7 +42,7 @@ Os itens trocados estão marcados com ★.
 
 ## Ferramentas
 
-Alicate de bico e alicate de corte para aço (corda de piano é dura: use o canto do alicate de corte ou uma retífica),
+Alicate de bico e alicate de corte para aço (o inox duro é difícil de cortar: use o canto do alicate de corte ou uma retífica),
 lima fina, estilete de lâmina nova e compasso de corte (ou só estilete, devagar) para o EVA, tesoura forte para o bronze, ferro de solda para o soquete, fita isolante ou termo-retrátil fino, régua.
 
 ## O que só tem fora do Brasil
