@@ -17,7 +17,7 @@ Procura o menor preço de cada peça do fone UMEH-3 no **Mercado Livre, Shopee, 
 
 - A cada 12 horas (ou no botão **Procurar agora**), abre uma janela minimizada, faz a busca de cada peça nas lojas
   marcadas, lê os anúncios da primeira página e fecha a janela. Leva cerca de 8 segundos por busca
-  (a lista inicial tem 15 peças e 41 buscas: uns 5 a 6 minutos). Só roda com o Brave aberto.
+  (a lista inicial tem 15 peças e 38 buscas: uns 5 minutos). Só roda com o Brave aberto.
 - Só conta anúncios cujo título tem as palavras de "Precisa ter" e não tem as de "Não pode ter". Assim um
   "tubo PTFE 2x3" não entra na busca do 2 × 4.
 - Ignora preço riscado ("De R$ …") e parcelas ("12x R$ …"). O preço é o da busca, **sem frete** (a Shopee e o
