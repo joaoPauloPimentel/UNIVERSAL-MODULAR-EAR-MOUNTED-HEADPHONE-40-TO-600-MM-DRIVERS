@@ -14,13 +14,19 @@ async function desenhar() {
     const m = r && r.melhor;
     if (r && r.promo) tr.className = "promo";
     const td1 = document.createElement("td"); td1.textContent = p.nome;
-    if (r && r.status) { const s = document.createElement("small"); s.textContent = Object.entries(r.status).map(([l, v]) => `${LOJAS[l].nome}: ${v === "login" ? "entre na conta" : v}`).join(" · "); td1.append(s); }
+    if (r && r.status) {
+      const s = document.createElement("small");
+      s.textContent = Object.entries(r.status).map(([l, v]) => `${LOJAS[l].nome}: ${v === "login" ? "entre na conta" : v === "erro" ? "erro (" + ((r.erros || {})[l] || "?").slice(0, 120) + ")" : v}`).join(" · ");
+      td1.append(s);
+    }
     const td2 = document.createElement("td");
     if (m) {
       const a = document.createElement("a"); a.href = m.link; a.target = "_blank"; a.title = m.titulo;
-      a.textContent = brl(m.preco); td2.append(a);
+      const total = m.total ?? m.preco;
+      a.textContent = brl(total); td2.append(a);
+      const frete = m.frete === 0 ? "frete grátis" : m.frete > 0 ? `${brl(m.preco)} + ${brl(m.frete)} frete` : "frete não achado";
       const s = document.createElement("small");
-      s.textContent = LOJAS[m.loja].nome + (m.freteGratis ? " · frete grátis" : "") + (r.queda ? ` · ${r.queda > 0 ? "−" : "+"}${Math.abs(r.queda)}%` : "");
+      s.textContent = LOJAS[m.loja].nome + " · " + frete + (r.queda ? ` · ${r.queda > 0 ? "−" : "+"}${Math.abs(r.queda)}%` : "");
       td2.append(s);
     } else td2.textContent = r ? "nada achado" : "—";
     const td3 = document.createElement("td"); td3.textContent = brl(p.precoAlvo);

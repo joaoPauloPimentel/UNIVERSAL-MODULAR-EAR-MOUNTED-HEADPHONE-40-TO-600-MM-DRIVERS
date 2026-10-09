@@ -11,7 +11,7 @@ export function extrairOfertas(loja) {
   const idDe = href => { let h = href || ""; try { h = decodeURIComponent(h); } catch (e) {} const m = h.match(re); return m ? m[1].replace("-", "").toUpperCase() : null; };
 
   const url = location.href, txt = (document.body && document.body.innerText) || "";
-  if (/account-verification|\/login|signin|captcha|verify\/traffic/i.test(url) || /digite os caracteres|não sou um robô|captcha/i.test(txt.slice(0, 2000)))
+  if (/account-verification|\/login|\/lgz\/|\/jms\/|signin|captcha|verify\/traffic|\/gz\/|registration/i.test(url) || /digite os caracteres|não sou um robô|captcha/i.test(txt.slice(0, 2000)))
     return { status: "login", ofertas: [] };
 
   const precoDeTexto = s => {
@@ -77,4 +77,26 @@ export function extrairOfertas(loja) {
     });
   }
   return { status: "ok", ofertas: [...vistos.values()] };
+}
+
+// Roda na página do ANÚNCIO. Lê o frete mostrado para o endereço da conta.
+// Devolve { frete: número (0 = grátis) ou null se não achou, texto: trecho lido }.
+export function lerFrete(preco) {
+  const url = location.href, corpo = (document.body && document.body.innerText) || "";
+  if (/account-verification|\/login|\/lgz\/|\/jms\/|signin|captcha|\/gz\//i.test(url)) return { frete: null, texto: "login" };
+  const linhas = corpo.split("\n").map(l => l.replace(/\s+/g, " ").trim()).filter(Boolean);
+  const valor = s => { const m = s.match(/R\$\s*(\d{1,3}(?:\.\d{3})+|\d+)(?:\s*,\s*(\d{2}))?/); return m ? parseFloat(m[1].replace(/\./g, "") + "." + (m[2] || "00")) : null; };
+  const CHAVE = /frete|envio|entrega|shipping|chegar[áa]|receba|delivery/i;
+  for (let i = 0; i < linhas.length && i < 2500; i++) {
+    if (!CHAVE.test(linhas[i])) continue;
+    const trecho = [linhas[i], linhas[i + 1] || "", linhas[i + 2] || ""].join(" ").slice(0, 200);
+    if (/devolu|reembolso|garantia|pol[íi]tica|perguntas|full\b|calcular|informe seu cep|digite seu cep/i.test(linhas[i])) continue;
+    // "Frete grátis acima de R$ 79": só vale se o produto passa do mínimo
+    const cond = trecho.match(/gr[áa]tis[^R]{0,40}(?:acima|a partir|compras? (?:de|acima)|em pedidos)[^R]{0,15}(R\$\s*[\d.,]+)/i);
+    if (cond) { const min = valor(cond[1]); if (min != null && preco >= min) return { frete: 0, texto: trecho }; continue; }
+    if (/gr[áa]tis|free shipping|frete 0|sem custo/i.test(linhas[i]) || /^(chegar[áa]|receba)[^R]*gr[áa]tis/i.test(trecho)) return { frete: 0, texto: trecho };
+    const v = valor(linhas[i]) ?? valor(linhas[i + 1] || "");
+    if (v != null && v < 500 && Math.abs(v - preco) > 0.005) return { frete: v, texto: trecho };
+  }
+  return { frete: null, texto: "" };
 }

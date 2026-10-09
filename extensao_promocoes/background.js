@@ -1,5 +1,5 @@
 import { LOJAS, PECAS_PADRAO, CONFIG_PADRAO } from "./parts.js";
-import { extrairOfertas } from "./extract.js";
+import { extrairOfertas, lerFrete } from "./extract.js";
 
 const ALARME = "umeh-busca";
 const espera = ms => new Promise(r => setTimeout(r, ms));
@@ -43,11 +43,11 @@ export async function buscar() {
   const anterior = (await get("resultados")) || {};
   const resultados = {};
   const tarefas = lista.flatMap(p => (p.lojas || []).filter(l => LOJAS[l]).map(l => [p, l]));
-  let janela;
+  let janela, tabId;
   try {
     // janela minimizada só para as buscas; é fechada no fim
     janela = await chrome.windows.create({ url: "about:blank", state: "minimized", focused: false });
-    const tabId = janela.tabs[0].id;
+    tabId = janela.tabs[0].id;
     for (let i = 0; i < tarefas.length; i++) {
       const [p, loja] = tarefas[i];
       await set({ progresso: { feito: i, total: tarefas.length, agora: `${p.nome} · ${LOJAS[loja].nome}` } });
@@ -61,13 +61,33 @@ export async function buscar() {
         await espera(2000);
         const [{ result }] = await chrome.scripting.executeScript({ target: { tabId }, func: extrairOfertas, args: [loja] });
         r = result || r;
-      } catch (e) { r = { status: "erro", erro: String(e), ofertas: [] }; }
+      } catch (e) {
+        let onde = ""; try { onde = new URL((await chrome.tabs.get(tabId)).url).host; } catch (x) {}
+        r = { status: "erro", erro: String(e && e.message || e) + (onde ? ` (página: ${onde})` : ""), ofertas: [] };
+      }
       const boas = r.ofertas.filter(o => combina(p, o.titulo)).sort((a, b) => a.preco - b.preco).slice(0, 5)
         .map(o => Object.assign(o, { loja }));
       const res = resultados[p.id] || (resultados[p.id] = { ofertas: [], status: {} });
       res.status[loja] = r.status === "ok" ? `${boas.length} de ${r.ofertas.length}` : r.status;
+      if (r.erro) (res.erros || (res.erros = {}))[loja] = r.erro;
       res.ofertas.push(...boas);
       await espera(1500 + Math.random() * 2000);   // sem pressa, para não parecer robô
+    }
+    // frete: abre os 3 anúncios mais baratos de cada peça e lê o frete para o endereço da conta
+    const fila = lista.flatMap(p => (resultados[p.id] ? resultados[p.id].ofertas.sort((a, b) => a.preco - b.preco).slice(0, 3) : []).map(o => [p, o]));
+    for (let i = 0; i < fila.length; i++) {
+      const [p, o] = fila[i];
+      await set({ progresso: { feito: tarefas.length + i, total: tarefas.length + fila.length, agora: `frete: ${p.nome} · ${LOJAS[o.loja].nome}` } });
+      try {
+        await chrome.tabs.update(tabId, { url: o.link });
+        await carregou(tabId);
+        await espera(4000);
+        const [{ result }] = await chrome.scripting.executeScript({ target: { tabId }, func: lerFrete, args: [o.preco] });
+        o.frete = result ? result.frete : null;
+        o.freteTexto = result ? result.texto : "";
+      } catch (e) { o.frete = null; }
+      if (o.frete == null && o.freteGratis) o.frete = 0;
+      await espera(1000 + Math.random() * 1500);
     }
   } finally {
     if (janela) try { await chrome.windows.remove(janela.id); } catch (e) {}
@@ -78,15 +98,20 @@ export async function buscar() {
   const avisos = [];
   for (const p of lista) {
     const res = resultados[p.id]; if (!res) continue;
-    res.ofertas.sort((a, b) => a.preco - b.preco);
-    const melhor = res.ofertas[0], antes = anterior[p.id] && anterior[p.id].melhor;
+    // total = preço + frete; frete desconhecido conta só o preço, mas perde o empate e fica marcado com "?"
+    for (const o of res.ofertas) o.total = o.preco + (o.frete || 0);
+    const chave = o => o.total + (o.frete == null ? 0.001 : 0);
+    res.ofertas.sort((a, b) => chave(a) - chave(b));
+    const verificadas = res.ofertas.filter(o => o.frete !== undefined);
+    const melhor = verificadas[0] || res.ofertas[0], antes = anterior[p.id] && anterior[p.id].melhor;
     res.melhor = melhor || null;
-    res.historico = ((anterior[p.id] && anterior[p.id].historico) || []).concat(melhor ? [{ t: Date.now(), preco: melhor.preco }] : []).slice(-60);
+    res.historico = ((anterior[p.id] && anterior[p.id].historico) || []).concat(melhor ? [{ t: Date.now(), total: melhor.total }] : []).slice(-60);
     if (!melhor) continue;
-    res.promo = melhor.preco <= p.precoAlvo;
-    res.queda = antes && antes.preco > 0 ? Math.round((1 - melhor.preco / antes.preco) * 100) : 0;
+    res.promo = melhor.total <= p.precoAlvo;
+    const antesTotal = antes ? (antes.total ?? antes.preco) : 0;
+    res.queda = antesTotal > 0 ? Math.round((1 - melhor.total / antesTotal) * 100) : 0;
     if (res.promo || res.queda >= c.quedaAviso)
-      avisos.push(`${p.nome}: R$ ${melhor.preco.toFixed(2).replace(".", ",")} (${LOJAS[melhor.loja].nome})${res.queda >= c.quedaAviso ? `, caiu ${res.queda}%` : ""}`);
+      avisos.push(`${p.nome}: R$ ${melhor.total.toFixed(2).replace(".", ",")} com frete${melhor.frete == null ? " ?" : ""} (${LOJAS[melhor.loja].nome})${res.queda >= c.quedaAviso ? `, caiu ${res.queda}%` : ""}`);
   }
   await set({ resultados, ultima: Date.now(), progresso: null });
   const n = Object.values(resultados).filter(r => r.promo).length;
