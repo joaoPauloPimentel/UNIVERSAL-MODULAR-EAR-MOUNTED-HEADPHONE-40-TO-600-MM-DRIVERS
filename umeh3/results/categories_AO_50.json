@@ -724,5 +724,38 @@
     ]
    }
   }
+ },
+ "5 g accidental": {
+  "ok": true,
+  "n": 3000,
+  "released": 3000,
+  "clamp_lost": 0,
+  "pad_open": 0,
+  "worst": {
+   "pad_p": -Infinity,
+   "root_p": -Infinity,
+   "helix_p": -Infinity,
+   "sulcus_p": -Infinity,
+   "lobe_p": -Infinity,
+   "pinna_p": -Infinity,
+   "rot": -Infinity,
+   "disp": -Infinity,
+   "util": -Infinity,
+   "n_pad": Infinity,
+   "clamp": Infinity
+  },
+  "tags": {
+   "pad_p": null,
+   "root_p": null,
+   "helix_p": null,
+   "sulcus_p": null,
+   "lobe_p": null,
+   "pinna_p": null,
+   "rot": null,
+   "disp": null,
+   "util": null,
+   "n_pad": null,
+   "clamp": null
+  }
  }
 }
