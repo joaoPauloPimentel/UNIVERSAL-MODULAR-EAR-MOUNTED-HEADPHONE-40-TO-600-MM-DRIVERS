@@ -16,30 +16,28 @@ O que pode mudar: a almofada de 10 g e os drivers de 15/26/40 g são valores tí
 
 Driver mais pesado que o previsto: o cálculo diz que o fone ainda segura na esteira até cerca de 45 g (40 mm), 51 g (50 mm) e 50 g (60 mm) por driver. Para ficar confortável, o ideal é ficar abaixo de ~35 g.
 
-## 2. Firmeza em movimento (simulação)
+## 2. Firmeza em movimento (simulação do oval com a faixa de inox 1,8 mm reta, a que será comprada)
 
-Esteira (caminhar e correr), 5.400 combinações de movimento da cabeça, balanço do cabo e inclinação, com a faixa de 2 N por lado:
+Esteira (caminhar e correr), 5.400 combinações de movimento da cabeça, balanço do cabo e inclinação, faixa de 2 N por lado:
 
 | Driver | Soltou | Pressão máxima na raiz da orelha por passada | Deslocamento máximo |
 |---|---|---|---|
-| 40 mm | 0 de 5.400 | 6,1 a 6,4 kPa | cerca de 2,1 mm |
-| 50 mm | 0 de 5.400 | 7,2 a 7,3 kPa | cerca de 2,4 mm |
-| 60 mm | 0 de 5.400 | 8,2 a 8,7 kPa | cerca de 2,6 a 2,8 mm |
+| 40 mm | 0 de 5.400 | 6,2 kPa | 2,2 mm |
+| 50 mm | 0 de 5.400 | 7,0 kPa | 2,4 mm |
+| 60 mm | 0 de 5.400 | 8,4 kPa | 2,7 mm |
 
-Foi rodado com três arames diferentes (corda de piano 1,6 mm, inox 1,8 mm reto na versão redonda, e inox no modelo oval com a faixa que o programa dimensiona sozinho). Em todos, nenhum caso soltou. O limite de conforto usado no projeto é 8 kPa por passada: o de 60 mm fica no limite ou um pouco acima, o de 40 mm e o de 50 mm ficam abaixo. Depois de muitas passadas, a pressão que fica sustentada na raiz (60 mm) é de cerca de 4,4 kPa, perto do alvo de 4 kPa.
+O limite de conforto do projeto é 8 kPa por passada: o de 60 mm fica um pouco acima, o de 40 e o de 50 mm abaixo. Depois de muitas passadas, a pressão sustentada na raiz (60 mm) é de cerca de 4,4 kPa, perto do alvo de 4 kPa (esse valor é da rodada anterior com corda de piano). Puxão no cabo: o fone aguenta no mínimo 2,3 N antes de sair do lugar.
 
-Puxão no cabo: o fone aguenta no mínimo cerca de 2,3 N antes de sair do lugar.
-
-Cargas maiores (simulação do modelo oval, com arame de corda de piano; 5.610 a 21.000 casos por linha):
+Cargas maiores, mesmo modelo (5.610 a 21.000 casos por linha):
 
 | Carga | 40 mm | 50 mm | 60 mm |
 |---|---|---|---|
-| 1 g (uso normal) | 0 % solta | 0 % solta | 0 % solta |
-| 2 g (movimento forte) | 0 % solta | 0 % solta | 0 % solta |
-| 3 g (sacudida severa) | 1,3 % solta | 3,4 % solta | 7,6 % solta |
+| 1 g (uso normal) | 0 % solta, raiz 2,7 kPa | 0 % solta, 3,2 kPa | 0 % solta, 3,8 kPa |
+| 2 g (movimento forte) | 0 % solta, 5,3 kPa | 0 % solta, 6,0 kPa | 0 % solta, 7,4 kPa |
+| 3 g (sacudida severa) | 1,7 % solta | 3,8 % solta | 8,2 % solta |
 | 5 g ou puxão de 20 N (acidente) | sempre sai | sempre sai | sempre sai |
 
-O fone sair em acidente é proposital: ele solta em vez de puxar a orelha.
+Com corda de piano o resultado em 3 g era um pouco melhor (1,3 %, 3,4 % e 7,6 %). O fone sair em acidente é proposital: ele solta em vez de puxar a orelha. Logs: `umeh3/results/ao_ss302_18/`.
 
 ## 3. Resistência (calculada)
 
@@ -71,14 +69,14 @@ O fone sair em acidente é proposital: ele solta em vez de puxar a orelha.
 - Corrida real, queda de quina e dobra do arame de inox.
 - Uso com óculos.
 - Som medido com o driver escolhido.
-- As cargas de 1 a 5 g foram calculadas com corda de piano; com o arame de inox só a esteira foi refeita (a rigidez do fio muda cerca de 7 %).
+- As cargas de 1 a 5 g e a esteira foram calculadas também com o arame de inox 1,8 mm reto; falta o teste físico do arame.
 
 ## 7. Texto pronto para colar na campanha
 
 **Números do projeto (calculados, ainda sem protótipo medido)**
 
 - Peso por lado: cerca de 74 g (driver de 40 mm), 84 g (50 mm) ou 97 g (60 mm). Par: 149 a 194 g, sem o cabo.
-- Firmeza: em simulação de esteira, 5.400 combinações de movimento, o OTO não soltou em nenhum caso com 40, 50 e 60 mm. Em sacudidas severas (3 g), soltou em 1 a 8 % dos casos, dependendo do driver. Num acidente (puxão forte ou queda da cabeça) ele sai de propósito, em vez de puxar a orelha.
+- Firmeza: em simulação de esteira, 5.400 combinações de movimento, o OTO não soltou em nenhum caso com 40, 50 e 60 mm. Em sacudidas severas (3 g), soltou em 2 a 8 % dos casos, dependendo do driver (1,7 % com 40 mm, 3,8 % com 50 mm, 8,2 % com 60 mm). Num acidente (puxão forte ou queda da cabeça) ele sai de propósito, em vez de puxar a orelha.
 - Resistência: gancho de inox com folga de 4 a 7 vezes sobre o limite; queda de frente de 1 m calculada sem quebrar; queda de quina ainda precisa de teste real.
 - Som: concha fechada com fibra; se a almofada abrir muito durante a corrida, o grave diminui.
 - Todos esses números são cálculos. Peso real, corrida e queda serão testados e publicados aqui, inclusive os resultados ruins.
