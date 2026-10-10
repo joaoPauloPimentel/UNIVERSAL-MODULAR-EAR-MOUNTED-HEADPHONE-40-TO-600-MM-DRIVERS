@@ -140,14 +140,28 @@ module neck_channel() {
 // ---------------------------------------------------------------- brand (commercial finish)
 // Raised 0.4 mm wordmark on the flat back + a small side letter; printed in bronze by a filament change at the layer
 // where the letters start (the back is the top of the print). A raised 0.8 mm ring in the same colour frames the back.
-LOGO_TXT = "UMEH";
-LOGO_FONT = "DejaVu Sans:style=Bold";
 LOGO_H = 0.4;
 logo_in_shell = true;                        // false: the viewer draws the letters as their own (bronze) part
+// OTO Audio mark (brand/oto-audio-logo-*.svg): two rings (the cups), a T and the neckband curve, all in one mono stroke.
+// Drawn in the SVG's units (x right, y down, centre (200, 100)) and scaled to 24 mm wide, below the band channel, on the back face.
+OTO_S = 0.086;
+function oto_p(x, y) = [(x - 200) * OTO_S, -(y - 100) * OTO_S];
+module oto_seg(p, q, w) { hull() { translate(oto_p(p[0], p[1])) circle(d = w, $fn = 24); translate(oto_p(q[0], q[1])) circle(d = w, $fn = 24); } }
+module oto_mark() {
+    sw = 12 * OTO_S;                          // 1.0 mm stroke
+    for (cx = [110, 290]) translate(oto_p(cx, 100)) difference() { circle(r = 50 * OTO_S, $fn = 96); circle(r = 38 * OTO_S, $fn = 96); }
+    oto_seg([164, 56], [236, 56], sw);
+    oto_seg([200, 56], [200, 144], sw);
+    // neckband: quadratic curve (110,150) -> (290,150), control (200,218), 1.0 mm wide (the drawing's 5 units would be too thin to print)
+    for (i = [0 : 23]) let(t0 = i / 24, t1 = (i + 1) / 24,
+        p0 = [(1 - t0) * (1 - t0) * 110 + 2 * (1 - t0) * t0 * 200 + t0 * t0 * 290, (1 - t0) * (1 - t0) * 150 + 2 * (1 - t0) * t0 * 218 + t0 * t0 * 150],
+        p1 = [(1 - t1) * (1 - t1) * 110 + 2 * (1 - t1) * t1 * 200 + t1 * t1 * 290, (1 - t1) * (1 - t1) * 150 + 2 * (1 - t1) * t1 * 218 + t1 * t1 * 150])
+        oto_seg(p0, p1, 1.0);
+}
 module logo(letter, flip) {
     module flat2d() {
-        translate([PC[0], PC[1] - 14.5]) text(LOGO_TXT, size = 5.0, font = LOGO_FONT, halign = "center", valign = "center", spacing = 1.22);
-        translate([PC[0], PC[1] + 13.5]) text(letter, size = 3.2, font = LOGO_FONT, halign = "center", valign = "center");
+        translate([PC[0], PC[1] - 9.2]) oto_mark();
+        translate([PC[0], PC[1] + 13.5]) text(letter, size = 3.2, font = "DejaVu Sans:style=Bold", halign = "center", valign = "center");
         // accent ring framing the back face (same colour as the letters)
         translate([PC[0], PC[1]]) difference() { circle(r = 22.6, $fn = 160); circle(r = 21.8, $fn = 160); }
     }

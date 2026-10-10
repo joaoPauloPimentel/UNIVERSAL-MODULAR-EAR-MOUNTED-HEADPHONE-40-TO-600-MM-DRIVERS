@@ -162,7 +162,7 @@ típicos, mas acima de ~35 g o vinco da orelha passa da meta de conforto a cada 
   ponta do arame dobrada num furo cego. Tampa lisa, uma peça a menos, e a queda de costas não bate mais num ponto.
 - Faixa com arame de 1,8 mm sem espiras (o que os cálculos sempre usaram) e tubo de silicone 2 × 4 mm, mais fino e leve.
 - Caixa do conector com cantos arredondados, parede da trava e topo da bucha do gancho com bordas suavizadas.
-- Acabamento comercial: logo UMEH em relevo de 0,4 mm na tampa e a letra do lado (L/R), em bronze. Na impressão,
+- Acabamento comercial: logo OTO em relevo de 0,4 mm na tampa e a letra do lado (L/R), em bronze. Na impressão,
   pausar e trocar o filamento na camada onde as letras começam (a tampa é o topo da peça). Um friso de 0,4 mm
   emoldura a tampa e o copo encontra a placa com um filete côncavo de 3 mm. No lado esquerdo as letras saem
   espelhadas no CAD de propósito, para lerem certo depois do espelhamento.

@@ -32,7 +32,7 @@ mesa 75-80 °C; TPU a 220-230 °C, sem retração ou com retração curta. Não 
 
 Na versão econômica tudo sai numa cor só e a logo fica em relevo, sem troca de filamento. Para destacá-la:
 
-A logo UMEH, a letra do lado (L/R) e o aro que emoldura a tampa ficam 0,4 mm em relevo, que é o topo da concha na impressão. Para elas
+A logo OTO (dois anéis, T e a curva da banda, 24 mm de largura), a letra do lado (L/R) e o aro que emoldura a tampa ficam 0,4 mm em relevo, que é o topo da concha na impressão. Para elas
 saírem em bronze:
 
 1. No fatiador, coloque uma pausa / troca de filamento (M600 ou "pause at height") na **primeira camada acima de
